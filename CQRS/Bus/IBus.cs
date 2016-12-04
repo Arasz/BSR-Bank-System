@@ -9,13 +9,13 @@ namespace CQRS.Bus
     /// </summary>
     public interface IBus
     {
-        void DispatchCommand<TCommand>(TCommand command)
-            where TCommand : ICommand;
-
-        void DispatchEvent<TEvent>(TEvent @event)
+        void Publish<TEvent>(TEvent @event)
             where TEvent : IEvent;
 
-        TResult DispatchQuery<TQuery, TResult>()
+        void Send<TCommand>(TCommand command)
+                    where TCommand : ICommand;
+
+        TResult Send<TResult, TQuery>(TQuery query)
             where TQuery : IQuery<TResult>;
     }
 }

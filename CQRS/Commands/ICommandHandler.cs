@@ -1,6 +1,10 @@
 ﻿namespace CQRS.Commands
 {
-    public interface ICommandHandler<in TCommand>
+    public interface ICommandHandler
+    {
+    }
+
+    public interface ICommandHandler<in TCommand> : ICommandHandler
         where TCommand : ICommand
     {
         /// <summary>

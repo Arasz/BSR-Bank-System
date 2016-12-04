@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterbankTransactionService
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountMangmentClient", "Account-Managment-Client\AccountMangmentClient\AccountMangmentClient.csproj", "{CD0EDC95-E2E5-4AC1-8C0C-1C9BEC7CF9B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS", "CQRS\CQRS.csproj", "{DB6F8014-94AF-466B-9AAF-B7632751871B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRSTest", "CQRSTest\CQRSTest.csproj", "{BC418CBE-475A-4408-9C20-6D4505B6C032}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{CD0EDC95-E2E5-4AC1-8C0C-1C9BEC7CF9B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD0EDC95-E2E5-4AC1-8C0C-1C9BEC7CF9B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD0EDC95-E2E5-4AC1-8C0C-1C9BEC7CF9B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB6F8014-94AF-466B-9AAF-B7632751871B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB6F8014-94AF-466B-9AAF-B7632751871B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB6F8014-94AF-466B-9AAF-B7632751871B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB6F8014-94AF-466B-9AAF-B7632751871B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC418CBE-475A-4408-9C20-6D4505B6C032}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC418CBE-475A-4408-9C20-6D4505B6C032}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC418CBE-475A-4408-9C20-6D4505B6C032}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC418CBE-475A-4408-9C20-6D4505B6C032}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
