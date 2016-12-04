@@ -1,67 +1,26 @@
-﻿using Autofac;
-using CQRS.Commands;
+﻿using CQRS.Commands;
 using CQRS.Events;
 using CQRS.Queries;
-using CQRS.Validation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace CQRS.Bus
 {
     public class GenericBus : IBus
     {
-        private readonly Func<Type, ICommandHandler> _commandHandlersFactory;
-        private readonly IComponentContext _context;
-        private readonly Func<Type, IEnumerable<IEventHandler>> _eventHandlersFactory;
-        private readonly Func<Type, IQueryHandler> _queryHandlerFactory;
-        private readonly Func<Type, IValidation> _validationFactory;
+        private readonly ICommandBus _commandBus;
+        private readonly IEventBus _eventBus;
+        private readonly IQueryBus _queryBus;
 
-        public GenericBus(Func<Type, ICommandHandler> commandHandlersFactory, Func<Type, IEnumerable<IEventHandler>> eventHandlersFactory,
-            Func<Type, IQueryHandler> queryHandlerFactory, Func<Type, IValidation> validationFactory)
+        public GenericBus(ICommandBus commandBus, IEventBus eventBus, IQueryBus queryBus)
         {
-            _commandHandlersFactory = commandHandlersFactory;
-            _eventHandlersFactory = eventHandlersFactory;
-            _queryHandlerFactory = queryHandlerFactory;
-            _validationFactory = validationFactory;
+            _commandBus = commandBus;
+            _eventBus = eventBus;
+            _queryBus = queryBus;
         }
 
-        public void Publish<TEvent>(TEvent @event) where TEvent : IEvent
-        {
-            if (@event == null)
-                throw new ArgumentException("Event can not be null");
+        public void Publish<TEvent>(TEvent @event) where TEvent : IEvent => _eventBus.Publish(@event);
 
-            var eventHandlers = _eventHandlersFactory(typeof(TEvent))
-                .Cast<IEventHandler<TEvent>>()
-                .ToList();
+        public void Send<TCommand>(TCommand command) where TCommand : ICommand => _commandBus.Send(command);
 
-            foreach (var eventHandler in eventHandlers)
-                eventHandler.HandleEvent(@event);
-        }
-
-        /// <exception cref="ArgumentException"> Command can not be null </exception>
-        public void Send<TCommand>(TCommand command) where TCommand : ICommand
-        {
-            if (command == null)
-                throw new ArgumentException("Command can not be null");
-
-            var validator = _validationFactory(typeof(TCommand)) as IValidation<TCommand>;
-            validator?.Validate(command);
-
-            var commandHandler = (ICommandHandler<TCommand>)_commandHandlersFactory(typeof(TCommand));
-            commandHandler.HandleCommand(command);
-        }
-
-        public TResult Send<TResult, TQuery>(TQuery query) where TQuery : IQuery<TResult>
-        {
-            if (query == null)
-                throw new ArgumentException("Query can not be null");
-
-            var validator = _validationFactory(typeof(TQuery)) as IValidation<TQuery>;
-            validator?.Validate(query);
-
-            var queryHandler = (IQueryHandler<TResult, TQuery>)_queryHandlerFactory(typeof(TQuery));
-            return queryHandler.HandleQuery(query);
-        }
+        public TResult Send<TResult, TQuery>(TQuery query) where TQuery : IQuery<TResult> => _queryBus.Send<TResult, TQuery>(query);
     }
 }

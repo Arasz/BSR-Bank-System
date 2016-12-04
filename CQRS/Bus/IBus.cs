@@ -5,7 +5,7 @@ using CQRS.Queries;
 namespace CQRS.Bus
 {
     /// <summary>
-    /// Bus for dispatching commands/queries/events 
+    /// Bus for dispatching commands/queries/events (facade) 
     /// </summary>
     public interface IBus
     {
