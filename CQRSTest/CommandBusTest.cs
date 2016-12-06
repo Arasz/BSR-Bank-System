@@ -1,4 +1,5 @@
 ﻿using CQRS.Commands;
+using CQRS.Exceptions;
 using CQRSTest.Commands;
 using FluentAssertions;
 using System;
@@ -23,6 +24,19 @@ namespace CQRSTest
             commandHandler.Result
                 .Should()
                 .Be(command.A + command.B, $"should be equal to sum of {nameof(AddNumbersCommand)} properties");
+        }
+
+        [Fact]
+        public void SendCommand_BehaviorWithNullHandler_ShouldThrowNullHandlerException()
+        {
+            var command = new AddNumbersCommand(2, 2);
+
+            var commandfactory = new Func<Type, AddNumbersCommandHandler>(type => null);
+
+            var bus = new CommandBus(commandfactory);
+
+            Action action = () => bus.Send(command);
+            action.ShouldThrow<NullHandlerException>();
         }
     }
 }

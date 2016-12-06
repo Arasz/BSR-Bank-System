@@ -47,6 +47,7 @@
     <Compile Include="Bus\GenericBus.cs" />
     <Compile Include="Bus\IBus.cs" />
     <Compile Include="Commands\CommandBus.cs" />
+    <Compile Include="Exceptions\NullHandlerException.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\ICommandBus.cs" />
     <Compile Include="Commands\ICommandHandler.cs" />

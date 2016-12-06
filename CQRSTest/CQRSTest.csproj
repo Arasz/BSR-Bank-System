@@ -88,6 +88,10 @@
     <Compile Include="QueryBusTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Account-Mangament-Service\AccountMangmentService\AccountMangmentService.csproj">
+      <Project>{9443F212-9C92-4A14-94CA-5FC66FACAA14}</Project>
+      <Name>AccountMangmentService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CQRS\CQRS.csproj">
       <Project>{db6f8014-94af-466b-9aaf-b7632751871b}</Project>
       <Name>CQRS</Name>
