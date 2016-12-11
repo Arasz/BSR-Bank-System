@@ -1,5 +1,5 @@
-﻿using AccountMangmentService.History;
-using AccountMangmentService.Operations;
+﻿using AccountMangmentService.Operations;
+using AccountMangmentService.Queries;
 using System.Collections.Generic;
 using System.ServiceModel;
 
