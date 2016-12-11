@@ -6,12 +6,12 @@ namespace CQRS.Validation.Decorators
     /// <summary>
     /// Query bus decorator. Validates query before send. 
     /// </summary>
-    public class QueryBus : IQueryBus
+    public class QueryValidationBus : IQueryBus
     {
         private readonly IQueryBus _queryBus;
         private readonly Func<Type, IValidation> _validationFactory;
 
-        public QueryBus(IQueryBus queryBus, Func<Type, IValidation> validationFactory)
+        public QueryValidationBus(IQueryBus queryBus, Func<Type, IValidation> validationFactory)
         {
             _queryBus = queryBus;
             _validationFactory = validationFactory;

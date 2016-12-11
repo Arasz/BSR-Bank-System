@@ -6,12 +6,12 @@ namespace CQRS.Validation.Decorators
     /// <summary>
     /// Command bus decorator. Validates command before send. 
     /// </summary>
-    public class CommandBus : ICommandBus
+    public class CommandValidationBus : ICommandBus
     {
         private readonly ICommandBus _commandBus;
         private readonly Func<Type, IValidation> _validationFactory;
 
-        public CommandBus(ICommandBus commandBus, Func<Type, IValidation> validationFactory)
+        public CommandValidationBus(ICommandBus commandBus, Func<Type, IValidation> validationFactory)
         {
             _commandBus = commandBus;
             _validationFactory = validationFactory;

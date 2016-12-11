@@ -60,6 +60,8 @@
     <Compile Include="Queries\IQueryBus.cs" />
     <Compile Include="Queries\IQueryHandler.cs" />
     <Compile Include="Queries\QueryBus.cs" />
+    <Compile Include="Validation\Decorators\CommandValidationBus.cs" />
+    <Compile Include="Validation\Decorators\QueryValidationBus.cs" />
     <Compile Include="Validation\IValidation.cs" />
   </ItemGroup>
   <ItemGroup />
