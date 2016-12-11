@@ -8,7 +8,7 @@
         where TCommand : ICommand
     {
         /// <summary>
-        /// Executes action for given command 
+        /// Handles given commands (can modify state) 
         /// </summary>
         void HandleCommand(TCommand command);
     }

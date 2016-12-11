@@ -4,6 +4,10 @@
     {
     }
 
+    /// <summary>
+    /// Handles given event 
+    /// </summary>
+    /// <typeparam name="TEvent"> Event type </typeparam>
     public interface IEventHandler<in TEvent> : IEventHandler
         where TEvent : IEvent
     {
