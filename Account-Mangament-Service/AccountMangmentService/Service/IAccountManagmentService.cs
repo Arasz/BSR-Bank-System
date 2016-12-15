@@ -3,7 +3,7 @@ using AccountMangmentService.Queries;
 using System.Collections.Generic;
 using System.ServiceModel;
 
-namespace AccountMangmentService
+namespace AccountMangmentService.Service
 {
     /// <summary>
     /// Responsible for user bank account management 
@@ -19,6 +19,12 @@ namespace AccountMangmentService
         string Authentication(string userName, string password);
 
         /// <summary>
+        /// Increases user account balance by given amount 
+        /// </summary>
+        [OperationContract]
+        void Deposit(decimal amount);
+
+        /// <summary>
         /// </summary>
         /// <param name="operationsHistoryQuery"> Query for operation history </param>
         /// <returns> History of operations </returns>
@@ -30,13 +36,7 @@ namespace AccountMangmentService
         /// </summary>
         /// <param name="paymentCommand"></param>
         [OperationContract]
-        void Payment(IPaymentCommand paymentCommand);
-
-        /// <summary>
-        /// Increases user account balance by given amount 
-        /// </summary>
-        [OperationContract]
-        void Payment(decimal amount);
+        void Transfer(IPaymentCommand paymentCommand);
 
         /// <summary>
         /// Decreases user account balance by given amount 

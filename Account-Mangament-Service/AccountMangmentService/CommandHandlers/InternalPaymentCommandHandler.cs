@@ -3,9 +3,9 @@ using CQRS.Commands;
 
 namespace AccountMangmentService.CommandHandlers
 {
-    public class InternalPaymentCommandHandler : ICommandHandler<InternalPaymentCommand>
+    public class InternalPaymentCommandHandler : ICommandHandler<InternalTransferCommand>
     {
-        public void HandleCommand(InternalPaymentCommand command)
+        public void HandleCommand(InternalTransferCommand command)
         {
             throw new System.NotImplementedException();
         }

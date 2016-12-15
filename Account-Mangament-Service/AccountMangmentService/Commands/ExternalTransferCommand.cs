@@ -3,7 +3,7 @@
     /// <summary>
     /// Payment to the account in other bank 
     /// </summary>
-    public class ExternalPaymentCommand : PaymnetCommand
+    public class ExternalTransferCommand : TransferCommand
     {
     }
 }

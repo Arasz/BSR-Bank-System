@@ -3,7 +3,7 @@
     /// <summary>
     /// Payment from user account 
     /// </summary>
-    public class WithdrawCommand : PaymnetCommand
+    public class WithdrawCommand : TransferCommand
     {
     }
 }

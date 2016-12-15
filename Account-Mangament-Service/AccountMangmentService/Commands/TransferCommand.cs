@@ -1,6 +1,9 @@
 ﻿namespace AccountMangmentService.Commands
 {
-    public abstract class PaymnetCommand : MinimalPaymentCommand
+    /// <summary>
+    /// Represents money transfer from one account to other account 
+    /// </summary>
+    public abstract class TransferCommand : PaymentCommand
     {
         public string From { get; set; }
 

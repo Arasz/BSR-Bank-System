@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS", "CQRS\CQRS.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRSTest", "CQRSTest\CQRSTest.csproj", "{BC418CBE-475A-4408-9C20-6D4505B6C032}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "Core\DataLayer.csproj", "{9E811AC8-1601-47D8-AF57-448931FE6AE7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{BC418CBE-475A-4408-9C20-6D4505B6C032}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC418CBE-475A-4408-9C20-6D4505B6C032}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC418CBE-475A-4408-9C20-6D4505B6C032}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E811AC8-1601-47D8-AF57-448931FE6AE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E811AC8-1601-47D8-AF57-448931FE6AE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E811AC8-1601-47D8-AF57-448931FE6AE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E811AC8-1601-47D8-AF57-448931FE6AE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
