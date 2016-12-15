@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace InterbankTransactionService.DataStructers
+namespace InterbankTransactionService.DataStructures
 {
     /// <summary>
     /// Data for interbank transfer operation 
