@@ -51,8 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataStructures\InterbankTransferDescription.cs" />
-    <Compile Include="Exceptions\IncorrectAccountNumberException.cs" />
-    <Compile Include="Exceptions\TransferAmountException.cs" />
+    <Compile Include="Exceptions\TransferValidationException.cs" />
     <Compile Include="Service\IInterbankTransactionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\InterbankTransactionService.cs" />

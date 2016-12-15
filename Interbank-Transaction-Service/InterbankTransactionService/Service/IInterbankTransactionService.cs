@@ -11,9 +11,13 @@ namespace InterbankTransactionService.Service
     [ServiceContract]
     public interface IInterbankTransactionService
     {
+        /// <summary>
+        /// Make transfer to local bank account 
+        /// </summary>
+        /// <param name="transferDescription"></param>
         [OperationContract]
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "transfer")]
-        [FaultContract(typeof(IncorrectAccountNumberException)), FaultContract(typeof(TransferAmountException))]
+        [FaultContract(typeof(TransferValidationException))]
         void Transfer(InterbankTransferDescription transferDescription);
     }
 }

@@ -13,7 +13,7 @@ namespace InterbankTransactionService.Validation
             _checksumCalculator = checksumCalculator;
             RuleFor(description => description.Amount)
                 .GreaterThan(0);
-
+            //regex https://regex101.com/r/qnQGLK/1
             RuleFor(description => description.ReceiverAccount)
                 .NotEmpty()
                 .Length(26)
