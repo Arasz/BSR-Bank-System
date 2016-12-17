@@ -1,14 +1,14 @@
-﻿using AccountMangmentService.Operations;
-using CQRS.Queries;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using AccountMangmentService.Operations;
+using CQRS.Queries;
 
-namespace AccountMangmentService.Queries
+namespace AccountMangmentService.History.Queries
 {
     /// <summary>
     /// Operations history query 
     /// </summary>
-    public class HistoryQuery : IQuery<IEnumerable<IOperation>>
+    public class HistoryQuery : IQuery<IEnumerable<Operation>>
     {
         public DateTime From { get; set; }
 

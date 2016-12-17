@@ -1,6 +1,6 @@
 ﻿using CQRS.Queries;
 
-namespace AccountMangmentService.Queries
+namespace AccountMangmentService.Authentication.Queries
 {
     /// <summary>
     /// User authentication query. If user can be authenticated query returns user token 

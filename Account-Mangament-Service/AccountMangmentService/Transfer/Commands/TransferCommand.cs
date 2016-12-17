@@ -1,4 +1,4 @@
-﻿namespace AccountMangmentService.Commands
+﻿namespace AccountMangmentService.Transfer.Commands
 {
     /// <summary>
     /// Represents money transfer from one account to other account 

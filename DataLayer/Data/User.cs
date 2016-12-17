@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AccountMangmentService.Data
+namespace DataLayer.Data
 {
     public class User
     {

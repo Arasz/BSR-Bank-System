@@ -1,5 +1,6 @@
-﻿using AccountMangmentService.Operations;
-using AccountMangmentService.Queries;
+﻿using AccountMangmentService.History.Queries;
+using AccountMangmentService.Operations;
+using AccountMangmentService.Transfer;
 using System.Collections.Generic;
 using System.ServiceModel;
 
@@ -29,14 +30,14 @@ namespace AccountMangmentService.Service
         /// <param name="operationsHistoryQuery"> Query for operation history </param>
         /// <returns> History of operations </returns>
         [OperationContract]
-        IEnumerable<IOperation> OperationsHistory(HistoryQuery operationsHistoryQuery);
+        IEnumerable<Operation> OperationsHistory(HistoryQuery operationsHistoryQuery);
 
         /// <summary>
         /// Performs payment specified by payment command 
         /// </summary>
-        /// <param name="paymentCommand"></param>
+        /// <param name="transferDescription"></param>
         [OperationContract]
-        void Transfer(IPaymentCommand paymentCommand);
+        void Transfer(TransferDescription transferDescription);
 
         /// <summary>
         /// Decreases user account balance by given amount 
