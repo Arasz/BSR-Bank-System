@@ -11,32 +11,26 @@ namespace InterbankTransactionService.Validation
         public InterbankTransferDescriptionValidator(IAccountChecksumCalculator checksumCalculator)
         {
             _checksumCalculator = checksumCalculator;
+
+            CascadeMode = CascadeMode.StopOnFirstFailure;
+
             RuleFor(description => description.Amount)
-                .GreaterThan(0);
-            //regex https://regex101.com/r/qnQGLK/1
+                .GreaterThanOrEqualTo(0);
+
+            //regex https://regex101.com/r/LEt65g/1
             RuleFor(description => description.ReceiverAccount)
                 .NotEmpty()
                 .Length(26)
-                .Matches("^[0-9]{2}112241[0]{2}[0-9]{18}")
-                .Must(HaveCorrectChecksum)
-                .Must(ExistInTheBank);
+                .Matches(@"^[0-9]{2}112241[0]{2}[0-9]{16}")
+                .Must(HaveCorrectChecksum);
 
             RuleFor(description => description.SenderAccount)
                 .NotEmpty()
                 .Length(26)
-                .Matches("^[0-9]{2}[0-9]{4}[0]{2}[0-9]{18}")
+                .Matches(@"^[0-9]{2}[0-9]{6}[0]{2}[0-9]{16}")
                 .Must(HaveCorrectChecksum);
         }
 
-        private bool ExistInTheBank(string accountNumber) => true;
-
-        private bool HaveCorrectChecksum(string accountNumber)
-        {
-            var checksumLength = 2;
-
-            var checksum = int.Parse(accountNumber.Substring(0, checksumLength));
-
-            return checksum == _checksumCalculator.Calculate(accountNumber.Substring(checksumLength, accountNumber.Length - checksumLength));
-        }
+        private bool HaveCorrectChecksum(string accountNumber) => _checksumCalculator.IsCorrect(accountNumber);
     }
 }

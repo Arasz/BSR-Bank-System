@@ -1,6 +1,6 @@
 ﻿using AccountMangmentService.History.Queries;
 using AccountMangmentService.Operations;
-using AccountMangmentService.Transfer;
+using AccountMangmentService.Transfer.Dto;
 using System.Collections.Generic;
 using System.ServiceModel;
 
