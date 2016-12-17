@@ -26,18 +26,25 @@ namespace AccountMangmentService.Service
         void Deposit(decimal amount);
 
         /// <summary>
+        /// Transfers money between accounts from different banks 
+        /// </summary>
+        /// <param name="transferDescription"> All necessary informations for transfer </param>
+        [OperationContract]
+        void ExternalTransfer(TransferDescription transferDescription);
+
+        /// <summary>
+        /// Transfers money between accounts in the same bank 
+        /// </summary>
+        /// <param name="transferDescription"> All necessary informations for transfer </param>
+        [OperationContract]
+        void InternalTransfer(TransferDescription transferDescription);
+
+        /// <summary>
         /// </summary>
         /// <param name="operationsHistoryQuery"> Query for operation history </param>
         /// <returns> History of operations </returns>
         [OperationContract]
         IEnumerable<Operation> OperationsHistory(HistoryQuery operationsHistoryQuery);
-
-        /// <summary>
-        /// Performs payment specified by payment command 
-        /// </summary>
-        /// <param name="transferDescription"></param>
-        [OperationContract]
-        void Transfer(TransferDescription transferDescription);
 
         /// <summary>
         /// Decreases user account balance by given amount 
