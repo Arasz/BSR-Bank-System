@@ -22,7 +22,7 @@ namespace InterbankTransactionService.Service
         {
             var validationResult = _validator.Validate(transferDescription);
 
-            ///TODO: Add validator cache
+            ///TODO: Add validator cache (singielton in IOC)
             ///TODO: Create validation groups (for account numbers  and amount)
             ///TODO: Read docs to the end https://github.com/JeremySkinner/FluentValidation/wiki/b.-Creating-a-Validator#chaining-validators-for-the-same-property
 
