@@ -1,8 +1,9 @@
 using AccountMangmentService.Service;
 using FluentValidation;
 using InterbankTransactionService.DataStructures;
-using InterbankTransactionService.Exceptions;
-using System.Linq;
+using Shared.Exceptions;
+using System.Net;
+using System.ServiceModel.Web;
 
 namespace InterbankTransactionService.Service
 {
@@ -17,7 +18,7 @@ namespace InterbankTransactionService.Service
             _validator = validator;
         }
 
-        /// <exception cref="TransferValidationException"> Errors during validation. </exception>
+        /// <exception cref="WebFaultException"> Condition. </exception>
         public void Transfer(InterbankTransferDescription transferDescription)
         {
             var validationResult = _validator.Validate(transferDescription);
@@ -27,11 +28,7 @@ namespace InterbankTransactionService.Service
             ///TODO: Read docs to the end https://github.com/JeremySkinner/FluentValidation/wiki/b.-Creating-a-Validator#chaining-validators-for-the-same-property
 
             if (!validationResult.IsValid)
-            {
-                var errorDictionary = validationResult.Errors.ToDictionary(failure => failure.ErrorMessage,
-                    failure => failure.AttemptedValue);
-                throw new TransferValidationException(errorDictionary);
-            }
+                throw new WebFaultException<TransferDataFormatException>(new TransferDataFormatException(), HttpStatusCode.BadRequest);
 
             throw new System.NotImplementedException();
         }

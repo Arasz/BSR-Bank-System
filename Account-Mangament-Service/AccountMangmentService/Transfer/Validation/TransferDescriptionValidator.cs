@@ -10,6 +10,7 @@ namespace AccountMangmentService.Transfer.Validation
         private readonly Func<string, bool> _accountExistPredicate;
         private readonly IAccountChecksumCalculator _checksumCalculator;
 
+        ///TODO: Command side validation
         public TransferDescriptionValidator(IAccountChecksumCalculator checksumCalculator, Func<string, bool> accountExistPredicate)
         {
             _checksumCalculator = checksumCalculator;

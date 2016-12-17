@@ -1,4 +1,5 @@
 ﻿using InterbankTransactionService.DataStructures;
+using Shared.Exceptions;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 
@@ -16,7 +17,7 @@ namespace InterbankTransactionService.Service
         /// <param name="transferDescription"></param>
         [OperationContract]
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "transfer")]
-        [FaultContract(typeof(WebFaultException))]
+        [FaultContract(typeof(WebFaultException<TransferDataFormatException>))]
         void Transfer(InterbankTransferDescription transferDescription);
     }
 }
