@@ -1,4 +1,4 @@
-﻿using InterbankTransactionService.DataStructures;
+﻿using InterbankTransactionService.Dto;
 using Shared.Exceptions;
 using System.ServiceModel;
 using System.ServiceModel.Web;

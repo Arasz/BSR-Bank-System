@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using InterbankTransactionService.DataStructures;
+using InterbankTransactionService.Dto;
 using Shared.ChecksumCalculator;
 
 namespace InterbankTransactionService.Validation
