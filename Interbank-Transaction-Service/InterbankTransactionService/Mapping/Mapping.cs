@@ -1,10 +1,17 @@
-﻿using AccountMangmentService.Transfer.Dto;
-using AutoMapper;
+﻿using AutoMapper;
 using InterbankTransactionService.Dto;
+using Shared.Transfer;
 
 namespace InterbankTransactionService.Mapping
 {
-    public class Mapping
+    public interface IMapping
+    {
+        MapperConfiguration Configuration { get; }
+
+        IMapper Mapper { get; }
+    }
+
+    public class Mapping : IMapping
     {
         public MapperConfiguration Configuration { get; private set; }
 

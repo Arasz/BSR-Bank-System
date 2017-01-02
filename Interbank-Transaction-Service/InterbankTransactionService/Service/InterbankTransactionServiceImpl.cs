@@ -1,24 +1,26 @@
-using AccountMangmentService.Service;
-using AccountMangmentService.Transfer.Dto;
-using AutoMapper;
+using AccountMangementService.Service;
 using FluentValidation;
 using InterbankTransactionService.Dto;
+using InterbankTransactionService.Mapping;
 using Shared.Exceptions;
+using Shared.Transfer;
 using System.Linq;
 using System.Net;
 using System.ServiceModel.Web;
 
 namespace InterbankTransactionService.Service
 {
-    public class InterbankTransactionService : IInterbankTransactionService
+    public class InterbankTransactionServiceImpl : IInterbankTransactionService
     {
-        private readonly IAccountManagmentService _accountManagementService;
+        private readonly IAccountManagementService _accountManagementService;
+        private readonly IMapping _mapping;
         private readonly IValidator<InterbankTransferDescription> _validator;
 
-        public InterbankTransactionService(IAccountManagmentService accountManagementService, IValidator<InterbankTransferDescription> validator)
+        public InterbankTransactionServiceImpl(IAccountManagementService accountManagementService, IValidator<InterbankTransferDescription> validator, IMapping mapping)
         {
             _accountManagementService = accountManagementService;
             _validator = validator;
+            _mapping = mapping;
         }
 
         public void Transfer(InterbankTransferDescription transferDescription)
@@ -31,7 +33,7 @@ namespace InterbankTransactionService.Service
                 throw new WebFaultException<TransferDataFormatException>(new TransferDataFormatException(validationError.PropertyName, validationError.ErrorMessage, ""), HttpStatusCode.BadRequest);
             }
 
-            _accountManagementService.ExternalTransfer(Mapper.Map<TransferDescription>(transferDescription));
+            _accountManagementService.ExternalTransfer(_mapping.Mapper.Map<TransferDescription>(transferDescription));
         }
     }
 }

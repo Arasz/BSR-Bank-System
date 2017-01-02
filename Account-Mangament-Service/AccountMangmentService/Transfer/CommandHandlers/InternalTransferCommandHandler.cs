@@ -1,7 +1,7 @@
-﻿using AccountMangmentService.Transfer.Commands;
+﻿using AccountMangementService.Transfer.Commands;
 using CQRS.Commands;
 
-namespace AccountMangmentService.Transfer.CommandHandlers
+namespace AccountMangementService.Transfer.CommandHandlers
 {
     public class InternalTransferCommandHandler : ICommandHandler<InternalTransferCommand>
     {

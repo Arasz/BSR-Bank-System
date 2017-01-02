@@ -83,9 +83,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Account-Mangament-Service\AccountMangmentService\AccountMangmentService.csproj">
+    <ProjectReference Include="..\Account-Mangament-Service\AccountMangmentService\AccountMangementService.csproj">
       <Project>{9443f212-9c92-4a14-94ca-5fc66facaa14}</Project>
-      <Name>AccountMangmentService</Name>
+      <Name>AccountMangementService</Name>
     </ProjectReference>
     <ProjectReference Include="..\Core\Shared.csproj">
       <Project>{61f89953-804f-4c8c-86a7-22f2dbe9ebe3}</Project>

@@ -1,16 +1,16 @@
-﻿using AccountMangmentService.History.Queries;
-using AccountMangmentService.Operations;
-using AccountMangmentService.Transfer.Dto;
+﻿using AccountMangementService.History.Queries;
+using AccountMangementService.Operations;
+using Shared.Transfer;
 using System.Collections.Generic;
 using System.ServiceModel;
 
-namespace AccountMangmentService.Service
+namespace AccountMangementService.Service
 {
     /// <summary>
     /// Responsible for user bank account management 
     /// </summary>
     [ServiceContract]
-    public interface IAccountManagmentService
+    public interface IAccountManagementService
     {
         /// <summary>
         /// Returns authentication token for given user 

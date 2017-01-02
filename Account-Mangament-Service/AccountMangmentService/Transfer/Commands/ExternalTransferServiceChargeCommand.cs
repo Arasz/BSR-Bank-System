@@ -1,4 +1,4 @@
-﻿namespace AccountMangmentService.Transfer.Commands
+﻿namespace AccountMangementService.Transfer.Commands
 {
     /// <summary>
     /// Charge for external service payment 

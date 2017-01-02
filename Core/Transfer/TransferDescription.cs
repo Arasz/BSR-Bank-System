@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace AccountMangmentService.Transfer.Dto
+namespace Shared.Transfer
 {
     /// <summary>
     /// Transfer data type object 

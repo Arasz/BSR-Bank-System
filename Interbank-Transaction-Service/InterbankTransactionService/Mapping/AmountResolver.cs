@@ -1,6 +1,6 @@
-﻿using AccountMangmentService.Transfer.Dto;
-using AutoMapper;
+﻿using AutoMapper;
 using InterbankTransactionService.Dto;
+using Shared.Transfer;
 
 namespace InterbankTransactionService.Mapping
 {

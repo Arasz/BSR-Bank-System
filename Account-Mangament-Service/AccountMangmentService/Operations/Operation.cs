@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AccountMangmentService.Operations
+namespace AccountMangementService.Operations
 {
     /// <summary>
     /// Operation executed in bank system 

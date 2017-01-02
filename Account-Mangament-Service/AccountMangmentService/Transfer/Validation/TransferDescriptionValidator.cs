@@ -1,9 +1,9 @@
-﻿using AccountMangmentService.Transfer.Dto;
-using FluentValidation;
+﻿using FluentValidation;
 using Shared.ChecksumCalculator;
+using Shared.Transfer;
 using System;
 
-namespace AccountMangmentService.Transfer.Validation
+namespace AccountMangementService.Transfer.Validation
 {
     public class TransferDescriptionValidator : AbstractValidator<TransferDescription>
     {

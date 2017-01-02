@@ -60,7 +60,7 @@
     <Compile Include="Mapping\Mapping.cs" />
     <Compile Include="Service\IInterbankTransactionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service\InterbankTransactionService.cs" />
+    <Compile Include="Service\InterbankTransactionServiceImpl.cs" />
     <Compile Include="Validation\InterbankTransferDescriptionValidator.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -68,9 +68,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Account-Mangament-Service\AccountMangmentService\AccountMangmentService.csproj">
+    <ProjectReference Include="..\..\Account-Mangament-Service\AccountMangmentService\AccountMangementService.csproj">
       <Project>{9443f212-9c92-4a14-94ca-5fc66facaa14}</Project>
-      <Name>AccountMangmentService</Name>
+      <Name>AccountMangementService</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Core\Shared.csproj">
       <Project>{61F89953-804F-4C8C-86A7-22F2DBE9EBE3}</Project>

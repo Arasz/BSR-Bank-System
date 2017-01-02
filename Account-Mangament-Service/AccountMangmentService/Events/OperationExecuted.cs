@@ -1,6 +1,6 @@
 ﻿using CQRS.Events;
 
-namespace AccountMangmentService.Events
+namespace AccountMangementService.Events
 {
     /// <summary>
     /// Triggered when any operation is executed 
