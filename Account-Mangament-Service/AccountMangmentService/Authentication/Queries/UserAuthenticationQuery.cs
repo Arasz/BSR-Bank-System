@@ -1,6 +1,6 @@
 ﻿using CQRS.Queries;
 
-namespace BankService.Authentication.Queries
+namespace Service.Bank.Authentication.Queries
 {
     /// <summary>
     /// User authentication query. If user can be authenticated query returns user token 

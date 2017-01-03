@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
-using BankService.Service;
 using FluentValidation;
 using FluentValidation.Results;
-using InterbankTransactionService.Dto;
-using InterbankTransactionService.Mapping;
-using InterbankTransactionService.Service;
 using Moq;
 using Shared.Transfer;
 using System.Linq;
+using Service.Bank.Contract;
+using Service.InterbankTransaction.Dto;
+using Service.InterbankTransaction.Implementation;
+using Service.InterbankTransaction.Mapping;
 using Xunit;
 
 namespace InterbankTransactionServiceTest
@@ -34,12 +34,12 @@ namespace InterbankTransactionServiceTest
                 .Setup(mapper => mapper.Map<InterbankTransferDescription, TransferDescription>(It.IsAny<InterbankTransferDescription>()))
                 .Returns(transferDescriptionMock);
 
-            var mappingMock = new Mock<IMapping>();
+            var mappingMock = new Mock<IMapperProvider>();
             mappingMock
                 .Setup(mapping => mapping.Mapper)
                 .Returns(mapperMock.Object);
 
-            var interbankTransactionService = new InterbankTransactionServiceImpl(managementServiceMock.Object, validatorMock.Object,
+            var interbankTransactionService = new InterbankTransactionService(managementServiceMock.Object, validatorMock.Object,
                 mappingMock.Object);
 
             interbankTransactionService.Transfer(interbankTransferDescription);

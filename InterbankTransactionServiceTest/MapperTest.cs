@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
-using InterbankTransactionService.Dto;
-using InterbankTransactionService.Mapping;
+using Service.InterbankTransaction.Dto;
+using Service.InterbankTransaction.Mapping;
 using Shared.Transfer;
 using Xunit;
 
@@ -11,7 +11,7 @@ namespace InterbankTransactionServiceTest
         [Fact]
         public void Mapping_TransferDescriptionMapping_ShouldBeCorrectlyMapped()
         {
-            var mapping = new Mapping();
+            var mapping = new ConfiguredMapperProvider();
 
             var interbankTransferDescription = new InterbankTransferDescription
             {
@@ -40,7 +40,7 @@ namespace InterbankTransactionServiceTest
         [Fact]
         public void MappingConstruction_Configuration_ShouldBeValid()
         {
-            var mapping = new Mapping();
+            var mapping = new ConfiguredMapperProvider();
             mapping.Configuration.AssertConfigurationIsValid();
         }
     }

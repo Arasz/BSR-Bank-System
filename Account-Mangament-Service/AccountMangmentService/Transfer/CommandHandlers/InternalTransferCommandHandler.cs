@@ -1,7 +1,7 @@
-﻿using BankService.Transfer.Commands;
-using CQRS.Commands;
+﻿using CQRS.Commands;
+using Service.Bank.Transfer.Commands;
 
-namespace BankService.Transfer.CommandHandlers
+namespace Service.Bank.Transfer.CommandHandlers
 {
     public class InternalTransferCommandHandler : ICommandHandler<InternalTransferCommand>
     {

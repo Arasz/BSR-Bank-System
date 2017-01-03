@@ -1,6 +1,6 @@
 ﻿using CQRS.Commands;
 
-namespace BankService.Transfer.Commands
+namespace Service.Bank.Transfer.Commands
 {
     /// <summary>
     /// Minimal common part of all payment commands 

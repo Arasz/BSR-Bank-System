@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
-using InterbankTransactionService.Dto;
+using Service.InterbankTransaction.Dto;
 using Shared.ChecksumCalculator;
 
-namespace InterbankTransactionService.Validation
+namespace Service.InterbankTransaction.Validation
 {
     public class InterbankTransferDescriptionValidator : AbstractValidator<InterbankTransferDescription>
     {

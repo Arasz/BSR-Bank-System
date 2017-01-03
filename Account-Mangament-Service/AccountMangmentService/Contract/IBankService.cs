@@ -1,10 +1,10 @@
-﻿using BankService.History.Queries;
-using BankService.Operations;
-using Shared.Transfer;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ServiceModel;
+using Service.Bank.History.Queries;
+using Service.Bank.Operations;
+using Shared.Transfer;
 
-namespace BankService.Service
+namespace Service.Bank.Contract
 {
     /// <summary>
     /// Responsible for user bank account management 

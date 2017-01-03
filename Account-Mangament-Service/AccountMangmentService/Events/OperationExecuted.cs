@@ -1,6 +1,6 @@
 ﻿using CQRS.Events;
 
-namespace BankService.Events
+namespace Service.Bank.Events
 {
     /// <summary>
     /// Triggered when any operation is executed 

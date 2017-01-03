@@ -1,4 +1,4 @@
-﻿namespace BankService.Transfer.Commands
+﻿namespace Service.Bank.Transfer.Commands
 {
     /// <summary>
     /// Payment to user account 

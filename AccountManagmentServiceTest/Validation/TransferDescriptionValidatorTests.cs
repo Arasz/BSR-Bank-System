@@ -1,7 +1,7 @@
-﻿using BankService.Transfer.Validation;
-using FluentAssertions;
+﻿using FluentAssertions;
 using FluentValidation.TestHelper;
 using Moq;
+using Service.Bank.Transfer.Validation;
 using Shared.ChecksumCalculator;
 using Xunit;
 

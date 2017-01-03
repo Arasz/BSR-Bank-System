@@ -1,18 +1,18 @@
-﻿using InterbankTransactionService.Dto;
-using Shared.Exceptions;
-using System.ServiceModel;
+﻿using System.ServiceModel;
 using System.ServiceModel.Web;
+using Service.InterbankTransaction.Dto;
+using Shared.Exceptions;
 
-namespace InterbankTransactionService.Service
+namespace Service.InterbankTransaction.Contract
 {
     /// <summary>
-    /// Rest service for interbank transactions 
+    ///     Rest service for interbank transactions
     /// </summary>
     [ServiceContract]
     public interface IInterbankTransactionService
     {
         /// <summary>
-        /// Make transfer to local bank account 
+        ///     Make transfer to local bank account
         /// </summary>
         /// <param name="transferDescription"></param>
         [OperationContract]
