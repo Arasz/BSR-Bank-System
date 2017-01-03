@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DataLayer.Data.Operations
+namespace Data.Core.Operations
 {
     /// <summary>
     /// Operation executed in bank system 
