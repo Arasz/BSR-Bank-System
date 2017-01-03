@@ -1,4 +1,4 @@
-﻿using AccountMangementService.Transfer.Validation;
+﻿using BankService.Transfer.Validation;
 using FluentAssertions;
 using FluentValidation.TestHelper;
 using Moq;

@@ -1,4 +1,4 @@
-using AccountMangementService.Service;
+using BankService.Service;
 using FluentValidation;
 using InterbankTransactionService.Dto;
 using InterbankTransactionService.Mapping;
@@ -12,13 +12,13 @@ namespace InterbankTransactionService.Service
 {
     public class InterbankTransactionServiceImpl : IInterbankTransactionService
     {
-        private readonly IAccountManagementService _accountManagementService;
+        private readonly IBankService _bankService;
         private readonly IMapping _mapping;
         private readonly IValidator<InterbankTransferDescription> _validator;
 
-        public InterbankTransactionServiceImpl(IAccountManagementService accountManagementService, IValidator<InterbankTransferDescription> validator, IMapping mapping)
+        public InterbankTransactionServiceImpl(IBankService bankService, IValidator<InterbankTransferDescription> validator, IMapping mapping)
         {
-            _accountManagementService = accountManagementService;
+            _bankService = bankService;
             _validator = validator;
             _mapping = mapping;
         }
@@ -33,7 +33,7 @@ namespace InterbankTransactionService.Service
                 throw new WebFaultException<TransferDataFormatException>(new TransferDataFormatException(validationError.PropertyName, validationError.ErrorMessage, ""), HttpStatusCode.BadRequest);
             }
 
-            _accountManagementService.ExternalTransfer(_mapping.Mapper.Map<TransferDescription>(transferDescription));
+            _bankService.ExternalTransfer(_mapping.Mapper.Map<TransferDescription>(transferDescription));
         }
     }
 }

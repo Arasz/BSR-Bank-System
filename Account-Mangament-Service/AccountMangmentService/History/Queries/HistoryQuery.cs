@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using AccountMangementService.Operations;
+using BankService.Operations;
 using CQRS.Queries;
 
-namespace AccountMangementService.History.Queries
+namespace BankService.History.Queries
 {
     /// <summary>
     /// Operations history query 

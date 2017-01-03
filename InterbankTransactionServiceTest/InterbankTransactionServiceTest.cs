@@ -1,5 +1,5 @@
-﻿using AccountMangementService.Service;
-using AutoMapper;
+﻿using AutoMapper;
+using BankService.Service;
 using FluentValidation;
 using FluentValidation.Results;
 using InterbankTransactionService.Dto;
@@ -17,7 +17,7 @@ namespace InterbankTransactionServiceTest
         [Fact]
         public void TestTransfer_CorrectInputData_ShouldPassToBankService()
         {
-            var managementServiceMock = new Mock<IAccountManagementService>();
+            var managementServiceMock = new Mock<IBankService>();
             managementServiceMock
                 .Setup(service => service.ExternalTransfer(It.IsAny<TransferDescription>()));
 

@@ -9,8 +9,8 @@
     <ProjectGuid>{9443F212-9C92-4A14-94CA-5FC66FACAA14}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AccountMangementService</RootNamespace>
-    <AssemblyName>AccountMangmentService</AssemblyName>
+    <RootNamespace>BankService</RootNamespace>
+    <AssemblyName>Service.Bank</AssemblyName>
     <ProjectTypeGuids>{3D9AD99F-2412-4246-B90B-4EAA41C64699};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <StartArguments>/client:"WcfTestClient.exe"</StartArguments>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -64,7 +64,7 @@
     <Compile Include="Transfer\Commands\WithdrawCommand.cs" />
     <Compile Include="Events\OperationExecuted.cs" />
     <Compile Include="History\Queries\HistoryQuery.cs" />
-    <Compile Include="Service\IAccountManagementService.cs" />
+    <Compile Include="Service\IBankService.cs" />
     <Compile Include="Operations\Operation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Authentication\Queries\UserAuthenticationQuery.cs" />
@@ -75,13 +75,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\Shared.csproj">
+    <ProjectReference Include="..\..\Core\Core.Common.csproj">
       <Project>{61F89953-804F-4C8C-86A7-22F2DBE9EBE3}</Project>
-      <Name>Shared</Name>
+      <Name>Core.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\CQRS\CQRS.csproj">
+    <ProjectReference Include="..\..\CQRS\Core.CQRS.csproj">
       <Project>{db6f8014-94af-466b-9aaf-b7632751871b}</Project>
-      <Name>CQRS</Name>
+      <Name>Core.CQRS</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

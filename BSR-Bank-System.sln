@@ -3,25 +3,39 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountMangementService", "Account-Mangament-Service\AccountMangmentService\AccountMangementService.csproj", "{9443F212-9C92-4A14-94CA-5FC66FACAA14}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Bank", "Account-Mangament-Service\AccountMangmentService\Service.Bank.csproj", "{9443F212-9C92-4A14-94CA-5FC66FACAA14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterbankTransactionService", "Interbank-Transaction-Service\InterbankTransactionService\InterbankTransactionService.csproj", "{06F68D42-CD5B-49D9-B448-F5B4B43C6FFC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.InterbankTransaction", "Interbank-Transaction-Service\InterbankTransactionService\Service.InterbankTransaction.csproj", "{06F68D42-CD5B-49D9-B448-F5B4B43C6FFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountMangmentClient", "Account-Managment-Client\AccountMangmentClient\AccountMangmentClient.csproj", "{CD0EDC95-E2E5-4AC1-8C0C-1C9BEC7CF9B5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.LightClient", "Account-Managment-Client\AccountMangmentClient\Client.LightClient.csproj", "{CD0EDC95-E2E5-4AC1-8C0C-1C9BEC7CF9B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS", "CQRS\CQRS.csproj", "{DB6F8014-94AF-466B-9AAF-B7632751871B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.CQRS", "CQRS\Core.CQRS.csproj", "{DB6F8014-94AF-466B-9AAF-B7632751871B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRSTest", "CQRSTest\CQRSTest.csproj", "{BC418CBE-475A-4408-9C20-6D4505B6C032}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Core.CQRS", "CQRSTest\Test.Core.CQRS.csproj", "{BC418CBE-475A-4408-9C20-6D4505B6C032}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterbankTransactionServiceTest", "InterbankTransactionServiceTest\InterbankTransactionServiceTest.csproj", "{5758FC17-1691-4FF3-B2DE-0E48AC446052}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Service.InterbankTransaction", "InterbankTransactionServiceTest\Test.Service.InterbankTransaction.csproj", "{5758FC17-1691-4FF3-B2DE-0E48AC446052}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{9E811AC8-1601-47D8-AF57-448931FE6AE7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Core", "DataLayer\Data.Core.csproj", "{9E811AC8-1601-47D8-AF57-448931FE6AE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Core\Shared.csproj", "{61F89953-804F-4C8C-86A7-22F2DBE9EBE3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Common", "Core\Core.Common.csproj", "{61F89953-804F-4C8C-86A7-22F2DBE9EBE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedTests", "CoreTests\SharedTests.csproj", "{7133CB30-AB2C-45F1-B430-913A3D227A12}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Core.Common", "CoreTests\Test.Core.Common.csproj", "{7133CB30-AB2C-45F1-B430-913A3D227A12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountManagmentServiceTest", "AccountManagmentServiceTest\AccountManagmentServiceTest.csproj", "{4EE2F283-B847-4A5E-9D9B-159758434448}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Service.Bank", "AccountManagmentServiceTest\Test.Service.Bank.csproj", "{4EE2F283-B847-4A5E-9D9B-159758434448}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{5B3AFCC3-9796-48A4-8D07-ED932BE43DF3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data Access", "Data Access", "{A4F5B0F6-45C4-4567-AB3F-748ED491CE3B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{7C030E75-7DCC-4085-B35E-74973EBDAF3E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Host", "Host", "{0C6D5135-EE86-47CE-B95F-98B91C63D8B7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{03748CFB-5883-4905-8E56-C104949FD9EF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{0F54B9D3-0CC9-4BB9-8472-8826F77CE86B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfServiceHost", "WcfServiceHost\WcfServiceHost.csproj", "{E28A3A10-F860-495C-862D-3C1D69708985}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,8 +83,25 @@ Global
 		{4EE2F283-B847-4A5E-9D9B-159758434448}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EE2F283-B847-4A5E-9D9B-159758434448}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EE2F283-B847-4A5E-9D9B-159758434448}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E28A3A10-F860-495C-862D-3C1D69708985}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E28A3A10-F860-495C-862D-3C1D69708985}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E28A3A10-F860-495C-862D-3C1D69708985}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E28A3A10-F860-495C-862D-3C1D69708985}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9443F212-9C92-4A14-94CA-5FC66FACAA14} = {0F54B9D3-0CC9-4BB9-8472-8826F77CE86B}
+		{06F68D42-CD5B-49D9-B448-F5B4B43C6FFC} = {0F54B9D3-0CC9-4BB9-8472-8826F77CE86B}
+		{CD0EDC95-E2E5-4AC1-8C0C-1C9BEC7CF9B5} = {5B3AFCC3-9796-48A4-8D07-ED932BE43DF3}
+		{DB6F8014-94AF-466B-9AAF-B7632751871B} = {7C030E75-7DCC-4085-B35E-74973EBDAF3E}
+		{BC418CBE-475A-4408-9C20-6D4505B6C032} = {03748CFB-5883-4905-8E56-C104949FD9EF}
+		{5758FC17-1691-4FF3-B2DE-0E48AC446052} = {03748CFB-5883-4905-8E56-C104949FD9EF}
+		{9E811AC8-1601-47D8-AF57-448931FE6AE7} = {A4F5B0F6-45C4-4567-AB3F-748ED491CE3B}
+		{61F89953-804F-4C8C-86A7-22F2DBE9EBE3} = {7C030E75-7DCC-4085-B35E-74973EBDAF3E}
+		{7133CB30-AB2C-45F1-B430-913A3D227A12} = {03748CFB-5883-4905-8E56-C104949FD9EF}
+		{4EE2F283-B847-4A5E-9D9B-159758434448} = {03748CFB-5883-4905-8E56-C104949FD9EF}
+		{E28A3A10-F860-495C-862D-3C1D69708985} = {0C6D5135-EE86-47CE-B95F-98B91C63D8B7}
 	EndGlobalSection
 EndGlobal
