@@ -4,13 +4,6 @@ using Shared.Transfer;
 
 namespace Service.InterbankTransaction.Mapping
 {
-    public interface IMapperProvider
-    {
-        MapperConfiguration Configuration { get; }
-
-        IMapper Mapper { get; }
-    }
-
     public class ConfiguredMapperProvider : IMapperProvider
     {
         public MapperConfiguration Configuration { get; private set; }

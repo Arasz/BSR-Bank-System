@@ -21,6 +21,6 @@ namespace Data.Core.Operations
         /// <summary>
         /// Operation type 
         /// </summary>
-        private Type Type { get; set; }
+        private string Type { get; set; }
     }
 }

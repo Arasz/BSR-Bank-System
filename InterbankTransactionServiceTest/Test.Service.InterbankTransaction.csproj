@@ -83,7 +83,7 @@
     <Compile Include="InterbankTransactionServiceTest.cs" />
     <Compile Include="MapperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TransferDescriptionValidatorTests.cs" />
+    <Compile Include="InterbankTransferDescriptionValidatorTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
