@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Web;
 using Autofac.Integration.Wcf;
-using WcfServiceHost.Bootstrap;
+using Host.WcfService.Bootstrap;
 
-namespace WcfServiceHost.Application
+namespace Host.WcfService.Application
 {
     public class Global : HttpApplication
     {

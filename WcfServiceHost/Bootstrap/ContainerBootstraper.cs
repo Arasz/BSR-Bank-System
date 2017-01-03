@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using Service.InterbankTransaction.Ioc;
 
-namespace WcfServiceHost.Bootstrap
+namespace Host.WcfService.Bootstrap
 {
     public static class ContainerBootstraper
     {

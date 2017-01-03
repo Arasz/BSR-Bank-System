@@ -35,7 +35,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{03748CFB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{0F54B9D3-0CC9-4BB9-8472-8826F77CE86B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfServiceHost", "WcfServiceHost\WcfServiceHost.csproj", "{E28A3A10-F860-495C-862D-3C1D69708985}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Host.WcfService", "WcfServiceHost\Host.WcfService.csproj", "{E28A3A10-F860-495C-862D-3C1D69708985}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
