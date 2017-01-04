@@ -21,7 +21,7 @@ namespace CQRSTest
                 .Setup(handler => handler.HandleQuery(queryMock.Object))
                 .Returns(queryResult);
 
-            Func<Type, IQueryHandler<int, IQuery<int>>> queryFactory = type => null;
+            Func<QueryHandlerKey, IQueryHandler<int, IQuery<int>>> queryFactory = queryHandlerKey => null;
 
             var bus = new QueryBus(queryFactory);
 
@@ -41,7 +41,7 @@ namespace CQRSTest
                 .Setup(handler => handler.HandleQuery(queryMock.Object))
                 .Returns(queryResult);
 
-            Func<Type, IQueryHandler<int, IQuery<int>>> queryFactory = (type) => queryHandler.Object;
+            Func<QueryHandlerKey, IQueryHandler<int, IQuery<int>>> queryFactory = (queryHandlerKey) => queryHandler.Object;
 
             var bus = new QueryBus(queryFactory);
 
