@@ -19,8 +19,14 @@ namespace Shared.Security
 
         public string HashPassword(string password, byte[] salt)
         {
+            if (salt == null)
+                throw new ArgumentNullException(nameof(salt));
+
             if (salt.Length != SaltLength)
                 throw new ArgumentException($"Salt is to short. Expected length: {SaltLength}");
+
+            if (string.IsNullOrWhiteSpace(password))
+                throw new ArgumentException("Password cannot be empty");
 
             _salt = salt;
 

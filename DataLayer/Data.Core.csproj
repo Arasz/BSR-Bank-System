@@ -88,6 +88,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>BankDatabase.mdf</DependentUpon>
     </Content>
+    <Content Include="create-db-schema.sql" />
+    <Content Include="drop-db-schema.sql" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">

@@ -3,6 +3,7 @@
 	Id bigint PRIMARY KEY IDENTITY(1,1),
 	Name nvarchar(30) NOT NULL,
 	Password char(48) NOT NULL,  -- 48 characters because Base64(20 bytes for password + 16 bytes for salt).Length == 48 
+	Token char(48) NOT NULL,
 );
 
 CREATE TABLE [Account] 
