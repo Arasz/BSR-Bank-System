@@ -41,7 +41,7 @@ namespace Test.Service.UserAccount
             var userAccountService = Container.Resolve<IUserAccountService>();
 
             var userName = "Andrzej";
-            var password = "1234";
+            var password = "Bob1234";
             var hashedPassword = "HashedPassword";
 
             var user = userAccountService.CreateUserAccount(userName, password);

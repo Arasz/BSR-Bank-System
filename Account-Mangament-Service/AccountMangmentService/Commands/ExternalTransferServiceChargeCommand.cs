@@ -1,4 +1,4 @@
-﻿namespace Service.Bank.Transfer.Commands
+﻿namespace Service.Bank.Commands
 {
     /// <summary>
     /// Charge for external service payment 

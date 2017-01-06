@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ServiceModel;
+using Data.Core;
 using Service.Bank.History.Queries;
-using Service.Bank.Operations;
 using Shared.Transfer;
 
 namespace Service.Bank.Contract

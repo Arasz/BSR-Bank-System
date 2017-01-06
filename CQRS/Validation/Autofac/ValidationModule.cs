@@ -43,7 +43,6 @@ namespace CQRS.Validation.Autofac
             builder.Register<Func<Type, IValidation>>(componentContext =>
             {
                 var context = ResolveComponentContext(componentContext);
-                var genericValidationType = GenericHandlerType();
 
                 return type =>
                 {
@@ -57,7 +56,7 @@ namespace CQRS.Validation.Autofac
                         return (IValidation)context.Resolve(adapterType, adapterParameter);
                     }
 
-                    var validatorType = genericValidationType.MakeGenericType(type);
+                    var validatorType = typeof(IValidation<>).MakeGenericType(type);
 
                     if (context.IsRegistered(validatorType))
                         return (IValidation)context.Resolve(validatorType);
@@ -71,19 +70,26 @@ namespace CQRS.Validation.Autofac
         {
             base.RegisterHandlersFromAssembly(builder);
 
-            // Register fluent validators
-            builder
-                   .RegisterAssemblyTypes(AssemblyWithHandlers)
-                   .Where(type => type.IsAssignableTo<IValidator>())
-                   .AsImplementedInterfaces();
+            RegisterFluentValidators(builder);
 
-            builder
-                .RegisterGeneric(typeof(FluentValidatorAdapter<>))
-                .AsSelf();
+            RegisterFluentValidatorAdapter(builder);
         }
 
         private static ResolvedParameter CreateFluentValidatorAsAdapterParameter(Type fluentValidatorType) => new ResolvedParameter(
             (info, ctx) => info.ParameterType == fluentValidatorType,
             (info, ctx) => ctx.Resolve(fluentValidatorType));
+
+        private static void RegisterFluentValidatorAdapter(ContainerBuilder builder)
+        {
+            builder.RegisterGeneric(typeof(FluentValidatorAdapter<>))
+                .AsSelf();
+        }
+
+        private void RegisterFluentValidators(ContainerBuilder builder)
+        {
+            builder.RegisterAssemblyTypes(AssemblyWithHandlers)
+                .Where(type => type.IsAssignableTo<IValidator>())
+                .AsImplementedInterfaces();
+        }
     }
 }

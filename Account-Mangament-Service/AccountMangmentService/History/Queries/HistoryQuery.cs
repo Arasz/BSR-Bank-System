@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CQRS.Queries;
-using Service.Bank.Operations;
+using Data.Core;
 
 namespace Service.Bank.History.Queries
 {

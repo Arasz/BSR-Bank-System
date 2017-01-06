@@ -3,7 +3,7 @@ using FluentValidation;
 using Shared.ChecksumCalculator;
 using Shared.Transfer;
 
-namespace Service.Bank.Transfer.Validation
+namespace Service.Bank.Validation
 {
     public class TransferDescriptionValidator : AbstractValidator<TransferDescription>
     {

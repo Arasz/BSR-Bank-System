@@ -1,12 +1,12 @@
 ﻿using CQRS.Commands;
 
-namespace Service.Bank.Transfer.Commands
+namespace Service.Bank.Commands
 {
     /// <summary>
     /// Minimal common part of all payment commands 
     /// </summary>
     public abstract class PaymentCommand : ICommand
     {
-        public decimal Amount { get; set; }
+        public virtual decimal Amount { get; set; }
     }
 }

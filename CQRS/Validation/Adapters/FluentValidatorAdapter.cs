@@ -25,7 +25,7 @@ namespace CQRS.Validation.Adapters
         protected virtual string[] ParseValidationFailures(IEnumerable<ValidationFailure> validationFailures)
         {
             return validationFailures
-                .Select(failure => $"Validation error on property {failure.PropertyName}. Error: {failure.ErrorMessage}")
+                .Select(failure => $"Validation error on property {failure.PropertyName}. {failure.ErrorMessage}")
                 .ToArray();
         }
     }

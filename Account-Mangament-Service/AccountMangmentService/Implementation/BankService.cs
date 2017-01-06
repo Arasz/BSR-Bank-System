@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using Data.Core;
 using Service.Bank.Contract;
 using Service.Bank.History.Queries;
-using Service.Bank.Operations;
+
 using Shared.Transfer;
 
 namespace Service.Bank.Implementation
