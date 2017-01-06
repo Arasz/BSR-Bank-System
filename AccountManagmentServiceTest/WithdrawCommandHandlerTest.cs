@@ -12,6 +12,9 @@ namespace AccountManagmentServiceTest
     public class WithdrawCommandHandlerTest : DataContextAccessTest<Account>, IDependencyInjectionTest
     {
         private const decimal AccountBalance = 500;
+
+        private readonly string AccountNumber = "1234";
+
         public IContainer Container { get; set; }
 
         public WithdrawCommandHandlerTest()
@@ -48,6 +51,7 @@ namespace AccountManagmentServiceTest
         {
             var accountMock = new Account
             {
+                Number = AccountNumber,
                 Balance = AccountBalance
             };
 
@@ -56,7 +60,7 @@ namespace AccountManagmentServiceTest
             return accountMock;
         }
 
-        private WithdrawCommand CreateWithdrawCommandMock(decimal withdrawAmount) => new WithdrawCommand(withdrawAmount);
+        private WithdrawCommand CreateWithdrawCommandMock(decimal withdrawAmount) => new WithdrawCommand(AccountNumber, withdrawAmount);
 
         private void RegisterComponents(ContainerBuilder builder)
         {

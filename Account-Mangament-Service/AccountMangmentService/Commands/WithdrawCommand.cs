@@ -1,12 +1,15 @@
-﻿namespace Service.Bank.Commands
+﻿using System;
+
+namespace Service.Bank.Commands
 {
     /// <summary>
     /// Payment from user account 
     /// </summary>
     public class WithdrawCommand : TransferCommand
     {
-        public WithdrawCommand(decimal amount)
+        public WithdrawCommand(string from, decimal amount)
         {
+            From = from;
             Amount = amount;
         }
     }
