@@ -34,6 +34,10 @@
       <HintPath>..\packages\Autofac.4.2.1\lib\net45\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FluentValidation, Version=6.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.6.2.1.0\lib\Net45\FluentValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Autofac\ModuleTempalte.cs" />
     <Compile Include="Bus\GenericBus.cs" />
     <Compile Include="Bus\IBus.cs" />
     <Compile Include="Commands\CommandBus.cs" />
@@ -64,11 +69,13 @@
     <Compile Include="Queries\IQueryHandler.cs" />
     <Compile Include="Queries\QueryBus.cs" />
     <Compile Include="Queries\QueryHandlerKey.cs" />
-    <Compile Include="Validation\Autofac\ValidationDecoratorsModule.cs" />
+    <Compile Include="Validation\Adapters\FluentValidatorAdapter.cs" />
+    <Compile Include="Validation\Autofac\ValidationModule.cs" />
     <Compile Include="Validation\Decorators\CommandValidationBus.cs" />
     <Compile Include="Validation\Decorators\QueryValidationBus.cs" />
     <Compile Include="Validation\EmptyValidation.cs" />
     <Compile Include="Validation\IValidation.cs" />
+    <Compile Include="Validation\ValidationException.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

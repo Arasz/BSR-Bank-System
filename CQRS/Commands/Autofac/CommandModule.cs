@@ -1,45 +1,25 @@
 ﻿using System;
 using System.Reflection;
 using Autofac;
+using CQRS.Autofac;
 using Module = Autofac.Module;
 
 namespace CQRS.Commands.Autofac
 {
-    public sealed class CommandModule : Module
+    public sealed class CommandModule : ModuleTempalte<ICommandHandler>
     {
-        public Assembly CommandHandlersAssembly { get; }
-
-        public CommandModule(Assembly commandHandlersAssembly)
+        public CommandModule(Assembly commandHandlersAssembly) : base(commandHandlersAssembly)
         {
-            CommandHandlersAssembly = commandHandlersAssembly;
         }
 
         public CommandModule()
         {
-            CommandHandlersAssembly = ThisAssembly;
         }
 
-        protected override void Load(ContainerBuilder builder)
-        {
-            base.Load(builder);
+        protected override Type GenericHandlerType() => typeof(ICommandHandler<>);
 
-            builder.RegisterAssemblyTypes(CommandHandlersAssembly)
-                .Where(type => type.IsAssignableTo<ICommandHandler>())
-                .AsImplementedInterfaces();
-
-            builder.Register<Func<Type, ICommandHandler>>(context =>
-            {
-                var componentContext = context.Resolve<IComponentContext>();
-
-                return (commandType =>
-                {
-                    var handlerType = typeof(ICommandHandler<>).MakeGenericType(commandType);
-                    return (ICommandHandler)componentContext.Resolve(handlerType);
-                });
-            });
-
-            builder.RegisterType<CommandBus>()
-                .Named<ICommandBus>(nameof(CommandBus));
-        }
+        protected override void RegisterBus(ContainerBuilder builder) => builder
+            .RegisterType<CommandBus>()
+            .Named<ICommandBus>(nameof(CommandBus));
     }
 }

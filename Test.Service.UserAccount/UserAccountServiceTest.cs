@@ -80,7 +80,7 @@ namespace Test.Service.UserAccount
         {
             containerBuilder.RegisterModule(new CommandModule(typeof(UserAccountService).Assembly));
             containerBuilder.RegisterModule(new QueryModule(typeof(UserAccountService).Assembly));
-            containerBuilder.RegisterModule(new ValidationDecoratorsModule(typeof(UserAccountService).Assembly));
+            containerBuilder.RegisterModule(new ValidationModule(typeof(UserAccountService).Assembly));
         }
     }
 }
