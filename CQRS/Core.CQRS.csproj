@@ -67,6 +67,7 @@
     <Compile Include="Validation\Autofac\ValidationDecoratorsModule.cs" />
     <Compile Include="Validation\Decorators\CommandValidationBus.cs" />
     <Compile Include="Validation\Decorators\QueryValidationBus.cs" />
+    <Compile Include="Validation\EmptyValidation.cs" />
     <Compile Include="Validation\IValidation.cs" />
   </ItemGroup>
   <ItemGroup />

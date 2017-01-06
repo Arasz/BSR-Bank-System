@@ -2,16 +2,15 @@ namespace Data.Core
 {
     using System.Data.Entity;
 
-    public partial class BankDataContext : DbContext
+    public class BankDataContext : DbContext
     {
-        public virtual DbSet<Account> Account { get; set; }
+        public virtual DbSet<Account> Accounts { get; set; }
 
-        public virtual DbSet<Operation> Operation { get; set; }
+        public virtual DbSet<Operation> Operations { get; set; }
 
-        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
-        public BankDataContext()
-                                    : base("name=BankDataContext")
+        public BankDataContext() : base("name=BankDataContext")
         {
         }
 

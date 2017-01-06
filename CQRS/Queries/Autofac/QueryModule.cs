@@ -33,8 +33,9 @@ namespace CQRS.Queries.Autofac
 
                 return (queryHandlerKey =>
                 {
-                    var handlerType = typeof(IQuery<>).MakeGenericType(queryHandlerKey.ResultType,
+                    var handlerType = typeof(IQueryHandler<,>).MakeGenericType(queryHandlerKey.ResultType,
                         queryHandlerKey.QueryType);
+
                     return (IQueryHandler)componentContext.Resolve(handlerType);
                 });
             });
