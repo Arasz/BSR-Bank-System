@@ -63,15 +63,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandHandlers\DepositCommandHandler.cs" />
+    <Compile Include="CommandHandlers\InternalTransferCommandHandler.cs" />
     <Compile Include="CommandHandlers\SimpleTransferCommandHandlerBase.cs" />
     <Compile Include="CommandHandlers\WithdrawCommandHandler.cs" />
+    <Compile Include="Exceptions\AccountBalanceToLowException.cs" />
     <Compile Include="Implementation\BankService.cs" />
-    <Compile Include="CommandHandlers\InternalTransferCommandHandler.cs" />
     <Compile Include="Commands\DepositCommand.cs" />
     <Compile Include="Commands\ExternalTransferCommand.cs" />
     <Compile Include="Commands\ExternalTransferServiceChargeCommand.cs" />
     <Compile Include="Commands\InternalTransferCommand.cs" />
-    <Compile Include="Commands\PaymentCommand.cs" />
     <Compile Include="Commands\TransferCommand.cs" />
     <Compile Include="Commands\WithdrawCommand.cs" />
     <Compile Include="Events\OperationExecuted.cs" />

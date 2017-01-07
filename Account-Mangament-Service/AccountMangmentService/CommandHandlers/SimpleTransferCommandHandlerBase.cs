@@ -21,6 +21,8 @@ namespace Service.Bank.CommandHandlers
         {
             FetchAccount(command.From);
 
+            ValidateAccountBalance(command.Amount);
+
             ChangeAccountBalance(command.Amount);
 
             SaveChanges();
@@ -36,6 +38,10 @@ namespace Service.Bank.CommandHandlers
         protected virtual void SaveChanges()
         {
             BankDataContext.SaveChanges();
+        }
+
+        protected virtual void ValidateAccountBalance(decimal amount)
+        {
         }
     }
 }

@@ -1,10 +1,14 @@
-﻿namespace Service.Bank.Commands
+﻿using CQRS.Commands;
+
+namespace Service.Bank.Commands
 {
     /// <summary>
     /// Represents money transfer from one account to other account 
     /// </summary>
-    public abstract class TransferCommand : PaymentCommand
+    public abstract class TransferCommand : ICommand
     {
+        public decimal Amount { get; set; }
+
         public string From { get; set; }
 
         public string Title { get; set; }

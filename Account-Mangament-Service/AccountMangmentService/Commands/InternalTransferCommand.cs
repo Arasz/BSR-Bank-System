@@ -5,5 +5,12 @@
     /// </summary>
     public class InternalTransferCommand : TransferCommand
     {
+        public InternalTransferCommand(string from, string to, string title, decimal amount)
+        {
+            From = from;
+            To = to;
+            Title = title;
+            Amount = amount;
+        }
     }
 }

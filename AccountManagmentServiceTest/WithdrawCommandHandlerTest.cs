@@ -6,6 +6,7 @@ using Data.Core;
 using FluentAssertions;
 using Service.Bank.CommandHandlers;
 using Service.Bank.Commands;
+using Service.Bank.Exceptions;
 using Test.Common;
 using Xunit;
 
@@ -13,35 +14,51 @@ namespace AccountManagmentServiceTest
 {
     public sealed class WithdrawCommandHandlerTest : CommandHandlerTestBase<WithdrawCommandHandler, Account>
     {
-        private const decimal AccountBalance = 500;
-
         private readonly string AccountNumber = "1234";
 
         protected override Expression<Func<BankDataContext, DbSet<Account>>> SelectDataSetFromDataContextExpression
             => bankDataContext => bankDataContext.Accounts;
 
-        [Fact]
-        public void HandleWithdrawCommand_WidthdrawMoney_AccountBalanceIsLoweredByWithdrawAmount()
+        [Theory]
+        [InlineData(500, 400)]
+        [InlineData(500, 500)]
+        public void WithdrawFromAccount_CheckBalanceAfterWithdraw_BlanceShouldBeReducedByAmount(decimal accountBalance, decimal transferAmount)
         {
             var withdrawCommandHandler = CommandHandler;
-            const int withdrawAmount = 30;
 
-            var mockedCommand = CreateWithdrawCommandMock(withdrawAmount);
+            var mockedCommand = CreateWithdrawCommandMock(transferAmount);
 
-            var account = CreateAndInitializeAccount();
+            var account = CreateAndInitializeAccount(accountBalance);
 
             withdrawCommandHandler.HandleCommand(mockedCommand);
 
-            account.Balance.Should()
-                .Be(AccountBalance - withdrawAmount);
+            account.Balance.Should().Be(accountBalance - transferAmount);
         }
 
-        private Account CreateAndInitializeAccount()
+        [Theory]
+        [InlineData(0, 400)]
+        [InlineData(200, 500)]
+        public void WithdrawToMuchFromAccount_CheckAmountValidation_ShouldThrowException(decimal accountBalance, decimal transferAmount)
+        {
+            var withdrawCommandHandler = CommandHandler;
+
+            var mockedCommand = CreateWithdrawCommandMock(transferAmount);
+
+            var account = CreateAndInitializeAccount(accountBalance);
+
+            Action handlerAction = () => withdrawCommandHandler.HandleCommand(mockedCommand);
+
+            handlerAction.ShouldThrow<AccountBalanceToLowException>();
+
+            account.Balance.Should().Be(accountBalance);
+        }
+
+        private Account CreateAndInitializeAccount(decimal balance)
         {
             var accountMock = new Account
             {
                 Number = AccountNumber,
-                Balance = AccountBalance
+                Balance = balance
             };
 
             MockDataSource.Add(accountMock);
