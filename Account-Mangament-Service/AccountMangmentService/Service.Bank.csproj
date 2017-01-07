@@ -62,6 +62,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandHandlers\DepositCommandHandler.cs" />
+    <Compile Include="CommandHandlers\SimpleTransferCommandHandlerBase.cs" />
     <Compile Include="CommandHandlers\WithdrawCommandHandler.cs" />
     <Compile Include="Implementation\BankService.cs" />
     <Compile Include="CommandHandlers\InternalTransferCommandHandler.cs" />

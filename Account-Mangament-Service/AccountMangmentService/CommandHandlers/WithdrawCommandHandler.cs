@@ -1,27 +1,16 @@
-﻿using System.Linq;
-using CQRS.Commands;
+﻿using CQRS.Commands;
 using Data.Core;
 using Service.Bank.Commands;
 
 namespace Service.Bank.CommandHandlers
 {
-    public class WithdrawCommandHandler : ICommandHandler<WithdrawCommand>
+    public class WithdrawCommandHandler : SimpleTransferCommandHandlerBase<WithdrawCommand>
     {
-        private readonly BankDataContext _dataContext;
+        public WithdrawCommandHandler(BankDataContext bankDataContext) : base(bankDataContext)
 
-        public WithdrawCommandHandler(BankDataContext dataContext)
         {
-            _dataContext = dataContext;
         }
 
-        public void HandleCommand(WithdrawCommand command)
-        {
-            var account = _dataContext.Accounts
-                .Single(acc => acc.Number == command.From);
-
-            account.Balance -= command.Amount;
-
-            _dataContext.SaveChanges();
-        }
+        protected override void ChangeAccountBalance(decimal amount) => Account.Balance -= amount;
     }
 }

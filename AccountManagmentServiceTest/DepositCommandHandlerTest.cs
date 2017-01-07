@@ -11,7 +11,7 @@ using Xunit;
 
 namespace AccountManagmentServiceTest
 {
-    public sealed class WithdrawCommandHandlerTest : CommandHandlerTestBase<WithdrawCommandHandler, Account>
+    public sealed class DepositCommandHandlerTest : CommandHandlerTestBase<DepositCommandHandler, Account>
     {
         private const decimal AccountBalance = 500;
 
@@ -21,19 +21,19 @@ namespace AccountManagmentServiceTest
             => bankDataContext => bankDataContext.Accounts;
 
         [Fact]
-        public void HandleWithdrawCommand_WidthdrawMoney_AccountBalanceIsLoweredByWithdrawAmount()
+        public void HandleDepositCommand_DepositMoney_AccountBalanceIsIncreasedByDepositAmount()
         {
-            var withdrawCommandHandler = CommandHandler;
-            const int withdrawAmount = 30;
+            var depositCommandHandler = CommandHandler;
+            const int depositAmount = 30;
 
-            var mockedCommand = CreateWithdrawCommandMock(withdrawAmount);
+            var mockedCommand = CreateDepositCommand(depositAmount);
 
             var account = CreateAndInitializeAccount();
 
-            withdrawCommandHandler.HandleCommand(mockedCommand);
+            depositCommandHandler.HandleCommand(mockedCommand);
 
             account.Balance.Should()
-                .Be(AccountBalance - withdrawAmount);
+                .Be(AccountBalance + depositAmount);
         }
 
         private Account CreateAndInitializeAccount()
@@ -49,7 +49,7 @@ namespace AccountManagmentServiceTest
             return accountMock;
         }
 
-        private WithdrawCommand CreateWithdrawCommandMock(decimal withdrawAmount)
-            => new WithdrawCommand(AccountNumber, withdrawAmount);
+        private DepositCommand CreateDepositCommand(decimal withdrawAmount)
+            => new DepositCommand(AccountNumber, withdrawAmount);
     }
 }

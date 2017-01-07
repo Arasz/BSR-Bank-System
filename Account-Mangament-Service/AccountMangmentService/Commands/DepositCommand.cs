@@ -3,7 +3,12 @@
     /// <summary>
     /// Payment to user account 
     /// </summary>
-    public class DepositCommand
+    public class DepositCommand : TransferCommand
     {
+        public DepositCommand(string accountNumber, decimal depositAmount)
+        {
+            From = accountNumber;
+            Amount = depositAmount;
+        }
     }
 }

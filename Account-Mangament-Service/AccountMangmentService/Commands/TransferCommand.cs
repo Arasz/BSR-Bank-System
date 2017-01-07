@@ -5,10 +5,10 @@
     /// </summary>
     public abstract class TransferCommand : PaymentCommand
     {
-        public virtual string From { get; set; }
+        public string From { get; set; }
 
-        public virtual string Title { get; set; }
+        public string Title { get; set; }
 
-        public virtual string To { get; set; }
+        public string To { get; set; }
     }
 }

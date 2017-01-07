@@ -13,9 +13,11 @@ namespace Test.Common
     public abstract class CommandHandlerTestBase<TCommandHandler, TData> : DataContextAccessTest<TData>, IDependencyInjectionTest
         where TData : class
     {
+        public TCommandHandler CommandHandler => Container.Resolve<TCommandHandler>();
+
         public IContainer Container { get; set; }
 
-        protected abstract Expression<Func<BankDataContext, DbSet<TData>>> SelectDataSetFromDataContext { get; }
+        protected abstract Expression<Func<BankDataContext, DbSet<TData>>> SelectDataSetFromDataContextExpression { get; }
 
         protected CommandHandlerTestBase()
         {
@@ -41,6 +43,6 @@ namespace Test.Common
         }
 
         protected virtual void RegisterDataContextMock(ContainerBuilder builder)
-            => builder.Register(componentContext => MockDataContext(SelectDataSetFromDataContext));
+            => builder.Register(componentContext => MockDataContext(SelectDataSetFromDataContextExpression));
     }
 }
