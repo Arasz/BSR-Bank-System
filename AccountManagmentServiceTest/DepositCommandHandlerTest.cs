@@ -21,7 +21,7 @@ namespace AccountManagmentServiceTest
             => bankDataContext => bankDataContext.Accounts;
 
         [Fact]
-        public void HandleDepositCommand_DepositMoney_AccountBalanceIsIncreasedByDepositAmount()
+        public void AddFoundsToAccount_CheckAccountBlance_ShouldBeIncreasedByDepositAmount()
         {
             var depositCommandHandler = CommandHandler;
             const int depositAmount = 30;
@@ -32,8 +32,7 @@ namespace AccountManagmentServiceTest
 
             depositCommandHandler.HandleCommand(mockedCommand);
 
-            account.Balance.Should()
-                .Be(AccountBalance + depositAmount);
+            account.Balance.Should().Be(AccountBalance + depositAmount);
         }
 
         private Account CreateAndInitializeAccount()
