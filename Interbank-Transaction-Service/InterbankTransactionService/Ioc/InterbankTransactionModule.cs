@@ -1,8 +1,8 @@
 ﻿using Autofac;
 using FluentValidation;
-using Service.Bank.Contract;
 using Service.Bank.Implementation;
-using Service.InterbankTransaction.Dto;
+using Service.Contracts;
+using Service.Dto;
 using Service.InterbankTransaction.Mapping;
 using Service.InterbankTransaction.Validation;
 

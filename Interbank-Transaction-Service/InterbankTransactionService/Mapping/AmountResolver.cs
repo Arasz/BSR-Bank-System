@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Service.InterbankTransaction.Dto;
+using Service.Dto;
 using Shared.Transfer;
 
 namespace Service.InterbankTransaction.Mapping
@@ -8,6 +8,6 @@ namespace Service.InterbankTransaction.Mapping
     {
         public decimal Resolve(InterbankTransferDescription source, TransferDescription destination, decimal destMember,
                 ResolutionContext context)
-            => source.Amount/100M;
+            => source.Amount / 100M;
     }
 }

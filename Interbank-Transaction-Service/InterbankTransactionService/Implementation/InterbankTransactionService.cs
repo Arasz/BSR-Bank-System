@@ -2,9 +2,8 @@ using System.Linq;
 using System.Net;
 using System.ServiceModel.Web;
 using FluentValidation;
-using Service.Bank.Contract;
-using Service.InterbankTransaction.Contract;
-using Service.InterbankTransaction.Dto;
+using Service.Contracts;
+using Service.Dto;
 using Service.InterbankTransaction.Mapping;
 using Shared.Exceptions;
 using Shared.Transfer;
@@ -17,8 +16,7 @@ namespace Service.InterbankTransaction.Implementation
         private readonly IMapperProvider _mapperProvider;
         private readonly IValidator<InterbankTransferDescription> _validator;
 
-        public InterbankTransactionService(IBankService bankService,
-            IValidator<InterbankTransferDescription> validator, IMapperProvider mapperProvider)
+        public InterbankTransactionService(IBankService bankService, IValidator<InterbankTransferDescription> validator, IMapperProvider mapperProvider)
         {
             _bankService = bankService;
             _validator = validator;

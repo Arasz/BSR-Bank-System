@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using Service.InterbankTransaction.Dto;
+using Service.Dto;
 using Service.InterbankTransaction.Mapping;
 using Shared.Transfer;
 using Xunit;

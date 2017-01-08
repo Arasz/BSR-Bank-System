@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.ServiceModel;
 using Data.Core;
-using Service.Bank.History.Queries;
+using Service.Dto;
 using Shared.Transfer;
 
-namespace Service.Bank.Contract
+namespace Service.Contracts
 {
     /// <summary>
     /// Responsible for user bank account management 
@@ -41,10 +41,10 @@ namespace Service.Bank.Contract
 
         /// <summary>
         /// </summary>
-        /// <param name="operationsHistoryQuery"> Query for operation history </param>
+        /// <param name="accountHistoryQuery"> Query for operation history </param>
         /// <returns> History of operations </returns>
         [OperationContract]
-        IEnumerable<Operation> OperationsHistory(HistoryQuery operationsHistoryQuery);
+        IEnumerable<Operation> OperationsHistory(AccountHistoryQuery accountHistoryQuery);
 
         /// <summary>
         /// Decreases user account balance by given amount 

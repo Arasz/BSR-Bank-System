@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Service.InterbankTransaction.Dto;
+using Service.Dto;
 using Shared.Transfer;
 
 namespace Service.InterbankTransaction.Mapping

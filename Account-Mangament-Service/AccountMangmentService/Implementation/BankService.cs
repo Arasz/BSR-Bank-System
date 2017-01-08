@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using Data.Core;
-using Service.Bank.Contract;
-using Service.Bank.History.Queries;
-
+using Service.Bank.Queries;
+using Service.Contracts;
+using Service.Dto;
 using Shared.Transfer;
+using AccountHistoryQuery = Service.Dto.AccountHistoryQuery;
 
 namespace Service.Bank.Implementation
 {
@@ -29,7 +30,7 @@ namespace Service.Bank.Implementation
             throw new System.NotImplementedException();
         }
 
-        public IEnumerable<Operation> OperationsHistory(HistoryQuery operationsHistoryQuery)
+        public IEnumerable<Operation> OperationsHistory(AccountHistoryQuery accountHistoryQuery)
         {
             throw new System.NotImplementedException();
         }
