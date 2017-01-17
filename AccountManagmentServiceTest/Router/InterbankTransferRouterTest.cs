@@ -8,7 +8,7 @@ using Shared.AccountNumber.Parser;
 using Shared.Transfer;
 using Xunit;
 
-namespace AccountManagementServiceTest
+namespace AccountManagementServiceTest.Router
 {
     public class InterbankTransferRouterTest
     {

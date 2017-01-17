@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq.Expressions;
-using System.Runtime.Remoting.Messaging;
 using Data.Core;
 using FluentAssertions;
 using Service.Bank.EventHandlers;
 using Service.Bank.Events;
-using Shared.Transfer;
 using Test.Common;
 using Xunit;
 
-namespace AccountManagementServiceTest
+namespace AccountManagementServiceTest.EventHandlers
 {
     public class ExternalTransferReceivedEventHandlerTest : HandlerTestBase<ExternalTransferReceivedEventHandler, Account>
     {

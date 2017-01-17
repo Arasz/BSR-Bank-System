@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq.Expressions;
-using Autofac;
 using Data.Core;
 using FluentAssertions;
 using Service.Bank.CommandHandlers;
@@ -9,7 +8,7 @@ using Service.Bank.Commands;
 using Test.Common;
 using Xunit;
 
-namespace AccountManagementServiceTest
+namespace AccountManagementServiceTest.CommandHandlers
 {
     public sealed class DepositCommandHandlerTest : HandlerTestBase<DepositCommandHandler, Account>
     {
