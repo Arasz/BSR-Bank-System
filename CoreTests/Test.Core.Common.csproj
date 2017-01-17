@@ -74,6 +74,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountNumberParserTest.cs" />
     <Compile Include="ChecksumCalculator\NrbChecksumCalculatorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\DefaultPasswordHasherTest.cs" />
@@ -83,9 +84,6 @@
       <Project>{61f89953-804f-4c8c-86a7-22f2dbe9ebe3}</Project>
       <Name>Core.Common</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

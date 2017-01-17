@@ -52,6 +52,9 @@
     <Compile Include="ChecksumCalculator\IAccountChecksumCalculator.cs" />
     <Compile Include="ChecksumCalculator\NrbChecksumCalculator.cs" />
     <Compile Include="Exceptions\TransferDataFormatException.cs" />
+    <Compile Include="AccountNumber\BankAccountNumber.cs" />
+    <Compile Include="AccountNumber\Parser\AccountNumberParser.cs" />
+    <Compile Include="AccountNumber\Parser\IAccountNumberParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\DefaultPasswordHasher.cs" />
     <Compile Include="Security\IPasswordHasher.cs" />
