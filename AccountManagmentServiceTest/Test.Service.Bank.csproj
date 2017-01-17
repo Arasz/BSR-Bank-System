@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DepositCommandHandlerTest.cs" />
+    <Compile Include="ExternalTransferReceivedEventHandlerTest.cs" />
     <Compile Include="InterbankTransferRouterTest.cs" />
     <Compile Include="InternalCommandHandlerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

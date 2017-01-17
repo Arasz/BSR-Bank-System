@@ -12,7 +12,7 @@ using Xunit;
 
 namespace AccountManagementServiceTest
 {
-    public sealed class WithdrawCommandHandlerTest : CommandHandlerTestBase<WithdrawCommandHandler, Account>
+    public sealed class WithdrawCommandHandlerTest : HandlerTestBase<WithdrawCommandHandler, Account>
     {
         private readonly string AccountNumber = "1234";
 
@@ -24,7 +24,7 @@ namespace AccountManagementServiceTest
         [InlineData(500, 500)]
         public void WithdrawFromAccount_CheckBalanceAfterWithdraw_BlanceShouldBeReducedByAmount(decimal accountBalance, decimal transferAmount)
         {
-            var withdrawCommandHandler = CommandHandler;
+            var withdrawCommandHandler = Handler;
 
             var mockedCommand = CreateWithdrawCommandMock(transferAmount);
 
@@ -40,7 +40,7 @@ namespace AccountManagementServiceTest
         [InlineData(200, 500)]
         public void WithdrawToMuchFromAccount_CheckAmountValidation_ShouldThrowException(decimal accountBalance, decimal transferAmount)
         {
-            var withdrawCommandHandler = CommandHandler;
+            var withdrawCommandHandler = Handler;
 
             var mockedCommand = CreateWithdrawCommandMock(transferAmount);
 

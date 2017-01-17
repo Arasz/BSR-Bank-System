@@ -11,7 +11,7 @@ using Xunit;
 
 namespace AccountManagementServiceTest
 {
-    public sealed class DepositCommandHandlerTest : CommandHandlerTestBase<DepositCommandHandler, Account>
+    public sealed class DepositCommandHandlerTest : HandlerTestBase<DepositCommandHandler, Account>
     {
         private const decimal AccountBalance = 500;
 
@@ -23,7 +23,7 @@ namespace AccountManagementServiceTest
         [Fact]
         public void AddFoundsToAccount_CheckAccountBlance_ShouldBeIncreasedByDepositAmount()
         {
-            var depositCommandHandler = CommandHandler;
+            var depositCommandHandler = Handler;
             const int depositAmount = 30;
 
             var mockedCommand = CreateDepositCommand(depositAmount);

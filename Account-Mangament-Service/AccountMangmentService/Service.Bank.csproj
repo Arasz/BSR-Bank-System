@@ -68,10 +68,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandHandlers\DepositCommandHandler.cs" />
+    <Compile Include="CommandHandlers\ExternalTransferCommandHandler.cs" />
     <Compile Include="CommandHandlers\InternalTransferCommandHandler.cs" />
     <Compile Include="CommandHandlers\SimpleTransferCommandHandlerBase.cs" />
     <Compile Include="CommandHandlers\WithdrawCommandHandler.cs" />
-    <Compile Include="Commands\ExternalTransferCommandHandler.cs" />
+    <Compile Include="EventHandlers\ExternalTransferReceivedEventHandler.cs" />
     <Compile Include="Events\ExternalTransferReceivedEvent.cs" />
     <Compile Include="Exceptions\AccountBalanceToLowException.cs" />
     <Compile Include="Router\IInterbankTransferRouter.cs" />
