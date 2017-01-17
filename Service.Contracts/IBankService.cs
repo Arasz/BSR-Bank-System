@@ -23,7 +23,7 @@ namespace Service.Contracts
         /// Increases user account balance by given amount 
         /// </summary>
         [OperationContract]
-        void Deposit(decimal amount);
+        void Deposit(string accountNumber, decimal amount);
 
         /// <summary>
         /// Transfers money between accounts from different banks 
@@ -50,6 +50,6 @@ namespace Service.Contracts
         /// Decreases user account balance by given amount 
         /// </summary>
         [OperationContract]
-        void Withdraw(decimal amount);
+        void Withdraw(string accountNumber, decimal amount);
     }
 }

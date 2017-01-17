@@ -9,6 +9,12 @@ namespace CQRS.Bus
     /// </summary>
     public interface IBus
     {
+        ICommandBus CommandBus { get; }
+
+        IEventBus EventBus { get; }
+
+        IQueryBus QueryBus { get; }
+
         void Publish<TEvent>(TEvent @event)
             where TEvent : IEvent;
 

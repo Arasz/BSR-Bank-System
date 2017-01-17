@@ -1,14 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using CQRS.Queries;
+using Data.Core;
 
 namespace Service.Dto
 {
     public class AccountHistoryQuery
     {
-        public DateTime From { get; set; }
+        public string AccountNumber { get; }
 
-        public DateTime To { get; set; }
+        public DateTime From { get; }
 
-        private string AccountNumber { get; set; }
+        public DateTime To { get; }
 
         public AccountHistoryQuery(DateTime from, DateTime to, string accountNumber)
         {

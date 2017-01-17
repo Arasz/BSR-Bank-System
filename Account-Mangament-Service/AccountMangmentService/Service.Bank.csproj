@@ -85,7 +85,7 @@
     <Compile Include="Events\OperationExecuted.cs" />
     <Compile Include="Router\InterbankTransferRouter.cs" />
     <Compile Include="Proxies\Configuration\InterbankServiceAddressProvider.cs" />
-    <Compile Include="Queries\AccountHistoryQuery.cs" />
+    <Compile Include="Queries\AccountOperationsHistoryQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Authentication\Queries\UserAuthenticationQuery.cs" />
     <Compile Include="Proxies\InterbankTransactionServiceProxy.cs" />

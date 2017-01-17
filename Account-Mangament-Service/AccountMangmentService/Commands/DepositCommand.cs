@@ -5,9 +5,9 @@
     /// </summary>
     public class DepositCommand : TransferCommand
     {
-        public DepositCommand(string accountNumber, decimal depositAmount)
+        public DepositCommand(string targetAccountNumber, decimal depositAmount)
         {
-            From = accountNumber;
+            From = targetAccountNumber;
             Amount = depositAmount;
         }
     }

@@ -10,6 +10,12 @@ namespace CQRS.Bus
         private readonly IEventBus _eventBus;
         private readonly IQueryBus _queryBus;
 
+        public ICommandBus CommandBus => _commandBus;
+
+        public IEventBus EventBus => _eventBus;
+
+        public IQueryBus QueryBus => _queryBus;
+
         public GenericBus(ICommandBus commandBus, IEventBus eventBus, IQueryBus queryBus)
         {
             _commandBus = commandBus;

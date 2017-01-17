@@ -7,9 +7,9 @@ namespace Service.Bank.Commands
     /// </summary>
     public class WithdrawCommand : TransferCommand
     {
-        public WithdrawCommand(string from, decimal amount)
+        public WithdrawCommand(string sourceAccountNumber, decimal amount)
         {
-            From = from;
+            From = sourceAccountNumber;
             Amount = amount;
         }
     }
