@@ -9,11 +9,11 @@ using Service.Bank.Exceptions;
 using Test.Common;
 using Xunit;
 
-namespace AccountManagementServiceTest
+namespace AccountManagementServiceTest.CommandHandlers
 {
-    public class InternalCommandHandlerTest : CommandHandlerTestBase<InternalTransferCommandHandler, Account>
+    public class InternalCommandHandlerTest : HandlerTestBase<InternalTransferCommandHandler, Account>
     {
-        private const string ReciverAccountNumber = "5678";
+        private const string ReceiverAccountNumber = "5678";
         private const string SenderAccountNumber = "1234";
         private const string TransferTitle = "Title";
 
@@ -24,14 +24,14 @@ namespace AccountManagementServiceTest
         [InlineData(500, 500, 400)]
         [InlineData(500, 0, 400)]
         [InlineData(500, 500, 500)]
-        public void TransferFoundsBetweenLocalAccounts_CheckReciverAndSenderBalance_ShouldChangeBalnceByCorrectAmount(decimal senderBalance, decimal receiverBalance, decimal transferAmount)
+        public void TransferFoundsBetweenLocalAccounts_CheckReceiverAndSenderBalance_ShouldChangeBalanceByCorrectAmount(decimal senderBalance, decimal receiverBalance, decimal transferAmount)
         {
-            var internalTransferCommandHandler = CommandHandler;
+            var internalTransferCommandHandler = Handler;
 
             var internalTransferCommand = CreateCommand(transferAmount);
 
             var senderAccount = CreateAndInitializeAccount(SenderAccountNumber, senderBalance);
-            var receiverAccount = CreateAndInitializeAccount(ReciverAccountNumber, receiverBalance);
+            var receiverAccount = CreateAndInitializeAccount(ReceiverAccountNumber, receiverBalance);
 
             internalTransferCommandHandler.HandleCommand(internalTransferCommand);
 
@@ -46,12 +46,12 @@ namespace AccountManagementServiceTest
         [InlineData(-10, 500, 5)]
         public void TransferIncorrectAmountBetweenLocalAccounts_CheckBalanceValidation_ShouldThrowAccountBalanceToLow(decimal senderBalance, decimal receiverBalance, decimal transferAmount)
         {
-            var internalTransferCommandHandler = CommandHandler;
+            var internalTransferCommandHandler = Handler;
 
             var internalTransferCommand = CreateCommand(transferAmount);
 
             var senderAccount = CreateAndInitializeAccount(SenderAccountNumber, senderBalance);
-            var receiverAccount = CreateAndInitializeAccount(ReciverAccountNumber, receiverBalance);
+            var receiverAccount = CreateAndInitializeAccount(ReceiverAccountNumber, receiverBalance);
 
             Action handleAction = () => internalTransferCommandHandler.HandleCommand(internalTransferCommand);
 
@@ -76,6 +76,6 @@ namespace AccountManagementServiceTest
         }
 
         private InternalTransferCommand CreateCommand(decimal withdrawAmount)
-            => new InternalTransferCommand(SenderAccountNumber, ReciverAccountNumber, TransferTitle, withdrawAmount);
+            => new InternalTransferCommand(SenderAccountNumber, ReceiverAccountNumber, TransferTitle, withdrawAmount);
     }
 }

@@ -6,16 +6,16 @@ using Data.Core;
 
 namespace Test.Common
 {
-    public abstract class CommandHandlerTestBase<TCommandHandler, TData> : DataContextAccessTest<TData>, IDependencyInjectionTest
+    public abstract class HandlerTestBase<THandler, TData> : DataContextAccessTest<TData>, IDependencyInjectionTest
         where TData : class
     {
-        public TCommandHandler CommandHandler => Container.Resolve<TCommandHandler>();
-
         public IContainer Container { get; set; }
+
+        public THandler Handler => Container.Resolve<THandler>();
 
         protected abstract Expression<Func<BankDataContext, DbSet<TData>>> SelectDataSetFromDataContextExpression { get; }
 
-        protected CommandHandlerTestBase()
+        protected HandlerTestBase()
         {
             Container = BuildContainer();
         }
@@ -31,7 +31,7 @@ namespace Test.Common
 
         protected virtual void RegisterComponents(ContainerBuilder builder)
         {
-            builder.RegisterType<TCommandHandler>()
+            builder.RegisterType<THandler>()
                 .AsSelf()
                 .AsImplementedInterfaces();
 

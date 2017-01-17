@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using CQRS.Queries;
-using Data.Core;
 
 namespace Service.Dto
 {

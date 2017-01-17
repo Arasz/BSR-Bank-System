@@ -45,16 +45,6 @@
     <Compile Include="InterbankTransferDescription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CQRS\Core.CQRS.csproj">
-      <Project>{DB6F8014-94AF-466B-9AAF-B7632751871B}</Project>
-      <Name>Core.CQRS</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataLayer\Data.Core.csproj">
-      <Project>{9E811AC8-1601-47D8-AF57-448931FE6AE7}</Project>
-      <Name>Data.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

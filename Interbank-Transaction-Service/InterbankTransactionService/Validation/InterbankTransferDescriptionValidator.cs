@@ -21,13 +21,13 @@ namespace Service.InterbankTransaction.Validation
             RuleFor(description => description.ReceiverAccount)
                 .NotEmpty()
                 .Length(26)
-                .Matches(@"^[0-9]{2}112241[0]{2}[0-9]{16}")
+                .Matches(@"^[0-9]{2}[0]{2}112241[0-9]{16}")
                 .Must(HaveCorrectChecksum);
 
             RuleFor(description => description.SenderAccount)
                 .NotEmpty()
                 .Length(26)
-                .Matches(@"^[0-9]{2}[0-9]{6}[0]{2}[0-9]{16}")
+                .Matches(@"^[0-9]{2}[0-9]{8}[0-9]{16}")
                 .Must(HaveCorrectChecksum);
         }
 

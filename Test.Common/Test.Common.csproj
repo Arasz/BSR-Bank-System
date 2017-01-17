@@ -61,7 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandHandlerTestBase.cs" />
+    <Compile Include="HandlerTestBase.cs" />
     <Compile Include="DataContextAccessTest.cs" />
     <Compile Include="IDependencyInjectionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

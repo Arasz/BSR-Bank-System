@@ -93,12 +93,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DepositCommandHandlerTest.cs" />
-    <Compile Include="InterbankTransferRouterTest.cs" />
-    <Compile Include="InternalCommandHandlerTest.cs" />
+    <Compile Include="CommandHandlers\DepositCommandHandlerTest.cs" />
+    <Compile Include="CommandHandlers\ExternalTransferCommandHandlerTest.cs" />
+    <Compile Include="EventHandlers\ExternalTransferReceivedEventHandlerTest.cs" />
+    <Compile Include="Router\InterbankTransferRouterTest.cs" />
+    <Compile Include="CommandHandlers\InternalCommandHandlerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\TransferDescriptionValidatorTest.cs" />
-    <Compile Include="WithdrawCommandHandlerTest.cs" />
+    <Compile Include="CommandHandlers\WithdrawCommandHandlerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -116,6 +118,14 @@
     <ProjectReference Include="..\DataLayer\Data.Core.csproj">
       <Project>{9E811AC8-1601-47D8-AF57-448931FE6AE7}</Project>
       <Name>Data.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Service.Contracts\Service.Contracts.csproj">
+      <Project>{9A63E903-84C0-4FF0-B1D1-D7BD0A0FC0FA}</Project>
+      <Name>Service.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Service.Dto\Service.Dto.csproj">
+      <Project>{7D5E45DC-E897-484A-BBDD-87714CBC1D37}</Project>
+      <Name>Service.Dto</Name>
     </ProjectReference>
     <ProjectReference Include="..\Test.Common\Test.Common.csproj">
       <Project>{9ce478e0-47b5-4b55-9075-ac79dd8a6ee9}</Project>
