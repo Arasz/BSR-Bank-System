@@ -31,7 +31,7 @@ namespace InterbankTransactionServiceTest
 
         [Fact]
         public void ReceiverAccount_CorrectAccountNumber_ShouldPassValidation() => CreateValidator()
-            .ShouldNotHaveValidationErrorFor(description => description.ReceiverAccount, "78112241008528164913108077");
+            .ShouldNotHaveValidationErrorFor(description => description.ReceiverAccount, "78001122418528164913108077");
 
         [Fact]
         public void ReceiverAccount_EmptySenderAccountNumber_ShouldReturnValidationErorr() => CreateValidator()
