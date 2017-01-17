@@ -75,9 +75,10 @@
     <Compile Include="EventHandlers\ExternalTransferReceivedEventHandler.cs" />
     <Compile Include="Events\ExternalTransferReceivedEvent.cs" />
     <Compile Include="Exceptions\AccountBalanceToLowException.cs" />
-    <Compile Include="Proxies\Configuration\InterbankTransferConfiguration.cs" />
-    <Compile Include="Proxies\Configuration\ITransferServicesRegister.cs" />
-    <Compile Include="Proxies\Configuration\TransferServiceNotFoundException.cs" />
+    <Compile Include="Proxy\Configuration\InterbankTransferConfiguration.cs" />
+    <Compile Include="Proxy\Configuration\ITransferServicesRegister.cs" />
+    <Compile Include="Proxy\Configuration\TransferServiceNotFoundException.cs" />
+    <Compile Include="Proxy\InterbankTransferException.cs" />
     <Compile Include="Router\IInterbankTransferRouter.cs" />
     <Compile Include="Implementation\BankService.cs" />
     <Compile Include="Commands\DepositCommand.cs" />
@@ -88,18 +89,16 @@
     <Compile Include="Commands\WithdrawCommand.cs" />
     <Compile Include="Events\OperationExecuted.cs" />
     <Compile Include="Router\InterbankTransferRouter.cs" />
-    <Compile Include="Proxies\Configuration\TransferServicesRegister.cs" />
+    <Compile Include="Proxy\Configuration\TransferServicesRegister.cs" />
     <Compile Include="Queries\AccountOperationsHistoryQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Authentication\Queries\UserAuthenticationQuery.cs" />
-    <Compile Include="Proxies\InterbankTransferServiceProxy.cs" />
+    <Compile Include="Proxy\InterbankTransferServiceProxy.cs" />
     <Compile Include="Validation\TransferDescriptionValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="BankIdServiceAddressMap.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="InterbankTransferConfiguration.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
