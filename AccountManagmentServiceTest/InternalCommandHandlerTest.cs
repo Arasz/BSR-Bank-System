@@ -9,7 +9,7 @@ using Service.Bank.Exceptions;
 using Test.Common;
 using Xunit;
 
-namespace AccountManagmentServiceTest
+namespace AccountManagementServiceTest
 {
     public class InternalCommandHandlerTest : CommandHandlerTestBase<InternalTransferCommandHandler, Account>
     {

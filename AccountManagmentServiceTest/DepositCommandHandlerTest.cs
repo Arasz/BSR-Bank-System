@@ -9,7 +9,7 @@ using Service.Bank.Commands;
 using Test.Common;
 using Xunit;
 
-namespace AccountManagmentServiceTest
+namespace AccountManagementServiceTest
 {
     public sealed class DepositCommandHandlerTest : CommandHandlerTestBase<DepositCommandHandler, Account>
     {
