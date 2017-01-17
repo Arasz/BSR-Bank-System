@@ -7,7 +7,7 @@
     {
         string Password { get; }
 
-        string UserName { get; }
+        string Login { get; }
 
         string GetTransferServiceAddress(string bankId);
     }

@@ -10,9 +10,9 @@ namespace Service.Bank.Proxies.Configuration
         private readonly string _registerPath;
         private InterbankTransferConfiguration _interbankTransferConfiguration;
 
-        public string Password => InterbankTransferConfiguration.Password;
+        public string Login => InterbankTransferConfiguration.Login;
 
-        public string UserName => InterbankTransferConfiguration.Username;
+        public string Password => InterbankTransferConfiguration.Password;
 
         private InterbankTransferConfiguration InterbankTransferConfiguration
         {

@@ -96,6 +96,7 @@
     <Compile Include="CommandHandlers\DepositCommandHandlerTest.cs" />
     <Compile Include="CommandHandlers\ExternalTransferCommandHandlerTest.cs" />
     <Compile Include="EventHandlers\ExternalTransferReceivedEventHandlerTest.cs" />
+    <Compile Include="Proxy\TransferServicesRegisterTest.cs" />
     <Compile Include="Router\InterbankTransferRouterTest.cs" />
     <Compile Include="CommandHandlers\InternalCommandHandlerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -104,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="TestInterbankTransferConfiguration.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

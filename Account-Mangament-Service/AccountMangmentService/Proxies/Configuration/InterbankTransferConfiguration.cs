@@ -13,6 +13,6 @@ namespace Service.Bank.Proxies.Configuration
         public Dictionary<string, string> RegisteredServices { get; set; }
 
         [DataMember]
-        public string Username { get; set; }
+        public string Login { get; set; }
     }
 }

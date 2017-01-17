@@ -25,8 +25,6 @@ namespace Service.Bank.Proxies
         public void Transfer(InterbankTransferDescription transferDescription)
         {
             var transferServiceAddress = ReadServiceAddress(transferDescription.ReceiverAccount);
-
-            _httpClient.Po
         }
 
         private string ReadServiceAddress(string transferTargetBankAccountNumber)
