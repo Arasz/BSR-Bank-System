@@ -7,8 +7,8 @@
     <ProjectGuid>{4EE2F283-B847-4A5E-9D9B-159758434448}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AccountManagmentServiceTest</RootNamespace>
-    <AssemblyName>AccountManagmentServiceTest</AssemblyName>
+    <RootNamespace>AccountManagementServiceTest</RootNamespace>
+    <AssemblyName>AccountManagementServiceTest</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DepositCommandHandlerTest.cs" />
+    <Compile Include="InterbankTransferRouterTest.cs" />
     <Compile Include="InternalCommandHandlerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\TransferDescriptionValidatorTest.cs" />
