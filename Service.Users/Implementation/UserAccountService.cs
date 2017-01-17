@@ -2,6 +2,7 @@
 using CQRS.Queries;
 using Data.Core;
 using Service.UserAccount.Commands;
+using Service.UserAccount.Contract;
 using Service.UserAccount.Queries;
 
 namespace Service.UserAccount.Implementation

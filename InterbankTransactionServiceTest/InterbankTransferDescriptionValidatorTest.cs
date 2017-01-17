@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using FluentValidation.TestHelper;
 using Moq;
-using Service.InterbankTransaction.Validation;
+using Service.InterbankTransfer.Validation;
 using Shared.ChecksumCalculator;
 using Xunit;
 

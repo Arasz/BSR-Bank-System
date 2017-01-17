@@ -2,7 +2,7 @@
 using Service.Dto;
 using Shared.ChecksumCalculator;
 
-namespace Service.InterbankTransaction.Validation
+namespace Service.InterbankTransfer.Validation
 {
     public class InterbankTransferDescriptionValidator : AbstractValidator<InterbankTransferDescription>
     {

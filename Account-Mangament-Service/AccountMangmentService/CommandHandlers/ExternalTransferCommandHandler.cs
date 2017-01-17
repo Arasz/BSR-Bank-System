@@ -11,12 +11,12 @@ namespace Service.Bank.CommandHandlers
     public class ExternalTransferCommandHandler : ICommandHandler<ExternalTransferCommand>
     {
         private readonly BankDataContext _dataContext;
-        private readonly IInterbankTransactionService _interbankTransactionService;
+        private readonly IInterbankTransferService _interbankTransferService;
 
-        public ExternalTransferCommandHandler(BankDataContext dataContext, IInterbankTransactionService interbankTransactionService)
+        public ExternalTransferCommandHandler(BankDataContext dataContext, IInterbankTransferService interbankTransferService)
         {
             _dataContext = dataContext;
-            _interbankTransactionService = interbankTransactionService;
+            _interbankTransferService = interbankTransferService;
         }
 
         public void HandleCommand(ExternalTransferCommand command)
@@ -37,7 +37,7 @@ namespace Service.Bank.CommandHandlers
         private void MakeInterbankTransfer(ExternalTransferCommand command)
         {
             var interbankTransferDescription = CommandToDescription(command);
-            _interbankTransactionService.Transfer(interbankTransferDescription);
+            _interbankTransferService.Transfer(interbankTransferDescription);
         }
 
         private void UpdateAccountBalance(ExternalTransferCommand command)

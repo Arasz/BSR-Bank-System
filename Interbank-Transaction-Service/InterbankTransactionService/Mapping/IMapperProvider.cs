@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Service.InterbankTransaction.Mapping
+namespace Service.InterbankTransfer.Mapping
 {
     public interface IMapperProvider
     {

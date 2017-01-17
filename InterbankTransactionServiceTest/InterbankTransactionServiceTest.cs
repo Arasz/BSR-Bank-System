@@ -6,8 +6,8 @@ using Shared.Transfer;
 using System.Linq;
 using Service.Contracts;
 using Service.Dto;
-using Service.InterbankTransaction.Implementation;
-using Service.InterbankTransaction.Mapping;
+using Service.InterbankTransfer.Implementation;
+using Service.InterbankTransfer.Mapping;
 using Xunit;
 
 namespace InterbankTransactionServiceTest
@@ -39,7 +39,7 @@ namespace InterbankTransactionServiceTest
                 .Setup(mapping => mapping.Mapper)
                 .Returns(mapperMock.Object);
 
-            var interbankTransactionService = new InterbankTransactionService(managementServiceMock.Object, validatorMock.Object,
+            var interbankTransactionService = new InterbankTransferService(managementServiceMock.Object, validatorMock.Object,
                 mappingMock.Object);
 
             interbankTransactionService.Transfer(interbankTransferDescription);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace Service.InterbankTransaction.Exceptions
+namespace Service.InterbankTransfer.Exceptions
 {
     public class TransferValidationException : Exception
     {

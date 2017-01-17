@@ -89,7 +89,7 @@
     <Compile Include="Queries\AccountOperationsHistoryQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Authentication\Queries\UserAuthenticationQuery.cs" />
-    <Compile Include="Proxies\InterbankTransactionServiceProxy.cs" />
+    <Compile Include="Proxies\InterbankTransferServiceProxy.cs" />
     <Compile Include="Validation\TransferDescriptionValidator.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -9,7 +9,7 @@ namespace Service.Contracts
     /// Rest service for interbank transactions 
     /// </summary>
     [ServiceContract]
-    public interface IInterbankTransactionService
+    public interface IInterbankTransferService
     {
         /// <summary>
         /// Make transfer to local bank account 

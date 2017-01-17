@@ -89,9 +89,9 @@ namespace AccountManagementServiceTest.CommandHandlers
             Title = "TransferToExternalBank"
         };
 
-        private IInterbankTransactionService CreateServiceProxyMock()
+        private IInterbankTransferService CreateServiceProxyMock()
         {
-            var interbankTransactionServiceMock = new Mock<IInterbankTransactionService>();
+            var interbankTransactionServiceMock = new Mock<IInterbankTransferService>();
             interbankTransactionServiceMock
                 .Setup(service => service.Transfer(It.IsAny<InterbankTransferDescription>()))
                 .Verifiable();
@@ -101,7 +101,7 @@ namespace AccountManagementServiceTest.CommandHandlers
 
         private void ThrowIsTransferWasNotCalled()
         {
-            var proxy = Container.Resolve<IInterbankTransactionService>();
+            var proxy = Container.Resolve<IInterbankTransferService>();
             var mock = Mock.Get(proxy);
             mock.Verify();
         }

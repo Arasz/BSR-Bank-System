@@ -3,10 +3,10 @@ using FluentValidation;
 using Service.Bank.Implementation;
 using Service.Contracts;
 using Service.Dto;
-using Service.InterbankTransaction.Mapping;
-using Service.InterbankTransaction.Validation;
+using Service.InterbankTransfer.Mapping;
+using Service.InterbankTransfer.Validation;
 
-namespace Service.InterbankTransaction.Ioc
+namespace Service.InterbankTransfer.Ioc
 {
     public class InterbankTransactionModule : Module
     {

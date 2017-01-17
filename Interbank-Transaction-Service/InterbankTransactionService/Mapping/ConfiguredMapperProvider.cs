@@ -2,7 +2,7 @@
 using Service.Dto;
 using Shared.Transfer;
 
-namespace Service.InterbankTransaction.Mapping
+namespace Service.InterbankTransfer.Mapping
 {
     public class ConfiguredMapperProvider : IMapperProvider
     {

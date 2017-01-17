@@ -8,6 +8,7 @@ using Data.Core;
 using FluentAssertions;
 using Moq;
 using Service.UserAccount;
+using Service.UserAccount.Contract;
 using Service.UserAccount.Implementation;
 using Xunit;
 using Shared.Security;
