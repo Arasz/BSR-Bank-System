@@ -2,7 +2,7 @@
 using System.IO;
 using Newtonsoft.Json;
 
-namespace Service.Bank.Proxies.Configuration
+namespace Service.Bank.Proxy.Configuration
 {
     public class TransferServicesRegister : ITransferServicesRegister
     {

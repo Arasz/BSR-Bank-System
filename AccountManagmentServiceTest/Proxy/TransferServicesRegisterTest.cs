@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using FluentAssertions;
-using Service.Bank.Proxies.Configuration;
+using Service.Bank.Proxy.Configuration;
 using Xunit;
 
 namespace AccountManagementServiceTest.Proxy

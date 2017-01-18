@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Service.Bank.Proxies.Configuration
+namespace Service.Bank.Proxy.Configuration
 {
     public class TransferServiceNotFoundException : Exception
     {

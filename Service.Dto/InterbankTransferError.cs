@@ -7,5 +7,10 @@ namespace Service.Dto
     {
         [DataMember]
         public string Error { get; set; }
+
+        public InterbankTransferError(string error)
+        {
+            Error = error;
+        }
     }
 }

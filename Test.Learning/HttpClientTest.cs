@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -10,6 +11,21 @@ namespace Test.Learning
     public class HttpClientTest
     {
         private string _getRequestUri = "http://www.brainjar.com/java/host/test.html";
+
+        [Fact]
+        public async Task MakeGetRequest_SetUpUriAsBaseAddress_ShouldReturnSimpleWebPage()
+        {
+            var httpClient = new HttpClient { BaseAddress = new Uri(_getRequestUri) };
+
+            var httpResponseMessage = await httpClient.GetAsync("", HttpCompletionOption.ResponseContentRead);
+
+            httpResponseMessage.StatusCode
+                .Should()
+                .HaveFlag(HttpStatusCode.OK);
+
+            var content = await httpResponseMessage.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
+        }
 
         [Fact]
         public async Task MakeGetRequest_WithCorrectUri_GetSimpleWebPage()

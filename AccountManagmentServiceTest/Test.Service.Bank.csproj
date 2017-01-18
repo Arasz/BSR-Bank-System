@@ -66,6 +66,10 @@
       <HintPath>..\packages\Moq.4.5.29\lib\net45\Moq.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -96,6 +100,8 @@
     <Compile Include="CommandHandlers\DepositCommandHandlerTest.cs" />
     <Compile Include="CommandHandlers\ExternalTransferCommandHandlerTest.cs" />
     <Compile Include="EventHandlers\ExternalTransferReceivedEventHandlerTest.cs" />
+    <Compile Include="Proxy\InterbankTransferServiceProxyTest.cs" />
+    <Compile Include="Proxy\TransferServiceHttpClientTest.cs" />
     <Compile Include="Proxy\TransferServicesRegisterTest.cs" />
     <Compile Include="Router\InterbankTransferRouterTest.cs" />
     <Compile Include="CommandHandlers\InternalCommandHandlerTest.cs" />

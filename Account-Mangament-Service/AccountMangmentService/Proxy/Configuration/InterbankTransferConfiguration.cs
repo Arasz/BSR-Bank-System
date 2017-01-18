@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace Service.Bank.Proxies.Configuration
+namespace Service.Bank.Proxy.Configuration
 {
     [DataContract]
     public class InterbankTransferConfiguration

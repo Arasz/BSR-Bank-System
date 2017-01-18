@@ -78,6 +78,8 @@
     <Compile Include="Proxy\Configuration\InterbankTransferConfiguration.cs" />
     <Compile Include="Proxy\Configuration\ITransferServicesRegister.cs" />
     <Compile Include="Proxy\Configuration\TransferServiceNotFoundException.cs" />
+    <Compile Include="Proxy\ServiceHttpClient\ITransferServiceHttpClient.cs" />
+    <Compile Include="Proxy\ServiceHttpClient\TransferServiceHttpClient.cs" />
     <Compile Include="Proxy\InterbankTransferException.cs" />
     <Compile Include="Router\IInterbankTransferRouter.cs" />
     <Compile Include="Implementation\BankService.cs" />
