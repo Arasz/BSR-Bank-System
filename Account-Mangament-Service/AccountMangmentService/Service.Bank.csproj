@@ -82,6 +82,8 @@
     <Compile Include="Proxy\ServiceHttpClient\ITransferServiceHttpClient.cs" />
     <Compile Include="Proxy\ServiceHttpClient\TransferServiceHttpClient.cs" />
     <Compile Include="Proxy\InterbankTransferException.cs" />
+    <Compile Include="Queries\AuthenticatedUserQuery.cs" />
+    <Compile Include="QueryHandlers\AuthenticatedUserQueryHandler.cs" />
     <Compile Include="Router\IInterbankTransferRouter.cs" />
     <Compile Include="Implementation\BankService.cs" />
     <Compile Include="Commands\DepositCommand.cs" />

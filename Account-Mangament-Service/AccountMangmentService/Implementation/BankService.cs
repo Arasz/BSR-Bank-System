@@ -21,9 +21,9 @@ namespace Service.Bank.Implementation
             _interbankTransferRouter = interbankTransferRouter;
         }
 
-        public string Authentication(string userName, string password)
+        public User Authentication(string userName, string password)
         {
-            throw new System.NotImplementedException();
+            return _commonBus.QueryBus.Send<User, AuthenticatedUserQuery>(new AuthenticatedUserQuery(userName, password));
         }
 
         public void Deposit(string accountNumber, decimal amount)

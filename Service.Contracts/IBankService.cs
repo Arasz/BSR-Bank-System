@@ -13,11 +13,11 @@ namespace Service.Contracts
     public interface IBankService
     {
         /// <summary>
-        /// Returns authentication token for given user 
+        /// Returns logged user 
         /// </summary>
         /// <returns> Authentication token </returns>
         [OperationContract]
-        string Authentication(string userName, string password);
+        User Authentication(string userName, string password);
 
         /// <summary>
         /// Increases user account balance by given amount 

@@ -12,10 +12,10 @@ namespace Test.Service.Bank.Validation
 {
     public class CustomUserNamePasswordValidatorTest : DataContextAccessTest<User>
     {
+        private readonly IPasswordHasher _passwordHasher;
         private BankDataContext _dataContextMock;
 
         private string _hashedPassword = "3MmtbNTbJeSmWngoY7l6gsqB1pVCegxCtBdUTUIDXaj2R6ac";
-        private IPasswordHasher _passwordHasher;
         private string _unhashedPassword = "DogesEqualityAndHonor";
         private string _userName = "Test";
 
@@ -45,37 +45,15 @@ namespace Test.Service.Bank.Validation
         [InlineData(null, "DogesEqualityAndHonor")]
         [InlineData("Test", "")]
         [InlineData("   ", "    ")]
-        public void ValidateUser_EmptyUsernameEndPassword_ShouldThrowSecurityException(string username, string password)
+        [InlineData("Test", "WrongPassword")]
+        [InlineData("WrongUsername", "DogesEqualityAndHonor")]
+        public void ValidateUser_WrongAuthenticationData_ShouldThrowSecurityException(string username, string password)
         {
             CreateUser();
 
             var validator = NewValidator;
 
             Action validationAction = () => validator.Validate("", _unhashedPassword);
-
-            validationAction.ShouldThrow<SecurityTokenException>();
-        }
-
-        [Fact]
-        public void ValidateUser_WrongPassword_ShouldThrowSecurityException()
-        {
-            CreateUser();
-
-            var validator = NewValidator;
-
-            Action validationAction = () => validator.Validate(_userName, "WrongPassword");
-
-            validationAction.ShouldThrow<SecurityTokenException>();
-        }
-
-        [Fact]
-        public void ValidateUser_WrongUsername_ShouldThrowSecurityException()
-        {
-            CreateUser();
-
-            var validator = NewValidator;
-
-            Action validationAction = () => validator.Validate("WrongUsername", _unhashedPassword);
 
             validationAction.ShouldThrow<SecurityTokenException>();
         }
