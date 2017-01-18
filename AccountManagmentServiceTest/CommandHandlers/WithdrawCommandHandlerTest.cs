@@ -9,7 +9,7 @@ using Service.Bank.Exceptions;
 using Test.Common;
 using Xunit;
 
-namespace AccountManagementServiceTest.CommandHandlers
+namespace Test.Service.Bank.CommandHandlers
 {
     public sealed class WithdrawCommandHandlerTest : HandlerTestBase<WithdrawCommandHandler, Account>
     {

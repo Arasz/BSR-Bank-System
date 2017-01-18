@@ -20,9 +20,9 @@ namespace Data.Core
         public static User NullUser => new User
         {
             Accounts = new List<Account>(),
-            Id = -1,
-            Name = "-1",
-            Password = "-1"
+            Id = long.MinValue,
+            Name = "",
+            Password = ""
         };
 
         [Required, StringLength(48), DataMember]

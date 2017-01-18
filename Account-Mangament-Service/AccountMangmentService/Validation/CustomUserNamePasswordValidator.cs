@@ -20,10 +20,5 @@ namespace Service.Bank.Validation
 
             authenticatedUser.AuthenticateUser(userName, password);
         }
-
-        private void ThrowFaultException<TException>(TException exception)
-        {
-            throw new FaultException<TException>(exception);
-        }
     }
 }

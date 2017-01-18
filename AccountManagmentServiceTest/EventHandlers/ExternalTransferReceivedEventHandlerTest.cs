@@ -8,7 +8,7 @@ using Service.Bank.Events;
 using Test.Common;
 using Xunit;
 
-namespace AccountManagementServiceTest.EventHandlers
+namespace Test.Service.Bank.EventHandlers
 {
     public class ExternalTransferReceivedEventHandlerTest : HandlerTestBase<ExternalTransferReceivedEventHandler, Account>
     {
