@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Data.Core;
 using Service.Bank.Commands;
+using Service.Bank.Exceptions;
 using Service.Bank.Operations;
 using Service.Dto;
 
@@ -35,8 +36,13 @@ namespace Service.Bank.CommandHandlers.Base
 
         protected virtual void ChangeAccountBalance(decimal amount) => Account.Balance -= amount;
 
-        protected virtual void LoadAccount(string accountNumber) => Account =
-            BankDataContext.Accounts.Single(account => account.Number == accountNumber);
+        protected virtual void LoadAccount(string accountNumber)
+        {
+            Account = BankDataContext.Accounts.SingleOrDefault(account => account.Number == accountNumber);
+
+            if (Account == null)
+                throw new AccountNotFoundException($"Account with number {accountNumber} can not be found");
+        }
 
         protected void RegisterOperation() => _operationRegister.RegisterOperation<TCommand>(Account, _transferDescription);
 

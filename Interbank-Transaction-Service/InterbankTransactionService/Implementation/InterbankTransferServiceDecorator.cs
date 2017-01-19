@@ -2,6 +2,7 @@
 using System.Net;
 using System.ServiceModel.Web;
 using Core.Common.Exceptions;
+using Service.Bank.Exceptions;
 using Service.Contracts;
 using Service.Dto;
 
@@ -25,6 +26,10 @@ namespace Service.InterbankTransfer.Implementation
             catch (TransferDescriptionException transferDataFormatException)
             {
                 ThrowWebFaultException(transferDataFormatException, HttpStatusCode.BadRequest);
+            }
+            catch (AccountNotFoundException accountNotFoundException)
+            {
+                ThrowWebFaultException(accountNotFoundException, HttpStatusCode.NotFound);
             }
             catch (Exception genericException)
             {
