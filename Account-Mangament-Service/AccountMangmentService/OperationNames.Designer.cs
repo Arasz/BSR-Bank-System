@@ -61,6 +61,15 @@ namespace Service.Bank {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Odebrano przelew zewnętrzny.
+        /// </summary>
+        internal static string BookExternalTransferCommand {
+            get {
+                return ResourceManager.GetString("BookExternalTransferCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wpłata.
         /// </summary>
         internal static string DepositCommand {
@@ -79,7 +88,7 @@ namespace Service.Bank {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Przelew wewnętrzny.
+        ///   Looks up a localized string similar to Przelew zewnętrzny.
         /// </summary>
         internal static string ExternalTransferCommand {
             get {
@@ -88,11 +97,11 @@ namespace Service.Bank {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Przelew zewnętrzny.
+        ///   Looks up a localized string similar to Przelew wewnętrzny.
         /// </summary>
-        internal static string InterbankTransferCommand {
+        internal static string InternalTransferCommand {
             get {
-                return ResourceManager.GetString("InterbankTransferCommand", resourceCulture);
+                return ResourceManager.GetString("InternalTransferCommand", resourceCulture);
             }
         }
         

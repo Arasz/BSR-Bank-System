@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using AutoMapper;
 using CQRS.Commands;
 using Data.Core;
@@ -6,21 +6,20 @@ using Service.Bank.Commands;
 
 namespace Service.Bank.OperationRegister
 {
-    public class OperationHistoryRegister<TCommand> : ICommandHandler<RegisterOperationCommand<TCommand>>
-        where TCommand : TransferCommand
+    public class OperationHistoryRegister : ICommandHandler<RegisterBankOperationCommand>
     {
+        private readonly ICommandOperationConverter _commandOperationConverter;
         private readonly BankDataContext _dataContext;
-        private readonly IMapper _mapper;
 
-        public OperationHistoryRegister(IMapper mapper, BankDataContext dataContext)
+        public OperationHistoryRegister(ICommandOperationConverter commandOperationConverter, BankDataContext dataContext)
         {
-            _mapper = mapper;
+            _commandOperationConverter = commandOperationConverter;
             _dataContext = dataContext;
         }
 
-        public void HandleCommand(RegisterOperationCommand<TCommand> command)
+        public void HandleCommand(RegisterBankOperationCommand command)
         {
-            var operation = _mapper.Map<Operation>(command);
+            var operation = _commandOperationConverter.Convert(command);
 
             _dataContext.Operations.Add(operation);
 
