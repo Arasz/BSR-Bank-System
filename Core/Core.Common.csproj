@@ -49,6 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Calculators\CreditDebitCalculator.cs" />
+    <Compile Include="Calculators\ICreditDebitCalculator.cs" />
     <Compile Include="ChecksumCalculator\IAccountChecksumCalculator.cs" />
     <Compile Include="ChecksumCalculator\NrbChecksumCalculator.cs" />
     <Compile Include="Exceptions\TransferDataFormatException.cs" />

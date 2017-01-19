@@ -1,12 +1,13 @@
-﻿using Data.Core;
+﻿using CQRS.Commands;
+using Data.Core;
 using Service.Bank.Commands;
 using Service.Bank.Exceptions;
 
 namespace Service.Bank.CommandHandlers
 {
-    public class InternalTransferCommandHandler : SimpleTransferCommandHandlerBase<InternalTransferCommand>
+    public class InternalTransferCommandHandler : BankOperationCommandHandler<InternalTransferCommand>
     {
-        public InternalTransferCommandHandler(BankDataContext bankDataContext) : base(bankDataContext)
+        public InternalTransferCommandHandler(BankDataContext bankDataContext, ICommandBus commandBus) : base(bankDataContext, commandBus)
         {
         }
 
@@ -34,17 +35,31 @@ namespace Service.Bank.CommandHandlers
         {
             var transferDescription = command.TransferDescription;
 
-            FetchAccount(transferDescription.From);
+            LoadAccount(transferDescription.From);
             ValidateAccountBalance(transferDescription.Amount);
+
+            RecordBalance();
+
             ChangeAccountBalance(-transferDescription.Amount);
+
+            CalculateCreditAndDebit();
+
+            RegisterExecutedOperation();
         }
 
         private void IncreaseReceiverBalance(TransferCommand command)
         {
             var transferDescription = command.TransferDescription;
 
-            FetchAccount(transferDescription.To);
+            LoadAccount(transferDescription.To);
+
+            RecordBalance();
+
             ChangeAccountBalance(transferDescription.Amount);
+
+            CalculateCreditAndDebit();
+
+            RegisterExecutedOperation();
         }
     }
 }

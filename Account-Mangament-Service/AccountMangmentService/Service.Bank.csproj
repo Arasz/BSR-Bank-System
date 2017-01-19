@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Autofac\BankServiceModule.cs" />
+    <Compile Include="CommandHandlers\BankOperationCommandHandler.cs" />
     <Compile Include="CommandHandlers\BookExternalTransferCommandHandler.cs" />
     <Compile Include="CommandHandlers\DepositCommandHandler.cs" />
     <Compile Include="CommandHandlers\ExternalTransferChargeCommandHandler.cs" />

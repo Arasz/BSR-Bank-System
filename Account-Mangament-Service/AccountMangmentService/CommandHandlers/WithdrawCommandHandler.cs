@@ -5,9 +5,9 @@ using Service.Bank.Exceptions;
 
 namespace Service.Bank.CommandHandlers
 {
-    public class WithdrawCommandHandler : SimpleTransferCommandHandlerBase<WithdrawCommand>
+    public class WithdrawCommandHandler : BankOperationCommandHandler<WithdrawCommand>
     {
-        public WithdrawCommandHandler(BankDataContext bankDataContext) : base(bankDataContext)
+        public WithdrawCommandHandler(BankDataContext bankDataContext, ICommandBus commandBus) : base(bankDataContext, commandBus)
 
         {
         }
