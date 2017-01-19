@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 
-namespace Shared.Security
+namespace Core.Common.Security
 {
     public class DefaultPasswordHasher : IPasswordHasher
     {

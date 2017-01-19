@@ -22,8 +22,9 @@ namespace Service.Bank.EventHandlers
 
         private void UpdateAccountBalance(ExternalTransferReceivedEvent @event)
         {
-            var targetAccount = _dataContext.Accounts.Single(account => account.Number == @event.To);
-            targetAccount.Balance += @event.Amount;
+            var transferDescription = @event.TransferDescription;
+            var targetAccount = _dataContext.Accounts.Single(account => account.Number == transferDescription.To);
+            targetAccount.Balance += transferDescription.Amount;
             _dataContext.SaveChanges();
         }
     }

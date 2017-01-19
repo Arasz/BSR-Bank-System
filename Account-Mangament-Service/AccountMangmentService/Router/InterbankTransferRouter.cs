@@ -1,9 +1,9 @@
-﻿using CQRS.Commands;
+﻿using Core.Common.AccountNumber.Parser;
+using CQRS.Commands;
 using CQRS.Events;
 using Service.Bank.Commands;
 using Service.Bank.Events;
-using Shared.AccountNumber.Parser;
-using Shared.Transfer;
+using Service.Dto;
 
 namespace Service.Bank.Router
 {
@@ -23,13 +23,13 @@ namespace Service.Bank.Router
 
         public void Route(TransferDescription routedTransferDescription)
         {
-            var senderAccount = routedTransferDescription.SenderAccount;
-            var receiverAccount = routedTransferDescription.ReceiverAccount;
+            var senderAccount = routedTransferDescription.From;
+            var receiverAccount = routedTransferDescription.To;
 
             if (IsExternal(senderAccount) && !IsExternal(receiverAccount))
                 _eventBus.Publish(new ExternalTransferReceivedEvent(routedTransferDescription));
             else
-                _commandBus.Send(new ExternalTransferCommand());
+                _commandBus.Send(new ExternalTransferCommand(routedTransferDescription));
         }
 
         private bool IsExternal(string accountNumber)

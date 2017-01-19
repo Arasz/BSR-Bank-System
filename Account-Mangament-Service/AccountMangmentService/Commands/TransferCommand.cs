@@ -1,4 +1,5 @@
 ﻿using CQRS.Commands;
+using Service.Dto;
 
 namespace Service.Bank.Commands
 {
@@ -7,12 +8,15 @@ namespace Service.Bank.Commands
     /// </summary>
     public abstract class TransferCommand : ICommand
     {
-        public decimal Amount { get; set; }
+        public TransferDescription TransferDescription { get; protected set; }
 
-        public string From { get; set; }
+        protected TransferCommand(TransferDescription description)
+        {
+            TransferDescription = description;
+        }
 
-        public string Title { get; set; }
-
-        public string To { get; set; }
+        protected TransferCommand()
+        {
+        }
     }
 }

@@ -1,5 +1,5 @@
-﻿using FluentAssertions;
-using Shared.ChecksumCalculator;
+﻿using Core.Common.ChecksumCalculator;
+using FluentAssertions;
 using Xunit;
 
 namespace SharedTests.ChecksumCalculator

@@ -19,11 +19,13 @@ namespace Service.Bank.CommandHandlers
 
         public virtual void HandleCommand(TCommand command)
         {
-            FetchAccount(command.From);
+            var transferDescription = command.TransferDescription;
 
-            ValidateAccountBalance(command.Amount);
+            FetchAccount(transferDescription.From);
 
-            ChangeAccountBalance(command.Amount);
+            ValidateAccountBalance(transferDescription.Amount);
+
+            ChangeAccountBalance(transferDescription.Amount);
 
             SaveChanges();
         }

@@ -1,5 +1,5 @@
-﻿using FluentAssertions;
-using Shared.AccountNumber.Parser;
+﻿using Core.Common.AccountNumber.Parser;
+using FluentAssertions;
 using Xunit;
 
 namespace SharedTests

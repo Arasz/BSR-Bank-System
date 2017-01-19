@@ -1,4 +1,4 @@
-﻿namespace Shared.ChecksumCalculator
+﻿namespace Core.Common.ChecksumCalculator
 {
     /// <summary>
     /// Can calculate 

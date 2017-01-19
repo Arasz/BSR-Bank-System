@@ -5,6 +5,7 @@ using Data.Core;
 using FluentAssertions;
 using Service.Bank.EventHandlers;
 using Service.Bank.Events;
+using Service.Dto;
 using Test.Common;
 using Xunit;
 
@@ -65,6 +66,15 @@ namespace Test.Service.Bank.EventHandlers
             Number = _receiverAccountNumber,
         };
 
-        private ExternalTransferReceivedEvent CreateEvent(decimal transferAmount) => new ExternalTransferReceivedEvent(_senderAccountNumber, _receiverAccountNumber, transferAmount, "FromExternalBank");
+        private ExternalTransferReceivedEvent CreateEvent(decimal transferAmount) => new ExternalTransferReceivedEvent
+        (
+             new TransferDescription
+             {
+                 Amount = transferAmount,
+                 From = _senderAccountNumber,
+                 To = _receiverAccountNumber,
+                 Title = "FromExternalBank"
+             }
+        );
     }
 }

@@ -1,8 +1,8 @@
-﻿using FluentAssertions;
+﻿using Core.Common.ChecksumCalculator;
+using FluentAssertions;
 using FluentValidation.TestHelper;
 using Moq;
 using Service.InterbankTransfer.Validation;
-using Shared.ChecksumCalculator;
 using Xunit;
 
 namespace InterbankTransactionServiceTest

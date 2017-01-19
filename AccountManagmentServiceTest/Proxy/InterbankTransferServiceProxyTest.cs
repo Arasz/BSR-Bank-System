@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
+using Core.Common.AccountNumber;
+using Core.Common.AccountNumber.Parser;
 using Moq;
 using Service.Bank.Proxy;
 using Service.Bank.Proxy.Configuration;
 using Service.Bank.Proxy.ServiceHttpClient;
 using Service.Contracts;
 using Service.Dto;
-using Shared.AccountNumber;
-using Shared.AccountNumber.Parser;
 using Xunit;
 
 namespace Test.Service.Bank.Proxy

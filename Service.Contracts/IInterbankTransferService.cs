@@ -1,7 +1,7 @@
 ﻿using System.ServiceModel;
 using System.ServiceModel.Web;
+using Core.Common.Exceptions;
 using Service.Dto;
-using Shared.Exceptions;
 
 namespace Service.Contracts
 {

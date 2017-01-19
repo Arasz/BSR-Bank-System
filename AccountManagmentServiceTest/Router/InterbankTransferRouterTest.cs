@@ -1,11 +1,11 @@
-﻿using CQRS.Commands;
+﻿using Core.Common.AccountNumber.Parser;
+using CQRS.Commands;
 using CQRS.Events;
 using Moq;
 using Service.Bank.Commands;
 using Service.Bank.Events;
 using Service.Bank.Router;
-using Shared.AccountNumber.Parser;
-using Shared.Transfer;
+using Service.Dto;
 using Xunit;
 
 namespace Test.Service.Bank.Router
@@ -61,8 +61,8 @@ namespace Test.Service.Bank.Router
                 return new TransferDescription
                 {
                     Amount = 100,
-                    ReceiverAccount = _externalBankAccount,
-                    SenderAccount = _internalBankAccount,
+                    To = _externalBankAccount,
+                    From = _internalBankAccount,
                     Title = "ToExternalAccount"
                 };
             }
@@ -70,8 +70,8 @@ namespace Test.Service.Bank.Router
             return new TransferDescription
             {
                 Amount = 100,
-                ReceiverAccount = _internalBankAccount,
-                SenderAccount = _externalBankAccount,
+                To = _internalBankAccount,
+                From = _externalBankAccount,
                 Title = "FromExternalAccount"
             };
         }

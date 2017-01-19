@@ -2,7 +2,6 @@
 using System.ServiceModel;
 using Data.Core;
 using Service.Dto;
-using Shared.Transfer;
 
 namespace Service.Contracts
 {

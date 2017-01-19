@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
+using Core.Common.Security;
 using FluentAssertions;
-using Shared.Security;
 using Xunit;
 
 namespace SharedTests.Security

@@ -5,7 +5,7 @@ using Service.Bank.Commands;
 using Service.Bank.Queries;
 using Service.Bank.Router;
 using Service.Contracts;
-using Shared.Transfer;
+using Service.Dto;
 using AccountHistoryQuery = Service.Dto.AccountHistoryQuery;
 
 namespace Service.Bank.Implementation

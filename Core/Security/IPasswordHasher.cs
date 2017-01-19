@@ -1,4 +1,4 @@
-﻿namespace Shared.Security
+﻿namespace Core.Common.Security
 {
     public interface IPasswordHasher
     {

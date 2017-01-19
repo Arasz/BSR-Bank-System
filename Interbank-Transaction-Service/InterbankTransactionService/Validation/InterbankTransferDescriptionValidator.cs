@@ -1,6 +1,6 @@
-﻿using FluentValidation;
+﻿using Core.Common.ChecksumCalculator;
+using FluentValidation;
 using Service.Dto;
-using Shared.ChecksumCalculator;
 
 namespace Service.InterbankTransfer.Validation
 {

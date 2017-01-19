@@ -81,12 +81,15 @@ namespace Test.Service.Bank.CommandHandlers
         };
 
         private ExternalTransferCommand CreateCommand(decimal transferAmount) => new ExternalTransferCommand
-        {
-            Amount = transferAmount,
-            From = _senderAccountNumber,
-            To = _receiverAccountNumber,
-            Title = "TransferToExternalBank"
-        };
+        (
+             new TransferDescription
+             {
+                 Amount = transferAmount,
+                 From = _senderAccountNumber,
+                 To = _receiverAccountNumber,
+                 Title = "TransferToExternalBank"
+             }
+        );
 
         private IInterbankTransferService CreateServiceProxyMock()
         {

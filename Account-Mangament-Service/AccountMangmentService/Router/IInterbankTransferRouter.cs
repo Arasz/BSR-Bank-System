@@ -1,4 +1,4 @@
-﻿using Shared.Transfer;
+﻿using Service.Dto;
 
 namespace Service.Bank.Router
 {
