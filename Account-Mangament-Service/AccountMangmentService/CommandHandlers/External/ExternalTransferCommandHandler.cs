@@ -1,12 +1,11 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using CQRS.Commands;
 using Data.Core;
 using Service.Bank.Commands;
 using Service.Contracts;
 using Service.Dto;
 
-namespace Service.Bank.CommandHandlers
+namespace Service.Bank.CommandHandlers.External
 {
     public class ExternalTransferCommandHandler : ICommandHandler<ExternalTransferCommand>
     {

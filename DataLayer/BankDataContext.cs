@@ -1,8 +1,11 @@
 namespace Data.Core
 {
+    using System;
     using System.Data.Entity;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
 
-    public class BankDataContext : DbContext
+    public partial class BankDataContext : DbContext
     {
         public virtual DbSet<Account> Accounts { get; set; }
 
@@ -30,12 +33,17 @@ namespace Data.Core
                 .IsUnicode(false);
 
             modelBuilder.Entity<Operation>()
-                .Property(e => e.AccountNumber)
+                .Property(e => e.Source)
                 .IsFixedLength()
                 .IsUnicode(false);
 
             modelBuilder.Entity<Operation>()
-                .Property(e => e.Amount)
+                .Property(e => e.Target)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Operation>()
+                .Property(e => e.Credit)
                 .HasPrecision(19, 4);
 
             modelBuilder.Entity<Operation>()
@@ -43,7 +51,7 @@ namespace Data.Core
                 .HasPrecision(19, 4);
 
             modelBuilder.Entity<Operation>()
-                .Property(e => e.Credit)
+                .Property(e => e.Amount)
                 .HasPrecision(19, 4);
 
             modelBuilder.Entity<Operation>()
@@ -62,7 +70,6 @@ namespace Data.Core
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Accounts)
                 .WithRequired(e => e.User)
-                .HasForeignKey(e => e.Owner)
                 .WillCascadeOnDelete(false);
         }
     }

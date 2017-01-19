@@ -4,6 +4,7 @@ using System.Linq.Expressions;
 using Data.Core;
 using FluentAssertions;
 using Service.Bank.CommandHandlers;
+using Service.Bank.CommandHandlers.External;
 using Service.Bank.Commands;
 using Service.Dto;
 using Test.Common;

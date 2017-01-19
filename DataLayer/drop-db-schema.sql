@@ -1,3 +1,3 @@
-﻿DROP TABLE [Account];
+﻿DROP TABLE [Operation];
+DROP TABLE [Account];
 DROP TABLE [User];
-DROP TABLE [Operation];

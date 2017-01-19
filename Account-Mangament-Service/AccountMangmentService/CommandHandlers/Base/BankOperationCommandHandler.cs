@@ -1,11 +1,10 @@
 ﻿using System.Linq;
-using Core.Common.Calculators;
-using CQRS.Commands;
 using Data.Core;
 using Service.Bank.Commands;
+using Service.Bank.Operations;
 using Service.Dto;
 
-namespace Service.Bank.CommandHandlers
+namespace Service.Bank.CommandHandlers.Base
 {
     /// <summary>
     /// Base for all command handlers connected with bank operations 
@@ -15,16 +14,14 @@ namespace Service.Bank.CommandHandlers
         where TCommand : TransferCommand
     {
         protected readonly BankDataContext BankDataContext;
-        protected readonly ICommandBus CommandBus;
-
         protected TransferDescription _transferDescription;
         protected Account Account;
-        private CreditDebitCalculator _creditDebitCalculator;
+        private readonly IOperationRegister _operationRegister;
 
-        protected BankOperationCommandHandler(BankDataContext bankDataContext, ICommandBus commandBus)
+        protected BankOperationCommandHandler(BankDataContext bankDataContext, IOperationRegister operationRegister)
         {
             BankDataContext = bankDataContext;
-            CommandBus = commandBus;
+            _operationRegister = operationRegister;
         }
 
         public virtual void HandleCommand(TCommand command)
@@ -35,37 +32,19 @@ namespace Service.Bank.CommandHandlers
 
             ValidateAccountBalance(_transferDescription.Amount);
 
-            RecordBalance();
-
             ChangeAccountBalance(_transferDescription.Amount);
-
-            CalculateCreditAndDebit();
 
             SaveChanges();
 
-            RegisterExecutedOperation();
+            RegisterOperation();
         }
-
-        protected void CalculateCreditAndDebit() => _creditDebitCalculator.CalculateCreditAndDebit(Account.Balance);
 
         protected abstract void ChangeAccountBalance(decimal amount);
 
         protected virtual void LoadAccount(string accountNumber) => Account =
             BankDataContext.Accounts.Single(account => account.Number == accountNumber);
 
-        protected void RecordBalance() => _creditDebitCalculator = new CreditDebitCalculator(Account.Balance);
-
-        protected virtual void RegisterExecutedOperation()
-        {
-            var credit = _creditDebitCalculator.Credit;
-
-            var debit = _creditDebitCalculator.Debit;
-
-            var registerOperationCommand = new RegisterBankOperationCommand(_transferDescription, Account.Balance,
-                nameof(TCommand), credit, debit);
-
-            CommandBus.Send(registerOperationCommand);
-        }
+        protected void RegisterOperation() => _operationRegister.RegisterOperation<TCommand>(Account, _transferDescription);
 
         protected virtual void SaveChanges() => BankDataContext.SaveChanges();
 

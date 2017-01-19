@@ -106,7 +106,8 @@
     <Compile Include="CommandHandlers\ExternalTransferChargeCommandHandlerTest.cs" />
     <Compile Include="CommandHandlers\ExternalTransferCommandHandlerTest.cs" />
     <Compile Include="CommandHandlers\BookExternalTransferCommandHandlerTest.cs" />
-    <Compile Include="OperationRegister\OperationHistoryRegisterTest.cs" />
+    <Compile Include="Extensions\CreditDebitCalculatorTest.cs" />
+    <Compile Include="OperationRegister\OperationRegisterTest.cs" />
     <Compile Include="Proxy\InterbankTransferServiceProxyTest.cs" />
     <Compile Include="Proxy\TransferServiceHttpClientTest.cs" />
     <Compile Include="Proxy\TransferServicesRegisterTest.cs" />

@@ -1,13 +1,14 @@
-﻿using CQRS.Commands;
-using Data.Core;
+﻿using Data.Core;
+using Service.Bank.CommandHandlers.Base;
 using Service.Bank.Commands;
 using Service.Bank.Exceptions;
+using Service.Bank.Operations;
 
-namespace Service.Bank.CommandHandlers
+namespace Service.Bank.CommandHandlers.Internal
 {
     public class WithdrawCommandHandler : BankOperationCommandHandler<WithdrawCommand>
     {
-        public WithdrawCommandHandler(BankDataContext bankDataContext, ICommandBus commandBus) : base(bankDataContext, commandBus)
+        public WithdrawCommandHandler(BankDataContext bankDataContext, IOperationRegister register) : base(bankDataContext, register)
 
         {
         }

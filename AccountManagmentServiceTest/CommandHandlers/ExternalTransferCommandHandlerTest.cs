@@ -6,6 +6,7 @@ using Data.Core;
 using FluentAssertions;
 using Moq;
 using Service.Bank.CommandHandlers;
+using Service.Bank.CommandHandlers.External;
 using Service.Bank.Commands;
 using Service.Contracts;
 using Service.Dto;

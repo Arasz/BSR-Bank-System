@@ -3,7 +3,7 @@ using CQRS.Commands;
 using Data.Core;
 using Service.Bank.Commands;
 
-namespace Service.Bank.CommandHandlers
+namespace Service.Bank.CommandHandlers.External
 {
     public class ExternalTransferChargeCommandHandler : ICommandHandler<ExternalTransferChargeCommand>
     {

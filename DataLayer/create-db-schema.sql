@@ -11,15 +11,15 @@ CREATE TABLE [Account]
 	Id bigint PRIMARY KEY IDENTITY(1,1),
 	Number char(26) NOT NULL INDEX IX_Account_Number NONCLUSTERED,
 	Balance money NOT NULL,
-	Owner bigint NOT NULL INDEX IX_Account_Owner NONCLUSTERED,
-	CONSTRAINT FK_AccountOwner_UserId FOREIGN KEY (Owner) REFERENCES [User] (Id),
+	UserId bigint NOT NULL INDEX IX_Account_UserId NONCLUSTERED,
+	CONSTRAINT FK_AccountOwner_UserId FOREIGN KEY (UserId) REFERENCES [User] (Id),
 	CONSTRAINT Unique_Number UNIQUE(Number),
 );
 
 CREATE TABLE [Operation] 
 (
 	Id bigint PRIMARY KEY IDENTITY(1,1),
-	Account bigint FOREIGN KEY REFERENCES [Account](Id),
+	AccountId bigint FOREIGN KEY REFERENCES [Account](Id),
 	Title varchar(200) NOT NULL,
 	Source char(26) NOT NULL,
 	Target char(26) NOT NULL,

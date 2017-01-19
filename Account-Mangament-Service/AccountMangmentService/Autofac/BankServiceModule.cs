@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
 using System.Resources;
 using Autofac;
-using Data.Core;
 using Module = Autofac.Module;
 
 namespace Service.Bank.Autofac

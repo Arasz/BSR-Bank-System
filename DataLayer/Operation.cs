@@ -7,9 +7,9 @@ namespace Data.Core
     [Table("Operation")]
     public class Operation
     {
-        [Required]
-        [StringLength(20)]
-        public string AccountNumber { get; set; }
+        public virtual Account Account { get; set; }
+
+        public long? AccountId { get; set; }
 
         [Column(TypeName = "money")]
         public decimal Amount { get; set; }
@@ -26,6 +26,14 @@ namespace Data.Core
         public decimal Debit { get; set; }
 
         public long Id { get; set; }
+
+        [Required]
+        [StringLength(26)]
+        public string Source { get; set; }
+
+        [Required]
+        [StringLength(26)]
+        public string Target { get; set; }
 
         [Required]
         [StringLength(200)]

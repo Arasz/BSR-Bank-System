@@ -4,6 +4,7 @@ using System.Linq;
 using System.ServiceModel;
 using Core.Common.Security;
 using Data.Core;
+using Service.Bank.Extensions;
 
 namespace Service.Bank.Validation
 {
