@@ -4,7 +4,7 @@ using FluentAssertions;
 using Service.Bank.Proxy.Configuration;
 using Xunit;
 
-namespace AccountManagementServiceTest.Proxy
+namespace Test.Service.Bank.Proxy
 {
     public class TransferServicesRegisterTest
     {

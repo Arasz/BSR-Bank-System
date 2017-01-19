@@ -9,7 +9,7 @@ using Shared.AccountNumber;
 using Shared.AccountNumber.Parser;
 using Xunit;
 
-namespace AccountManagementServiceTest.Proxy
+namespace Test.Service.Bank.Proxy
 {
     public class InterbankTransferServiceProxyTest
     {

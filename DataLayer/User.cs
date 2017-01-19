@@ -17,6 +17,14 @@ namespace Data.Core
         [Required, StringLength(30), DataMember]
         public string Name { get; set; }
 
+        public static User NullUser => new User
+        {
+            Accounts = new List<Account>(),
+            Id = long.MinValue,
+            Name = "",
+            Password = ""
+        };
+
         [Required, StringLength(48), DataMember]
         public string Password { get; set; }
 

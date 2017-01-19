@@ -60,6 +60,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.IdentityModel" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -81,6 +82,8 @@
     <Compile Include="Proxy\ServiceHttpClient\ITransferServiceHttpClient.cs" />
     <Compile Include="Proxy\ServiceHttpClient\TransferServiceHttpClient.cs" />
     <Compile Include="Proxy\InterbankTransferException.cs" />
+    <Compile Include="Queries\AuthenticatedUserQuery.cs" />
+    <Compile Include="QueryHandlers\AuthenticatedUserQueryHandler.cs" />
     <Compile Include="Router\IInterbankTransferRouter.cs" />
     <Compile Include="Implementation\BankService.cs" />
     <Compile Include="Commands\DepositCommand.cs" />
@@ -97,6 +100,8 @@
     <Compile Include="Authentication\Queries\UserAuthenticationQuery.cs" />
     <Compile Include="Proxy\InterbankTransferServiceProxy.cs" />
     <Compile Include="Validation\TransferDescriptionValidator.cs" />
+    <Compile Include="Validation\CustomUserNamePasswordValidator.cs" />
+    <Compile Include="Validation\UserExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

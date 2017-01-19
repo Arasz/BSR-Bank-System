@@ -5,7 +5,7 @@ using Service.Bank.Validation;
 using Shared.ChecksumCalculator;
 using Xunit;
 
-namespace AccountManagementServiceTest.Validation
+namespace Test.Service.Bank.Validation
 {
     public class TransferDescriptionValidatorTest
     {

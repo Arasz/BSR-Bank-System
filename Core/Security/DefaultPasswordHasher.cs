@@ -5,17 +5,14 @@ namespace Shared.Security
 {
     public class DefaultPasswordHasher : IPasswordHasher
     {
-        public const int PasswordHashLength = 20;
-        public const int SaltLength = 16;
         private const int DeriveKeyIterrations = 10000;
-
         private RNGCryptoServiceProvider _cryptoServiceProvider = new RNGCryptoServiceProvider();
-
         private byte[] _hash;
-
         private byte[] _salt;
-
         private byte[] _saltedHash;
+        public int PasswordHashLength => 20;
+
+        public int SaltLength => 16;
 
         public string HashPassword(string password, byte[] salt)
         {

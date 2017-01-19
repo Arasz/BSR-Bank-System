@@ -7,9 +7,8 @@ using Newtonsoft.Json;
 using Service.Bank.Proxy.Configuration;
 using Service.Bank.Proxy.ServiceHttpClient;
 using Service.Dto;
-using Xunit;
 
-namespace AccountManagementServiceTest.Proxy
+namespace Test.Service.Bank.Proxy
 {
     /// <summary>
     /// Cant mock http client 

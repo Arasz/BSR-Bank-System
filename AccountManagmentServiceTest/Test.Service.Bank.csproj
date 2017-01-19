@@ -7,8 +7,8 @@
     <ProjectGuid>{4EE2F283-B847-4A5E-9D9B-159758434448}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AccountManagementServiceTest</RootNamespace>
-    <AssemblyName>AccountManagementServiceTest</AssemblyName>
+    <RootNamespace>Test.Service.Bank</RootNamespace>
+    <AssemblyName>Test.Service.Bank</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -73,6 +73,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IdentityModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -103,9 +104,11 @@
     <Compile Include="Proxy\InterbankTransferServiceProxyTest.cs" />
     <Compile Include="Proxy\TransferServiceHttpClientTest.cs" />
     <Compile Include="Proxy\TransferServicesRegisterTest.cs" />
+    <Compile Include="QueryHandlers\AuthenticatedUserQueryHandlerTest.cs" />
     <Compile Include="Router\InterbankTransferRouterTest.cs" />
     <Compile Include="CommandHandlers\InternalCommandHandlerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validation\CustomUserNamePasswordValidatorTest.cs" />
     <Compile Include="Validation\TransferDescriptionValidatorTest.cs" />
     <Compile Include="CommandHandlers\WithdrawCommandHandlerTest.cs" />
   </ItemGroup>

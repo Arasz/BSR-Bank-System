@@ -7,13 +7,12 @@ using FluentAssertions;
 using Moq;
 using Service.Bank.CommandHandlers;
 using Service.Bank.Commands;
-using Service.Bank.Events;
 using Service.Contracts;
 using Service.Dto;
 using Test.Common;
 using Xunit;
 
-namespace AccountManagementServiceTest.CommandHandlers
+namespace Test.Service.Bank.CommandHandlers
 {
     public class ExternalTransferCommandHandlerTest : HandlerTestBase<ExternalTransferCommandHandler, Account>
     {
