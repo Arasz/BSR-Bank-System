@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Linq.Expressions;
 using Autofac;
 using Data.Core;
+using Service.Bank.Autofac;
 
 namespace Test.Common
 {
@@ -31,6 +32,8 @@ namespace Test.Common
 
         protected virtual void RegisterComponents(ContainerBuilder builder)
         {
+            builder.RegisterModule<BankServiceModule>();
+
             builder.RegisterType<THandler>()
                 .AsSelf()
                 .AsImplementedInterfaces();

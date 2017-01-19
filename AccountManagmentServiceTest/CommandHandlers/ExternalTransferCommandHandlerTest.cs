@@ -2,10 +2,12 @@
 using System.Data.Entity;
 using System.Linq.Expressions;
 using Autofac;
+using CQRS.Commands;
 using Data.Core;
 using FluentAssertions;
 using Moq;
 using Service.Bank.CommandHandlers;
+using Service.Bank.CommandHandlers.External;
 using Service.Bank.Commands;
 using Service.Contracts;
 using Service.Dto;
@@ -56,6 +58,8 @@ namespace Test.Service.Bank.CommandHandlers
 
             senderAccount.Balance.Should()
                 .Be(accountBalance - transferAmount);
+
+            ThrowIsChargeCommandWasNotSend();
         }
 
         protected override void RegisterComponents(ContainerBuilder builder)
@@ -63,6 +67,10 @@ namespace Test.Service.Bank.CommandHandlers
             base.RegisterComponents(builder);
 
             builder.Register(componentContext => CreateServiceProxyMock())
+                .AsImplementedInterfaces()
+                .SingleInstance();
+
+            builder.Register(context => CreateCommandBusMock())
                 .AsImplementedInterfaces()
                 .SingleInstance();
         }
@@ -91,6 +99,16 @@ namespace Test.Service.Bank.CommandHandlers
              }
         );
 
+        private ICommandBus CreateCommandBusMock()
+        {
+            var mock = new Mock<ICommandBus>();
+
+            mock.Setup(bus => bus.Send(It.IsAny<ExternalTransferChargeCommand>()))
+                .Verifiable();
+
+            return mock.Object;
+        }
+
         private IInterbankTransferService CreateServiceProxyMock()
         {
             var interbankTransactionServiceMock = new Mock<IInterbankTransferService>();
@@ -99,6 +117,13 @@ namespace Test.Service.Bank.CommandHandlers
                 .Verifiable();
 
             return interbankTransactionServiceMock.Object;
+        }
+
+        private void ThrowIsChargeCommandWasNotSend()
+        {
+            var commandBus = Container.Resolve<ICommandBus>();
+            var mock = Mock.Get(commandBus);
+            mock.Verify();
         }
 
         private void ThrowIsTransferWasNotCalled()

@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Calculators\ICreditDebitCalculator.cs" />
     <Compile Include="ChecksumCalculator\IAccountChecksumCalculator.cs" />
     <Compile Include="ChecksumCalculator\NrbChecksumCalculator.cs" />
     <Compile Include="Exceptions\TransferDataFormatException.cs" />
@@ -62,7 +63,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\DataLayer\Data.Core.csproj">
+      <Project>{9E811AC8-1601-47D8-AF57-448931FE6AE7}</Project>
+      <Name>Data.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

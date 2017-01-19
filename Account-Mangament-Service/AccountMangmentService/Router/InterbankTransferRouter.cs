@@ -2,7 +2,6 @@
 using CQRS.Commands;
 using CQRS.Events;
 using Service.Bank.Commands;
-using Service.Bank.Events;
 using Service.Dto;
 
 namespace Service.Bank.Router
@@ -27,7 +26,7 @@ namespace Service.Bank.Router
             var receiverAccount = routedTransferDescription.To;
 
             if (IsExternal(senderAccount) && !IsExternal(receiverAccount))
-                _eventBus.Publish(new ExternalTransferReceivedEvent(routedTransferDescription));
+                _commandBus.Send(new BookExternalTransferCommand(routedTransferDescription));
             else
                 _commandBus.Send(new ExternalTransferCommand(routedTransferDescription));
         }

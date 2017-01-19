@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using CQRS.Queries;
 using Data.Core;
+using Service.Bank.Extensions;
 using Service.Bank.Queries;
-using Service.Bank.Validation;
 
 namespace Service.Bank.QueryHandlers
 {

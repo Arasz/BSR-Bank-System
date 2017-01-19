@@ -4,7 +4,7 @@ using System.Linq;
 using Core.Common.Security;
 using Data.Core;
 
-namespace Service.Bank.Validation
+namespace Service.Bank.Extensions
 {
     public static class UserExtension
     {

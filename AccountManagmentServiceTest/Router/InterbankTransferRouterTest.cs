@@ -3,7 +3,6 @@ using CQRS.Commands;
 using CQRS.Events;
 using Moq;
 using Service.Bank.Commands;
-using Service.Bank.Events;
 using Service.Bank.Router;
 using Service.Dto;
 using Xunit;
@@ -21,8 +20,6 @@ namespace Test.Service.Bank.Router
 
         public InterbankTransferRouterTest()
         {
-            MockEventBus();
-
             MockCommandBus();
 
             MockParser();
@@ -37,8 +34,8 @@ namespace Test.Service.Bank.Router
 
             transferRouter.Route(fromExternalBankTransferDescription);
 
-            var routerMock = Mock.Get(_eventBus);
-            routerMock.Verify();
+            var routerMock = Mock.Get(_commandBus);
+            routerMock.Verify(bus => bus.Send(It.IsAny<BookExternalTransferCommand>()));
         }
 
         [Fact]
@@ -51,7 +48,7 @@ namespace Test.Service.Bank.Router
             transferRouter.Route(toExternalBankAccountTransfer);
 
             var routerMock = Mock.Get(_commandBus);
-            routerMock.Verify();
+            routerMock.Verify(bus => bus.Send(It.IsAny<ExternalTransferCommand>()));
         }
 
         private TransferDescription CreateTransferDescription(bool fromInternalAccount)
@@ -83,17 +80,10 @@ namespace Test.Service.Bank.Router
             commandBusMock.Setup(bus => bus.Send(It.IsAny<ExternalTransferCommand>()))
                 .Verifiable();
 
-            _commandBus = commandBusMock.Object;
-        }
-
-        private void MockEventBus()
-        {
-            var eventBusMock = new Mock<IEventBus>();
-
-            eventBusMock.Setup(bus => bus.Publish(It.IsAny<ExternalTransferReceivedEvent>()))
+            commandBusMock.Setup(bus => bus.Send(It.IsAny<BookExternalTransferCommand>()))
                 .Verifiable();
 
-            _eventBus = eventBusMock.Object;
+            _commandBus = commandBusMock.Object;
         }
 
         private void MockParser()
