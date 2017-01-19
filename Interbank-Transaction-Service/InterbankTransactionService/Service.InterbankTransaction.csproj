@@ -68,8 +68,8 @@
     <Compile Include="Error\JsonErrorHandler.cs" />
     <Compile Include="Error\JsonErrorWebHttpBehavior.cs" />
     <Compile Include="Error\JsonErrorWebHttpBehaviorElelement.cs" />
-    <Compile Include="Exceptions\TransferValidationException.cs" />
     <Compile Include="Autofac\InterbankTransactionModule.cs" />
+    <Compile Include="Implementation\InterbankTransferServiceDecorator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Implementation\InterbankTransferService.cs" />
     <Compile Include="Validation\InterbankTransferDescriptionValidator.cs" />

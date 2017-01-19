@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using FluentValidation;
+using Service.Bank.Autofac;
 using Service.Bank.Implementation;
 using Service.Contracts;
 using Service.Dto;
@@ -17,8 +18,7 @@ namespace Service.InterbankTransfer.Autofac
                 .As<IValidator<InterbankTransferDescription>>()
                 .SingleInstance();
 
-            builder.RegisterType<IBankService>()
-                .As<BankService>();
+            builder.RegisterModule<BankServiceModule>();
         }
     }
 }

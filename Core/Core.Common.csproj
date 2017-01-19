@@ -57,7 +57,8 @@
     <Compile Include="ChecksumCalculator\IAccountChecksumCalculator.cs" />
     <Compile Include="ChecksumCalculator\NrbChecksumCalculator.cs" />
     <Compile Include="Configuration\InterbankTransferConfiguration.cs" />
-    <Compile Include="Exceptions\TransferDataFormatException.cs" />
+    <Compile Include="Exceptions\AccountNotFoundException.cs" />
+    <Compile Include="Exceptions\TransferDescriptionException.cs" />
     <Compile Include="AccountNumber\BankAccountNumber.cs" />
     <Compile Include="AccountNumber\Parser\AccountNumberParser.cs" />
     <Compile Include="AccountNumber\Parser\IAccountNumberParser.cs" />
