@@ -1,4 +1,4 @@
-﻿namespace Shared.AccountNumber.Parser
+﻿namespace Core.Common.AccountNumber.Parser
 {
     public class AccountNumberParser : IAccountNumberParser
     {

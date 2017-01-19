@@ -1,4 +1,4 @@
-﻿using Shared.Transfer;
+﻿using Service.Dto;
 
 namespace Service.Bank.Commands
 {
@@ -7,20 +7,8 @@ namespace Service.Bank.Commands
     /// </summary>
     public class InternalTransferCommand : TransferCommand
     {
-        public InternalTransferCommand(TransferDescription description)
+        public InternalTransferCommand(TransferDescription description) : base(description)
         {
-            From = description.SenderAccount;
-            To = description.ReceiverAccount;
-            Amount = description.Amount;
-            Title = description.Title;
-        }
-
-        public InternalTransferCommand(string from, string to, string title, decimal amount)
-        {
-            From = from;
-            To = to;
-            Title = title;
-            Amount = amount;
         }
     }
 }

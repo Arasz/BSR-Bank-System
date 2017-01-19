@@ -26,24 +26,20 @@ namespace Service.Bank.CommandHandlers
             UpdateAccountBalance(command);
         }
 
-        private InterbankTransferDescription CommandToDescription(ExternalTransferCommand command) => new InterbankTransferDescription
-        {
-            Amount = Convert.ToInt32(Math.Round(command.Amount * 100)),
-            ReceiverAccount = command.To,
-            SenderAccount = command.From,
-            Title = command.Title,
-        };
-
         private void MakeInterbankTransfer(ExternalTransferCommand command)
         {
-            var interbankTransferDescription = CommandToDescription(command);
+            var interbankTransferDescription = (InterbankTransferDescription)command.TransferDescription;
             _interbankTransferService.Transfer(interbankTransferDescription);
         }
 
         private void UpdateAccountBalance(ExternalTransferCommand command)
         {
-            var senderAccount = _dataContext.Accounts.Single(account => account.Number == command.From);
-            senderAccount.Balance -= command.Amount;
+            var interbankTransferDescription = command.TransferDescription;
+
+            var senderAccount = _dataContext.Accounts
+                .Single(account => account.Number == interbankTransferDescription.From);
+
+            senderAccount.Balance -= interbankTransferDescription.Amount;
             _dataContext.SaveChanges();
         }
     }

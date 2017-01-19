@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace Shared.ChecksumCalculator
+namespace Core.Common.ChecksumCalculator
 {
     public class NrbChecksumCalculator : IAccountChecksumCalculator
     {

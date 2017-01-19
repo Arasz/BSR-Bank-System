@@ -1,14 +1,15 @@
-﻿namespace Service.Bank.Commands
+﻿using Service.Dto;
+
+namespace Service.Bank.Commands
 {
     /// <summary>
     /// Payment to user account 
     /// </summary>
     public class DepositCommand : TransferCommand
     {
-        public DepositCommand(string targetAccountNumber, decimal depositAmount)
+        public DepositCommand(string to, decimal amount)
         {
-            From = targetAccountNumber;
-            Amount = depositAmount;
+            TransferDescription = new TransferDescription("from", to, "title", amount);
         }
     }
 }

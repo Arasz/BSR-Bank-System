@@ -2,8 +2,8 @@
 using System.IdentityModel.Tokens;
 using System.Linq;
 using System.ServiceModel;
+using Core.Common.Security;
 using Data.Core;
-using Shared.Security;
 
 namespace Service.Bank.Validation
 {

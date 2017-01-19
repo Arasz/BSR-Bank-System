@@ -1,12 +1,11 @@
 using System.Linq;
 using System.Net;
 using System.ServiceModel.Web;
+using Core.Common.Exceptions;
 using FluentValidation;
 using Service.Contracts;
 using Service.Dto;
 using Service.InterbankTransfer.Mapping;
-using Shared.Exceptions;
-using Shared.Transfer;
 
 namespace Service.InterbankTransfer.Implementation
 {

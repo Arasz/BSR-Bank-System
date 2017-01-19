@@ -2,7 +2,6 @@
 using FluentValidation;
 using FluentValidation.Results;
 using Moq;
-using Shared.Transfer;
 using System.Linq;
 using Service.Contracts;
 using Service.Dto;

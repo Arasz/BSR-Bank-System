@@ -74,6 +74,8 @@
     <Compile Include="CommandHandlers\SimpleTransferCommandHandlerBase.cs" />
     <Compile Include="CommandHandlers\WithdrawCommandHandler.cs" />
     <Compile Include="EventHandlers\ExternalTransferReceivedEventHandler.cs" />
+    <Compile Include="Events\ExternalTransferEvent.cs" />
+    <Compile Include="Events\ExternalTransferExecutedEvent.cs" />
     <Compile Include="Events\ExternalTransferReceivedEvent.cs" />
     <Compile Include="Exceptions\AccountBalanceToLowException.cs" />
     <Compile Include="Proxy\Configuration\InterbankTransferConfiguration.cs" />

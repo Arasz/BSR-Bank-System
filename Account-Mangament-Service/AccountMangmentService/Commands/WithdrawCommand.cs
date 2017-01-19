@@ -1,4 +1,5 @@
 ﻿using System;
+using Service.Dto;
 
 namespace Service.Bank.Commands
 {
@@ -7,10 +8,10 @@ namespace Service.Bank.Commands
     /// </summary>
     public class WithdrawCommand : TransferCommand
     {
-        public WithdrawCommand(string sourceAccountNumber, decimal amount)
+        //TODO add from bank number and title
+        public WithdrawCommand(string to, decimal amount)
         {
-            From = sourceAccountNumber;
-            Amount = amount;
+            TransferDescription = new TransferDescription("from", to, "title", amount);
         }
     }
 }

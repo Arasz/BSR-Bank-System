@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens;
+using Core.Common.Security;
 using Data.Core;
 using FluentAssertions;
 using Service.Bank.Validation;
-using Shared.Security;
 using Test.Common;
 using Xunit;
 

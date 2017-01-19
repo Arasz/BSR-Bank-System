@@ -6,6 +6,7 @@ using FluentAssertions;
 using Service.Bank.CommandHandlers;
 using Service.Bank.Commands;
 using Service.Bank.Exceptions;
+using Service.Dto;
 using Test.Common;
 using Xunit;
 
@@ -75,7 +76,15 @@ namespace Test.Service.Bank.CommandHandlers
             return accountMock;
         }
 
-        private InternalTransferCommand CreateCommand(decimal withdrawAmount)
-            => new InternalTransferCommand(SenderAccountNumber, ReceiverAccountNumber, TransferTitle, withdrawAmount);
+        private InternalTransferCommand CreateCommand(decimal withdrawAmount) => new InternalTransferCommand
+        (
+             new TransferDescription
+             {
+                 Amount = withdrawAmount,
+                 From = SenderAccountNumber,
+                 To = ReceiverAccountNumber,
+                 Title = "TransferToExternalBank"
+             }
+        );
     }
 }

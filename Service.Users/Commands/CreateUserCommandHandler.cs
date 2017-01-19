@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using Core.Common.Security;
 using CQRS.Commands;
 using Data.Core;
-using Shared.Security;
 
 namespace Service.UserAccount.Commands
 {

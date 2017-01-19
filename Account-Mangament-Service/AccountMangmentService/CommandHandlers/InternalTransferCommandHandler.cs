@@ -32,15 +32,19 @@ namespace Service.Bank.CommandHandlers
 
         private void DecreaseSenderBalance(TransferCommand command)
         {
-            FetchAccount(command.From);
-            ValidateAccountBalance(command.Amount);
-            ChangeAccountBalance(-command.Amount);
+            var transferDescription = command.TransferDescription;
+
+            FetchAccount(transferDescription.From);
+            ValidateAccountBalance(transferDescription.Amount);
+            ChangeAccountBalance(-transferDescription.Amount);
         }
 
         private void IncreaseReceiverBalance(TransferCommand command)
         {
-            FetchAccount(command.To);
-            ChangeAccountBalance(command.Amount);
+            var transferDescription = command.TransferDescription;
+
+            FetchAccount(transferDescription.To);
+            ChangeAccountBalance(transferDescription.Amount);
         }
     }
 }

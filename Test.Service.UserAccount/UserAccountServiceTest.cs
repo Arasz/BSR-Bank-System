@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Autofac;
+using Core.Common.Security;
 using CQRS.Commands.Autofac;
 using CQRS.Queries.Autofac;
 using CQRS.Validation.Autofac;
@@ -11,7 +12,6 @@ using Service.UserAccount;
 using Service.UserAccount.Contract;
 using Service.UserAccount.Implementation;
 using Xunit;
-using Shared.Security;
 using Test.Common;
 
 namespace Test.Service.UserAccount

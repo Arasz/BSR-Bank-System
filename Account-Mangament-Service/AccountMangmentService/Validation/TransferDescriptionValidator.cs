@@ -1,7 +1,7 @@
 ﻿using System;
+using Core.Common.ChecksumCalculator;
 using FluentValidation;
-using Shared.ChecksumCalculator;
-using Shared.Transfer;
+using Service.Dto;
 
 namespace Service.Bank.Validation
 {
@@ -22,22 +22,22 @@ namespace Service.Bank.Validation
                 .GreaterThanOrEqualTo(0);
 
             //regex https://regex101.com/r/LEt65g/1
-            RuleFor(description => description.SenderAccount)
+            RuleFor(description => description.From)
                 .NotEmpty()
                 .Length(26)
                 .Matches(@"^[0-9]{2}[0-9]{8}[0-9]{16}")
                 .Must(HaveCorrectChecksum)
                 .Must(ExistInTheBank)
-                .When(description => description.SenderAccount.Substring(2, 6).Equals("112241"), ApplyConditionTo.CurrentValidator)
+                .When(description => description.From.Substring(2, 6).Equals("112241"), ApplyConditionTo.CurrentValidator)
                 .WithErrorCode("404 - Receiver account not found");
 
-            RuleFor(description => description.ReceiverAccount)
+            RuleFor(description => description.To)
                 .NotEmpty()
                 .Length(26)
                 .Matches(@"^[0-9]{2}[0-9]{8}[0-9]{16}")
                 .Must(HaveCorrectChecksum)
                 .Must(ExistInTheBank)
-                .When(description => description.ReceiverAccount.Substring(2, 6).Equals("112241"), ApplyConditionTo.CurrentValidator)
+                .When(description => description.To.Substring(2, 6).Equals("112241"), ApplyConditionTo.CurrentValidator)
                 .WithErrorCode("404 - Sender account not found");
         }
 

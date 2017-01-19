@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Shared.Exceptions
+namespace Core.Common.Exceptions
 {
     //[DataContract]
     public class TransferDataFormatException : Exception

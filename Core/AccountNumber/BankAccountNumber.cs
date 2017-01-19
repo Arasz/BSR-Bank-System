@@ -1,4 +1,4 @@
-﻿namespace Shared.AccountNumber
+﻿namespace Core.Common.AccountNumber
 {
     public struct BankAccountNumber
     {

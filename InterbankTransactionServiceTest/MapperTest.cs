@@ -1,7 +1,6 @@
 ﻿using FluentAssertions;
 using Service.Dto;
 using Service.InterbankTransfer.Mapping;
-using Shared.Transfer;
 using Xunit;
 
 namespace InterbankTransactionServiceTest
@@ -23,8 +22,8 @@ namespace InterbankTransactionServiceTest
 
             var expectedTransferDescription = new TransferDescription
             {
-                SenderAccount = "A",
-                ReceiverAccount = "B",
+                From = "A",
+                To = "B",
                 Amount = 19.99M,
                 Title = "C"
             };
@@ -32,8 +31,8 @@ namespace InterbankTransactionServiceTest
             var mappingResult = mapping.Mapper.Map<InterbankTransferDescription, TransferDescription>(interbankTransferDescription);
 
             mappingResult.Amount.Should().Be(expectedTransferDescription.Amount);
-            mappingResult.SenderAccount.Should().Be(expectedTransferDescription.SenderAccount);
-            mappingResult.ReceiverAccount.Should().Be(expectedTransferDescription.ReceiverAccount);
+            mappingResult.From.Should().Be(expectedTransferDescription.From);
+            mappingResult.To.Should().Be(expectedTransferDescription.To);
             mappingResult.Title.Should().Be(expectedTransferDescription.Title);
         }
 

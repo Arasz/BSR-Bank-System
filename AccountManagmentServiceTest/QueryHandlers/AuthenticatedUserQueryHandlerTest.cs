@@ -4,13 +4,13 @@ using System.Data.Entity;
 using System.IdentityModel.Tokens;
 using System.Linq.Expressions;
 using Autofac;
+using Core.Common.Security;
 using Data.Core;
 using FluentAssertions;
 using Moq;
 using Service.Bank.Queries;
 using Service.Bank.QueryHandlers;
 using Service.Bank.Validation;
-using Shared.Security;
 using Test.Common;
 using Xunit;
 
