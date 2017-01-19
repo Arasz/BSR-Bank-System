@@ -1,12 +1,11 @@
 ﻿using System.IdentityModel.Selectors;
 using System.IdentityModel.Tokens;
 using System.Linq;
-using System.ServiceModel;
 using Core.Common.Security;
 using Data.Core;
 using Service.Bank.Extensions;
 
-namespace Service.Bank.Validation
+namespace Service.Bank.Authentication
 {
     public class CustomUserNamePasswordValidator : UserNamePasswordValidator
     {

@@ -3,7 +3,8 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using Newtonsoft.Json;
-using Service.Bank.Proxy.Configuration;
+using Service.Bank.Exceptions;
+using Service.Bank.Proxy.ServicesRegister;
 using Service.Dto;
 
 namespace Service.Bank.Proxy.ServiceHttpClient

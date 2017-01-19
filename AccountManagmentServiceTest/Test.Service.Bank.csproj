@@ -109,7 +109,6 @@
     <Compile Include="Extensions\CreditDebitCalculatorTest.cs" />
     <Compile Include="OperationRegister\OperationRegisterTest.cs" />
     <Compile Include="Proxy\InterbankTransferServiceProxyTest.cs" />
-    <Compile Include="Proxy\TransferServiceHttpClientTest.cs" />
     <Compile Include="Proxy\TransferServicesRegisterTest.cs" />
     <Compile Include="QueryHandlers\AuthenticatedUserQueryHandlerTest.cs" />
     <Compile Include="Router\InterbankTransferRouterTest.cs" />

@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using Core.Common.Configuration;
 using Newtonsoft.Json;
+using Service.Bank.Exceptions;
 
-namespace Service.Bank.Proxy.Configuration
+namespace Service.Bank.Proxy.ServicesRegister
 {
     public class TransferServicesRegister : ITransferServicesRegister
     {
-        private readonly JsonSerializer _jsonSerializer;
         private readonly string _registerPath;
         private InterbankTransferConfiguration _interbankTransferConfiguration;
 
@@ -30,7 +31,6 @@ namespace Service.Bank.Proxy.Configuration
         public TransferServicesRegister(string registerPath)
         {
             _registerPath = registerPath;
-            _jsonSerializer = new JsonSerializer();
         }
 
         public string GetTransferServiceAddress(string bankId)
@@ -43,15 +43,9 @@ namespace Service.Bank.Proxy.Configuration
         }
 
         private void LoadConfigurationFromFile()
-        {
-            using (var stream = File.OpenRead(_registerPath))
-            using (var streamReader = new StreamReader(stream))
-            using (var jsonReader = new JsonTextReader(streamReader))
-            {
-                _interbankTransferConfiguration = _jsonSerializer.Deserialize<InterbankTransferConfiguration>(jsonReader);
-            }
-        }
+            => _interbankTransferConfiguration = InterbankTransferConfiguration.LoadFromFile(_registerPath);
 
-        private bool TryGetTransferServiceAddress(string bankId, out string serviceAddress) => ServicesRegister.TryGetValue(bankId, out serviceAddress);
+        private bool TryGetTransferServiceAddress(string bankId, out string serviceAddress)
+            => ServicesRegister.TryGetValue(bankId, out serviceAddress);
     }
 }

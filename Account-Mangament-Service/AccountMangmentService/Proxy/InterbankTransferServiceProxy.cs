@@ -1,6 +1,6 @@
 ﻿using Core.Common.AccountNumber.Parser;
-using Service.Bank.Proxy.Configuration;
 using Service.Bank.Proxy.ServiceHttpClient;
+using Service.Bank.Proxy.ServicesRegister;
 using Service.Contracts;
 using Service.Dto;
 

@@ -1,4 +1,4 @@
-﻿namespace Service.Bank.Proxy.Configuration
+﻿namespace Service.Bank.Proxy.ServicesRegister
 {
     /// <summary>
     /// Register with transfer service address for each known bank id. 
