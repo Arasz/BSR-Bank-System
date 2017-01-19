@@ -1,7 +1,8 @@
 ﻿using System;
 using System.IO;
 using FluentAssertions;
-using Service.Bank.Proxy.Configuration;
+using Service.Bank.Exceptions;
+using Service.Bank.Proxy.ServicesRegister;
 using Xunit;
 
 namespace Test.Service.Bank.Proxy

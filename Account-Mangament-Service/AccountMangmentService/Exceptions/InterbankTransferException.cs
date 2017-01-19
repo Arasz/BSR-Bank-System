@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Service.Bank.Proxy
+namespace Service.Bank.Exceptions
 {
     public class InterbankTransferException : Exception
     {

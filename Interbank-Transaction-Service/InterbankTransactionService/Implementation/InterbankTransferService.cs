@@ -5,21 +5,18 @@ using Core.Common.Exceptions;
 using FluentValidation;
 using Service.Contracts;
 using Service.Dto;
-using Service.InterbankTransfer.Mapping;
 
 namespace Service.InterbankTransfer.Implementation
 {
     public class InterbankTransferService : IInterbankTransferService
     {
         private readonly IBankService _bankService;
-        private readonly IMapperProvider _mapperProvider;
         private readonly IValidator<InterbankTransferDescription> _validator;
 
-        public InterbankTransferService(IBankService bankService, IValidator<InterbankTransferDescription> validator, IMapperProvider mapperProvider)
+        public InterbankTransferService(IBankService bankService, IValidator<InterbankTransferDescription> validator)
         {
             _bankService = bankService;
             _validator = validator;
-            _mapperProvider = mapperProvider;
         }
 
         public void Transfer(InterbankTransferDescription transferDescription)
@@ -29,12 +26,10 @@ namespace Service.InterbankTransfer.Implementation
             if (!validationResult.IsValid)
             {
                 var validationError = validationResult.Errors.First();
-                throw new WebFaultException<TransferDataFormatException>(
-                    new TransferDataFormatException(validationError.PropertyName, validationError.ErrorMessage, ""),
-                    HttpStatusCode.BadRequest);
+                throw new TransferDescriptionException(validationError.PropertyName, validationError.ErrorMessage);
             }
 
-            _bankService.ExternalTransfer(_mapperProvider.Mapper.Map<TransferDescription>(transferDescription));
+            _bankService.ExternalTransfer((TransferDescription)transferDescription);
         }
     }
 }

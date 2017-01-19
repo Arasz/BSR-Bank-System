@@ -4,6 +4,7 @@ using System.IdentityModel.Tokens;
 using Core.Common.Security;
 using Data.Core;
 using FluentAssertions;
+using Service.Bank.Authentication;
 using Service.Bank.Validation;
 using Test.Common;
 using Xunit;

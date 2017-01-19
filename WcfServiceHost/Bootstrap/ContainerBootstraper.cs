@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using Service.InterbankTransfer.Ioc;
+using Service.InterbankTransfer.Autofac;
 
 namespace Host.WcfService.Bootstrap
 {
