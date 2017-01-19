@@ -98,6 +98,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Account-Mangament-Service\AccountMangmentService\Service.Bank.csproj">
+      <Project>{9443F212-9C92-4A14-94CA-5FC66FACAA14}</Project>
+      <Name>Service.Bank</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Interbank-Transaction-Service\InterbankTransactionService\Service.InterbankTransaction.csproj">
       <Project>{06f68d42-cd5b-49d9-b448-f5b4b43c6ffc}</Project>
       <Name>Service.InterbankTransaction</Name>

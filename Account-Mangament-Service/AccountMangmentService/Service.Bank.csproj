@@ -99,8 +99,9 @@
     <Compile Include="Proxy\ServicesRegister\ITransferServicesRegister.cs" />
     <Compile Include="Proxy\ServicesRegister\TransferServicesRegister.cs" />
     <Compile Include="Queries\AuthenticatedUserQuery.cs" />
+    <Compile Include="QueryHandlers\AccountOperationsHistoryQueryHandler.cs" />
     <Compile Include="QueryHandlers\AuthenticatedUserQueryHandler.cs" />
-    <Compile Include="Router\IInterbankTransferRouter.cs" />
+    <Compile Include="Router\IExternalTransferRouter.cs" />
     <Compile Include="Implementation\BankService.cs" />
     <Compile Include="Commands\DepositCommand.cs" />
     <Compile Include="Commands\ExternalTransferCommand.cs" />
@@ -108,7 +109,7 @@
     <Compile Include="Commands\InternalTransferCommand.cs" />
     <Compile Include="Commands\TransferCommand.cs" />
     <Compile Include="Commands\WithdrawCommand.cs" />
-    <Compile Include="Router\InterbankTransferRouter.cs" />
+    <Compile Include="Router\ExternalTransferRouter.cs" />
     <Compile Include="Queries\AccountOperationsHistoryQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proxy\InterbankTransferServiceProxy.cs" />

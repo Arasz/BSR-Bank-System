@@ -28,7 +28,7 @@ namespace Test.Service.Bank.Router
         [Fact]
         public void RouteTransferFromExternalBank_CheckEventHandlerCalled_ShouldPublishExternalTransferReceived()
         {
-            var transferRouter = new InterbankTransferRouter(_commandBus, _eventBus, _accountNumberParser);
+            var transferRouter = new ExternalTransferRouter(_commandBus, _eventBus, _accountNumberParser);
 
             var fromExternalBankTransferDescription = CreateTransferDescription(fromInternalAccount: false);
 
@@ -41,7 +41,7 @@ namespace Test.Service.Bank.Router
         [Fact]
         public void RouteTransferFromInternalBank_CheckIfCommandHandlerCalled_ShouldSendExternalTransferCommand()
         {
-            var transferRouter = new InterbankTransferRouter(_commandBus, _eventBus, _accountNumberParser);
+            var transferRouter = new ExternalTransferRouter(_commandBus, _eventBus, _accountNumberParser);
 
             var toExternalBankAccountTransfer = CreateTransferDescription(fromInternalAccount: true);
 

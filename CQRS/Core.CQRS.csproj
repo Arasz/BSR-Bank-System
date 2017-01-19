@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Autofac\CqrsModule.cs" />
     <Compile Include="Autofac\ModuleTempalte.cs" />
     <Compile Include="Bus\GenericBus.cs" />
     <Compile Include="Bus\IBus.cs" />

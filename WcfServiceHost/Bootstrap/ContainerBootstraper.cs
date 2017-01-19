@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Service.Bank.Autofac;
 using Service.InterbankTransfer.Autofac;
 
 namespace Host.WcfService.Bootstrap

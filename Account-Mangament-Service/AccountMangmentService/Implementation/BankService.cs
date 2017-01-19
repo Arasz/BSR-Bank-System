@@ -13,12 +13,12 @@ namespace Service.Bank.Implementation
     public class BankService : IBankService
     {
         private readonly IBus _commonBus;
-        private readonly IInterbankTransferRouter _interbankTransferRouter;
+        private readonly IExternalTransferRouter _externalTransferRouter;
 
-        public BankService(IBus commonBus, IInterbankTransferRouter interbankTransferRouter)
+        public BankService(IBus commonBus, IExternalTransferRouter externalTransferRouter)
         {
             _commonBus = commonBus;
-            _interbankTransferRouter = interbankTransferRouter;
+            _externalTransferRouter = externalTransferRouter;
         }
 
         public User Authentication(string userName, string password)
@@ -33,7 +33,7 @@ namespace Service.Bank.Implementation
 
         public void ExternalTransfer(TransferDescription transferDescription)
         {
-            _interbankTransferRouter.Route(transferDescription);
+            _externalTransferRouter.Route(transferDescription);
         }
 
         public void InternalTransfer(TransferDescription transferDescription)
