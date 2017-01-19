@@ -3,10 +3,13 @@ using Service.Dto;
 
 namespace Service.Bank.Events
 {
-    public class ExternalTransferReceivedEvent : ExternalTransferEvent
+    public class ExternalTransferReceivedEvent : IEvent
     {
-        public ExternalTransferReceivedEvent(TransferDescription transferDescription) : base(transferDescription)
+        public TransferDescription TransferDescription { get; }
+
+        public ExternalTransferReceivedEvent(TransferDescription transferDescription)
         {
+            TransferDescription = transferDescription;
         }
     }
 }

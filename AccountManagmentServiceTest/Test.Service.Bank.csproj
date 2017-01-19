@@ -99,6 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandHandlers\DepositCommandHandlerTest.cs" />
+    <Compile Include="CommandHandlers\ExternalTransferChargeCommandHandlerTest.cs" />
     <Compile Include="CommandHandlers\ExternalTransferCommandHandlerTest.cs" />
     <Compile Include="EventHandlers\ExternalTransferReceivedEventHandlerTest.cs" />
     <Compile Include="Proxy\InterbankTransferServiceProxyTest.cs" />

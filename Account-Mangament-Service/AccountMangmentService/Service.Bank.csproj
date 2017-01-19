@@ -69,13 +69,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandHandlers\DepositCommandHandler.cs" />
+    <Compile Include="CommandHandlers\ExternalTransferChargeCommandHandler.cs" />
     <Compile Include="CommandHandlers\ExternalTransferCommandHandler.cs" />
     <Compile Include="CommandHandlers\InternalTransferCommandHandler.cs" />
     <Compile Include="CommandHandlers\SimpleTransferCommandHandlerBase.cs" />
     <Compile Include="CommandHandlers\WithdrawCommandHandler.cs" />
     <Compile Include="EventHandlers\ExternalTransferReceivedEventHandler.cs" />
-    <Compile Include="Events\ExternalTransferEvent.cs" />
-    <Compile Include="Events\ExternalTransferExecutedEvent.cs" />
     <Compile Include="Events\ExternalTransferReceivedEvent.cs" />
     <Compile Include="Exceptions\AccountBalanceToLowException.cs" />
     <Compile Include="Proxy\Configuration\InterbankTransferConfiguration.cs" />
@@ -90,7 +89,7 @@
     <Compile Include="Implementation\BankService.cs" />
     <Compile Include="Commands\DepositCommand.cs" />
     <Compile Include="Commands\ExternalTransferCommand.cs" />
-    <Compile Include="Commands\ExternalTransferServiceChargeCommand.cs" />
+    <Compile Include="Commands\ExternalTransferChargeCommand.cs" />
     <Compile Include="Commands\InternalTransferCommand.cs" />
     <Compile Include="Commands\TransferCommand.cs" />
     <Compile Include="Commands\WithdrawCommand.cs" />
@@ -132,7 +131,9 @@
       <Name>Service.Dto</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="History\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <VSToolsPath Condition="'$(VSToolsPath)' == '' and '$(VisualStudioVersion)' != '' and '$(VisualStudioVersion)' != '11.0'">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
