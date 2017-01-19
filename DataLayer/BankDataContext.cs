@@ -39,6 +39,14 @@ namespace Data.Core
                 .HasPrecision(19, 4);
 
             modelBuilder.Entity<Operation>()
+                .Property(e => e.Debit)
+                .HasPrecision(19, 4);
+
+            modelBuilder.Entity<Operation>()
+                .Property(e => e.Credit)
+                .HasPrecision(19, 4);
+
+            modelBuilder.Entity<Operation>()
                 .Property(e => e.Balance)
                 .HasPrecision(19, 4);
 

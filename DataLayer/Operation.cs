@@ -19,6 +19,12 @@ namespace Data.Core
 
         public DateTime CreationDate { get; set; }
 
+        [Column(TypeName = "money")]
+        public decimal Credit { get; set; }
+
+        [Column(TypeName = "money")]
+        public decimal Debit { get; set; }
+
         public long Id { get; set; }
 
         [Required]
