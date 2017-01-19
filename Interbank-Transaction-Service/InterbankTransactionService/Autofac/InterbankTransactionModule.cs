@@ -1,9 +1,9 @@
 ﻿using Autofac;
 using FluentValidation;
 using Service.Bank.Autofac;
-using Service.Bank.Implementation;
 using Service.Contracts;
 using Service.Dto;
+using Service.InterbankTransfer.Implementation;
 using Service.InterbankTransfer.Validation;
 
 namespace Service.InterbankTransfer.Autofac
@@ -19,6 +19,11 @@ namespace Service.InterbankTransfer.Autofac
                 .SingleInstance();
 
             builder.RegisterModule<BankServiceModule>();
+
+            builder.RegisterType<InterbankTransferService>()
+                .Named<IInterbankTransferService>(nameof(InterbankTransferService));
+
+            builder.RegisterDecorator<IInterbankTransferService>((context, service) => new InterbankTransferServiceDecorator(service), nameof(InterbankTransferService));
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿<%@ ServiceHost
     Language="C#"
     Debug="true"
-    Service="Service.Contract.IInterbankTransactionService, InterbankTransactionService"
+    Service="Service.InterbankTransfer.Implementation.InterbankTransferService"
     Factory="Autofac.Integration.Wcf.AutofacServiceHostFactory, Autofac.Integration.Wcf" %>
