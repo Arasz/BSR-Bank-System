@@ -1,35 +1,29 @@
 ﻿using System.Linq;
 using CQRS.Commands;
 using Data.Core;
+using Service.Bank.CommandHandlers.Base;
 using Service.Bank.Commands;
+using Service.Bank.Operations;
 
 namespace Service.Bank.CommandHandlers.External
 {
-    public class ExternalTransferChargeCommandHandler : ICommandHandler<ExternalTransferChargeCommand>
+    public class ExternalTransferChargeCommandHandler : BankOperationCommandHandler<ExternalTransferChargeCommand>
     {
         private readonly BankDataContext _dataContext;
 
-        public ExternalTransferChargeCommandHandler(BankDataContext dataContext)
+        public ExternalTransferChargeCommandHandler(BankDataContext dataContext, IOperationRegister operationRegister) : base(dataContext, operationRegister)
         {
-            _dataContext = dataContext;
         }
 
-        public void HandleCommand(ExternalTransferChargeCommand command)
+        public override void HandleCommand(ExternalTransferChargeCommand command)
         {
-            var transferDescription = command.TransferDescription;
+            _transferDescription = command.TransferDescription;
 
-            var chargedAmount = command.ChargePercent * transferDescription.Amount;
+            var chargedAmount = command.ChargePercent * _transferDescription.Amount;
 
-            UpdateUserAccountBalance(chargedAmount, transferDescription.From);
-        }
+            UpdateAccountBalance(chargedAmount, _transferDescription.From);
 
-        private void UpdateUserAccountBalance(decimal chargeAmount, string accountNumber)
-        {
-            var chargedAccount = _dataContext.Accounts.Single(account => account.Number == accountNumber);
-
-            chargedAccount.Balance -= chargeAmount;
-
-            _dataContext.SaveChanges();
+            RegisterOperation();
         }
     }
 }

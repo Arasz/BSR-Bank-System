@@ -17,7 +17,6 @@ namespace Service.Bank.CommandHandlers.External
 
         public ExternalTransferCommandHandler(BankDataContext dataContext, IInterbankTransferService interbankTransferService, ICommandBus commandBus, IOperationRegister operationRegister) : base(dataContext, operationRegister)
         {
-            _dataContext = dataContext;
             _interbankTransferService = interbankTransferService;
             _commandBus = commandBus;
         }
@@ -28,29 +27,17 @@ namespace Service.Bank.CommandHandlers.External
 
             MakeInterbankTransfer();
 
-            UpdateAccountBalance();
+            UpdateAccountBalance(_transferDescription.Amount, _transferDescription.From);
 
             RegisterOperation();
 
             _commandBus.Send(new ExternalTransferChargeCommand(command.TransferDescription));
         }
 
-        protected override void ChangeAccountBalance(decimal amount) => Account.Balance -= amount;
-
         private void MakeInterbankTransfer()
         {
             var interbankTransferDescription = (InterbankTransferDescription)_transferDescription;
             _interbankTransferService.Transfer(interbankTransferDescription);
-        }
-
-        private void UpdateAccountBalance()
-        {
-            Account = _dataContext.Accounts
-                .Single(account => account.Number == _transferDescription.From);
-
-            ChangeAccountBalance(_transferDescription.Amount);
-
-            _dataContext.SaveChanges();
         }
     }
 }

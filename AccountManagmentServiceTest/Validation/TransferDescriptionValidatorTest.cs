@@ -51,7 +51,7 @@ namespace Test.Service.Bank.Validation
 
         [Fact]
         public void ReceiverAccount_IncorrectAccountNumber_ShouldReturnValidationErorr() => CreateValidator()
-            .ShouldHaveValidationErrorFor(description => description.To, "78345541668528164913108077")
+            .ShouldHaveValidationErrorFor(description => description.To, "78e45541668528164913108077")
             .Should()
             .ContainSingle();
 

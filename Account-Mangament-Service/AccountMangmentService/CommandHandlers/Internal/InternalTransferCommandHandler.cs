@@ -16,43 +16,29 @@ namespace Service.Bank.CommandHandlers.Internal
         {
             _transferDescription = command.TransferDescription;
 
-            DecreaseSenderBalance(command);
+            DecreaseSenderBalance();
 
-            IncreaseReceiverBalance(command);
+            IncreaseReceiverBalance();
 
             SaveChanges();
         }
 
-        protected override void ChangeAccountBalance(decimal amount)
-        {
-            Account.Balance += amount;
-        }
-
         protected override void ValidateAccountBalance(decimal amount)
         {
-            if (Account.Balance < amount)
+            if (_transferDescription.From == Account.Number && Account.Balance < amount)
                 throw new AccountBalanceToLowException(Account.Number, Account.Balance, amount);
         }
 
-        private void DecreaseSenderBalance(TransferCommand command)
+        private void DecreaseSenderBalance()
         {
-            var transferDescription = command.TransferDescription;
-
-            LoadAccount(transferDescription.From);
-            ValidateAccountBalance(transferDescription.Amount);
-
-            ChangeAccountBalance(-transferDescription.Amount);
+            UpdateAccountBalance(_transferDescription.Amount, _transferDescription.From);
 
             RegisterOperation();
         }
 
-        private void IncreaseReceiverBalance(TransferCommand command)
+        private void IncreaseReceiverBalance()
         {
-            var transferDescription = command.TransferDescription;
-
-            LoadAccount(transferDescription.To);
-
-            ChangeAccountBalance(transferDescription.Amount);
+            UpdateAccountBalance(-_transferDescription.Amount, _transferDescription.To);
 
             RegisterOperation();
         }

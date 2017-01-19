@@ -17,11 +17,10 @@ namespace Test.Service.Bank.Extensions
 
             operation.CalculateCreditOrDebit();
 
-            operation.Debit.Should()
-
+            operation.Credit.Should()
                 .Be(0);
 
-            operation.Credit.Should()
+            operation.Debit.Should()
                 .BePositive().And
                 .Be(amount);
         }
@@ -36,11 +35,11 @@ namespace Test.Service.Bank.Extensions
 
             operation.CalculateCreditOrDebit();
 
-            operation.Debit.Should()
+            operation.Credit.Should()
                 .BePositive().And
                 .Be(amount);
 
-            operation.Credit.Should()
+            operation.Debit.Should()
                 .Be(0);
         }
 

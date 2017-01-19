@@ -8,10 +8,9 @@ namespace Service.Bank.Commands
     /// </summary>
     public class WithdrawCommand : TransferCommand
     {
-        //TODO add from bank number and title
-        public WithdrawCommand(string to, decimal amount)
+        public WithdrawCommand(string from, decimal amount)
         {
-            TransferDescription = new TransferDescription("from", to, "title", amount);
+            TransferDescription = new TransferDescription(from, "", "", amount);
         }
     }
 }

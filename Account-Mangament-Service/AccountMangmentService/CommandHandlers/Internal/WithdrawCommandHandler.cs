@@ -9,11 +9,8 @@ namespace Service.Bank.CommandHandlers.Internal
     public class WithdrawCommandHandler : BankOperationCommandHandler<WithdrawCommand>
     {
         public WithdrawCommandHandler(BankDataContext bankDataContext, IOperationRegister register) : base(bankDataContext, register)
-
         {
         }
-
-        protected override void ChangeAccountBalance(decimal amount) => Account.Balance -= amount;
 
         protected override void ValidateAccountBalance(decimal amount)
         {

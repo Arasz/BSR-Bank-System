@@ -28,18 +28,12 @@ namespace Service.Bank.CommandHandlers.Base
         {
             _transferDescription = command.TransferDescription;
 
-            LoadAccount(_transferDescription.From);
-
-            ValidateAccountBalance(_transferDescription.Amount);
-
-            ChangeAccountBalance(_transferDescription.Amount);
-
-            SaveChanges();
+            UpdateAccountBalance(_transferDescription.Amount, _transferDescription.From);
 
             RegisterOperation();
         }
 
-        protected abstract void ChangeAccountBalance(decimal amount);
+        protected virtual void ChangeAccountBalance(decimal amount) => Account.Balance -= amount;
 
         protected virtual void LoadAccount(string accountNumber) => Account =
             BankDataContext.Accounts.Single(account => account.Number == accountNumber);
@@ -47,6 +41,17 @@ namespace Service.Bank.CommandHandlers.Base
         protected void RegisterOperation() => _operationRegister.RegisterOperation<TCommand>(Account, _transferDescription);
 
         protected virtual void SaveChanges() => BankDataContext.SaveChanges();
+
+        protected virtual void UpdateAccountBalance(decimal amount, string accountNumber)
+        {
+            LoadAccount(accountNumber);
+
+            ValidateAccountBalance(amount);
+
+            ChangeAccountBalance(amount);
+
+            SaveChanges();
+        }
 
         protected virtual void ValidateAccountBalance(decimal amount)
         {

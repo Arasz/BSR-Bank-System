@@ -71,6 +71,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Account-Mangament-Service\AccountMangmentService\Service.Bank.csproj">
+      <Project>{9443F212-9C92-4A14-94CA-5FC66FACAA14}</Project>
+      <Name>Service.Bank</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataLayer\Data.Core.csproj">
       <Project>{9E811AC8-1601-47D8-AF57-448931FE6AE7}</Project>
       <Name>Data.Core</Name>

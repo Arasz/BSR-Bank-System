@@ -12,6 +12,15 @@ namespace Service.Bank.CommandHandlers.Internal
         {
         }
 
+        public override void HandleCommand(DepositCommand command)
+        {
+            _transferDescription = command.TransferDescription;
+
+            UpdateAccountBalance(_transferDescription.Amount, _transferDescription.To);
+
+            RegisterOperation();
+        }
+
         protected override void ChangeAccountBalance(decimal amount) => Account.Balance += amount;
     }
 }

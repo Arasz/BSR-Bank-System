@@ -9,7 +9,7 @@ namespace Service.Bank.Commands
     {
         public DepositCommand(string to, decimal amount)
         {
-            TransferDescription = new TransferDescription("from", to, "title", amount);
+            TransferDescription = new TransferDescription("", to, "", amount);
         }
     }
 }

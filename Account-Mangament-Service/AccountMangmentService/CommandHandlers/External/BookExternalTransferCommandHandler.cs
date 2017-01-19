@@ -1,30 +1,27 @@
 ﻿using System.Linq;
 using CQRS.Commands;
 using Data.Core;
+using Service.Bank.CommandHandlers.Base;
 using Service.Bank.Commands;
+using Service.Bank.Operations;
 
 namespace Service.Bank.CommandHandlers.External
 {
-    public class BookExternalTransferCommandHandler : ICommandHandler<BookExternalTransferCommand>
+    public class BookExternalTransferCommandHandler : BankOperationCommandHandler<BookExternalTransferCommand>
     {
-        private readonly BankDataContext _dataContext;
-
-        public BookExternalTransferCommandHandler(BankDataContext dataContext)
+        public BookExternalTransferCommandHandler(BankDataContext dataContext, IOperationRegister operationRegister) : base(dataContext, operationRegister)
         {
-            _dataContext = dataContext;
         }
 
         public void HandleCommand(BookExternalTransferCommand command)
         {
-            UpdateAccountBalance(command);
+            _transferDescription = command.TransferDescription;
+
+            UpdateAccountBalance(_transferDescription.Amount, _transferDescription.To);
+
+            RegisterOperation();
         }
 
-        private void UpdateAccountBalance(BookExternalTransferCommand command)
-        {
-            var transferDescription = command.TransferDescription;
-            var targetAccount = _dataContext.Accounts.Single(account => account.Number == transferDescription.To);
-            targetAccount.Balance += transferDescription.Amount;
-            _dataContext.SaveChanges();
-        }
+        protected override void ChangeAccountBalance(decimal amount) => Account.Balance += amount;
     }
 }

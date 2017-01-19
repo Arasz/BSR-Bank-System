@@ -15,8 +15,6 @@ namespace Test.Service.Bank.OperationRegister
     public class OperationRegisterTest : DataContextAccessTest<Operation>, IDependencyInjectionTest
     {
         private decimal _amount = 10;
-        private decimal _credit = 0;
-        private decimal _debit = 10;
         private decimal _newBalance = 20;
         private string _sourceAccount = "1";
         private string _targetAccount = "2";
@@ -43,11 +41,53 @@ namespace Test.Service.Bank.OperationRegister
         }
 
         [Fact]
-        public void RegisterOperation_GivenCorrectData_OperationShouldBySaved()
+        public void RegisterDepositOperation_GivenCorrectData_OperationShouldBySaved()
         {
             var operationsRegister = Container.Resolve<IOperationRegister>();
-            var account = CreateAccount();
-            var transferDescription = CreateTransferDescription();
+            var account = CreateAccount(_sourceAccount);
+            var transferDescription = CreateTransferDescription("", _sourceAccount);
+
+            operationsRegister.RegisterOperation<DepositCommand>(account, transferDescription);
+
+            account.Operations.Count
+                .Should().Be(1);
+
+            account.Operations
+                .Single()
+                .Type
+                .Should()
+                .NotBeNullOrWhiteSpace();
+
+            OperationAssertions(_newBalance, _amount, 0, _amount);
+        }
+
+        [Fact]
+        public void RegisterInternalTransferOperation_GivenCorrectData_OperationShouldBySaved()
+        {
+            var operationsRegister = Container.Resolve<IOperationRegister>();
+            var account = CreateAccount(_sourceAccount);
+            var transferDescription = CreateTransferDescription(_sourceAccount, _targetAccount);
+
+            operationsRegister.RegisterOperation<InternalTransferCommand>(account, transferDescription);
+
+            account.Operations.Count
+                .Should().Be(1);
+
+            account.Operations
+                .Single()
+                .Type
+                .Should()
+                .NotBeNullOrWhiteSpace();
+
+            OperationAssertions(_newBalance, _amount, _amount, 0);
+        }
+
+        [Fact]
+        public void RegisterWithdrawOperation_GivenCorrectData_OperationShouldBySaved()
+        {
+            var operationsRegister = Container.Resolve<IOperationRegister>();
+            var account = CreateAccount(_sourceAccount);
+            var transferDescription = CreateTransferDescription(_sourceAccount, "");
 
             operationsRegister.RegisterOperation<WithdrawCommand>(account, transferDescription);
 
@@ -60,49 +100,54 @@ namespace Test.Service.Bank.OperationRegister
                 .Should()
                 .NotBeNullOrWhiteSpace();
 
-            OperationAssertions();
+            OperationAssertions(_newBalance, _amount, _amount, 0);
         }
 
-        private Account CreateAccount()
+        private Account CreateAccount(string accountNumber)
         {
             var account = new Account
             {
                 Balance = _newBalance,
-                Number = _sourceAccount,
+                Number = accountNumber,
                 Operations = MockDataSource
             };
             return account;
         }
 
-        private TransferDescription CreateTransferDescription()
+        private TransferDescription CreateTransferDescription(string source, string target)
         {
             var transferDescription = new TransferDescription
             {
                 Amount = _amount,
-                From = _sourceAccount,
-                To = _targetAccount,
+                From = source,
+                To = target,
                 Title = _title
             };
             return transferDescription;
         }
 
-        private void OperationAssertions()
+        private void OperationAssertions(decimal newBalance, decimal amount, decimal debit, decimal credit)
         {
             MockDataSource.Count.Should()
                 .Be(1);
 
             var operation = MockDataSource.Single();
 
-            operation.Amount.Should()
-                .Be(_amount);
-            operation.Balance.Should()
-                .Be(_newBalance);
             operation.Credit.Should()
-                .Be(_credit);
+                .Be(credit);
+
             operation.Debit.Should()
-                .Be(_debit);
+                .Be(debit);
+
+            operation.Amount.Should()
+                .Be(amount);
+
+            operation.Balance.Should()
+                .Be(newBalance);
+
             operation.Title.Should()
                 .Be(_title);
+
             operation.Type.Should()
                 .NotBeNullOrWhiteSpace();
         }
