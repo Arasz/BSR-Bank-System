@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using System.Resources;
 using Autofac;
+using Service.Bank.Operations;
 using Module = Autofac.Module;
 
 namespace Service.Bank.Autofac
@@ -18,7 +19,12 @@ namespace Service.Bank.Autofac
                 {
                     new TypedParameter(typeof(string), "Service.Bank.OperationNames"),
                     new TypedParameter(typeof(Assembly), ThisAssembly)
-                });
+                })
+                .SingleInstance();
+
+            builder.RegisterType<OperationRegister>()
+                .AsImplementedInterfaces()
+                .SingleInstance();
         }
     }
 }

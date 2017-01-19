@@ -14,6 +14,8 @@ namespace Service.Bank.CommandHandlers.Internal
 
         public override void HandleCommand(InternalTransferCommand command)
         {
+            _transferDescription = command.TransferDescription;
+
             DecreaseSenderBalance(command);
 
             IncreaseReceiverBalance(command);

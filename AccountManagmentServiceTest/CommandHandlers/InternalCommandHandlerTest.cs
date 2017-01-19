@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq.Expressions;
+using Autofac;
 using Data.Core;
 using FluentAssertions;
-using Service.Bank.CommandHandlers;
+using Service.Bank.Autofac;
 using Service.Bank.CommandHandlers.Internal;
 using Service.Bank.Commands;
 using Service.Bank.Exceptions;
@@ -18,6 +20,7 @@ namespace Test.Service.Bank.CommandHandlers
         private const string ReceiverAccountNumber = "5678";
         private const string SenderAccountNumber = "1234";
         private const string TransferTitle = "Title";
+        private List<Operation> OperationTableMock = new List<Operation>();
 
         protected override Expression<Func<BankDataContext, DbSet<Account>>> SelectDataSetFromDataContextExpression
             => bankDataContext => bankDataContext.Accounts;
@@ -64,12 +67,21 @@ namespace Test.Service.Bank.CommandHandlers
             receiverAccount.Balance.Should().Be(receiverBalance);
         }
 
+        protected override void RegisterComponents(ContainerBuilder builder)
+        {
+            base.RegisterComponents(builder);
+
+            builder.RegisterModule<BankServiceModule>();
+        }
+
         private Account CreateAndInitializeAccount(string accountNumber, decimal balance)
         {
             var accountMock = new Account
             {
                 Number = accountNumber,
-                Balance = balance
+                Balance = balance,
+                Operations = OperationTableMock,
+                Id = int.Parse(accountNumber)
             };
 
             MockDataSource.Add(accountMock);
