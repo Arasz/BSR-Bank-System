@@ -41,6 +41,27 @@ namespace Test.Service.Bank.OperationRegister
         }
 
         [Fact]
+        public void RegisterBookExternalTransferOperation_GivenCorrectData_OperationShouldBySaved()
+        {
+            var operationsRegister = Container.Resolve<IOperationRegister>();
+            var account = CreateAccount(_targetAccount);
+            var transferDescription = CreateTransferDescription(_sourceAccount, _targetAccount);
+
+            operationsRegister.RegisterOperation<BookExternalTransferCommand>(account, transferDescription);
+
+            account.Operations.Count
+                .Should().Be(1);
+
+            account.Operations
+                .Single()
+                .Type
+                .Should()
+                .NotBeNullOrWhiteSpace();
+
+            OperationAssertions(_newBalance, _amount, 0, _amount);
+        }
+
+        [Fact]
         public void RegisterDepositOperation_GivenCorrectData_OperationShouldBySaved()
         {
             var operationsRegister = Container.Resolve<IOperationRegister>();
