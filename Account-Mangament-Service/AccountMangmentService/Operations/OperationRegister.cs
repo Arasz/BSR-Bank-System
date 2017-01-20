@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Resources;
-using CQRS.Commands;
+using Core.CQRS.Commands;
 using Data.Core;
 using Service.Bank.Extensions;
 using Service.Dto;

@@ -5,7 +5,6 @@ using Moq;
 using Service.Bank.Proxy;
 using Service.Bank.Proxy.ServiceHttpClient;
 using Service.Bank.Proxy.ServicesRegister;
-using Service.Contracts;
 using Service.Dto;
 using Xunit;
 
@@ -13,10 +12,10 @@ namespace Test.Service.Bank.Proxy
 {
     public class InterbankTransferServiceProxyTest
     {
+        private readonly string _bankId = "00129725";
         private readonly List<Mock> _mocks = new List<Mock>();
-        private string _bankId = "00129725";
-        private string _receiverAccountNumber = "47001297250000000000000001";
-        private string _serviceAddress = "https://192.168.0.1:8080";
+        private readonly string _receiverAccountNumber = "47001297250000000000000001";
+        private readonly string _serviceAddress = "https://192.168.0.1:8080";
 
         [Theory]
         [InlineData(100)]
@@ -43,7 +42,7 @@ namespace Test.Service.Bank.Proxy
             return parser.Object;
         }
 
-        private IInterbankTransferService CreateProxy()
+        private IInterbankTransferServiceProxy CreateProxy()
         {
             var httpClient = HttpClientMock();
 

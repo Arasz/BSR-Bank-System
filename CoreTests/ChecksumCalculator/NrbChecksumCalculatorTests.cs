@@ -11,6 +11,8 @@ namespace SharedTests.ChecksumCalculator
         [Theory]
         [InlineData("249093858528164913108077", 78)]
         [InlineData("109052723974493772627975", 84)]
+        [InlineData("001122410000000000000001", 65)]
+        [InlineData("001122410000000000000002", 38)]
         public void Calculate_CalculateChecksumFromCorrectSlimAccountNumber_ShouldReturnChecksum(
             string slimAccountNumber, int correctChecksum)
         {
@@ -26,7 +28,8 @@ namespace SharedTests.ChecksumCalculator
         [InlineData("84109052723974493772627975", true)]
         [InlineData("84109052723474493772627975", false)]
         [InlineData("841090527234744", false)]
-        public void Calculate_CheckIfAccountNumberCompatibilityWithNrbStandard_ReturnsTrueIfCorrect(string accountNumber, bool correct)
+        public void Calculate_CheckIfAccountNumberCompatibilityWithNrbStandard_ReturnsTrueIfCorrect(
+            string accountNumber, bool correct)
         {
             var calculator = new NrbChecksumCalculator();
 

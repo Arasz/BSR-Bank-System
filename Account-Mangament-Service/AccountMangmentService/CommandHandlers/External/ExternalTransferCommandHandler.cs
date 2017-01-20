@@ -1,11 +1,9 @@
-﻿using System.Linq;
-using CQRS.Commands;
+﻿using Core.CQRS.Commands;
 using Data.Core;
 using Service.Bank.CommandHandlers.Base;
 using Service.Bank.Commands;
 using Service.Bank.Operations;
 using Service.Bank.Proxy;
-using Service.Contracts;
 using Service.Dto;
 
 namespace Service.Bank.CommandHandlers.External
@@ -16,7 +14,9 @@ namespace Service.Bank.CommandHandlers.External
         private readonly BankDataContext _dataContext;
         private readonly IInterbankTransferServiceProxy _interbankTransferService;
 
-        public ExternalTransferCommandHandler(BankDataContext dataContext, IInterbankTransferServiceProxy interbankTransferService, ICommandBus commandBus, IOperationRegister operationRegister) : base(dataContext, operationRegister)
+        public ExternalTransferCommandHandler(BankDataContext dataContext,
+            IInterbankTransferServiceProxy interbankTransferService, ICommandBus commandBus,
+            IOperationRegister operationRegister) : base(dataContext, operationRegister)
         {
             _interbankTransferService = interbankTransferService;
             _commandBus = commandBus;

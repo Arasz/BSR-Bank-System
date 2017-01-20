@@ -9,7 +9,7 @@ using Moq;
 namespace Test.Common
 {
     public abstract class DataContextAccessTest<TEntity>
-                     where TEntity : class
+        where TEntity : class
     {
         protected List<TEntity> MockDataSource { get; } = new List<TEntity>();
 

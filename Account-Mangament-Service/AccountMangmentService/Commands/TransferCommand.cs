@@ -1,15 +1,13 @@
-﻿using CQRS.Commands;
+﻿using Core.CQRS.Commands;
 using Service.Dto;
 
 namespace Service.Bank.Commands
 {
     /// <summary>
-    /// Represents money transfer from one account to other account 
+    ///     Represents money transfer from one account to other account
     /// </summary>
     public abstract class TransferCommand : ICommand
     {
-        public TransferDescription TransferDescription { get; protected set; }
-
         protected TransferCommand(TransferDescription description)
         {
             TransferDescription = description;
@@ -18,5 +16,7 @@ namespace Service.Bank.Commands
         protected TransferCommand()
         {
         }
+
+        public TransferDescription TransferDescription { get; protected set; }
     }
 }

@@ -1,13 +1,11 @@
 ﻿using System.Reflection;
 using Autofac;
-using CQRS.Bus;
-using CQRS.Commands.Autofac;
-using CQRS.Events.Autofac;
-using CQRS.Queries.Autofac;
-using CQRS.Validation.Autofac;
+using Core.CQRS.Bus;
+using Core.CQRS.Commands.Autofac;
+using Core.CQRS.Queries.Autofac;
 using Module = Autofac.Module;
 
-namespace CQRS.Autofac
+namespace Core.CQRS.Autofac
 {
     public class CqrsModule : Module
     {
@@ -32,8 +30,6 @@ namespace CQRS.Autofac
 
             builder.RegisterModule(new CommandModule(AssemblyWithHandlers));
             builder.RegisterModule(new QueryModule(AssemblyWithHandlers));
-            builder.RegisterModule(new EventsModule(AssemblyWithHandlers));
-            builder.RegisterModule(new ValidationModule(AssemblyWithHandlers));
         }
     }
 }

@@ -9,6 +9,15 @@ namespace InterbankTransactionServiceTest
 {
     public class InterbankTransferDescriptionValidatorTest
     {
+        private InterbankTransferDescriptionValidator CreateValidator(bool withChecksumAlwaysTrue = true)
+        {
+            var checksumCalculator =
+                Mock.Of<IAccountChecksumCalculator>(
+                    calculator => calculator.IsCorrect(It.IsAny<string>()) == withChecksumAlwaysTrue);
+
+            return new InterbankTransferDescriptionValidator(checksumCalculator);
+        }
+
         [Fact]
         public void AmountValidation_NegativeAmount_ShouldPassValidation() => CreateValidator()
             .ShouldNotHaveValidationErrorFor(description => description.Amount, 100);
@@ -46,10 +55,12 @@ namespace InterbankTransactionServiceTest
             .ContainSingle();
 
         [Fact]
-        public void ReceiverAccount_IncorrectAccountNumberChecksum_ShouldReturnValidationErorr() => CreateValidator(false)
-            .ShouldHaveValidationErrorFor(description => description.ReceiverAccount, "232323223232322323232232323223232323")
-            .Should()
-            .ContainSingle();
+        public void ReceiverAccount_IncorrectAccountNumberChecksum_ShouldReturnValidationErorr()
+            => CreateValidator(false)
+                .ShouldHaveValidationErrorFor(description => description.ReceiverAccount,
+                    "232323223232322323232232323223232323")
+                .Should()
+                .ContainSingle();
 
         [Fact]
         public void ReceiverAccount_NullSenderAccountNumber_ShouldReturnValidationErorr() => CreateValidator()
@@ -75,13 +86,15 @@ namespace InterbankTransactionServiceTest
 
         [Fact]
         public void SenderAccount_IncorrectAccountNumber_ShouldReturnValidationErorr() => CreateValidator()
-            .ShouldHaveValidationErrorFor(description => description.SenderAccount, "232323223232322323232232323223232323")
+            .ShouldHaveValidationErrorFor(description => description.SenderAccount,
+                "232323223232322323232232323223232323")
             .Should()
             .ContainSingle();
 
         [Fact]
         public void SenderAccount_IncorrectAccountNumberChecksum_ShouldReturnValidationErorr() => CreateValidator(false)
-            .ShouldHaveValidationErrorFor(description => description.SenderAccount, "232323223232322323232232323223232323")
+            .ShouldHaveValidationErrorFor(description => description.SenderAccount,
+                "232323223232322323232232323223232323")
             .Should()
             .ContainSingle();
 
@@ -90,12 +103,5 @@ namespace InterbankTransactionServiceTest
             .ShouldHaveValidationErrorFor(description => description.SenderAccount, null as string)
             .Should()
             .ContainSingle();
-
-        private InterbankTransferDescriptionValidator CreateValidator(bool withChecksumAlwaysTrue = true)
-        {
-            var checksumCalculator = Mock.Of<IAccountChecksumCalculator>(calculator => calculator.IsCorrect(It.IsAny<string>()) == withChecksumAlwaysTrue);
-
-            return new InterbankTransferDescriptionValidator(checksumCalculator);
-        }
     }
 }

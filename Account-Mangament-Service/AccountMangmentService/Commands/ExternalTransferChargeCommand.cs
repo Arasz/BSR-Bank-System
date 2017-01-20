@@ -3,15 +3,16 @@
 namespace Service.Bank.Commands
 {
     /// <summary>
-    /// Charge for external service payment 
+    ///     Charge for external service payment
     /// </summary>
     public class ExternalTransferChargeCommand : TransferCommand
     {
-        public decimal ChargePercent { get; set; }
-
-        public ExternalTransferChargeCommand(TransferDescription description, decimal chargePercent = 0.05M) : base(description)
+        public ExternalTransferChargeCommand(TransferDescription description, decimal chargePercent = 0.05M)
+            : base(description)
         {
             ChargePercent = chargePercent;
         }
+
+        public decimal ChargePercent { get; set; }
     }
 }

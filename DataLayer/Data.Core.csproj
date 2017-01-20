@@ -85,11 +85,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BankDatabase.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="BankDatabase.mdf" />
     <Content Include="BankDatabase_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>BankDatabase.mdf</DependentUpon>
     </Content>
     <Content Include="create-db-schema.sql" />

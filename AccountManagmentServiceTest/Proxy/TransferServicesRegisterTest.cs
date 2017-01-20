@@ -9,10 +9,14 @@ namespace Test.Service.Bank.Proxy
 {
     public class TransferServicesRegisterTest
     {
-        private string _login = "login";
-        private string _password = "pswd";
-        private string _testBankId = "00112241";
-        private string _testServiceAddress = "address";
+        private readonly string _login = "login";
+        private readonly string _password = "pswd";
+        private readonly string _testBankId = "00112241";
+        private readonly string _testServiceAddress = "address";
+
+        private ITransferServicesRegister CreateRegister(
+            string testConfigPath = @"..\..\TestInterbankTransferConfiguration.json")
+            => new TransferServicesRegister(testConfigPath);
 
         [Fact]
         public void LazyLoadConfigurationFile_IncorrectFilePath_ShouldThrowFileNotFoundException()
@@ -48,7 +52,5 @@ namespace Test.Service.Bank.Proxy
 
             getServiceAddressAction.ShouldThrow<TransferServiceNotFoundException>();
         }
-
-        private ITransferServicesRegister CreateRegister(string testConfigPath = @"..\..\TestInterbankTransferConfiguration.json") => new TransferServicesRegister(testConfigPath);
     }
 }

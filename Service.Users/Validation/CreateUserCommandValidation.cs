@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using CQRS.Validation;
 using Data.Core;
 using FluentValidation;
 using Service.UserAccount.Commands;

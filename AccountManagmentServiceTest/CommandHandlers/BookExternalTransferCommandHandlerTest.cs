@@ -3,7 +3,6 @@ using System.Data.Entity;
 using System.Linq.Expressions;
 using Data.Core;
 using FluentAssertions;
-using Service.Bank.CommandHandlers;
 using Service.Bank.CommandHandlers.External;
 using Service.Bank.Commands;
 using Service.Dto;
@@ -14,8 +13,8 @@ namespace Test.Service.Bank.CommandHandlers
 {
     public class BookExternalTransferCommandHandlerTest : HandlerTestBase<BookExternalTransferCommandHandler, Account>
     {
-        private string _receiverAccountNumber = "2";
-        private string _senderAccountNumber = "1";
+        private readonly string _receiverAccountNumber = "2";
+        private readonly string _senderAccountNumber = "1";
 
         protected override Expression<Func<BankDataContext, DbSet<Account>>> SelectDataSetFromDataContextExpression
             => bankDataContext => bankDataContext.Accounts;
@@ -24,7 +23,8 @@ namespace Test.Service.Bank.CommandHandlers
         [InlineData(10, 100)]
         [InlineData(1, 0)]
         [InlineData(2322223323232, 100000000233232)]
-        public void HandleBookExternalTransferCommand_CheckTargetAccountBalance_ShouldIncreaseTargetAccountBalance(decimal transferAmount, decimal accountBalance)
+        public void HandleBookExternalTransferCommand_CheckTargetAccountBalance_ShouldIncreaseTargetAccountBalance(
+            decimal transferAmount, decimal accountBalance)
         {
             var bookExternalTransferCommandHandler = Handler;
 
@@ -41,7 +41,8 @@ namespace Test.Service.Bank.CommandHandlers
         [Theory]
         [InlineData(10, "79228162514264337593543950335")]
         [InlineData(1, "79228162514264337593543950335")]
-        public void HandleBookExternalTransferCommand_TooBigAmount_ShouldThrowOverflowException(decimal transferAmount, decimal accountBalance)
+        public void HandleBookExternalTransferCommand_TooBigAmount_ShouldThrowOverflowException(decimal transferAmount,
+            decimal accountBalance)
         {
             var bookExternalTransferCommandHandler = Handler;
 
@@ -49,7 +50,8 @@ namespace Test.Service.Bank.CommandHandlers
 
             var receiverAccount = AddReceiverAccount(accountBalance);
 
-            Action handleCommandAction = () => bookExternalTransferCommandHandler.HandleCommand(externalTransferReceivedEvent);
+            Action handleCommandAction =
+                () => bookExternalTransferCommandHandler.HandleCommand(externalTransferReceivedEvent);
 
             handleCommandAction.ShouldThrow<OverflowException>();
         }
@@ -64,18 +66,18 @@ namespace Test.Service.Bank.CommandHandlers
         private Account CreateAccount(decimal balance) => new Account
         {
             Balance = balance,
-            Number = _receiverAccountNumber,
+            Number = _receiverAccountNumber
         };
 
         private BookExternalTransferCommand CreateCommand(decimal transferAmount) => new BookExternalTransferCommand
         (
-             new TransferDescription
-             {
-                 Amount = transferAmount,
-                 From = _senderAccountNumber,
-                 To = _receiverAccountNumber,
-                 Title = "FromExternalBank"
-             }
+            new TransferDescription
+            {
+                Amount = transferAmount,
+                From = _senderAccountNumber,
+                To = _receiverAccountNumber,
+                Title = "FromExternalBank"
+            }
         );
     }
 }

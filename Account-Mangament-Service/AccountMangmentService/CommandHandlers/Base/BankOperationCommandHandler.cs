@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using Core.Common.Exceptions;
+using Core.CQRS.Commands;
 using Data.Core;
 using Service.Bank.Commands;
-using Service.Bank.Exceptions;
 using Service.Bank.Operations;
 using Service.Dto;
 
@@ -12,7 +12,7 @@ namespace Service.Bank.CommandHandlers.Base
     /// Base for all command handlers connected with bank operations 
     /// </summary>
     /// <typeparam name="TCommand"></typeparam>
-    public abstract class BankOperationCommandHandler<TCommand>
+    public abstract class BankOperationCommandHandler<TCommand> : ICommandHandler<TCommand>
         where TCommand : TransferCommand
     {
         protected readonly BankDataContext BankDataContext;
@@ -45,7 +45,8 @@ namespace Service.Bank.CommandHandlers.Base
                 throw new AccountNotFoundException($"Account with number {accountNumber} can not be found");
         }
 
-        protected void RegisterOperation() => _operationRegister.RegisterOperation<TCommand>(Account, _transferDescription);
+        protected void RegisterOperation()
+            => _operationRegister.RegisterOperation<TCommand>(Account, _transferDescription);
 
         protected virtual void SaveChanges() => BankDataContext.SaveChanges();
 

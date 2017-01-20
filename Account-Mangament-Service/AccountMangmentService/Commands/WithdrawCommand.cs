@@ -1,10 +1,9 @@
-﻿using System;
-using Service.Dto;
+﻿using Service.Dto;
 
 namespace Service.Bank.Commands
 {
     /// <summary>
-    /// Payment from user account 
+    ///     Payment from user account
     /// </summary>
     public class WithdrawCommand : TransferCommand
     {

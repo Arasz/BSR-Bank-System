@@ -1,6 +1,4 @@
 using System.Linq;
-using System.Net;
-using System.ServiceModel.Web;
 using Core.Common.Exceptions;
 using FluentValidation;
 using Service.Contracts;
@@ -26,7 +24,7 @@ namespace Service.InterbankTransfer.Implementation
             if (!validationResult.IsValid)
             {
                 var validationError = validationResult.Errors.First();
-                throw new TransferDescriptionException(validationError.PropertyName, validationError.ErrorMessage);
+                throw new InvalidTransferException(validationError.PropertyName, validationError.ErrorMessage);
             }
 
             _bankService.ExternalTransfer((TransferDescription)transferDescription);

@@ -1,8 +1,8 @@
-﻿using AutoMapper;
+﻿using System.Linq;
+using AutoMapper;
 using FluentValidation;
 using FluentValidation.Results;
 using Moq;
-using System.Linq;
 using Service.Contracts;
 using Service.Dto;
 using Service.InterbankTransfer.Implementation;
@@ -29,10 +29,14 @@ namespace InterbankTransactionServiceTest
 
             var mapperMock = new Mock<IMapper>();
             mapperMock
-                .Setup(mapper => mapper.Map<InterbankTransferDescription, TransferDescription>(It.IsAny<InterbankTransferDescription>()))
+                .Setup(
+                    mapper =>
+                        mapper.Map<InterbankTransferDescription, TransferDescription>(
+                            It.IsAny<InterbankTransferDescription>()))
                 .Returns(transferDescriptionMock);
 
-            var interbankTransactionService = new InterbankTransferService(managementServiceMock.Object, validatorMock.Object);
+            var interbankTransactionService = new InterbankTransferService(managementServiceMock.Object,
+                validatorMock.Object);
 
             interbankTransactionService.Transfer(interbankTransferDescription);
 

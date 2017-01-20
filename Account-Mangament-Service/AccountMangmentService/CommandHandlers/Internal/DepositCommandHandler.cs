@@ -8,7 +8,8 @@ namespace Service.Bank.CommandHandlers.Internal
     public class DepositCommandHandler : BankOperationCommandHandler<DepositCommand>
 
     {
-        public DepositCommandHandler(BankDataContext bankDataContext, IOperationRegister register) : base(bankDataContext, register)
+        public DepositCommandHandler(BankDataContext bankDataContext, IOperationRegister register)
+            : base(bankDataContext, register)
         {
         }
 

@@ -4,14 +4,18 @@ using System.Resources;
 using Autofac;
 using Core.Common.AccountNumber.Parser;
 using Core.Common.ChecksumCalculator;
-using CQRS.Autofac;
+using Core.CQRS.Autofac;
 using Data.Core;
+using FluentValidation;
 using Service.Bank.Implementation;
 using Service.Bank.Operations;
 using Service.Bank.Proxy;
 using Service.Bank.Proxy.ServiceHttpClient;
 using Service.Bank.Proxy.ServicesRegister;
 using Service.Bank.Router;
+using Service.Bank.Validation;
+using Service.Contracts;
+using Service.Dto;
 using Module = Autofac.Module;
 
 namespace Service.Bank.Autofac
@@ -74,8 +78,25 @@ namespace Service.Bank.Autofac
                 .AsSelf()
                 .SingleInstance();
 
+            builder.RegisterType<TransferDescriptionValidator>()
+                .AsImplementedInterfaces()
+                .SingleInstance();
+
+            builder.RegisterType<AccountHistoryQueryValidator>()
+                .AsImplementedInterfaces()
+                .SingleInstance();
+
             builder.RegisterType<BankService>()
-                .AsImplementedInterfaces();
+                .Named<IBankService>(nameof(BankService));
+
+            builder.RegisterDecorator<IBankService>(
+                (context, service) =>
+                    new BankServiceValidationDecorator(service, context.Resolve<IValidator<TransferDescription>>(),
+                        context.Resolve<IValidator<AccountHistoryQuery>>()),
+                nameof(BankService), nameof(BankServiceValidationDecorator));
+
+            builder.RegisterDecorator<IBankService>((context, service) => new BankServiceExceptionDecorator(service),
+                nameof(BankServiceValidationDecorator));
         }
     }
 }

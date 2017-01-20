@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
-using System.ServiceModel.Description;
-using System.Text;
-using System.Threading.Tasks;
 using Autofac;
 using Autofac.Integration.Wcf;
-using Service.Bank.Autofac;
 using Service.Bank.Implementation;
 using Service.Contracts;
 using Service.InterbankTransfer.Autofac;
@@ -19,7 +14,7 @@ namespace Host.SelfHosting
     {
         private static IContainer BuildContainer()
         {
-            ContainerBuilder builder = new ContainerBuilder();
+            var builder = new ContainerBuilder();
 
             builder.RegisterModule<InterbankTransactionModule>();
 
@@ -36,10 +31,10 @@ namespace Host.SelfHosting
                 interbankTransferServiceHost.AddDependencyInjectionBehavior<IInterbankTransferService>(container);
 
                 bankServiceHost.Open();
-                Console.WriteLine($"The host {nameof(bankServiceHost)} has been opened.");
+                Console.WriteLine($"The host {nameof(bankServiceHost)} has been opened with base address: {bankServiceHost.BaseAddresses.FirstOrDefault()}.");
 
                 interbankTransferServiceHost.Open();
-                Console.WriteLine($"The host {nameof(interbankTransferServiceHost)} has been opened.");
+                Console.WriteLine($"The host {nameof(interbankTransferServiceHost)} has been opened with base address {interbankTransferServiceHost.BaseAddresses.FirstOrDefault()}.");
 
                 Console.ReadLine();
 

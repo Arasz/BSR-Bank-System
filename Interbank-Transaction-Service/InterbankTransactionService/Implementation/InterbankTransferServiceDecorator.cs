@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Net;
+using System.ServiceModel;
 using System.ServiceModel.Web;
 using Core.Common.Exceptions;
-using Service.Bank.Exceptions;
 using Service.Contracts;
 using Service.Dto;
 
@@ -23,13 +23,18 @@ namespace Service.InterbankTransfer.Implementation
             {
                 _decoratedInterbankTransferService.Transfer(transferDescription);
             }
-            catch (TransferDescriptionException transferDataFormatException)
+            catch (FaultException<ValidationFailedException> validationException)
             {
-                ThrowWebFaultException(transferDataFormatException, HttpStatusCode.BadRequest);
+                ThrowWebFaultException(validationException.Detail, HttpStatusCode.BadRequest);
             }
-            catch (AccountNotFoundException accountNotFoundException)
+            catch (FaultException<AccountNotFoundException> accountNotFoundException)
             {
-                ThrowWebFaultException(accountNotFoundException, HttpStatusCode.NotFound);
+                ThrowWebFaultException(accountNotFoundException.Detail, HttpStatusCode.NotFound);
+            }
+            catch (FaultException faultException)
+            {
+                ThrowWebFaultException(new Exception(faultException.Reason.ToString()),
+                    HttpStatusCode.InternalServerError);
             }
             catch (Exception genericException)
             {
@@ -39,6 +44,7 @@ namespace Service.InterbankTransfer.Implementation
 
         private static void ThrowWebFaultException<TException>(TException innerException, HttpStatusCode statusCode)
         {
+            Console.WriteLine(innerException);
             throw new WebFaultException<TException>(innerException, statusCode);
         }
     }

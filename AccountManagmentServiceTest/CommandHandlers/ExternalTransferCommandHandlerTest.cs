@@ -2,11 +2,10 @@
 using System.Data.Entity;
 using System.Linq.Expressions;
 using Autofac;
-using CQRS.Commands;
+using Core.CQRS.Commands;
 using Data.Core;
 using FluentAssertions;
 using Moq;
-using Service.Bank.CommandHandlers;
 using Service.Bank.CommandHandlers.External;
 using Service.Bank.Commands;
 using Service.Contracts;
@@ -18,8 +17,8 @@ namespace Test.Service.Bank.CommandHandlers
 {
     public class ExternalTransferCommandHandlerTest : HandlerTestBase<ExternalTransferCommandHandler, Account>
     {
-        private string _receiverAccountNumber = "2";
-        private string _senderAccountNumber = "1";
+        private readonly string _receiverAccountNumber = "2";
+        private readonly string _senderAccountNumber = "1";
 
         protected override Expression<Func<BankDataContext, DbSet<Account>>> SelectDataSetFromDataContextExpression
             => bankDataContext => bankDataContext.Accounts;
@@ -27,7 +26,8 @@ namespace Test.Service.Bank.CommandHandlers
         [Theory]
         [InlineData(long.MaxValue, 0)]
         [InlineData(2323232321242441L, 5000102002020220223L)]
-        public void HandleExternalTransferCommand_CheckAmountCastForTooLargeAmounts_ShouldThrowOverflowException(decimal transferAmount, decimal accountBalance)
+        public void HandleExternalTransferCommand_CheckAmountCastForTooLargeAmounts_ShouldThrowOverflowException(
+            decimal transferAmount, decimal accountBalance)
         {
             var externalTransferCommandHandler = Handler;
 
@@ -44,7 +44,8 @@ namespace Test.Service.Bank.CommandHandlers
         [InlineData(10, 100)]
         [InlineData(2, 55)]
         [InlineData(2322223, 100000000233232)]
-        public void HandleExternalTransferCommand_DecreaseSenderAccountBalance_BalanceShouldBeDecreasedByTransferAmount(decimal transferAmount, decimal accountBalance)
+        public void HandleExternalTransferCommand_DecreaseSenderAccountBalance_BalanceShouldBeDecreasedByTransferAmount(
+            decimal transferAmount, decimal accountBalance)
         {
             var externalTransferCommandHandler = Handler;
 
@@ -85,18 +86,18 @@ namespace Test.Service.Bank.CommandHandlers
         private Account CreateAccount(decimal balance) => new Account
         {
             Balance = balance,
-            Number = _senderAccountNumber,
+            Number = _senderAccountNumber
         };
 
         private ExternalTransferCommand CreateCommand(decimal transferAmount) => new ExternalTransferCommand
         (
-             new TransferDescription
-             {
-                 Amount = transferAmount,
-                 From = _senderAccountNumber,
-                 To = _receiverAccountNumber,
-                 Title = "TransferToExternalBank"
-             }
+            new TransferDescription
+            {
+                Amount = transferAmount,
+                From = _senderAccountNumber,
+                To = _receiverAccountNumber,
+                Title = "TransferToExternalBank"
+            }
         );
 
         private ICommandBus CreateCommandBusMock()

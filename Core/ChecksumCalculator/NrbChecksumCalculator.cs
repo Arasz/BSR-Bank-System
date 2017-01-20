@@ -22,7 +22,8 @@ namespace Core.Common.ChecksumCalculator
             var movedPartLength = 6;
 
             // Move country code and checksum at the end
-            accountNumber = accountNumber.Substring(movedPartLength, accountNumber.Length - movedPartLength) + accountNumber.Substring(0, movedPartLength);
+            accountNumber = accountNumber.Substring(movedPartLength, accountNumber.Length - movedPartLength) +
+                            accountNumber.Substring(0, movedPartLength);
 
             var firstPart = accountNumber.Substring(0, accountNumber.Length / 2);
             var secondPart = accountNumber.Substring(accountNumber.Length / 2, accountNumber.Length / 2);
@@ -34,7 +35,7 @@ namespace Core.Common.ChecksumCalculator
 
             var parsedSecondPartCombined = ulong.Parse(firstModulo + secondPart, NumberStyles.Integer);
 
-            var checksum = 98 - (parsedSecondPartCombined % 97);
+            var checksum = 98 - parsedSecondPartCombined % 97;
 
             return (int)checksum;
         }

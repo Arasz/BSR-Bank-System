@@ -1,13 +1,13 @@
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Data.Core
 {
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-
     [Table("User")]
     public class User
     {
-        public virtual ICollection<Account> Accounts { get; set; }
+        public ICollection<Account> Accounts { get; set; }
 
         public long Id { get; set; }
 
@@ -19,7 +19,7 @@ namespace Data.Core
         {
             Accounts = new List<Account>(),
             Name = "",
-            Password = "",
+            Password = ""
         };
 
         [Required]

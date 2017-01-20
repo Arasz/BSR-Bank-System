@@ -1,14 +1,14 @@
 ﻿using System;
 
-namespace CQRS.Exceptions
+namespace Core.CQRS.Exceptions
 {
     public class NullHandlerException : Exception
     {
-        public string HandlerType { get; set; }
-
         public NullHandlerException(string message, Type handlerType) : base(message)
         {
             HandlerType = handlerType.Name;
         }
+
+        public string HandlerType { get; set; }
     }
 }

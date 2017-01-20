@@ -3,7 +3,7 @@ using System.Reflection;
 using Autofac;
 using Module = Autofac.Module;
 
-namespace CQRS.Autofac
+namespace Core.CQRS.Autofac
 {
     /// <summary>
     /// Template class for CQRS autofac module 
@@ -23,7 +23,7 @@ namespace CQRS.Autofac
         }
 
         protected static IComponentContext ResolveComponentContext(IComponentContext context)
-                                    => context.Resolve<IComponentContext>();
+            => context.Resolve<IComponentContext>();
 
         protected abstract Type GenericHandlerType();
 

@@ -1,8 +1,8 @@
-﻿using CQRS.Exceptions;
-using CQRS.Queries;
+﻿using System;
+using Core.CQRS.Exceptions;
+using Core.CQRS.Queries;
 using FluentAssertions;
 using Moq;
-using System;
 using Xunit;
 
 namespace CQRSTest
@@ -41,7 +41,7 @@ namespace CQRSTest
                 .Setup(handler => handler.HandleQuery(queryMock.Object))
                 .Returns(queryResult);
 
-            Func<QueryHandlerKey, IQueryHandler<int, IQuery<int>>> queryFactory = (queryHandlerKey) => queryHandler.Object;
+            Func<QueryHandlerKey, IQueryHandler<int, IQuery<int>>> queryFactory = queryHandlerKey => queryHandler.Object;
 
             var bus = new QueryBus(queryFactory);
 

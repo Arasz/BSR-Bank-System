@@ -18,9 +18,6 @@ namespace Service.Bank.Proxy.ServiceHttpClient
         private readonly string _jsonMimeType = @"application/json";
         private readonly string _transferActionLocation = "/transfer";
         private readonly ITransferServicesRegister _transferServicesRegister;
-        public string CombinedAuthenticationData => _transferServicesRegister.Login + ":" + _transferServicesRegister.Password;
-
-        private AuthenticationHeaderValue AuthenticationHeader => new AuthenticationHeaderValue(_authenticationSchema, ConvertToBase64(CombinedAuthenticationData));
 
         public TransferServiceHttpClient(HttpClient httpClient, ITransferServicesRegister transferServicesRegister)
         {
@@ -29,6 +26,12 @@ namespace Service.Bank.Proxy.ServiceHttpClient
 
             ConfigureHttpClient();
         }
+
+        public string CombinedAuthenticationData
+            => _transferServicesRegister.Login + ":" + _transferServicesRegister.Password;
+
+        private AuthenticationHeaderValue AuthenticationHeader
+            => new AuthenticationHeaderValue(_authenticationSchema, ConvertToBase64(CombinedAuthenticationData));
 
         public void SendTransfer(InterbankTransferDescription transferDescription, string transferServiceAddress)
         {
@@ -55,7 +58,8 @@ namespace Service.Bank.Proxy.ServiceHttpClient
         private HttpContent CreatePostMessageBody(InterbankTransferDescription transferDescription) =>
             new StringContent(JsonConvert.SerializeObject(transferDescription), _jsonEncoding, _jsonMimeType);
 
-        private Uri CreateTransferActionUri(string serviceAddressBase) => new Uri(serviceAddressBase + _transferActionLocation);
+        private Uri CreateTransferActionUri(string serviceAddressBase)
+            => new Uri(serviceAddressBase + _transferActionLocation);
 
         private void HandleTransferError(HttpResponseMessage transferResult)
         {
@@ -66,9 +70,10 @@ namespace Service.Bank.Proxy.ServiceHttpClient
             readResponseBodyTask.Wait();
 
             var transferError = ParseTransferError(readResponseBodyTask.Result);
-            throw new InterbankTransferException(transferError.Error, (int)transferResult.StatusCode);
+            throw new InterbankTransferException(transferError.Error, (int) transferResult.StatusCode);
         }
 
-        private InterbankTransferError ParseTransferError(string transferError) => JsonConvert.DeserializeObject<InterbankTransferError>(transferError);
+        private InterbankTransferError ParseTransferError(string transferError)
+            => JsonConvert.DeserializeObject<InterbankTransferError>(transferError);
     }
 }

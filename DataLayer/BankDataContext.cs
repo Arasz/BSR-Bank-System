@@ -1,11 +1,8 @@
+using System.Data.Entity;
+
 namespace Data.Core
 {
-    using System;
-    using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
-
-    public partial class BankDataContext : DbContext
+    public class BankDataContext : DbContext
     {
         public virtual DbSet<Account> Accounts { get; set; }
 

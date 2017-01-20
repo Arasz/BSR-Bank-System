@@ -1,4 +1,4 @@
-﻿using ICommand = CQRS.Commands.ICommand;
+﻿using Core.CQRS.Commands;
 
 namespace Service.UserAccount.Commands
 {
