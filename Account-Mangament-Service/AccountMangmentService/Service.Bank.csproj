@@ -93,6 +93,7 @@
     <Compile Include="Operations\IOperationRegister.cs" />
     <Compile Include="Operations\OperationRegister.cs" />
     <Compile Include="Exceptions\TransferServiceNotFoundException.cs" />
+    <Compile Include="Proxy\IInterbankTransferServiceProxy.cs" />
     <Compile Include="Proxy\ServiceHttpClient\ITransferServiceHttpClient.cs" />
     <Compile Include="Proxy\ServiceHttpClient\TransferServiceHttpClient.cs" />
     <Compile Include="Exceptions\InterbankTransferException.cs" />

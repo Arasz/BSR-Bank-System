@@ -11,6 +11,7 @@ using Service.Bank.Autofac;
 using Service.Bank.Implementation;
 using Service.Contracts;
 using Service.InterbankTransfer.Autofac;
+using Service.InterbankTransfer.Implementation;
 
 namespace Host.SelfHosting
 {
@@ -20,7 +21,7 @@ namespace Host.SelfHosting
         {
             ContainerBuilder builder = new ContainerBuilder();
 
-            builder.RegisterModule<BankServiceModule>();
+            builder.RegisterModule<InterbankTransactionModule>();
 
             return builder.Build();
         }
@@ -29,22 +30,21 @@ namespace Host.SelfHosting
         {
             using (var container = BuildContainer())
             using (var bankServiceHost = new ServiceHost(typeof(BankService)))
+            using (var interbankTransferServiceHost = new ServiceHost(typeof(InterbankTransferService)))
             {
-                //Uri address = new Uri("http://localhost:8080/Service1");
-                //ServiceHost host = new ServiceHost(typeof(BankService), address);
-                //host.AddServiceEndpoint(typeof(IEchoService), new BasicHttpBinding(), string.Empty);
-
-                // Here's the important part - attaching the DI behavior to the service host and
-                // passing in the container.
                 bankServiceHost.AddDependencyInjectionBehavior<IBankService>(container);
+                interbankTransferServiceHost.AddDependencyInjectionBehavior<IInterbankTransferService>(container);
 
-                //host.Description.Behaviors.Add(new ServiceMetadataBehavior { HttpGetEnabled = true, HttpGetUrl = address });
                 bankServiceHost.Open();
+                Console.WriteLine($"The host {nameof(bankServiceHost)} has been opened.");
 
-                Console.WriteLine("The host has been opened.");
+                interbankTransferServiceHost.Open();
+                Console.WriteLine($"The host {nameof(interbankTransferServiceHost)} has been opened.");
+
                 Console.ReadLine();
 
                 bankServiceHost.Close();
+                interbankTransferServiceHost.Close();
             }
         }
     }

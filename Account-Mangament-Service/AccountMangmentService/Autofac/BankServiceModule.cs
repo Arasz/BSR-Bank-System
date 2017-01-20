@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Resources;
 using Autofac;
 using Core.Common.AccountNumber.Parser;
+using Core.Common.ChecksumCalculator;
 using CQRS.Autofac;
 using Data.Core;
 using Service.Bank.Implementation;
@@ -32,6 +33,9 @@ namespace Service.Bank.Autofac
                 .SingleInstance();
 
             builder.RegisterModule(new CqrsModule(ThisAssembly));
+
+            builder.RegisterType<NrbChecksumCalculator>()
+                .AsImplementedInterfaces();
 
             builder.RegisterType<OperationRegister>()
                 .AsImplementedInterfaces()
