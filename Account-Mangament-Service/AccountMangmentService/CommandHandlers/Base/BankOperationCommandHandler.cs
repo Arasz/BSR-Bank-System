@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Core.Common.Exceptions;
+using CQRS.Commands;
 using Data.Core;
 using Service.Bank.Commands;
 using Service.Bank.Exceptions;
@@ -12,7 +13,7 @@ namespace Service.Bank.CommandHandlers.Base
     /// Base for all command handlers connected with bank operations 
     /// </summary>
     /// <typeparam name="TCommand"></typeparam>
-    public abstract class BankOperationCommandHandler<TCommand>
+    public abstract class BankOperationCommandHandler<TCommand> : ICommandHandler<TCommand>
         where TCommand : TransferCommand
     {
         protected readonly BankDataContext BankDataContext;

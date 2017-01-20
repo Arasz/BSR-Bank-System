@@ -39,7 +39,7 @@ namespace Service.InterbankTransfer.Error
                 StatusDescription = statusDescription
             };
 
-            httpResponse.Headers[HttpRequestHeader.ContentType] = "application/json";
+            // httpResponse.Headers[HttpRequestHeader.ContentType] = "application/json";
 
             fault.Properties.Add(HttpResponseMessageProperty.Name, httpResponse);
         }
