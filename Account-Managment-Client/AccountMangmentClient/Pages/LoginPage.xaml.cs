@@ -27,10 +27,5 @@ namespace AccountMangmentClient.Pages
             _window = window;
             InitializeComponent();
         }
-
-        private void CreateAccountButton_Click(object sender, RoutedEventArgs e)
-        {
-            _window.MainFrame.NavigationService.Navigate(new CreateAccountPage(_window));
-        }
     }
 }

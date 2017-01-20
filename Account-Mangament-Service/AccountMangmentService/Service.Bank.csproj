@@ -85,6 +85,8 @@
     <Compile Include="Exceptions\AccountBalanceToLowException.cs" />
     <Compile Include="Extensions\OperationExtension.cs" />
     <Compile Include="Extensions\UserExtension.cs" />
+    <Compile Include="Implementation\BankServiceExceptionDecorator.cs" />
+    <Compile Include="Implementation\BankServiceValidationDecorator.cs" />
     <Compile Include="OperationNames.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -114,6 +116,7 @@
     <Compile Include="Queries\AccountOperationsHistoryQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proxy\InterbankTransferServiceProxy.cs" />
+    <Compile Include="Validation\AccountHistoryQueryValidator.cs" />
     <Compile Include="Validation\TransferDescriptionValidator.cs" />
     <Compile Include="Authentication\CustomUserNamePasswordValidator.cs" />
   </ItemGroup>

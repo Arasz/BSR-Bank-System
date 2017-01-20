@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using CQRS.Queries;
+using Core.CQRS.Queries;
 using Data.Core;
 using Service.Bank.Extensions;
 using Service.Bank.Queries;

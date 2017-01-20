@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Core.Common.Exceptions;
-using CQRS.Queries;
+using Core.CQRS.Queries;
 using Data.Core;
 using Service.Bank.Exceptions;
 using Service.Bank.Queries;

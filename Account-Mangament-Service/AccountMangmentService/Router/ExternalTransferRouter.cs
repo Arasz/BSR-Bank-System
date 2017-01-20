@@ -1,6 +1,5 @@
 ﻿using Core.Common.AccountNumber.Parser;
-using CQRS.Commands;
-using CQRS.Events;
+using Core.CQRS.Commands;
 using Service.Bank.Commands;
 using Service.Dto;
 
@@ -10,13 +9,11 @@ namespace Service.Bank.Router
     {
         private readonly IAccountNumberParser _accountNumberParser;
         private readonly ICommandBus _commandBus;
-        private readonly IEventBus _eventBus;
         private string LocalBankId { get; } = "112241";
 
-        public ExternalTransferRouter(ICommandBus commandBus, IEventBus eventBus, IAccountNumberParser accountNumberParser)
+        public ExternalTransferRouter(ICommandBus commandBus, IAccountNumberParser accountNumberParser)
         {
             _commandBus = commandBus;
-            _eventBus = eventBus;
             _accountNumberParser = accountNumberParser;
         }
 

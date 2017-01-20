@@ -2,7 +2,7 @@
 
 namespace Core.Common.Exceptions
 {
-    public class TransferDescriptionException : Exception
+    public class InvalidTransferException : Exception
     {
         public override string Message => $"Invalid property: {PropertyName}." +
                                          $" Validation message: {ValidationMessage}";
@@ -11,7 +11,7 @@ namespace Core.Common.Exceptions
 
         public string ValidationMessage { get; }
 
-        public TransferDescriptionException(string propertyName, string validationMessage)
+        public InvalidTransferException(string propertyName, string validationMessage)
         {
             PropertyName = propertyName;
             ValidationMessage = validationMessage;

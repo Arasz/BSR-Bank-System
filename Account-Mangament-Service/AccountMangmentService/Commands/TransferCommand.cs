@@ -1,4 +1,4 @@
-﻿using CQRS.Commands;
+﻿using Core.CQRS.Commands;
 using Service.Dto;
 
 namespace Service.Bank.Commands

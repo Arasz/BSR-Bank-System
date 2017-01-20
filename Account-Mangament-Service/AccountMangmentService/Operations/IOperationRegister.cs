@@ -1,4 +1,4 @@
-﻿using CQRS.Commands;
+﻿using Core.CQRS.Commands;
 using Data.Core;
 using Service.Dto;
 

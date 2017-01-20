@@ -1,8 +1,8 @@
-﻿using CQRS.Exceptions;
-using CQRS.Queries;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Moq;
 using System;
+using Core.CQRS.Exceptions;
+using Core.CQRS.Queries;
 using Xunit;
 
 namespace CQRSTest

@@ -1,8 +1,7 @@
-﻿using CQRS.Commands;
-using CQRS.Events;
-using CQRS.Queries;
+﻿using Core.CQRS.Commands;
+using Core.CQRS.Queries;
 
-namespace CQRS.Bus
+namespace Core.CQRS.Bus
 {
     /// <summary>
     /// Bus for dispatching commands/queries/events (facade) 
@@ -11,12 +10,7 @@ namespace CQRS.Bus
     {
         ICommandBus CommandBus { get; }
 
-        IEventBus EventBus { get; }
-
         IQueryBus QueryBus { get; }
-
-        void Publish<TEvent>(TEvent @event)
-            where TEvent : IEvent;
 
         void Send<TCommand>(TCommand command)
                     where TCommand : ICommand;

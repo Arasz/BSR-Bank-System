@@ -1,4 +1,4 @@
-﻿using CQRS.Queries;
+﻿using Core.CQRS.Queries;
 using Data.Core;
 
 namespace Service.UserAccount.Queries

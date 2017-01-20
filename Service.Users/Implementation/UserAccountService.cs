@@ -1,5 +1,5 @@
-﻿using CQRS.Commands;
-using CQRS.Queries;
+﻿using Core.CQRS.Commands;
+using Core.CQRS.Queries;
 using Data.Core;
 using Service.UserAccount.Commands;
 using Service.UserAccount.Contract;

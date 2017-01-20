@@ -3,7 +3,7 @@ using System.Reflection;
 using Autofac;
 using Module = Autofac.Module;
 
-namespace CQRS.Queries.Autofac
+namespace Core.CQRS.Queries.Autofac
 {
     public sealed class QueryModule : Module
     {
@@ -41,7 +41,8 @@ namespace CQRS.Queries.Autofac
             });
 
             builder.RegisterType<QueryBus>()
-                .Named<IQueryBus>(nameof(QueryBus));
+                .AsImplementedInterfaces()
+                .SingleInstance();
         }
     }
 }

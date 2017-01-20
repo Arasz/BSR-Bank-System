@@ -1,7 +1,7 @@
-﻿using CQRS.Exceptions;
-using System;
+﻿using System;
+using Core.CQRS.Exceptions;
 
-namespace CQRS.Queries
+namespace Core.CQRS.Queries
 {
     public class QueryBus : IQueryBus
     {

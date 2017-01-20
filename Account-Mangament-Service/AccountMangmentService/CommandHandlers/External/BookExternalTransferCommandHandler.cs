@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using CQRS.Commands;
 using Data.Core;
 using Service.Bank.CommandHandlers.Base;
 using Service.Bank.Commands;

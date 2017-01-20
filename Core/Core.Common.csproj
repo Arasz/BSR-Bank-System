@@ -57,10 +57,11 @@
     <Compile Include="ChecksumCalculator\NrbChecksumCalculator.cs" />
     <Compile Include="Configuration\InterbankTransferConfiguration.cs" />
     <Compile Include="Exceptions\AccountNotFoundException.cs" />
-    <Compile Include="Exceptions\TransferDescriptionException.cs" />
+    <Compile Include="Exceptions\InvalidTransferException.cs" />
     <Compile Include="AccountNumber\BankAccountNumber.cs" />
     <Compile Include="AccountNumber\Parser\AccountNumberParser.cs" />
     <Compile Include="AccountNumber\Parser\IAccountNumberParser.cs" />
+    <Compile Include="Exceptions\ValidationFailedException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\DefaultPasswordHasher.cs" />
     <Compile Include="Security\IPasswordHasher.cs" />

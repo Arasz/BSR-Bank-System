@@ -17,6 +17,9 @@ namespace Service.InterbankTransfer.Validation
             RuleFor(description => description.Amount)
                 .GreaterThanOrEqualTo(0);
 
+            RuleFor(description => description.Title)
+                .Length(0, 200);
+
             //regex https://regex101.com/r/LEt65g/1
             RuleFor(description => description.ReceiverAccount)
                 .NotEmpty()

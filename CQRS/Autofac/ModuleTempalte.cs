@@ -3,7 +3,7 @@ using System.Reflection;
 using Autofac;
 using Module = Autofac.Module;
 
-namespace CQRS.Autofac
+namespace Core.CQRS.Autofac
 {
     /// <summary>
     /// Template class for CQRS autofac module 

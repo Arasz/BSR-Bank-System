@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CQRS.Exceptions
+namespace Core.CQRS.Exceptions
 {
     public class NullHandlerException : Exception
     {

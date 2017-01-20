@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using Autofac;
+﻿using Autofac;
 using Core.Common.Security;
-using CQRS.Commands.Autofac;
-using CQRS.Queries.Autofac;
-using CQRS.Validation.Autofac;
+using Core.CQRS.Commands.Autofac;
+using Core.CQRS.Queries.Autofac;
 using Data.Core;
 using FluentAssertions;
 using Moq;
-using Service.UserAccount;
 using Service.UserAccount.Contract;
 using Service.UserAccount.Implementation;
 using Xunit;
@@ -81,7 +77,6 @@ namespace Test.Service.UserAccount
         {
             containerBuilder.RegisterModule(new CommandModule(typeof(UserAccountService).Assembly));
             containerBuilder.RegisterModule(new QueryModule(typeof(UserAccountService).Assembly));
-            containerBuilder.RegisterModule(new ValidationModule(typeof(UserAccountService).Assembly));
         }
     }
 }

@@ -5,7 +5,6 @@ using Moq;
 using Service.Bank.Proxy;
 using Service.Bank.Proxy.ServiceHttpClient;
 using Service.Bank.Proxy.ServicesRegister;
-using Service.Contracts;
 using Service.Dto;
 using Xunit;
 
@@ -43,7 +42,7 @@ namespace Test.Service.Bank.Proxy
             return parser.Object;
         }
 
-        private IInterbankTransferService CreateProxy()
+        private IInterbankTransferServiceProxy CreateProxy()
         {
             var httpClient = HttpClientMock();
 

@@ -2,11 +2,10 @@
 using System.Data.Entity;
 using System.Linq.Expressions;
 using Autofac;
-using CQRS.Commands;
+using Core.CQRS.Commands;
 using Data.Core;
 using FluentAssertions;
 using Moq;
-using Service.Bank.CommandHandlers;
 using Service.Bank.CommandHandlers.External;
 using Service.Bank.Commands;
 using Service.Contracts;

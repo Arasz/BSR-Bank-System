@@ -1,4 +1,4 @@
-﻿namespace CQRS.Queries
+﻿namespace Core.CQRS.Queries
 {
     public interface IQueryHandler
     {

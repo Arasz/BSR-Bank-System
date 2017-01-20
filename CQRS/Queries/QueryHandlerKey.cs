@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CQRS.Queries
+namespace Core.CQRS.Queries
 {
     public class QueryHandlerKey
     {

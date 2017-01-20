@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using Core.Common.Exceptions;
-using CQRS.Commands;
+using Core.CQRS.Commands;
 using Data.Core;
 using Service.Bank.Commands;
 using Service.Bank.Exceptions;

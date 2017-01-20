@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using CQRS.Queries;
+using Core.CQRS.Queries;
 using Data.Core;
 using Service.Dto;
 

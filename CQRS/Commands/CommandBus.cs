@@ -1,7 +1,7 @@
-﻿using CQRS.Exceptions;
-using System;
+﻿using System;
+using Core.CQRS.Exceptions;
 
-namespace CQRS.Commands
+namespace Core.CQRS.Commands
 {
     public class CommandBus : ICommandBus
     {
@@ -12,7 +12,9 @@ namespace CQRS.Commands
             _commandHandlersFactory = commandHandlersFactory;
         }
 
-        /// <exception cref="NullHandlerException"> Factory method returned null command handler </exception>
+        /// <exception cref="NullHandlerException">
+        /// Factory method returned null command handler
+        /// </exception>
         /// <exception cref="ArgumentException"> Command can not be null </exception>
         public void Send<TCommand>(TCommand command) where TCommand : ICommand
         {

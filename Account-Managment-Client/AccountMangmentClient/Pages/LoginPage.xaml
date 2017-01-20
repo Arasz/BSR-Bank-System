@@ -13,6 +13,5 @@
         <PasswordBox Name="PasswordBox" Margin="0,0,0,20" />
 
         <Button Name="LoginButton" Content="Login" Margin="0,0,0,20" />
-        <Button Name="CreateAccountButton" Content="Create account" Click="CreateAccountButton_Click" />
     </StackPanel>
 </Page>

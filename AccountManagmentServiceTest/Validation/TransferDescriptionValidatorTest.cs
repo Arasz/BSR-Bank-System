@@ -115,7 +115,7 @@ namespace Test.Service.Bank.Validation
         {
             var checksumCalculator = Mock.Of<IAccountChecksumCalculator>(calculator => calculator.IsCorrect(It.IsAny<string>()) == withChecksumAlwaysTrue);
 
-            return new TransferDescriptionValidator(checksumCalculator, accountNumber => accountExist);
+            return new TransferDescriptionValidator(checksumCalculator);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Core.Common.Security;
-using CQRS.Commands;
+using Core.CQRS.Commands;
 using Data.Core;
 
 namespace Service.UserAccount.Commands

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using CQRS.Bus;
+using Core.CQRS.Bus;
 using Data.Core;
 using Service.Bank.Commands;
 using Service.Bank.Queries;

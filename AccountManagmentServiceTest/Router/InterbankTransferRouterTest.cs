@@ -1,6 +1,5 @@
 ﻿using Core.Common.AccountNumber.Parser;
-using CQRS.Commands;
-using CQRS.Events;
+using Core.CQRS.Commands;
 using Moq;
 using Service.Bank.Commands;
 using Service.Bank.Router;
@@ -13,7 +12,6 @@ namespace Test.Service.Bank.Router
     {
         private IAccountNumberParser _accountNumberParser;
         private ICommandBus _commandBus;
-        private IEventBus _eventBus;
 
         private string _externalBankAccount = "47001297250000000000000001";
         private string _internalBankAccount = "78112241008528164913108077";
@@ -28,7 +26,7 @@ namespace Test.Service.Bank.Router
         [Fact]
         public void RouteTransferFromExternalBank_CheckEventHandlerCalled_ShouldPublishExternalTransferReceived()
         {
-            var transferRouter = new ExternalTransferRouter(_commandBus, _eventBus, _accountNumberParser);
+            var transferRouter = new ExternalTransferRouter(_commandBus, _accountNumberParser);
 
             var fromExternalBankTransferDescription = CreateTransferDescription(fromInternalAccount: false);
 
@@ -41,7 +39,7 @@ namespace Test.Service.Bank.Router
         [Fact]
         public void RouteTransferFromInternalBank_CheckIfCommandHandlerCalled_ShouldSendExternalTransferCommand()
         {
-            var transferRouter = new ExternalTransferRouter(_commandBus, _eventBus, _accountNumberParser);
+            var transferRouter = new ExternalTransferRouter(_commandBus, _accountNumberParser);
 
             var toExternalBankAccountTransfer = CreateTransferDescription(fromInternalAccount: true);
 
