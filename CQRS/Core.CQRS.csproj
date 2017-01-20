@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=4.2.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.4.2.1\lib\net45\Autofac.dll</HintPath>
+    <Reference Include="Autofac, Version=4.3.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.3.0\lib\net45\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FluentValidation, Version=6.2.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Autofac\CqrsModule.cs" />
     <Compile Include="Autofac\ModuleTempalte.cs" />
     <Compile Include="Bus\GenericBus.cs" />
     <Compile Include="Bus\IBus.cs" />

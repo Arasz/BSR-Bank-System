@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Core.Common.Exceptions;
 using Data.Core;
 using Service.Bank.Commands;
 using Service.Bank.Exceptions;

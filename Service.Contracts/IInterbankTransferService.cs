@@ -17,7 +17,7 @@ namespace Service.Contracts
         /// <param name="transferDescription"></param>
         [OperationContract]
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "transfer")]
-        [FaultContract(typeof(WebFaultException<TransferDataFormatException>))]
+        [FaultContract(typeof(WebFaultException))]
         void Transfer(InterbankTransferDescription transferDescription);
     }
 }

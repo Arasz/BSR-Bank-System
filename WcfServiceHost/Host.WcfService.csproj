@@ -43,8 +43,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=4.2.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.4.2.1\lib\net45\Autofac.dll</HintPath>
+    <Reference Include="Autofac, Version=4.3.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.3.0\lib\net45\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Autofac.Integration.Wcf, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
@@ -78,7 +78,7 @@
   <ItemGroup>
     <Content Include="BankService.svc" />
     <Content Include="Application\Global.asax" />
-    <Content Include="InterbankTransactionService.svc" />
+    <Content Include="InterbankTransferService.svc" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -98,6 +98,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Account-Mangament-Service\AccountMangmentService\Service.Bank.csproj">
+      <Project>{9443F212-9C92-4A14-94CA-5FC66FACAA14}</Project>
+      <Name>Service.Bank</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Interbank-Transaction-Service\InterbankTransactionService\Service.InterbankTransaction.csproj">
       <Project>{06f68d42-cd5b-49d9-b448-f5b4b43c6ffc}</Project>
       <Name>Service.InterbankTransaction</Name>

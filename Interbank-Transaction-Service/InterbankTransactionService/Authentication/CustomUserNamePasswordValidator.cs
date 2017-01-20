@@ -9,16 +9,20 @@ namespace Service.InterbankTransfer.Authentication
     {
         private InterbankTransferConfiguration _interbankTransferConfiguration;
 
-        public CustomUserNamePasswordValidator()
-        {
-            var path = ConfigurationManager.AppSettings["interbankTransferConfiguration"];
-            _interbankTransferConfiguration = InterbankTransferConfiguration.LoadFromFile(path);
-        }
-
         public override void Validate(string userName, string password)
         {
+            LoadConfiguration();
+
             if (!IsLoginDataValid(userName, password))
                 throw new SecurityTokenException("Invalid login or password");
+        }
+
+        private void LoadConfiguration()
+        {
+            if (_interbankTransferConfiguration != null)
+                return;
+            var path = ConfigurationManager.AppSettings["interbankTransferConfiguration"];
+            _interbankTransferConfiguration = InterbankTransferConfiguration.LoadFromFile(path);
         }
 
         private bool IsLoginDataValid(string userName, string password)

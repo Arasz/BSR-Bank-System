@@ -2,7 +2,7 @@
 
 namespace Service.Bank.Router
 {
-    public interface IInterbankTransferRouter
+    public interface IExternalTransferRouter
     {
         void Route(TransferDescription routedTransferDescription);
     }

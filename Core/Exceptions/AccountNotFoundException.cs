@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Service.Bank.Exceptions
+namespace Core.Common.Exceptions
 {
     public class AccountNotFoundException : Exception
     {

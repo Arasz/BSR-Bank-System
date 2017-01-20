@@ -6,14 +6,14 @@ using Service.Dto;
 
 namespace Service.Bank.Router
 {
-    public class InterbankTransferRouter : IInterbankTransferRouter
+    public class ExternalTransferRouter : IExternalTransferRouter
     {
         private readonly IAccountNumberParser _accountNumberParser;
         private readonly ICommandBus _commandBus;
         private readonly IEventBus _eventBus;
         private string LocalBankId { get; } = "112241";
 
-        public InterbankTransferRouter(ICommandBus commandBus, IEventBus eventBus, IAccountNumberParser accountNumberParser)
+        public ExternalTransferRouter(ICommandBus commandBus, IEventBus eventBus, IAccountNumberParser accountNumberParser)
         {
             _commandBus = commandBus;
             _eventBus = eventBus;

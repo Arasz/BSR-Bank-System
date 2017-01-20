@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{61F89953-804F-4C8C-86A7-22F2DBE9EBE3}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{1BDD8B89-413F-40D9-A911-DA77B1791C3A}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Core.Common</RootNamespace>
-    <AssemblyName>Core.Common</AssemblyName>
+    <RootNamespace>Host.SelfHosting</RootNamespace>
+    <AssemblyName>Host.SelfHosting</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -34,17 +37,22 @@
       <HintPath>..\packages\Autofac.4.3.0\lib\net45\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="FluentValidation, Version=6.2.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentValidation.6.2.1.0\lib\Net45\FluentValidation.dll</HintPath>
+    <Reference Include="Autofac.Integration.Wcf, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Wcf.4.0.0\lib\net45\Autofac.Integration.Wcf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,27 +61,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Calculators\ICreditDebitCalculator.cs" />
-    <Compile Include="ChecksumCalculator\IAccountChecksumCalculator.cs" />
-    <Compile Include="ChecksumCalculator\NrbChecksumCalculator.cs" />
-    <Compile Include="Configuration\InterbankTransferConfiguration.cs" />
-    <Compile Include="Exceptions\AccountNotFoundException.cs" />
-    <Compile Include="Exceptions\TransferDescriptionException.cs" />
-    <Compile Include="AccountNumber\BankAccountNumber.cs" />
-    <Compile Include="AccountNumber\Parser\AccountNumberParser.cs" />
-    <Compile Include="AccountNumber\Parser\IAccountNumberParser.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Security\DefaultPasswordHasher.cs" />
-    <Compile Include="Security\IPasswordHasher.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="InterbankTransferConfiguration.json" />
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataLayer\Data.Core.csproj">
-      <Project>{9E811AC8-1601-47D8-AF57-448931FE6AE7}</Project>
-      <Name>Data.Core</Name>
+    <ProjectReference Include="..\Account-Mangament-Service\AccountMangmentService\Service.Bank.csproj">
+      <Project>{9443f212-9c92-4a14-94ca-5fc66facaa14}</Project>
+      <Name>Service.Bank</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Interbank-Transaction-Service\InterbankTransactionService\Service.InterbankTransaction.csproj">
+      <Project>{06f68d42-cd5b-49d9-b448-f5b4b43c6ffc}</Project>
+      <Name>Service.InterbankTransaction</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Service.Contracts\Service.Contracts.csproj">
+      <Project>{9a63e903-84c0-4ff0-b1d1-d7bd0a0fc0fa}</Project>
+      <Name>Service.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Service.Dto\Service.Dto.csproj">
+      <Project>{7d5e45dc-e897-484a-bbdd-87714cbc1d37}</Project>
+      <Name>Service.Dto</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

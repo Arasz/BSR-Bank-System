@@ -9,7 +9,7 @@ namespace Service.Bank.Proxy
     /// <summary>
     /// Proxy for interbank transaction service. 
     /// </summary>
-    public class InterbankTransferServiceProxy : IInterbankTransferService
+    public class InterbankTransferServiceProxy : IInterbankTransferServiceProxy
     {
         private readonly IAccountNumberParser _accountNumberParser;
         private readonly ITransferServiceHttpClient _httpClient;
