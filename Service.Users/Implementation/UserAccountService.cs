@@ -1,4 +1,5 @@
-﻿using Core.CQRS.Commands;
+﻿using System;
+using Core.CQRS.Commands;
 using Core.CQRS.Queries;
 using Data.Core;
 using Service.UserAccount.Commands;
@@ -20,7 +21,7 @@ namespace Service.UserAccount.Implementation
 
         public Account CreateBankAccountForUser(string userName)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public User CreateUserAccount(string userName, string password)
@@ -31,7 +32,7 @@ namespace Service.UserAccount.Implementation
 
         public void DeleteUserAccount(string userName)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

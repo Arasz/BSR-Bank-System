@@ -8,7 +8,8 @@ namespace SharedTests
     {
         [Theory]
         [InlineData("78112241008528164913108077", "78", "11224100", "8528164913108077")]
-        public void ParseAccountNumber_CheckAccountNumberObject_ShouldBeEqualToGivenNumber(string accountNumber, string checksum, string bankId, string accountId)
+        public void ParseAccountNumber_CheckAccountNumberObject_ShouldBeEqualToGivenNumber(string accountNumber,
+            string checksum, string bankId, string accountId)
         {
             var parser = new AccountNumberParser();
 

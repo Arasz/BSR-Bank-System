@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Runtime.Serialization.Json;
-using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Dispatcher;
 using System.ServiceModel.Web;
@@ -31,7 +29,8 @@ namespace Service.InterbankTransfer.Error
             ApplyHttpResponseSettings(fault, statusCode, statusDescription);
         }
 
-        protected virtual void ApplyHttpResponseSettings(Message fault, HttpStatusCode statusCode, string statusDescription)
+        protected virtual void ApplyHttpResponseSettings(Message fault, HttpStatusCode statusCode,
+            string statusDescription)
         {
             var httpResponse = new HttpResponseMessageProperty
             {
@@ -58,8 +57,10 @@ namespace Service.InterbankTransfer.Error
             return CreateFaultMessage(version, interbankTransferError);
         }
 
-        private static Message CreateFaultMessage(MessageVersion version, InterbankTransferError interbankTransferError) =>
-            Message.CreateMessage(version, "", interbankTransferError, new DataContractJsonSerializer(typeof(InterbankTransferError)));
+        private static Message CreateFaultMessage(MessageVersion version, InterbankTransferError interbankTransferError)
+            =>
+                Message.CreateMessage(version, "", interbankTransferError,
+                    new DataContractJsonSerializer(typeof(InterbankTransferError)));
 
         private PropertyInfo DetailProperty(Exception error)
         {

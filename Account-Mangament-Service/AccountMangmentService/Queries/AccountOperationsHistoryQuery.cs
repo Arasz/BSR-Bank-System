@@ -7,16 +7,10 @@ using Service.Dto;
 namespace Service.Bank.Queries
 {
     /// <summary>
-    /// Accounts operations history query 
+    ///     Accounts operations history query
     /// </summary>
     public class AccountOperationsHistoryQuery : IQuery<IEnumerable<Operation>>
     {
-        public string AccountNumber { get; }
-
-        public DateTime From { get; }
-
-        public DateTime To { get; }
-
         public AccountOperationsHistoryQuery(AccountHistoryQuery accountHistoryQuery)
         {
             From = accountHistoryQuery.From;
@@ -31,8 +25,15 @@ namespace Service.Bank.Queries
             AccountNumber = accountNumber;
         }
 
-        public AccountOperationsHistoryQuery(string accountNumber) : this(DateTime.MinValue, DateTime.MaxValue, accountNumber)
+        public AccountOperationsHistoryQuery(string accountNumber)
+            : this(DateTime.MinValue, DateTime.MaxValue, accountNumber)
         {
         }
+
+        public string AccountNumber { get; }
+
+        public DateTime From { get; }
+
+        public DateTime To { get; }
     }
 }

@@ -17,17 +17,18 @@ namespace Service.InterbankTransfer.Authentication
                 throw new SecurityTokenException("Invalid login or password");
         }
 
+        private bool IsLoginDataValid(string userName, string password)
+        {
+            return userName == _interbankTransferConfiguration.Login &&
+                   password == _interbankTransferConfiguration.Password;
+        }
+
         private void LoadConfiguration()
         {
             if (_interbankTransferConfiguration != null)
                 return;
             var path = ConfigurationManager.AppSettings["interbankTransferConfiguration"];
             _interbankTransferConfiguration = InterbankTransferConfiguration.LoadFromFile(path);
-        }
-
-        private bool IsLoginDataValid(string userName, string password)
-        {
-            return userName == _interbankTransferConfiguration.Login && password == _interbankTransferConfiguration.Password;
         }
     }
 }

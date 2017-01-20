@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Data.Core;
+﻿using Data.Core;
 using Service.Bank.CommandHandlers.Base;
 using Service.Bank.Commands;
 using Service.Bank.Operations;
@@ -8,7 +7,8 @@ namespace Service.Bank.CommandHandlers.External
 {
     public class BookExternalTransferCommandHandler : BankOperationCommandHandler<BookExternalTransferCommand>
     {
-        public BookExternalTransferCommandHandler(BankDataContext dataContext, IOperationRegister operationRegister) : base(dataContext, operationRegister)
+        public BookExternalTransferCommandHandler(BankDataContext dataContext, IOperationRegister operationRegister)
+            : base(dataContext, operationRegister)
         {
         }
 

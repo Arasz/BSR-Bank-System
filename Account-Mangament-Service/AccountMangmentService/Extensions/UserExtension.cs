@@ -15,7 +15,8 @@ namespace Service.Bank.Extensions
         }
 
         /// <exception cref="SecurityTokenException"> Incorrect user name or password </exception>
-        public static void AuthenticateUser(this User user, string userName, string password, IPasswordHasher passwordHasher)
+        public static void AuthenticateUser(this User user, string userName, string password,
+            IPasswordHasher passwordHasher)
         {
             if (IsAnyIncorrect(userName, password) || user.Name != userName)
                 throw new SecurityTokenException("Wrong user name or password.");
@@ -32,6 +33,7 @@ namespace Service.Bank.Extensions
                 throw new SecurityTokenException("Wrong user name or password.");
         }
 
-        private static bool IsAnyIncorrect(string userName, string password) => string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(password);
+        private static bool IsAnyIncorrect(string userName, string password)
+            => string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(password);
     }
 }

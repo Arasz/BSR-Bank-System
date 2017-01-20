@@ -8,12 +8,12 @@ namespace Test.Service.Bank
 {
     public class BankServiceTest : IDependencyInjectionTest
     {
-        public IContainer Container { get; set; }
-
         public BankServiceTest()
         {
             Container = BuildContainer();
         }
+
+        public IContainer Container { get; set; }
 
         public IContainer BuildContainer()
         {

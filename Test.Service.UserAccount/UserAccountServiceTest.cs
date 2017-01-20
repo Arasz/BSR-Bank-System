@@ -7,8 +7,8 @@ using FluentAssertions;
 using Moq;
 using Service.UserAccount.Contract;
 using Service.UserAccount.Implementation;
-using Xunit;
 using Test.Common;
+using Xunit;
 
 namespace Test.Service.UserAccount
 {

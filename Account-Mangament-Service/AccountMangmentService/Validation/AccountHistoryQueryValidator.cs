@@ -14,14 +14,14 @@ namespace Service.Bank.Validation
             _accountChecksumCalculator = accountChecksumCalculator;
 
             RuleFor(query => query.From)
-             .LessThanOrEqualTo(DateTime.Now)
-             .LessThanOrEqualTo(query => query.To);
+                .LessThanOrEqualTo(DateTime.Now)
+                .LessThanOrEqualTo(query => query.To);
 
             RuleFor(query => query.AccountNumber)
-              .NotEmpty()
-             .Length(26)
-             .Matches(@"^[0-9]{2}[0-9]{8}[0-9]{16}")
-             .Must(HaveCorrectChecksum);
+                .NotEmpty()
+                .Length(26)
+                .Matches(@"^[0-9]{2}[0-9]{8}[0-9]{16}")
+                .Must(HaveCorrectChecksum);
         }
 
         private bool HaveCorrectChecksum(string accountNumber) => _accountChecksumCalculator.IsCorrect(accountNumber);

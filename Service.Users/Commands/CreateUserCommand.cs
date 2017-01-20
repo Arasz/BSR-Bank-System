@@ -1,8 +1,8 @@
-﻿using ICommand = Core.CQRS.Commands.ICommand;
+﻿using Core.CQRS.Commands;
 
 namespace Service.UserAccount.Commands
 {
-    public class CreateUserCommand : Core.CQRS.Commands.ICommand
+    public class CreateUserCommand : ICommand
     {
         public string Password { get; private set; }
 

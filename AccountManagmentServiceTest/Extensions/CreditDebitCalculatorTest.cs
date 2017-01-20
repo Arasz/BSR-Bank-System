@@ -11,7 +11,8 @@ namespace Test.Service.Bank.Extensions
         [InlineData(30, 20, "1", "1")]
         [InlineData(1020, 20, "1", "1")]
         [InlineData(2, 1, "1", "1")]
-        public void CalculateCreditAndDebit_ForReceiverAccount_ShouldHavePositiveCreditAndZeroDebit(decimal oldBalance, decimal amount, string accountNumber, string sourceAccountNumber)
+        public void CalculateCreditAndDebit_ForReceiverAccount_ShouldHavePositiveCreditAndZeroDebit(decimal oldBalance,
+            decimal amount, string accountNumber, string sourceAccountNumber)
         {
             var operation = CreateOperation(oldBalance, amount, accountNumber, sourceAccountNumber);
 
@@ -29,7 +30,8 @@ namespace Test.Service.Bank.Extensions
         [InlineData(30, 20, "1", "2")]
         [InlineData(1020, 20, "1", "2")]
         [InlineData(2, 1, "1", "2")]
-        public void CalculateCreditAndDebit_ForSenderAccount_ShouldHavePositiveDebitAndZeroCredit(decimal oldBalance, decimal amount, string accountNumber, string sourceAccountNumber)
+        public void CalculateCreditAndDebit_ForSenderAccount_ShouldHavePositiveDebitAndZeroCredit(decimal oldBalance,
+            decimal amount, string accountNumber, string sourceAccountNumber)
         {
             var operation = CreateOperation(oldBalance, amount, accountNumber, sourceAccountNumber);
 
@@ -46,16 +48,17 @@ namespace Test.Service.Bank.Extensions
         private Account CreateAccount(decimal balance, string number) => new Account
         {
             Balance = balance,
-            Number = number,
+            Number = number
         };
 
-        private Operation CreateOperation(decimal balance, decimal amount, string accountNumber, string sourceNumber) => new Operation
-        {
-            Amount = amount,
-            Balance = balance,
-            Source = sourceNumber,
-            Target = "target",
-            Account = CreateAccount(balance, accountNumber)
-        };
+        private Operation CreateOperation(decimal balance, decimal amount, string accountNumber, string sourceNumber)
+            => new Operation
+            {
+                Amount = amount,
+                Balance = balance,
+                Source = sourceNumber,
+                Target = "target",
+                Account = CreateAccount(balance, accountNumber)
+            };
     }
 }

@@ -3,7 +3,6 @@ using System.Data.Entity;
 using System.Linq.Expressions;
 using Data.Core;
 using FluentAssertions;
-using Service.Bank.CommandHandlers;
 using Service.Bank.CommandHandlers.Internal;
 using Service.Bank.Commands;
 using Test.Common;
@@ -20,21 +19,6 @@ namespace Test.Service.Bank.CommandHandlers
         protected override Expression<Func<BankDataContext, DbSet<Account>>> SelectDataSetFromDataContextExpression
             => bankDataContext => bankDataContext.Accounts;
 
-        [Fact]
-        public void AddFoundsToAccount_CheckAccountBlance_ShouldBeIncreasedByDepositAmount()
-        {
-            var depositCommandHandler = Handler;
-            const int depositAmount = 30;
-
-            var mockedCommand = CreateDepositCommand(depositAmount);
-
-            var account = CreateAndInitializeAccount();
-
-            depositCommandHandler.HandleCommand(mockedCommand);
-
-            account.Balance.Should().Be(AccountBalance + depositAmount);
-        }
-
         private Account CreateAndInitializeAccount()
         {
             var accountMock = new Account
@@ -50,5 +34,20 @@ namespace Test.Service.Bank.CommandHandlers
 
         private DepositCommand CreateDepositCommand(decimal withdrawAmount)
             => new DepositCommand(AccountNumber, withdrawAmount);
+
+        [Fact]
+        public void AddFoundsToAccount_CheckAccountBlance_ShouldBeIncreasedByDepositAmount()
+        {
+            var depositCommandHandler = Handler;
+            const int depositAmount = 30;
+
+            var mockedCommand = CreateDepositCommand(depositAmount);
+
+            var account = CreateAndInitializeAccount();
+
+            depositCommandHandler.HandleCommand(mockedCommand);
+
+            account.Balance.Should().Be(AccountBalance + depositAmount);
+        }
     }
 }

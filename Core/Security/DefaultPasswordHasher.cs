@@ -6,7 +6,7 @@ namespace Core.Common.Security
     public class DefaultPasswordHasher : IPasswordHasher
     {
         private const int DeriveKeyIterrations = 10000;
-        private RNGCryptoServiceProvider _cryptoServiceProvider = new RNGCryptoServiceProvider();
+        private readonly RNGCryptoServiceProvider _cryptoServiceProvider = new RNGCryptoServiceProvider();
         private byte[] _hash;
         private byte[] _salt;
         private byte[] _saltedHash;

@@ -1,5 +1,4 @@
-﻿using System;
-using Core.Common.ChecksumCalculator;
+﻿using Core.Common.ChecksumCalculator;
 using FluentValidation;
 using Service.Dto;
 

@@ -10,11 +10,13 @@ namespace Test.Service.Bank.Router
 {
     public class InterbankTransferRouterTest
     {
-        private IAccountNumberParser _accountNumberParser;
-        private ICommandBus _commandBus;
+        private readonly string _externalBankAccount = "47001297250000000000000001";
 
-        private string _externalBankAccount = "47001297250000000000000001";
-        private string _internalBankAccount = "78112241008528164913108077";
+        private readonly string _internalBankAccount = "78112241008528164913108077";
+
+        private IAccountNumberParser _accountNumberParser;
+
+        private ICommandBus _commandBus;
 
         public InterbankTransferRouterTest()
         {
@@ -28,7 +30,7 @@ namespace Test.Service.Bank.Router
         {
             var transferRouter = new ExternalTransferRouter(_commandBus, _accountNumberParser);
 
-            var fromExternalBankTransferDescription = CreateTransferDescription(fromInternalAccount: false);
+            var fromExternalBankTransferDescription = CreateTransferDescription(false);
 
             transferRouter.Route(fromExternalBankTransferDescription);
 
@@ -41,7 +43,7 @@ namespace Test.Service.Bank.Router
         {
             var transferRouter = new ExternalTransferRouter(_commandBus, _accountNumberParser);
 
-            var toExternalBankAccountTransfer = CreateTransferDescription(fromInternalAccount: true);
+            var toExternalBankAccountTransfer = CreateTransferDescription(true);
 
             transferRouter.Route(toExternalBankAccountTransfer);
 
@@ -52,7 +54,6 @@ namespace Test.Service.Bank.Router
         private TransferDescription CreateTransferDescription(bool fromInternalAccount)
         {
             if (fromInternalAccount)
-            {
                 return new TransferDescription
                 {
                     Amount = 100,
@@ -60,7 +61,6 @@ namespace Test.Service.Bank.Router
                     From = _internalBankAccount,
                     Title = "ToExternalAccount"
                 };
-            }
 
             return new TransferDescription
             {

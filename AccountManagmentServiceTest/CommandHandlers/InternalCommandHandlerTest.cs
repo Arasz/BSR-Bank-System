@@ -20,7 +20,7 @@ namespace Test.Service.Bank.CommandHandlers
         private const string ReceiverAccountNumber = "5678";
         private const string SenderAccountNumber = "1234";
         private const string TransferTitle = "Title";
-        private List<Operation> OperationTableMock = new List<Operation>();
+        private readonly List<Operation> OperationTableMock = new List<Operation>();
 
         protected override Expression<Func<BankDataContext, DbSet<Account>>> SelectDataSetFromDataContextExpression
             => bankDataContext => bankDataContext.Accounts;
@@ -29,7 +29,8 @@ namespace Test.Service.Bank.CommandHandlers
         [InlineData(500, 500, 400)]
         [InlineData(500, 0, 400)]
         [InlineData(500, 500, 500)]
-        public void TransferFoundsBetweenLocalAccounts_CheckReceiverAndSenderBalance_ShouldChangeBalanceByCorrectAmount(decimal senderBalance, decimal receiverBalance, decimal transferAmount)
+        public void TransferFoundsBetweenLocalAccounts_CheckReceiverAndSenderBalance_ShouldChangeBalanceByCorrectAmount(
+            decimal senderBalance, decimal receiverBalance, decimal transferAmount)
         {
             var internalTransferCommandHandler = Handler;
 
@@ -49,7 +50,8 @@ namespace Test.Service.Bank.CommandHandlers
         [InlineData(100, 0, 400)]
         [InlineData(0, 500, 10)]
         [InlineData(-10, 500, 5)]
-        public void TransferIncorrectAmountBetweenLocalAccounts_CheckBalanceValidation_ShouldThrowAccountBalanceToLow(decimal senderBalance, decimal receiverBalance, decimal transferAmount)
+        public void TransferIncorrectAmountBetweenLocalAccounts_CheckBalanceValidation_ShouldThrowAccountBalanceToLow(
+            decimal senderBalance, decimal receiverBalance, decimal transferAmount)
         {
             var internalTransferCommandHandler = Handler;
 
@@ -91,13 +93,13 @@ namespace Test.Service.Bank.CommandHandlers
 
         private InternalTransferCommand CreateCommand(decimal withdrawAmount) => new InternalTransferCommand
         (
-             new TransferDescription
-             {
-                 Amount = withdrawAmount,
-                 From = SenderAccountNumber,
-                 To = ReceiverAccountNumber,
-                 Title = "TransferToExternalBank"
-             }
+            new TransferDescription
+            {
+                Amount = withdrawAmount,
+                From = SenderAccountNumber,
+                To = ReceiverAccountNumber,
+                Title = "TransferToExternalBank"
+            }
         );
     }
 }

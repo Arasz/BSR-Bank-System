@@ -4,35 +4,11 @@ using System.Runtime.Serialization;
 namespace Service.Dto
 {
     /// <summary>
-    /// Transfer data type object 
+    ///     Transfer data type object
     /// </summary>
     [DataContract]
     public class TransferDescription
     {
-        /// <summary>
-        /// Amount of money 
-        /// </summary>
-        [DataMember]
-        public decimal Amount { get; set; }
-
-        /// <summary>
-        /// Sender account number 
-        /// </summary>
-        [DataMember]
-        public string From { get; set; }
-
-        /// <summary>
-        /// Transfer title 
-        /// </summary>
-        [DataMember]
-        public string Title { get; set; }
-
-        /// <summary>
-        /// Receiver account number 
-        /// </summary>
-        [DataMember]
-        public string To { get; set; }
-
         public TransferDescription()
         {
         }
@@ -53,6 +29,30 @@ namespace Service.Dto
             Title = description.Title;
         }
 
+        /// <summary>
+        ///     Amount of money
+        /// </summary>
+        [DataMember]
+        public decimal Amount { get; set; }
+
+        /// <summary>
+        ///     Sender account number
+        /// </summary>
+        [DataMember]
+        public string From { get; set; }
+
+        /// <summary>
+        ///     Transfer title
+        /// </summary>
+        [DataMember]
+        public string Title { get; set; }
+
+        /// <summary>
+        ///     Receiver account number
+        /// </summary>
+        [DataMember]
+        public string To { get; set; }
+
         public static explicit operator TransferDescription(InterbankTransferDescription interbankTransferDescription)
         {
             return new TransferDescription
@@ -60,7 +60,7 @@ namespace Service.Dto
                 Amount = Convert.ToDecimal(interbankTransferDescription.Amount) / 100,
                 To = interbankTransferDescription.ReceiverAccount,
                 From = interbankTransferDescription.SenderAccount,
-                Title = interbankTransferDescription.Title,
+                Title = interbankTransferDescription.Title
             };
         }
     }

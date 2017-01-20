@@ -13,7 +13,7 @@ namespace Core.CQRS.Bus
         IQueryBus QueryBus { get; }
 
         void Send<TCommand>(TCommand command)
-                    where TCommand : ICommand;
+            where TCommand : ICommand;
 
         TResult Send<TResult, TQuery>(TQuery query)
             where TQuery : IQuery<TResult>;

@@ -3,7 +3,7 @@
 namespace Test.Common
 {
     /// <summary>
-    /// Test that resolves its dependencies which IOC container 
+    ///     Test that resolves its dependencies which IOC container
     /// </summary>
     public interface IDependencyInjectionTest
     {

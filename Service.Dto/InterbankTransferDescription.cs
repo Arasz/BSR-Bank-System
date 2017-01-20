@@ -40,7 +40,7 @@ namespace Service.Dto
                 Amount = Convert.ToInt32(Math.Round(transferDescription.Amount, 2) * 100),
                 ReceiverAccount = transferDescription.To,
                 SenderAccount = transferDescription.From,
-                Title = transferDescription.Title,
+                Title = transferDescription.Title
             };
         }
     }

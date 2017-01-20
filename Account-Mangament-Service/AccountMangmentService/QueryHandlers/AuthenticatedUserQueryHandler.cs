@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Data.Entity;
+using System.Linq;
 using Core.CQRS.Queries;
 using Data.Core;
 using Service.Bank.Extensions;
@@ -17,7 +18,9 @@ namespace Service.Bank.QueryHandlers
 
         public User HandleQuery(AuthenticatedUserQuery query)
         {
-            var authenticatedUser = _dataContext.Users.SingleOrDefault(user => user.Name == query.UserName) ?? User.NullUser;
+            var authenticatedUser = _dataContext.Users
+                .Include(user => user.Accounts)
+                .SingleOrDefault(user => user.Name == query.UserName) ?? User.NullUser;
 
             authenticatedUser.AuthenticateUser(query.UserName, query.Password);
 

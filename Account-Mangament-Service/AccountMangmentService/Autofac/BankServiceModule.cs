@@ -89,7 +89,10 @@ namespace Service.Bank.Autofac
             builder.RegisterType<BankService>()
                 .Named<IBankService>(nameof(BankService));
 
-            builder.RegisterDecorator<IBankService>((context, service) => new BankServiceValidationDecorator(service, context.Resolve<IValidator<TransferDescription>>(), context.Resolve<IValidator<AccountHistoryQuery>>()),
+            builder.RegisterDecorator<IBankService>(
+                (context, service) =>
+                    new BankServiceValidationDecorator(service, context.Resolve<IValidator<TransferDescription>>(),
+                        context.Resolve<IValidator<AccountHistoryQuery>>()),
                 nameof(BankService), nameof(BankServiceValidationDecorator));
 
             builder.RegisterDecorator<IBankService>((context, service) => new BankServiceExceptionDecorator(service),

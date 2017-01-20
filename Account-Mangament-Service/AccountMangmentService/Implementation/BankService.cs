@@ -6,7 +6,6 @@ using Service.Bank.Queries;
 using Service.Bank.Router;
 using Service.Contracts;
 using Service.Dto;
-using AccountHistoryQuery = Service.Dto.AccountHistoryQuery;
 
 namespace Service.Bank.Implementation
 {
@@ -43,7 +42,9 @@ namespace Service.Bank.Implementation
 
         public IEnumerable<Operation> OperationsHistory(AccountHistoryQuery accountHistoryQuery)
         {
-            return _commonBus.Send<IEnumerable<Operation>, AccountOperationsHistoryQuery>(new AccountOperationsHistoryQuery(accountHistoryQuery));
+            return
+                _commonBus.Send<IEnumerable<Operation>, AccountOperationsHistoryQuery>(
+                    new AccountOperationsHistoryQuery(accountHistoryQuery));
         }
 
         public void Withdraw(string accountNumber, decimal amount)

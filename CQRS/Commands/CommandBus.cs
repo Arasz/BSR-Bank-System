@@ -24,7 +24,8 @@ namespace Core.CQRS.Commands
             var commandHandler = (ICommandHandler<TCommand>)_commandHandlersFactory(typeof(TCommand));
 
             if (commandHandler == null)
-                throw new NullHandlerException("Factory method returned null command handler", typeof(ICommandHandler<TCommand>));
+                throw new NullHandlerException("Factory method returned null command handler",
+                    typeof(ICommandHandler<TCommand>));
 
             commandHandler.HandleCommand(command);
         }

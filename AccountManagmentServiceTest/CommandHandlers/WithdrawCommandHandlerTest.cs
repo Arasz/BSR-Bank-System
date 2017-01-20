@@ -3,7 +3,6 @@ using System.Data.Entity;
 using System.Linq.Expressions;
 using Data.Core;
 using FluentAssertions;
-using Service.Bank.CommandHandlers;
 using Service.Bank.CommandHandlers.Internal;
 using Service.Bank.Commands;
 using Service.Bank.Exceptions;
@@ -22,7 +21,8 @@ namespace Test.Service.Bank.CommandHandlers
         [Theory]
         [InlineData(500, 400)]
         [InlineData(500, 500)]
-        public void WithdrawFromAccount_CheckBalanceAfterWithdraw_BlanceShouldBeReducedByAmount(decimal accountBalance, decimal transferAmount)
+        public void WithdrawFromAccount_CheckBalanceAfterWithdraw_BlanceShouldBeReducedByAmount(decimal accountBalance,
+            decimal transferAmount)
         {
             var withdrawCommandHandler = Handler;
 
@@ -38,7 +38,8 @@ namespace Test.Service.Bank.CommandHandlers
         [Theory]
         [InlineData(0, 400)]
         [InlineData(200, 500)]
-        public void WithdrawToMuchFromAccount_CheckAmountValidation_ShouldThrowException(decimal accountBalance, decimal transferAmount)
+        public void WithdrawToMuchFromAccount_CheckAmountValidation_ShouldThrowException(decimal accountBalance,
+            decimal transferAmount)
         {
             var withdrawCommandHandler = Handler;
 

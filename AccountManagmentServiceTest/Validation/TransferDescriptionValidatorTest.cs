@@ -24,14 +24,15 @@ namespace Test.Service.Bank.Validation
             .ShouldNotHaveValidationErrorFor(description => description.Amount, 0);
 
         [Fact]
-        public void ReceiverAccount_AccountDoesntExist_ShouldReturnValidationErorr() => CreateValidator(accountExist: false)
-            .ShouldHaveValidationErrorFor(description => description.To, "78112241008528164913108077")
-            .Should()
-            .ContainSingle()
-            .Which
-            .ErrorCode
-            .Should()
-            .Contain("404");
+        public void ReceiverAccount_AccountDoesntExist_ShouldReturnValidationErorr()
+            => CreateValidator(accountExist: false)
+                .ShouldHaveValidationErrorFor(description => description.To, "78112241008528164913108077")
+                .Should()
+                .ContainSingle()
+                .Which
+                .ErrorCode
+                .Should()
+                .Contain("404");
 
         [Fact]
         public void ReceiverAccount_AccountNumberShorterThan26Numbers_ShouldReturnValidationErorr() => CreateValidator()
@@ -56,10 +57,11 @@ namespace Test.Service.Bank.Validation
             .ContainSingle();
 
         [Fact]
-        public void ReceiverAccount_IncorrectAccountNumberChecksum_ShouldReturnValidationErorr() => CreateValidator(false)
-            .ShouldHaveValidationErrorFor(description => description.To, "232323223232322323232232323223232323")
-            .Should()
-            .ContainSingle();
+        public void ReceiverAccount_IncorrectAccountNumberChecksum_ShouldReturnValidationErorr()
+            => CreateValidator(false)
+                .ShouldHaveValidationErrorFor(description => description.To, "232323223232322323232232323223232323")
+                .Should()
+                .ContainSingle();
 
         [Fact]
         public void ReceiverAccount_NullSenderAccountNumber_ShouldReturnValidationErorr() => CreateValidator()
@@ -68,14 +70,15 @@ namespace Test.Service.Bank.Validation
             .ContainSingle();
 
         [Fact]
-        public void SenderAccount_AccountDoesntExist_ShouldReturnValidationErorr() => CreateValidator(accountExist: false)
-            .ShouldHaveValidationErrorFor(description => description.From, "78112241008528164913108077")
-            .Should()
-            .ContainSingle()
-            .Which
-            .ErrorCode
-            .Should()
-            .Contain("404");
+        public void SenderAccount_AccountDoesntExist_ShouldReturnValidationErorr()
+            => CreateValidator(accountExist: false)
+                .ShouldHaveValidationErrorFor(description => description.From, "78112241008528164913108077")
+                .Should()
+                .ContainSingle()
+                .Which
+                .ErrorCode
+                .Should()
+                .Contain("404");
 
         [Fact]
         public void SenderAccount_AccountNumberShorterThan26Numbers_ShouldReturnValidationErorr() => CreateValidator()
@@ -111,9 +114,12 @@ namespace Test.Service.Bank.Validation
             .Should()
             .ContainSingle();
 
-        private TransferDescriptionValidator CreateValidator(bool withChecksumAlwaysTrue = true, bool accountExist = true)
+        private TransferDescriptionValidator CreateValidator(bool withChecksumAlwaysTrue = true,
+                                                                                                                                                    bool accountExist = true)
         {
-            var checksumCalculator = Mock.Of<IAccountChecksumCalculator>(calculator => calculator.IsCorrect(It.IsAny<string>()) == withChecksumAlwaysTrue);
+            var checksumCalculator =
+                Mock.Of<IAccountChecksumCalculator>(
+                    calculator => calculator.IsCorrect(It.IsAny<string>()) == withChecksumAlwaysTrue);
 
             return new TransferDescriptionValidator(checksumCalculator);
         }

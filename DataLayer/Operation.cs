@@ -1,13 +1,13 @@
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Data.Core
 {
-    using System;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-
     [Table("Operation")]
     public class Operation
     {
-        public virtual Account Account { get; set; }
+        public Account Account { get; set; }
 
         public long? AccountId { get; set; }
 

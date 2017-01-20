@@ -23,7 +23,8 @@ namespace Service.InterbankTransfer.Autofac
             builder.RegisterType<InterbankTransferService>()
                 .Named<IInterbankTransferService>(nameof(InterbankTransferService));
 
-            builder.RegisterDecorator<IInterbankTransferService>((context, service) => new InterbankTransferServiceDecorator(service), nameof(InterbankTransferService));
+            builder.RegisterDecorator<IInterbankTransferService>(
+                (context, service) => new InterbankTransferServiceDecorator(service), nameof(InterbankTransferService));
         }
     }
 }

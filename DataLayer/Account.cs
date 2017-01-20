@@ -1,13 +1,11 @@
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Data.Core
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
-
     [Table("Account")]
-    public partial class Account
+    public class Account
     {
         [Column(TypeName = "money")]
         public decimal Balance { get; set; }
@@ -18,9 +16,9 @@ namespace Data.Core
         [StringLength(26)]
         public string Number { get; set; }
 
-        public virtual ICollection<Operation> Operations { get; set; }
+        public ICollection<Operation> Operations { get; set; }
 
-        public virtual User User { get; set; }
+        public User User { get; set; }
 
         public long UserId { get; set; }
 

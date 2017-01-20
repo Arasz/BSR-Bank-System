@@ -1,6 +1,4 @@
 using System.Linq;
-using System.Net;
-using System.ServiceModel.Web;
 using Core.Common.Exceptions;
 using FluentValidation;
 using Service.Contracts;

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-
 using Data.Core;
 using FluentValidation;
 using Service.Contracts;
@@ -13,7 +12,8 @@ namespace Service.Bank.Implementation
         private readonly IBankService _bankService;
         private readonly IValidator<TransferDescription> _transefValidator;
 
-        public BankServiceValidationDecorator(IBankService bankService, IValidator<TransferDescription> transefValidator, IValidator<AccountHistoryQuery> accountHistoryValidator)
+        public BankServiceValidationDecorator(IBankService bankService, IValidator<TransferDescription> transefValidator,
+            IValidator<AccountHistoryQuery> accountHistoryValidator)
         {
             _bankService = bankService;
             _transefValidator = transefValidator;
@@ -56,6 +56,7 @@ namespace Service.Bank.Implementation
             _bankService.Withdraw(accountNumber, amount);
         }
 
-        private void ValidateTransferDescription(TransferDescription transferDescription) => _transefValidator.ValidateAndThrow(transferDescription);
+        private void ValidateTransferDescription(TransferDescription transferDescription)
+            => _transefValidator.ValidateAndThrow(transferDescription);
     }
 }

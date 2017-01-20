@@ -11,8 +11,8 @@ namespace Service.Bank.Authentication
 {
     public class CustomUserNamePasswordValidator : UserNamePasswordValidator
     {
+        private readonly BankDataContext _dataContext;
         private readonly IPasswordHasher _passwordHasher;
-        private BankDataContext _dataContext;
 
         public CustomUserNamePasswordValidator() : this(new BankDataContext(), new DefaultPasswordHasher())
         {
@@ -37,7 +37,8 @@ namespace Service.Bank.Authentication
 
         private static void ThrowSecurityException()
         {
-            throw new WebFaultException<SecurityTokenException>(new SecurityTokenException("Login and password required"),
+            throw new WebFaultException<SecurityTokenException>(
+                new SecurityTokenException("Login and password required"),
                 HttpStatusCode.Forbidden);
         }
     }

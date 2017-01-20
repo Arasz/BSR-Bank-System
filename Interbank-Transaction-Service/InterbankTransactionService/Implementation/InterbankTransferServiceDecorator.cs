@@ -3,7 +3,6 @@ using System.Net;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using Core.Common.Exceptions;
-using Service.Bank.Exceptions;
 using Service.Contracts;
 using Service.Dto;
 
@@ -34,7 +33,8 @@ namespace Service.InterbankTransfer.Implementation
             }
             catch (FaultException faultException)
             {
-                ThrowWebFaultException(new Exception(faultException.Reason.ToString()), HttpStatusCode.InternalServerError);
+                ThrowWebFaultException(new Exception(faultException.Reason.ToString()),
+                    HttpStatusCode.InternalServerError);
             }
             catch (Exception genericException)
             {

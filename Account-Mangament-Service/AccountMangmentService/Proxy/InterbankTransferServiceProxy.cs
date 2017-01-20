@@ -1,7 +1,6 @@
 ﻿using Core.Common.AccountNumber.Parser;
 using Service.Bank.Proxy.ServiceHttpClient;
 using Service.Bank.Proxy.ServicesRegister;
-using Service.Contracts;
 using Service.Dto;
 
 namespace Service.Bank.Proxy
@@ -15,7 +14,8 @@ namespace Service.Bank.Proxy
         private readonly ITransferServiceHttpClient _httpClient;
         private readonly ITransferServicesRegister _transferServicesRegister;
 
-        public InterbankTransferServiceProxy(ITransferServiceHttpClient httpClient, ITransferServicesRegister transferServicesRegister, IAccountNumberParser accountNumberParser)
+        public InterbankTransferServiceProxy(ITransferServiceHttpClient httpClient,
+            ITransferServicesRegister transferServicesRegister, IAccountNumberParser accountNumberParser)
         {
             _httpClient = httpClient;
             _transferServicesRegister = transferServicesRegister;

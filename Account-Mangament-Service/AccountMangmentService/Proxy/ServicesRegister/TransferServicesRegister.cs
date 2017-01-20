@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using Core.Common.Configuration;
-using Newtonsoft.Json;
 using Service.Bank.Exceptions;
 
 namespace Service.Bank.Proxy.ServicesRegister
@@ -11,9 +9,10 @@ namespace Service.Bank.Proxy.ServicesRegister
         private readonly string _registerPath;
         private InterbankTransferConfiguration _interbankTransferConfiguration;
 
-        public string Login => InterbankTransferConfiguration.Login;
-
-        public string Password => InterbankTransferConfiguration.Password;
+        public TransferServicesRegister(string registerPath)
+        {
+            _registerPath = registerPath;
+        }
 
         private InterbankTransferConfiguration InterbankTransferConfiguration
         {
@@ -28,10 +27,9 @@ namespace Service.Bank.Proxy.ServicesRegister
 
         private Dictionary<string, string> ServicesRegister => InterbankTransferConfiguration.RegisteredServices;
 
-        public TransferServicesRegister(string registerPath)
-        {
-            _registerPath = registerPath;
-        }
+        public string Login => InterbankTransferConfiguration.Login;
+
+        public string Password => InterbankTransferConfiguration.Password;
 
         public string GetTransferServiceAddress(string bankId)
         {

@@ -9,6 +9,7 @@ namespace Service.Bank.Router
     {
         private readonly IAccountNumberParser _accountNumberParser;
         private readonly ICommandBus _commandBus;
+
         private string LocalBankId { get; } = "112241";
 
         public ExternalTransferRouter(ICommandBus commandBus, IAccountNumberParser accountNumberParser)

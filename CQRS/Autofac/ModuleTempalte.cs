@@ -23,7 +23,7 @@ namespace Core.CQRS.Autofac
         }
 
         protected static IComponentContext ResolveComponentContext(IComponentContext context)
-                                    => context.Resolve<IComponentContext>();
+            => context.Resolve<IComponentContext>();
 
         protected abstract Type GenericHandlerType();
 

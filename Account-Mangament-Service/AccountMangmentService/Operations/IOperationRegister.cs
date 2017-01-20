@@ -6,6 +6,7 @@ namespace Service.Bank.Operations
 {
     public interface IOperationRegister
     {
-        void RegisterOperation<TCommand>(Account account, TransferDescription transferDescription) where TCommand : ICommand;
+        void RegisterOperation<TCommand>(Account account, TransferDescription transferDescription)
+            where TCommand : ICommand;
     }
 }
