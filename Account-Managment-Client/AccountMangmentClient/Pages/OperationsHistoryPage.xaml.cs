@@ -12,24 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using AccountMangmentClient.Pages;
 
-namespace AccountMangmentClient
+namespace AccountMangmentClient.Pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml 
+    /// Interaction logic for OperationsHistoryPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class OperationsHistoryPage : Page
     {
-        public MainWindow()
+        public OperationsHistoryPage()
         {
             InitializeComponent();
-
-            MainFrame.NavigationService.Navigate(new LoginPage(this));
-        }
-
-        private void Frame_OnContentRendered(object sender, EventArgs e)
-        {
         }
     }
 }

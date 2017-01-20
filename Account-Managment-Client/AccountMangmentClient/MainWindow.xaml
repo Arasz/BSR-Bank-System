@@ -6,6 +6,16 @@
         xmlns:local="clr-namespace:AccountMangmentClient"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Frame>
-    </Frame>
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*" />
+            <ColumnDefinition Width="5*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+        </StackPanel>
+
+        <Frame Name="MainFrame" Grid.Column="1" ContentRendered="Frame_OnContentRendered">
+        </Frame>
+    </Grid>
 </Window>

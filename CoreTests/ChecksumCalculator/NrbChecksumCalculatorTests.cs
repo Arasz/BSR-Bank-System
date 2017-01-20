@@ -11,6 +11,8 @@ namespace SharedTests.ChecksumCalculator
         [Theory]
         [InlineData("249093858528164913108077", 78)]
         [InlineData("109052723974493772627975", 84)]
+        [InlineData("001122410000000000000001", 65)]
+        [InlineData("001122410000000000000002", 38)]
         public void Calculate_CalculateChecksumFromCorrectSlimAccountNumber_ShouldReturnChecksum(
             string slimAccountNumber, int correctChecksum)
         {

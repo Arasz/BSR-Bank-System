@@ -12,24 +12,25 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using AccountMangmentClient.Pages;
 
-namespace AccountMangmentClient
+namespace AccountMangmentClient.Pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml 
+    /// Interaction logic for LoginPage.xaml 
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LoginPage : Page
     {
-        public MainWindow()
-        {
-            InitializeComponent();
+        private readonly MainWindow _window;
 
-            MainFrame.NavigationService.Navigate(new LoginPage(this));
+        public LoginPage(MainWindow window)
+        {
+            _window = window;
+            InitializeComponent();
         }
 
-        private void Frame_OnContentRendered(object sender, EventArgs e)
+        private void CreateAccountButton_Click(object sender, RoutedEventArgs e)
         {
+            _window.MainFrame.NavigationService.Navigate(new CreateAccountPage(_window));
         }
     }
 }
