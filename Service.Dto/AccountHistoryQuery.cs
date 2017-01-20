@@ -1,14 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace Service.Dto
 {
+    [DataContract]
     public class AccountHistoryQuery
     {
+        [DataMember]
         public string AccountNumber { get; }
 
+        [DataMember]
         public DateTime From { get; }
 
+        [DataMember]
         public DateTime To { get; }
 
         public AccountHistoryQuery(DateTime from, DateTime to, string accountNumber)

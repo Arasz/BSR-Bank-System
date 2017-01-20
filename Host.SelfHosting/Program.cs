@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Autofac;
 using Autofac.Integration.Wcf;
+using Service.Bank.Autofac;
 using Service.Bank.Implementation;
 using Service.Contracts;
 using Service.InterbankTransfer.Autofac;
@@ -19,7 +20,7 @@ namespace Host.SelfHosting
         {
             ContainerBuilder builder = new ContainerBuilder();
 
-            builder.RegisterModule<InterbankTransactionModule>();
+            builder.RegisterModule<BankServiceModule>();
 
             return builder.Build();
         }
