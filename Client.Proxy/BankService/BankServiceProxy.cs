@@ -5,10 +5,12 @@ using System.Collections.Generic;
 using System.ServiceModel;
 using System.Threading.Tasks;
 
-namespace Client.Proxy
+namespace Client.Proxy.BankService
 {
-    public class BankServiceProxy : ClientBase<IBankService>, IBankService
+    public class BankServiceProxy : ClientBase<IBankService>, IBankServiceProxy
     {
+        public ClientBase<IBankService> ClientBase => this;
+
         public Task<User> AuthenticationAsync(string userName, string password)
             => Task.Run(() => Channel.Login(userName, password));
 
