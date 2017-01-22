@@ -1,23 +1,25 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 
 namespace Data.Core
 {
-    [Table("Account")]
+    [Table("Account"), DataContract(IsReference = true)]
     public class Account
     {
-        [Column(TypeName = "money")]
+        [Column(TypeName = "money"), DataMember]
         public decimal Balance { get; set; }
 
         public long Id { get; set; }
 
-        [Required]
+        [Required, DataMember]
         [StringLength(26)]
         public string Number { get; set; }
 
         public ICollection<Operation> Operations { get; set; }
 
+        [DataMember]
         public User User { get; set; }
 
         public long UserId { get; set; }

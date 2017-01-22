@@ -1,17 +1,19 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 
 namespace Data.Core
 {
-    [Table("User")]
+    [Table("User"), DataContract(IsReference = true)]
     public class User
     {
+        [DataMember]
         public ICollection<Account> Accounts { get; set; }
 
         public long Id { get; set; }
 
-        [Required]
+        [Required, DataMember]
         [StringLength(30)]
         public string Name { get; set; }
 
@@ -22,7 +24,7 @@ namespace Data.Core
             Password = ""
         };
 
-        [Required]
+        [Required, DataMember]
         [StringLength(48)]
         public string Password { get; set; }
 
