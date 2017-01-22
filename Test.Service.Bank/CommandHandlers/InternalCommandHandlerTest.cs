@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq.Expressions;
-using Autofac;
+﻿using Autofac;
 using Data.Core;
 using FluentAssertions;
 using Service.Bank.Autofac;
@@ -10,6 +6,10 @@ using Service.Bank.CommandHandlers.Internal;
 using Service.Bank.Commands;
 using Service.Bank.Exceptions;
 using Service.Dto;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq.Expressions;
 using Test.Common;
 using Xunit;
 
@@ -71,9 +71,9 @@ namespace Test.Service.Bank.CommandHandlers
 
         protected override void RegisterComponents(ContainerBuilder builder)
         {
-            base.RegisterComponents(builder);
-
             builder.RegisterModule<BankServiceModule>();
+
+            base.RegisterComponents(builder);
         }
 
         private Account CreateAndInitializeAccount(string accountNumber, decimal balance)

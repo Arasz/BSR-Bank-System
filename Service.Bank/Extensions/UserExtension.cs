@@ -1,25 +1,23 @@
-﻿using System;
-using System.IdentityModel.Tokens;
-using System.Linq;
-using Core.Common.Security;
+﻿using Core.Common.Security;
 using Data.Core;
+using System;
+using System.Linq;
+using System.Security.Authentication;
 
 namespace Service.Bank.Extensions
 {
     public static class UserExtension
     {
-        /// <exception cref="SecurityTokenException"> Incorrect user name or password </exception>
         public static void AuthenticateUser(this User user, string userName, string password)
         {
             AuthenticateUser(user, userName, password, new DefaultPasswordHasher());
         }
 
-        /// <exception cref="SecurityTokenException"> Incorrect user name or password </exception>
         public static void AuthenticateUser(this User user, string userName, string password,
             IPasswordHasher passwordHasher)
         {
             if (IsAnyIncorrect(userName, password) || user.Name != userName)
-                throw new SecurityTokenException("Wrong user name or password.");
+                throw new InvalidCredentialException("Wrong user name or password.");
 
             var userPasswordBytes = Convert.FromBase64String(user.Password);
 
@@ -30,7 +28,7 @@ namespace Service.Bank.Extensions
             var givenPasswordHash = passwordHasher.HashPassword(password, salt);
 
             if (givenPasswordHash != user.Password)
-                throw new SecurityTokenException("Wrong user name or password.");
+                throw new InvalidCredentialException("Wrong user name or password.");
         }
 
         private static bool IsAnyIncorrect(string userName, string password)

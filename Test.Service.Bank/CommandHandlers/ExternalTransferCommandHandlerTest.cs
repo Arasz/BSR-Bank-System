@@ -1,15 +1,16 @@
-﻿using System;
-using System.Data.Entity;
-using System.Linq.Expressions;
-using Autofac;
+﻿using Autofac;
 using Core.CQRS.Commands;
 using Data.Core;
 using FluentAssertions;
 using Moq;
 using Service.Bank.CommandHandlers.External;
 using Service.Bank.Commands;
-using Service.Contracts;
+using Service.Bank.Operations;
+using Service.Bank.Proxy;
 using Service.Dto;
+using System;
+using System.Data.Entity;
+using System.Linq.Expressions;
 using Test.Common;
 using Xunit;
 
@@ -17,8 +18,8 @@ namespace Test.Service.Bank.CommandHandlers
 {
     public class ExternalTransferCommandHandlerTest : HandlerTestBase<ExternalTransferCommandHandler, Account>
     {
-        private readonly string _receiverAccountNumber = "2";
-        private readonly string _senderAccountNumber = "1";
+        private readonly string _receiverAccountNumber = "78001122418528164913108073";
+        private readonly string _senderAccountNumber = "78001122418528164913108077";
 
         protected override Expression<Func<BankDataContext, DbSet<Account>>> SelectDataSetFromDataContextExpression
             => bankDataContext => bankDataContext.Accounts;
@@ -71,6 +72,9 @@ namespace Test.Service.Bank.CommandHandlers
                 .AsImplementedInterfaces()
                 .SingleInstance();
 
+            builder.Register(context => CreateOperationRegisterMock())
+                .AsImplementedInterfaces();
+
             builder.Register(context => CreateCommandBusMock())
                 .AsImplementedInterfaces()
                 .SingleInstance();
@@ -110,9 +114,16 @@ namespace Test.Service.Bank.CommandHandlers
             return mock.Object;
         }
 
-        private IInterbankTransferService CreateServiceProxyMock()
+        private IOperationRegister CreateOperationRegisterMock()
         {
-            var interbankTransactionServiceMock = new Mock<IInterbankTransferService>();
+            var mock = new Mock<IOperationRegister>();
+
+            return mock.Object;
+        }
+
+        private IInterbankTransferServiceProxy CreateServiceProxyMock()
+        {
+            var interbankTransactionServiceMock = new Mock<IInterbankTransferServiceProxy>();
             interbankTransactionServiceMock
                 .Setup(service => service.Transfer(It.IsAny<InterbankTransferDescription>()))
                 .Verifiable();
@@ -129,7 +140,7 @@ namespace Test.Service.Bank.CommandHandlers
 
         private void ThrowIsTransferWasNotCalled()
         {
-            var proxy = Container.Resolve<IInterbankTransferService>();
+            var proxy = Container.Resolve<IInterbankTransferServiceProxy>();
             var mock = Mock.Get(proxy);
             mock.Verify();
         }

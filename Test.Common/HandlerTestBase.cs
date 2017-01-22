@@ -1,9 +1,9 @@
-﻿using System;
-using System.Data.Entity;
-using System.Linq.Expressions;
-using Autofac;
+﻿using Autofac;
 using Data.Core;
 using Service.Bank.Autofac;
+using System;
+using System.Data.Entity;
+using System.Linq.Expressions;
 
 namespace Test.Common
 {
@@ -14,7 +14,9 @@ namespace Test.Common
 
         public THandler Handler => Container.Resolve<THandler>();
 
-        protected abstract Expression<Func<BankDataContext, DbSet<TData>>> SelectDataSetFromDataContextExpression { get;
+        protected abstract Expression<Func<BankDataContext, DbSet<TData>>> SelectDataSetFromDataContextExpression
+        {
+            get;
         }
 
         protected HandlerTestBase()

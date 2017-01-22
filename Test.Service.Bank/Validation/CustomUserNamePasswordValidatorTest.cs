@@ -4,7 +4,7 @@ using FluentAssertions;
 using Service.Bank.Authentication;
 using System;
 using System.Collections.Generic;
-using System.IdentityModel.Tokens;
+using System.Security.Authentication;
 using Test.Common;
 using Xunit;
 
@@ -59,7 +59,7 @@ namespace Test.Service.Bank.Validation
 
             Action validationAction = () => validator.Validate("", _unhashedPassword);
 
-            validationAction.ShouldThrow<SecurityTokenException>();
+            validationAction.ShouldThrow<InvalidCredentialException>();
         }
 
         private User CreateUser()
