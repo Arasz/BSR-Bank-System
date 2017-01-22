@@ -2,7 +2,6 @@
 using Client.LightClient.Pages;
 using Data.Core;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using System.Collections.Generic;
 
@@ -31,11 +30,7 @@ namespace Client.LightClient.ViewModel
         public AccountsViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
-        }
-
-        public AccountsViewModel()
-        {
-            Messenger.Default.Register<User>(this, UserLogged);
+            MessengerInstance.Register<User>(this, UserLogged);
         }
 
         public void SelectAccount(Account selectedAccount)

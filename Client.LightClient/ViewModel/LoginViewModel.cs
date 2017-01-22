@@ -1,9 +1,7 @@
 ﻿using Client.LightClient.Pages;
 using Client.Proxy.BankService;
-using Data.Core;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
-using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using System.ServiceModel;
 using System.Windows.Input;
@@ -31,19 +29,16 @@ namespace Client.LightClient.ViewModel
 
         private async void LoginToBankAccountAsync()
         {
-            var loggedUser = User.NullUser;
-
             try
             {
-                loggedUser = await _bankServiceProxy.LoginAsync(Username, Password);
+                var loggedUser = await _bankServiceProxy.LoginAsync(Username, Password);
+                _navigationService.NavigateTo(nameof(AccountsPage));
+                MessengerInstance.Send(loggedUser);
             }
             catch (FaultException invalidCredentialException)
             {
                 await _dialogService.ShowError(invalidCredentialException, "Login error.", "Ok", null);
             }
-
-            _navigationService.NavigateTo(nameof(AccountsPage));
-            Messenger.Default.Send(loggedUser);
         }
     }
 }

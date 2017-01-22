@@ -1,7 +1,6 @@
 ﻿using Client.LightClient.ViewModel;
 using Data.Core;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace Client.LightClient.Pages
 {
@@ -15,17 +14,15 @@ namespace Client.LightClient.Pages
             InitializeComponent();
         }
 
-        private void Control_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void AccountsList_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var listItem = sender as ListViewItem;
-            if (listItem == null)
+            var selectedAccount = (sender as ListView)?.SelectedItem as Account;
+            if (selectedAccount == null)
                 return;
-            if (listItem.IsSelected && e.ChangedButton == MouseButton.Left && listItem.IsMouseDirectlyOver)
-            {
-                var viewModel = DataContext as AccountsViewModel;
 
-                viewModel.SelectAccount((Account)listItem.DataContext);
-            }
+            var viewModel = DataContext as AccountsViewModel;
+
+            viewModel.SelectAccount(selectedAccount);
         }
     }
 }
