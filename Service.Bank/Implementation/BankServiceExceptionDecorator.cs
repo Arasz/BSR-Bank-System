@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ServiceModel;
-using Core.Common.Exceptions;
+﻿using Core.Common.Exceptions;
 using Data.Core;
 using FluentValidation;
 using Service.Contracts;
 using Service.Dto;
+using System;
+using System.Collections.Generic;
+using System.ServiceModel;
 
 namespace Service.Bank.Implementation
 {
@@ -16,24 +16,6 @@ namespace Service.Bank.Implementation
         public BankServiceExceptionDecorator(IBankService bankService)
         {
             _bankService = bankService;
-        }
-
-        public User Authentication(string userName, string password)
-        {
-            try
-            {
-                return _bankService.Authentication(userName, password);
-            }
-            catch (ValidationException validationException)
-            {
-                ThrowFaultException(new ValidationFailedException(validationException.Message));
-            }
-            catch (Exception genericException)
-            {
-                ThrowFaultException(genericException);
-            }
-
-            return User.NullUser;
         }
 
         public void Deposit(string accountNumber, decimal amount)
@@ -86,6 +68,24 @@ namespace Service.Bank.Implementation
             {
                 ThrowFaultException(genericException);
             }
+        }
+
+        public User Login(string userName, string password)
+        {
+            try
+            {
+                return _bankService.Login(userName, password);
+            }
+            catch (ValidationException validationException)
+            {
+                ThrowFaultException(new ValidationFailedException(validationException.Message));
+            }
+            catch (Exception genericException)
+            {
+                ThrowFaultException(genericException);
+            }
+
+            return User.NullUser;
         }
 
         public IEnumerable<Operation> OperationsHistory(AccountHistoryQuery accountHistoryQuery)

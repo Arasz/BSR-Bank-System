@@ -20,7 +20,7 @@ namespace Service.Bank.Implementation
             _externalTransferRouter = externalTransferRouter;
         }
 
-        public User Authentication(string userName, string password)
+        public User Login(string userName, string password)
         {
             return _commonBus.QueryBus.Send<User, AuthenticatedUserQuery>(new AuthenticatedUserQuery(userName, password));
         }

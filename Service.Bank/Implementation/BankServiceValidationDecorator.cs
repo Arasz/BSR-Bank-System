@@ -20,9 +20,9 @@ namespace Service.Bank.Implementation
             _accountHistoryValidator = accountHistoryValidator;
         }
 
-        public User Authentication(string userName, string password)
+        public User Login(string userName, string password)
         {
-            return _bankService.Authentication(userName, password);
+            return _bankService.Login(userName, password);
         }
 
         public void Deposit(string accountNumber, decimal amount)
