@@ -11,7 +11,7 @@ namespace Client.Proxy.BankService
     {
         ClientBase<IBankService> ClientBase { get; }
 
-        Task<User> AuthenticationAsync(string userName, string password);
+        Task<User> LoginAsync(string userName, string password);
 
         void Deposit(string accountNumber, decimal amount);
 

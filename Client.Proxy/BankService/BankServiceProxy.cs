@@ -11,8 +11,9 @@ namespace Client.Proxy.BankService
     {
         public ClientBase<IBankService> ClientBase => this;
 
-        public Task<User> AuthenticationAsync(string userName, string password)
-            => Task.Run(() => Channel.Login(userName, password));
+        public BankServiceProxy()
+        {
+        }
 
         public void Deposit(string accountNumber, decimal amount) => Channel.Deposit(accountNumber, amount);
 
@@ -30,6 +31,9 @@ namespace Client.Proxy.BankService
             => Task.Run(() => Channel.InternalTransfer(transferDescription));
 
         public User Login(string userName, string password) => Channel.Login(userName, password);
+
+        public Task<User> LoginAsync(string userName, string password)
+                                                                    => Task.Run(() => Channel.Login(userName, password));
 
         public IEnumerable<Operation> OperationsHistory(AccountHistoryQuery accountHistoryQuery) => Channel.OperationsHistory(accountHistoryQuery);
 

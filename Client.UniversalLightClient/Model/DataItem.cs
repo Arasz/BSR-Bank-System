@@ -1,4 +1,4 @@
-﻿namespace Client.LightClient.Model
+﻿namespace Client.UniversalLightClient.Model
 {
     public class DataItem
     {

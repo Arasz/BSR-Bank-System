@@ -1,16 +1,16 @@
-﻿using System;
-using Client.LightClient.Model;
+﻿using System.Threading.Tasks;
+using Client.UniversalLightClient.Model;
 
-namespace Client.LightClient.Design
+namespace Client.UniversalLightClient.Design
 {
     public class DesignDataService : IDataService
     {
-        public void GetData(Action<DataItem, Exception> callback)
+        public Task<DataItem> GetData()
         {
             // Use this to create design time data
 
             var item = new DataItem("Welcome to MVVM Light [design]");
-            callback(item, null);
+            return Task.FromResult(item);
         }
     }
 }

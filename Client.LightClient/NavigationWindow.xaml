@@ -1,4 +1,4 @@
-﻿<Window x:Class="Client.LightClient.MainWindow"
+﻿<Window x:Class="Client.LightClient.NavigationWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,9 +7,9 @@
         mc:Ignorable="d ignore"
         Height="300"
         Width="300"
-        Title="MVVM Light Application"
-        DataContext="{Binding Main, Source={StaticResource Locator}}">
-    
+        Title="Bank client"
+        Loaded="MainWindow_OnLoaded">
+
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -18,15 +18,6 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <Grid x:Name="LayoutRoot">
-
-        <TextBlock FontSize="36"
-                   FontWeight="Bold"
-                   Foreground="Purple"
-                   Text="{Binding WelcomeTitle}"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center"
-                   TextWrapping="Wrap" />
-
-    </Grid>
+    <Frame Name="NavigationFrame">
+    </Frame>
 </Window>
