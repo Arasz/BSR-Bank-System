@@ -31,10 +31,12 @@ namespace Host.SelfHosting
                 interbankTransferServiceHost.AddDependencyInjectionBehavior<IInterbankTransferService>(container);
 
                 bankServiceHost.Open();
-                Console.WriteLine($"The host {nameof(bankServiceHost)} has been opened with base address: {bankServiceHost.BaseAddresses.FirstOrDefault()}.");
+                Console.WriteLine(
+                    $"The host {nameof(bankServiceHost)} has been opened with base address: {bankServiceHost.BaseAddresses.FirstOrDefault()}.");
 
                 interbankTransferServiceHost.Open();
-                Console.WriteLine($"The host {nameof(interbankTransferServiceHost)} has been opened with base address {interbankTransferServiceHost.BaseAddresses.FirstOrDefault()}.");
+                Console.WriteLine(
+                    $"The host {nameof(interbankTransferServiceHost)} has been opened with base address {interbankTransferServiceHost.BaseAddresses.FirstOrDefault()}.");
 
                 Console.ReadLine();
 

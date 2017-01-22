@@ -4,13 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AC464912-57F3-491C-BB5B-3F7AC1B5ACDD}</ProjectGuid>
+    <ProjectGuid>{BC418CBE-475A-4408-9C20-6D4505B6C032}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Test.Service.UserAccount</RootNamespace>
-    <AssemblyName>Test.Service.UserAccount</AssemblyName>
+    <RootNamespace>CQRSTest</RootNamespace>
+    <AssemblyName>CQRSTest</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,14 +40,6 @@
       <HintPath>..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="FluentAssertions, Version=4.18.0.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentAssertions.4.18.0\lib\net45\FluentAssertions.dll</HintPath>
       <Private>True</Private>
@@ -59,10 +53,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
     <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
       <HintPath>..\packages\xunit.abstractions.2.0.0\lib\net35\xunit.abstractions.dll</HintPath>
       <Private>True</Private>
@@ -81,33 +74,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UserAccountServiceTest.cs" />
+    <Compile Include="CommandBusTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryBusTest.cs" />
+    <Compile Include="QueryBusValidationDecoratorTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core.Common\Core.Common.csproj">
-      <Project>{61F89953-804F-4C8C-86A7-22F2DBE9EBE3}</Project>
-      <Name>Core.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Core.CQRS\Core.CQRS.csproj">
-      <Project>{DB6F8014-94AF-466B-9AAF-B7632751871B}</Project>
+      <Project>{db6f8014-94af-466b-9aaf-b7632751871b}</Project>
       <Name>Core.CQRS</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Data.Core\Data.Core.csproj">
-      <Project>{9E811AC8-1601-47D8-AF57-448931FE6AE7}</Project>
-      <Name>Data.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Service.Users\Service.UserAccount.csproj">
-      <Project>{2c758ecb-b4f0-4fd7-9451-04f8291ceaf6}</Project>
-      <Name>Service.UserAccount</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Test.Common\Test.Common.csproj">
-      <Project>{9ce478e0-47b5-4b55-9075-ac79dd8a6ee9}</Project>
-      <Name>Test.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

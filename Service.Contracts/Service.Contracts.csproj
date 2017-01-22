@@ -34,12 +34,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Web" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IBankService.cs" />
@@ -48,11 +42,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.Common.csproj">
+    <ProjectReference Include="..\Core.Common\Core.Common.csproj">
       <Project>{61F89953-804F-4C8C-86A7-22F2DBE9EBE3}</Project>
       <Name>Core.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataLayer\Data.Core.csproj">
+    <ProjectReference Include="..\Data.Core\Data.Core.csproj">
       <Project>{9E811AC8-1601-47D8-AF57-448931FE6AE7}</Project>
       <Name>Data.Core</Name>
     </ProjectReference>

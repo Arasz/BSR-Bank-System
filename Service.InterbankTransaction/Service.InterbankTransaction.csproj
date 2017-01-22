@@ -6,11 +6,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{2C758ECB-B4F0-4FD7-9451-04F8291CEAF6}</ProjectGuid>
+    <ProjectGuid>{06F68D42-CD5B-49D9-B448-F5B4B43C6FFC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Service.UserAccount</RootNamespace>
-    <AssemblyName>Service.UserAccount</AssemblyName>
+    <RootNamespace>Service.InterbankTransfer</RootNamespace>
+    <AssemblyName>Service.InterbankTransfer</AssemblyName>
     <ProjectTypeGuids>{3D9AD99F-2412-4246-B90B-4EAA41C64699};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <StartArguments>/client:"WcfTestClient.exe"</StartArguments>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -35,12 +35,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    <Reference Include="Autofac, Version=4.3.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.3.0\lib\net45\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FluentValidation, Version=6.2.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -48,36 +44,44 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\CreateUserCommand.cs" />
-    <Compile Include="Commands\CreateUserCommandHandler.cs" />
-    <Compile Include="Contract\IUserAccountService.cs" />
-    <Compile Include="Implementation\UserAccountService.cs" />
+    <Compile Include="Authentication\CustomUserNamePasswordValidator.cs" />
+    <Compile Include="Error\JsonErrorHandler.cs" />
+    <Compile Include="Error\JsonErrorWebHttpBehavior.cs" />
+    <Compile Include="Error\JsonErrorWebHttpBehaviorElelement.cs" />
+    <Compile Include="Autofac\InterbankTransactionModule.cs" />
+    <Compile Include="Implementation\InterbankTransferServiceDecorator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Queries\GetUserQuery.cs" />
-    <Compile Include="Queries\GetUserQueryHandler.cs" />
-    <Compile Include="Validation\CreateUserCommandValidation.cs" />
+    <Compile Include="Implementation\InterbankTransferService.cs" />
+    <Compile Include="Validation\InterbankTransferDescriptionValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Service.Bank\Service.Bank.csproj">
+      <Project>{9443f212-9c92-4a14-94ca-5fc66facaa14}</Project>
+      <Name>Service.Bank</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core.Common\Core.Common.csproj">
-      <Project>{61f89953-804f-4c8c-86a7-22f2dbe9ebe3}</Project>
+      <Project>{61F89953-804F-4C8C-86A7-22F2DBE9EBE3}</Project>
       <Name>Core.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core.CQRS\Core.CQRS.csproj">
-      <Project>{db6f8014-94af-466b-9aaf-b7632751871b}</Project>
-      <Name>Core.CQRS</Name>
+    <ProjectReference Include="..\Service.Contracts\Service.Contracts.csproj">
+      <Project>{9a63e903-84c0-4ff0-b1d1-d7bd0a0fc0fa}</Project>
+      <Name>Service.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Data.Core\Data.Core.csproj">
-      <Project>{9e811ac8-1601-47d8-af57-448931fe6ae7}</Project>
-      <Name>Data.Core</Name>
+    <ProjectReference Include="..\Service.Dto\Service.Dto.csproj">
+      <Project>{7d5e45dc-e897-484a-bbdd-87714cbc1d37}</Project>
+      <Name>Service.Dto</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

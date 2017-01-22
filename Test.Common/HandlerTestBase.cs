@@ -14,9 +14,7 @@ namespace Test.Common
 
         public THandler Handler => Container.Resolve<THandler>();
 
-        protected abstract Expression<Func<BankDataContext, DbSet<TData>>> SelectDataSetFromDataContextExpression
-        {
-            get;
+        protected abstract Expression<Func<BankDataContext, DbSet<TData>>> SelectDataSetFromDataContextExpression { get;
         }
 
         protected HandlerTestBase()
