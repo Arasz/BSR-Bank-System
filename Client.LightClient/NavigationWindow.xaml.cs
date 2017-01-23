@@ -64,13 +64,6 @@ namespace Client.LightClient
             containerBuilder.RegisterType<AccountsViewModel>()
                 .AsSelf();
 
-            containerBuilder.RegisterType<AccountOperationPage>()
-                .Named<Page>(nameof(AccountOperationPage))
-                .AsSelf();
-
-            containerBuilder.RegisterType<AccountOperationViewModel>()
-                .AsSelf();
-
             _container = containerBuilder.Build();
         }
 

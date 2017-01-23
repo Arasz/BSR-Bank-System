@@ -3,6 +3,7 @@ using Client.Proxy.BankService;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Views;
+using System;
 using System.ServiceModel;
 using System.Windows.Input;
 
@@ -37,7 +38,11 @@ namespace Client.LightClient.ViewModel
             }
             catch (FaultException invalidCredentialException)
             {
-                await _dialogService.ShowError(invalidCredentialException, "Login error.", "Ok", null);
+                await _dialogService.ShowError(invalidCredentialException, "Login error", "Ok", null);
+            }
+            catch (Exception exception)
+            {
+                await _dialogService.ShowError(exception.Message, "Login error", "Ok", null);
             }
         }
     }

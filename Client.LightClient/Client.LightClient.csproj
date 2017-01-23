@@ -83,9 +83,6 @@
     </ApplicationDefinition>
     <Compile Include="Dialog\DialogService.cs" />
     <Compile Include="Message\AccountSelectedMessage.cs" />
-    <Compile Include="Pages\AccountOperationPage.xaml.cs">
-      <DependentUpon>AccountOperationPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\AccountsPage.xaml.cs">
       <DependentUpon>AccountsPage.xaml</DependentUpon>
     </Compile>
@@ -93,14 +90,9 @@
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Navigation\NavigationService.cs" />
-    <Compile Include="ViewModel\AccountOperationViewModel.cs" />
     <Compile Include="ViewModel\AccountsViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Page Include="Pages\AccountOperationPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\AccountsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

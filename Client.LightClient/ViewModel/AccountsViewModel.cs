@@ -1,6 +1,4 @@
-﻿using Client.LightClient.Message;
-using Client.LightClient.Pages;
-using Data.Core;
+﻿using Data.Core;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Views;
 using System.Collections.Generic;
@@ -11,6 +9,7 @@ namespace Client.LightClient.ViewModel
     {
         private readonly INavigationService _navigationService;
         private ICollection<Account> _accounts;
+        private Account _selectedAccount;
         private string _username;
 
         public ICollection<Account> Accounts
@@ -19,7 +18,15 @@ namespace Client.LightClient.ViewModel
             set { Set(ref _accounts, value); }
         }
 
-        public IList<Account> SelectedAccounts { get; set; }
+        public string Amount { get; set; }
+
+        public Account SelectedAccount
+        {
+            get { return _selectedAccount; }
+            set { Set(ref _selectedAccount, value); }
+        }
+
+        public string TargetAccountNumber { get; set; }
 
         public string Username
         {
@@ -31,13 +38,6 @@ namespace Client.LightClient.ViewModel
         {
             _navigationService = navigationService;
             MessengerInstance.Register<User>(this, UserLogged);
-        }
-
-        public void SelectAccount(Account selectedAccount)
-        {
-            _navigationService.NavigateTo(nameof(AccountOperationPage));
-
-            MessengerInstance.Send(new AccountSelectedMessage(selectedAccount.Number, selectedAccount.Balance, Username));
         }
 
         private void UserLogged(User loggedUser)

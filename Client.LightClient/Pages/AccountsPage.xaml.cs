@@ -22,7 +22,7 @@ namespace Client.LightClient.Pages
 
             var viewModel = DataContext as AccountsViewModel;
 
-            viewModel.SelectAccount(selectedAccount);
+            viewModel.SelectedAccount = selectedAccount;
         }
     }
 }
