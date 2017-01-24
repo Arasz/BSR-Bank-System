@@ -12,7 +12,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition />
+            <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
         <StackPanel Grid.Column="0">
@@ -91,6 +91,18 @@
                         VerticalAlignment="Center" />
                 <Button Content="Internal transfer" Margin="10" Grid.Column="3"
                         VerticalAlignment="Center" />
+            </Grid>
+            <Grid Grid.Row="2" Grid.Column="0" ColumnSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Label Content="Account operations history: " Margin="5" />
+                <Button Content="Refresh operation history" HorizontalAlignment="Center"
+                        VerticalAlignment="Center" Margin="0,5"  Grid.Row="1" />
+                <DataGrid Grid.Row="2">
+                </DataGrid>
             </Grid>
         </Grid>
     </Grid>
