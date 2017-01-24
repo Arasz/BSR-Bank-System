@@ -1,6 +1,7 @@
 ﻿using Client.LightClient.ViewModel;
 using Data.Core;
 using System.Windows.Controls;
+using Data.Core.Entities;
 
 namespace Client.LightClient.Pages
 {

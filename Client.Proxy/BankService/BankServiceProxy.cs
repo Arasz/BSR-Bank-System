@@ -1,4 +1,4 @@
-﻿using Data.Core;
+﻿using Data.Core.Entities;
 using Service.Contracts;
 using Service.Dto;
 using System.Collections.Generic;

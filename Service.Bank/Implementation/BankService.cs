@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using Core.CQRS.Bus;
-using Data.Core;
+﻿using Core.CQRS.Bus;
+using Data.Core.Entities;
 using Service.Bank.Commands;
 using Service.Bank.Queries;
 using Service.Bank.Router;
 using Service.Contracts;
 using Service.Dto;
+using System.Collections.Generic;
 
 namespace Service.Bank.Implementation
 {
@@ -18,11 +18,6 @@ namespace Service.Bank.Implementation
         {
             _commonBus = commonBus;
             _externalTransferRouter = externalTransferRouter;
-        }
-
-        public User Login(string userName, string password)
-        {
-            return _commonBus.QueryBus.Send<User, AuthenticatedUserQuery>(new AuthenticatedUserQuery(userName, password));
         }
 
         public void Deposit(string accountNumber, decimal amount)
@@ -38,6 +33,11 @@ namespace Service.Bank.Implementation
         public void InternalTransfer(TransferDescription transferDescription)
         {
             _commonBus.Send(new InternalTransferCommand(transferDescription));
+        }
+
+        public User Login(string userName, string password)
+        {
+            return _commonBus.QueryBus.Send<User, AuthenticatedUserQuery>(new AuthenticatedUserQuery(userName, password));
         }
 
         public IEnumerable<Operation> OperationsHistory(AccountHistoryQuery accountHistoryQuery)

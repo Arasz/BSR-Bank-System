@@ -3,6 +3,7 @@ using System.Linq;
 using Core.Common.Exceptions;
 using Core.CQRS.Queries;
 using Data.Core;
+using Data.Core.Entities;
 using Service.Bank.Queries;
 
 namespace Service.Bank.QueryHandlers

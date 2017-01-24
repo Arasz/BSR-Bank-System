@@ -28,7 +28,7 @@ namespace Service.Bank.CommandHandlers.External
 
             MakeInterbankTransfer();
 
-            UpdateAccountBalance(_transferDescription.Amount, _transferDescription.From);
+            UpdateAccountBalance(_transferDescription.Amount, _transferDescription.SourceAccountNumber);
 
             RegisterOperation();
 

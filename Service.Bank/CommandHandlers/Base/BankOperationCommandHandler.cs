@@ -1,10 +1,11 @@
-﻿using System.Linq;
-using Core.Common.Exceptions;
+﻿using Core.Common.Exceptions;
 using Core.CQRS.Commands;
 using Data.Core;
+using Data.Core.Entities;
 using Service.Bank.Commands;
 using Service.Bank.Operations;
 using Service.Dto;
+using System.Linq;
 
 namespace Service.Bank.CommandHandlers.Base
 {
@@ -30,7 +31,7 @@ namespace Service.Bank.CommandHandlers.Base
         {
             _transferDescription = command.TransferDescription;
 
-            UpdateAccountBalance(_transferDescription.Amount, _transferDescription.From);
+            UpdateAccountBalance(_transferDescription.Amount, _transferDescription.SourceAccountNumber);
 
             RegisterOperation();
         }
@@ -46,7 +47,9 @@ namespace Service.Bank.CommandHandlers.Base
         }
 
         protected void RegisterOperation()
-            => _operationRegister.RegisterOperation<TCommand>(Account, _transferDescription);
+        {
+            _operationRegister.RegisterOperation<TCommand>(Account, _transferDescription);
+        }
 
         protected virtual void SaveChanges() => BankDataContext.SaveChanges();
 

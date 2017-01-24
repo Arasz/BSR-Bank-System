@@ -1,18 +1,21 @@
-﻿using System;
-using System.Resources;
-using Core.CQRS.Commands;
+﻿using Core.CQRS.Commands;
 using Data.Core;
+using Data.Core.Entities;
 using Service.Bank.Extensions;
 using Service.Dto;
+using System;
+using System.Resources;
 
 namespace Service.Bank.Operations
 {
     public class OperationRegister : IOperationRegister
     {
+        private readonly BankDataContext _dataContext;
         private readonly ResourceManager _resourceManager;
 
-        public OperationRegister(ResourceManager resourceManager)
+        public OperationRegister(BankDataContext dataContext, ResourceManager resourceManager)
         {
+            _dataContext = dataContext;
             _resourceManager = resourceManager;
         }
 
@@ -26,8 +29,8 @@ namespace Service.Bank.Operations
                 Amount = transferDescription.Amount,
                 Balance = account.Balance,
                 CreationDate = DateTime.Now,
-                Source = transferDescription.From,
-                Target = transferDescription.To,
+                Source = transferDescription.SourceAccountNumber,
+                Target = transferDescription.TargetAccountNumber,
                 Title = transferDescription.Title,
                 Type = CommandTypeString<TCommand>()
             };
@@ -35,6 +38,9 @@ namespace Service.Bank.Operations
             newOperation.CalculateCreditOrDebit();
 
             account.Operations.Add(newOperation);
+
+            _dataContext.Operations.Add(newOperation);
+            _dataContext.SaveChanges();
         }
 
         private string CommandTypeString<TCommand>() => _resourceManager.GetString(typeof(TCommand).Name);

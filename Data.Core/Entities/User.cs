@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 
-namespace Data.Core
+namespace Data.Core.Entities
 {
     [Table("User"), DataContract(IsReference = true)]
     public class User

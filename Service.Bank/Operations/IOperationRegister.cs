@@ -1,5 +1,5 @@
 ﻿using Core.CQRS.Commands;
-using Data.Core;
+using Data.Core.Entities;
 using Service.Dto;
 
 namespace Service.Bank.Operations

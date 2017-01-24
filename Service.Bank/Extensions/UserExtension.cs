@@ -3,6 +3,7 @@ using Data.Core;
 using System;
 using System.Linq;
 using System.Security.Authentication;
+using Data.Core.Entities;
 
 namespace Service.Bank.Extensions
 {

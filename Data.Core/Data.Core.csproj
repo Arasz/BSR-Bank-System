@@ -66,11 +66,11 @@
     <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account.cs" />
+    <Compile Include="Entities\Account.cs" />
     <Compile Include="BankDataContext.cs" />
-    <Compile Include="Operation.cs" />
+    <Compile Include="Entities\Operation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="Entities\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
@@ -81,8 +81,9 @@
     <Content Include="BankDatabase_log.ldf">
       <DependentUpon>BankDatabase.mdf</DependentUpon>
     </Content>
-    <Content Include="create-db-schema.sql" />
-    <Content Include="drop-db-schema.sql" />
+    <Content Include="Scripts\create-db-schema.sql" />
+    <Content Include="Scripts\create-users.sql" />
+    <Content Include="Scripts\drop-db-schema.sql" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">

@@ -13,6 +13,8 @@ namespace Service.Bank.Validation
         {
             _accountChecksumCalculator = accountChecksumCalculator;
 
+            CascadeMode = CascadeMode.StopOnFirstFailure;
+
             RuleFor(query => query.From)
                 .LessThanOrEqualTo(DateTime.Now)
                 .LessThanOrEqualTo(query => query.To);

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Core.CQRS.Queries;
 using Data.Core;
+using Data.Core.Entities;
 
 namespace Service.UserAccount.Queries
 {

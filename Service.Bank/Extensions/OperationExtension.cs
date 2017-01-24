@@ -1,4 +1,5 @@
 ﻿using Data.Core;
+using Data.Core.Entities;
 
 namespace Service.Bank.Extensions
 {

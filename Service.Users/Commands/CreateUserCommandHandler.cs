@@ -2,6 +2,7 @@
 using Core.Common.Security;
 using Core.CQRS.Commands;
 using Data.Core;
+using Data.Core.Entities;
 
 namespace Service.UserAccount.Commands
 {

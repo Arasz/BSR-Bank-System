@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 
-namespace Data.Core
+namespace Data.Core.Entities
 {
     [Table("Account"), DataContract(IsReference = true)]
     public class Account
@@ -28,5 +28,7 @@ namespace Data.Core
         {
             Operations = new HashSet<Operation>();
         }
+
+        public override string ToString() => $"{Number}:{Balance}";
     }
 }

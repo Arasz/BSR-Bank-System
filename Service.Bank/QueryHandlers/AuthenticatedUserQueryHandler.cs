@@ -4,6 +4,7 @@ using Service.Bank.Extensions;
 using Service.Bank.Queries;
 using System.Data.Entity;
 using System.Linq;
+using Data.Core.Entities;
 
 namespace Service.Bank.QueryHandlers
 {

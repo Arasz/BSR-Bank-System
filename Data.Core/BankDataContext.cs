@@ -1,3 +1,4 @@
+using Data.Core.Entities;
 using System.Data.Entity;
 
 namespace Data.Core
@@ -31,12 +32,10 @@ namespace Data.Core
 
             modelBuilder.Entity<Operation>()
                 .Property(e => e.Source)
-                .IsFixedLength()
                 .IsUnicode(false);
 
             modelBuilder.Entity<Operation>()
                 .Property(e => e.Target)
-                .IsFixedLength()
                 .IsUnicode(false);
 
             modelBuilder.Entity<Operation>()

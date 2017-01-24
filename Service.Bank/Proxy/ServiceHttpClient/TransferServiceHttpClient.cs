@@ -1,11 +1,11 @@
-﻿using System;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Service.Bank.Exceptions;
 using Service.Bank.Proxy.ServicesRegister;
 using Service.Dto;
+using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
 
 namespace Service.Bank.Proxy.ServiceHttpClient
 {
@@ -19,6 +19,12 @@ namespace Service.Bank.Proxy.ServiceHttpClient
         private readonly string _transferActionLocation = "/transfer";
         private readonly ITransferServicesRegister _transferServicesRegister;
 
+        public string CombinedAuthenticationData
+            => _transferServicesRegister.Login + ":" + _transferServicesRegister.Password;
+
+        private AuthenticationHeaderValue AuthenticationHeader
+            => new AuthenticationHeaderValue(_authenticationSchema, ConvertToBase64(CombinedAuthenticationData));
+
         public TransferServiceHttpClient(HttpClient httpClient, ITransferServicesRegister transferServicesRegister)
         {
             _httpClient = httpClient;
@@ -26,12 +32,6 @@ namespace Service.Bank.Proxy.ServiceHttpClient
 
             ConfigureHttpClient();
         }
-
-        public string CombinedAuthenticationData
-            => _transferServicesRegister.Login + ":" + _transferServicesRegister.Password;
-
-        private AuthenticationHeaderValue AuthenticationHeader
-            => new AuthenticationHeaderValue(_authenticationSchema, ConvertToBase64(CombinedAuthenticationData));
 
         public void SendTransfer(InterbankTransferDescription transferDescription, string transferServiceAddress)
         {
@@ -70,7 +70,7 @@ namespace Service.Bank.Proxy.ServiceHttpClient
             readResponseBodyTask.Wait();
 
             var transferError = ParseTransferError(readResponseBodyTask.Result);
-            throw new InterbankTransferException(transferError.Error, (int) transferResult.StatusCode);
+            throw new ExternalTransferException($"Error during external transfer: {transferError.Error}", (int)transferResult.StatusCode);
         }
 
         private InterbankTransferError ParseTransferError(string transferError)

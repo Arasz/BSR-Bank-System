@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Linq.Expressions;
 using Data.Core;
+using Data.Core.Entities;
 using FluentAssertions;
 using Service.Bank.CommandHandlers.External;
 using Service.Bank.Commands;
@@ -79,16 +80,16 @@ namespace Test.Service.Bank.CommandHandlers
             => new ExternalTransferChargeCommand(new TransferDescription
             {
                 Amount = amount,
-                From = _senderAccountNumber,
-                To = _receiverAccountNumber
+                SourceAccountNumber = _senderAccountNumber,
+                TargetAccountNumber = _receiverAccountNumber
             }, chargePercent);
 
         private ExternalTransferChargeCommand CreateChargeCommand(decimal amount)
             => new ExternalTransferChargeCommand(new TransferDescription
             {
                 Amount = amount,
-                From = _senderAccountNumber,
-                To = _receiverAccountNumber
+                SourceAccountNumber = _senderAccountNumber,
+                TargetAccountNumber = _receiverAccountNumber
             });
 
         private Account CreateSenderAccount(decimal balance)

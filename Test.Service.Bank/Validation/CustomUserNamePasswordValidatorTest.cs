@@ -5,6 +5,7 @@ using Service.Bank.Authentication;
 using System;
 using System.Collections.Generic;
 using System.Security.Authentication;
+using Data.Core.Entities;
 using Test.Common;
 using Xunit;
 

@@ -1,6 +1,7 @@
 ﻿using Core.Common.AccountNumber.Parser;
 using Core.CQRS.Commands;
 using Service.Bank.Commands;
+using Service.Bank.Exceptions;
 using Service.Dto;
 
 namespace Service.Bank.Router
@@ -20,13 +21,15 @@ namespace Service.Bank.Router
 
         public void Route(TransferDescription routedTransferDescription)
         {
-            var senderAccount = routedTransferDescription.From;
-            var receiverAccount = routedTransferDescription.To;
+            var senderAccount = routedTransferDescription.SourceAccountNumber;
+            var receiverAccount = routedTransferDescription.TargetAccountNumber;
 
-            if (IsExternal(senderAccount) && !IsExternal(receiverAccount))
+            if (IsFromExternalBank(senderAccount, receiverAccount))
                 _commandBus.Send(new BookExternalTransferCommand(routedTransferDescription));
-            else
+            else if (!IsFromExternalBank(senderAccount, receiverAccount))
                 _commandBus.Send(new ExternalTransferCommand(routedTransferDescription));
+            else
+                throw new AmbiguousTransferDescriptionException(senderAccount, receiverAccount);
         }
 
         private bool IsExternal(string accountNumber)
@@ -35,5 +38,7 @@ namespace Service.Bank.Router
 
             return !parsedAccountNumber.BankId.Contains(LocalBankId);
         }
+
+        private bool IsFromExternalBank(string senderAccount, string receiverAccount) => IsExternal(senderAccount) && !IsExternal(receiverAccount);
     }
 }

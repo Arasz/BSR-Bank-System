@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq.Expressions;
+using Data.Core.Entities;
 using Test.Common;
 using Xunit;
 
@@ -96,8 +97,8 @@ namespace Test.Service.Bank.CommandHandlers
             new TransferDescription
             {
                 Amount = withdrawAmount,
-                From = SenderAccountNumber,
-                To = ReceiverAccountNumber,
+                SourceAccountNumber = SenderAccountNumber,
+                TargetAccountNumber = ReceiverAccountNumber,
                 Title = "TransferToExternalBank"
             }
         );

@@ -4,6 +4,7 @@ using Service.Dto;
 using System.Collections.Generic;
 using System.ServiceModel;
 using System.Threading.Tasks;
+using Data.Core.Entities;
 
 namespace Client.Proxy.BankService
 {

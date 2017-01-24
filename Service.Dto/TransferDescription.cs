@@ -13,18 +13,18 @@ namespace Service.Dto
         {
         }
 
-        public TransferDescription(string from, string to, string title, decimal amount)
+        public TransferDescription(string sourceAccountNumber, string targetAccountNumber, string title, decimal amount)
         {
-            From = from;
-            To = to;
+            SourceAccountNumber = sourceAccountNumber;
+            TargetAccountNumber = targetAccountNumber;
             Title = title;
             Amount = amount;
         }
 
         public TransferDescription(TransferDescription description)
         {
-            From = description.From;
-            To = description.To;
+            SourceAccountNumber = description.SourceAccountNumber;
+            TargetAccountNumber = description.TargetAccountNumber;
             Amount = description.Amount;
             Title = description.Title;
         }
@@ -39,7 +39,7 @@ namespace Service.Dto
         ///     Sender account number
         /// </summary>
         [DataMember]
-        public string From { get; set; }
+        public string SourceAccountNumber { get; set; }
 
         /// <summary>
         ///     Transfer title
@@ -51,15 +51,15 @@ namespace Service.Dto
         ///     Receiver account number
         /// </summary>
         [DataMember]
-        public string To { get; set; }
+        public string TargetAccountNumber { get; set; }
 
         public static explicit operator TransferDescription(InterbankTransferDescription interbankTransferDescription)
         {
             return new TransferDescription
             {
                 Amount = Convert.ToDecimal(interbankTransferDescription.Amount) / 100,
-                To = interbankTransferDescription.ReceiverAccount,
-                From = interbankTransferDescription.SenderAccount,
+                TargetAccountNumber = interbankTransferDescription.ReceiverAccount,
+                SourceAccountNumber = interbankTransferDescription.SenderAccount,
                 Title = interbankTransferDescription.Title
             };
         }

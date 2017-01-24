@@ -1,5 +1,6 @@
 ﻿using System.ServiceModel;
 using Data.Core;
+using Data.Core.Entities;
 
 namespace Service.UserAccount.Contract
 {

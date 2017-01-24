@@ -57,16 +57,16 @@ namespace Test.Service.Bank.Router
                 return new TransferDescription
                 {
                     Amount = 100,
-                    To = _externalBankAccount,
-                    From = _internalBankAccount,
+                    TargetAccountNumber = _externalBankAccount,
+                    SourceAccountNumber = _internalBankAccount,
                     Title = "ToExternalAccount"
                 };
 
             return new TransferDescription
             {
                 Amount = 100,
-                To = _internalBankAccount,
-                From = _externalBankAccount,
+                TargetAccountNumber = _internalBankAccount,
+                SourceAccountNumber = _externalBankAccount,
                 Title = "FromExternalAccount"
             };
         }

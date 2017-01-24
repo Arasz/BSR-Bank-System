@@ -3,12 +3,11 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 
-namespace Data.Core
+namespace Data.Core.Entities
 {
     [Table("Operation"), DataContract]
     public class Operation
     {
-        [DataMember]
         public Account Account { get; set; }
 
         public long? AccountId { get; set; }
@@ -30,19 +29,19 @@ namespace Data.Core
 
         public long Id { get; set; }
 
-        [Required, DataMember]
+        [Required(AllowEmptyStrings = true), DataMember]
         [StringLength(26)]
         public string Source { get; set; }
 
-        [Required, DataMember]
+        [Required(AllowEmptyStrings = true), DataMember]
         [StringLength(26)]
         public string Target { get; set; }
 
-        [Required, DataMember]
+        [Required(AllowEmptyStrings = true), DataMember]
         [StringLength(200)]
         public string Title { get; set; }
 
-        [Required, DataMember]
+        [Required(AllowEmptyStrings = true), DataMember]
         [StringLength(50)]
         public string Type { get; set; }
     }

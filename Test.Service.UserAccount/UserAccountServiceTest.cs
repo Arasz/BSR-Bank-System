@@ -3,6 +3,7 @@ using Core.Common.Security;
 using Core.CQRS.Commands.Autofac;
 using Core.CQRS.Queries.Autofac;
 using Data.Core;
+using Data.Core.Entities;
 using FluentAssertions;
 using Moq;
 using Service.UserAccount.Contract;

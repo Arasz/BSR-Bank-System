@@ -26,20 +26,20 @@ namespace Service.Bank.CommandHandlers.Internal
 
         protected override void ValidateAccountBalance(decimal amount)
         {
-            if (_transferDescription.From == Account.Number && Account.Balance < amount)
+            if (_transferDescription.SourceAccountNumber == Account.Number && Account.Balance < amount)
                 throw new AccountBalanceToLowException(Account.Number, Account.Balance, amount);
         }
 
         private void DecreaseSenderBalance()
         {
-            UpdateAccountBalance(_transferDescription.Amount, _transferDescription.From);
+            UpdateAccountBalance(_transferDescription.Amount, _transferDescription.SourceAccountNumber);
 
             RegisterOperation();
         }
 
         private void IncreaseReceiverBalance()
         {
-            UpdateAccountBalance(-_transferDescription.Amount, _transferDescription.To);
+            UpdateAccountBalance(-_transferDescription.Amount, _transferDescription.TargetAccountNumber);
 
             RegisterOperation();
         }

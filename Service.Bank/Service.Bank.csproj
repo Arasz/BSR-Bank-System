@@ -87,10 +87,11 @@
     <Compile Include="CommandHandlers\Internal\WithdrawCommandHandler.cs" />
     <Compile Include="Commands\BookExternalTransferCommand.cs" />
     <Compile Include="Exceptions\AccountBalanceToLowException.cs" />
+    <Compile Include="Exceptions\AmbiguousTransferDescriptionException.cs" />
     <Compile Include="Extensions\OperationExtension.cs" />
     <Compile Include="Extensions\UserExtension.cs" />
-    <Compile Include="Implementation\BankServiceExceptionDecorator.cs" />
-    <Compile Include="Implementation\BankServiceValidationDecorator.cs" />
+    <Compile Include="ServiceDecorators\BankServiceExceptionDecorator.cs" />
+    <Compile Include="ServiceDecorators\BankServiceValidationDecorator.cs" />
     <Compile Include="OperationNames.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -102,7 +103,7 @@
     <Compile Include="Proxy\IInterbankTransferServiceProxy.cs" />
     <Compile Include="Proxy\ServiceHttpClient\ITransferServiceHttpClient.cs" />
     <Compile Include="Proxy\ServiceHttpClient\TransferServiceHttpClient.cs" />
-    <Compile Include="Exceptions\InterbankTransferException.cs" />
+    <Compile Include="Exceptions\ExternalTransferException.cs" />
     <Compile Include="Proxy\ServicesRegister\ITransferServicesRegister.cs" />
     <Compile Include="Proxy\ServicesRegister\TransferServicesRegister.cs" />
     <Compile Include="Queries\AuthenticatedUserQuery.cs" />

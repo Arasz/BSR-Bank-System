@@ -1,13 +1,14 @@
 ﻿using Core.Common.Exceptions;
-using Data.Core;
+using Data.Core.Entities;
 using FluentValidation;
 using Service.Contracts;
 using Service.Dto;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.ServiceModel;
 
-namespace Service.Bank.Implementation
+namespace Service.Bank.ServiceDecorators
 {
     public class BankServiceExceptionDecorator : IBankService
     {
@@ -26,7 +27,7 @@ namespace Service.Bank.Implementation
             }
             catch (ValidationException validationException)
             {
-                ThrowFaultException(new ValidationFailedException(validationException.Message));
+                ThrowFaultException(ConvertValidationException(validationException));
             }
             catch (Exception genericException)
             {
@@ -40,13 +41,9 @@ namespace Service.Bank.Implementation
             {
                 _bankService.ExternalTransfer(transferDescription);
             }
-            catch (AccountNotFoundException accountNotFoundException)
-            {
-                ThrowFaultException(accountNotFoundException);
-            }
             catch (ValidationException validationException)
             {
-                ThrowFaultException(new ValidationFailedException(validationException.Message));
+                ThrowFaultException(ConvertValidationException(validationException));
             }
             catch (Exception genericException)
             {
@@ -62,7 +59,7 @@ namespace Service.Bank.Implementation
             }
             catch (ValidationException validationException)
             {
-                ThrowFaultException(new ValidationFailedException(validationException.Message));
+                ThrowFaultException(ConvertValidationException(validationException));
             }
             catch (Exception genericException)
             {
@@ -78,7 +75,7 @@ namespace Service.Bank.Implementation
             }
             catch (ValidationException validationException)
             {
-                ThrowFaultException(new ValidationFailedException(validationException.Message));
+                ThrowFaultException(ConvertValidationException(validationException));
             }
             catch (Exception genericException)
             {
@@ -96,7 +93,7 @@ namespace Service.Bank.Implementation
             }
             catch (ValidationException validationException)
             {
-                ThrowFaultException(new ValidationFailedException(validationException.Message));
+                ThrowFaultException(ConvertValidationException(validationException));
             }
             catch (Exception genericException)
             {
@@ -122,16 +119,21 @@ namespace Service.Bank.Implementation
             }
         }
 
-        private void ThrowFaultException<TException>(TException innerException)
-            where TException : Exception
+        private static ValidationFailedException ConvertValidationException(ValidationException validationException)
         {
-            Console.WriteLine(innerException);
-            throw new FaultException<TException>(innerException);
+            var validationFailureMessage = validationException.Errors
+                .Select(failure => failure.ErrorMessage)
+                .Aggregate("", (accu, failureMessage) => accu += $"{failureMessage}\n");
+            return new ValidationFailedException(validationFailureMessage);
         }
+
+        private static string CreateExceptionDescription(Exception innerException) => $"# Exception:\n" +
+                                                                                      $"\t- Message: {innerException.Message}\n" +
+                                                                                      $"\t- Stack trace: {innerException.StackTrace}\n";
 
         private void ThrowFaultException(Exception innerException)
         {
-            Console.WriteLine(innerException);
+            Console.WriteLine(CreateExceptionDescription(innerException));
             throw new FaultException(new FaultReason(innerException.Message));
         }
     }

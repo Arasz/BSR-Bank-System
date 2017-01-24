@@ -1,28 +1,23 @@
-﻿using System.Collections.Generic;
-using Data.Core;
+﻿using Data.Core.Entities;
 using FluentValidation;
 using Service.Contracts;
 using Service.Dto;
+using System.Collections.Generic;
 
-namespace Service.Bank.Implementation
+namespace Service.Bank.ServiceDecorators
 {
     public class BankServiceValidationDecorator : IBankService
     {
         private readonly IValidator<AccountHistoryQuery> _accountHistoryValidator;
         private readonly IBankService _bankService;
-        private readonly IValidator<TransferDescription> _transefValidator;
+        private readonly IValidator<TransferDescription> _transeferValidator;
 
-        public BankServiceValidationDecorator(IBankService bankService, IValidator<TransferDescription> transefValidator,
+        public BankServiceValidationDecorator(IBankService bankService, IValidator<TransferDescription> transeferValidator,
             IValidator<AccountHistoryQuery> accountHistoryValidator)
         {
             _bankService = bankService;
-            _transefValidator = transefValidator;
+            _transeferValidator = transeferValidator;
             _accountHistoryValidator = accountHistoryValidator;
-        }
-
-        public User Login(string userName, string password)
-        {
-            return _bankService.Login(userName, password);
         }
 
         public void Deposit(string accountNumber, decimal amount)
@@ -43,6 +38,11 @@ namespace Service.Bank.Implementation
             _bankService.InternalTransfer(transferDescription);
         }
 
+        public User Login(string userName, string password)
+        {
+            return _bankService.Login(userName, password);
+        }
+
         public IEnumerable<Operation> OperationsHistory(AccountHistoryQuery accountHistoryQuery)
         {
             _accountHistoryValidator.ValidateAndThrow(accountHistoryQuery);
@@ -57,6 +57,6 @@ namespace Service.Bank.Implementation
         }
 
         private void ValidateTransferDescription(TransferDescription transferDescription)
-            => _transefValidator.ValidateAndThrow(transferDescription);
+            => _transeferValidator.ValidateAndThrow(transferDescription);
     }
 }

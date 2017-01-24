@@ -21,8 +21,8 @@ CREATE TABLE [Operation]
 	Id bigint PRIMARY KEY IDENTITY(1,1),
 	AccountId bigint FOREIGN KEY REFERENCES [Account](Id),
 	Title varchar(200) NOT NULL,
-	Source char(26) NOT NULL,
-	Target char(26) NOT NULL,
+	Source varchar(26) NOT NULL,
+	Target varchar(26) NOT NULL,
 	Credit money NOT NULL, -- ma
 	Debit money NOT NULL, -- winien
 	Amount money NOT NULL,

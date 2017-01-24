@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Core.CQRS.Queries;
 using Data.Core;
+using Data.Core.Entities;
 using Service.Dto;
 
 namespace Service.Bank.Queries

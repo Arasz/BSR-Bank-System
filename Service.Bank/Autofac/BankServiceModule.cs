@@ -16,6 +16,7 @@ using Service.Dto;
 using System.Net.Http;
 using System.Reflection;
 using System.Resources;
+using Service.Bank.ServiceDecorators;
 using Module = Autofac.Module;
 
 namespace Service.Bank.Autofac

@@ -1,4 +1,5 @@
 ﻿using Data.Core;
+using Data.Core.Entities;
 using FluentAssertions;
 using Service.Bank.Extensions;
 using Xunit;

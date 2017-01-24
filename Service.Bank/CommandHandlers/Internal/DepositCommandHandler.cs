@@ -17,7 +17,7 @@ namespace Service.Bank.CommandHandlers.Internal
         {
             _transferDescription = command.TransferDescription;
 
-            UpdateAccountBalance(_transferDescription.Amount, _transferDescription.To);
+            UpdateAccountBalance(_transferDescription.Amount, _transferDescription.TargetAccountNumber);
 
             RegisterOperation();
         }

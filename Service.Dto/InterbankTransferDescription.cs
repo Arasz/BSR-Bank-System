@@ -38,8 +38,8 @@ namespace Service.Dto
             return new InterbankTransferDescription
             {
                 Amount = Convert.ToInt32(Math.Round(transferDescription.Amount, 2) * 100),
-                ReceiverAccount = transferDescription.To,
-                SenderAccount = transferDescription.From,
+                ReceiverAccount = transferDescription.TargetAccountNumber,
+                SenderAccount = transferDescription.SourceAccountNumber,
                 Title = transferDescription.Title
             };
         }

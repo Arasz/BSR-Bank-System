@@ -2,6 +2,7 @@
 using Core.CQRS.Commands;
 using Core.CQRS.Queries;
 using Data.Core;
+using Data.Core.Entities;
 using Service.UserAccount.Commands;
 using Service.UserAccount.Contract;
 using Service.UserAccount.Queries;

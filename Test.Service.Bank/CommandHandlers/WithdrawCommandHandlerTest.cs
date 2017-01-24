@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Linq.Expressions;
 using Data.Core;
+using Data.Core.Entities;
 using FluentAssertions;
 using Service.Bank.CommandHandlers.Internal;
 using Service.Bank.Commands;

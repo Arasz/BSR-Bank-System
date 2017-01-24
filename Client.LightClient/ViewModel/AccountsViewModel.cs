@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ServiceModel;
 using System.Windows.Input;
+using Data.Core.Entities;
 
 namespace Client.LightClient.ViewModel
 {

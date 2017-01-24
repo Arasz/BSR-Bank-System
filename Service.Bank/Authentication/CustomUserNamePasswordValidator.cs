@@ -4,6 +4,7 @@ using Service.Bank.Extensions;
 using System.IdentityModel.Selectors;
 using System.Linq;
 using System.Security.Authentication;
+using Data.Core.Entities;
 
 namespace Service.Bank.Authentication
 {

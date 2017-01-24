@@ -20,7 +20,7 @@ namespace Service.Bank.CommandHandlers.External
 
             var chargedAmount = command.ChargePercent * _transferDescription.Amount;
 
-            UpdateAccountBalance(chargedAmount, _transferDescription.From);
+            UpdateAccountBalance(chargedAmount, _transferDescription.SourceAccountNumber);
 
             RegisterOperation();
         }
