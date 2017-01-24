@@ -1,17 +1,21 @@
-﻿using System;
-using System.Linq;
-using System.ServiceModel;
-using Autofac;
+﻿using Autofac;
 using Autofac.Integration.Wcf;
 using Service.Bank.Implementation;
 using Service.Contracts;
 using Service.InterbankTransfer.Autofac;
 using Service.InterbankTransfer.Implementation;
+using System;
+using System.ServiceModel;
 
 namespace Host.SelfHosting
 {
     internal class Program
     {
+        private static void AddContainer<TContract>(ServiceHost host, IContainer container)
+        {
+            host.AddDependencyInjectionBehavior<TContract>(container);
+        }
+
         private static IContainer BuildContainer()
         {
             var builder = new ContainerBuilder();
@@ -27,20 +31,57 @@ namespace Host.SelfHosting
             using (var bankServiceHost = new ServiceHost(typeof(BankService)))
             using (var interbankTransferServiceHost = new ServiceHost(typeof(InterbankTransferService)))
             {
-                bankServiceHost.AddDependencyInjectionBehavior<IBankService>(container);
-                interbankTransferServiceHost.AddDependencyInjectionBehavior<IInterbankTransferService>(container);
+                AddContainer<IBankService>(bankServiceHost, container);
+                AddContainer<IInterbankTransferService>(interbankTransferServiceHost, container);
+
+                SubscribeEvents(bankServiceHost);
+                SubscribeEvents(interbankTransferServiceHost);
 
                 bankServiceHost.Open();
-                Console.WriteLine($"The host {nameof(bankServiceHost)} has been opened with base address: {bankServiceHost.BaseAddresses.FirstOrDefault()}.");
-
                 interbankTransferServiceHost.Open();
-                Console.WriteLine($"The host {nameof(interbankTransferServiceHost)} has been opened with base address {interbankTransferServiceHost.BaseAddresses.FirstOrDefault()}.");
 
                 Console.ReadLine();
 
                 bankServiceHost.Close();
                 interbankTransferServiceHost.Close();
             }
+        }
+
+        private static void SoapServiceHostOnClosed(object sender, EventArgs eventArgs)
+        {
+            var host = (ServiceHost)sender;
+            Console.WriteLine($"Service {host.Description.Name} closed.\n");
+        }
+
+        private static void SoapServiceHostOnFaulted(object sender, EventArgs eventArgs)
+        {
+            var host = (ServiceHost)sender;
+            Console.WriteLine($"Service {host.Description.Name} faulted.\n" +
+                              $"State: {host.State}");
+        }
+
+        private static void SoapServiceHostOnOpened(object sender, EventArgs eventArgs)
+        {
+            var host = (ServiceHost)sender;
+            var serviceDescription = new HostedServiceDescription(host);
+            Console.WriteLine($"Service {host.Description.Name} opened.\n" + serviceDescription.Description);
+        }
+
+        private static void SoapServiceHostOnUnknownMessageReceived(object sender, UnknownMessageReceivedEventArgs unknownMessageReceivedEventArgs)
+        {
+            var host = (ServiceHost)sender;
+            Console.WriteLine($"Service {host.Description.Name} received unknown message : {unknownMessageReceivedEventArgs.Message}");
+        }
+
+        private static void SubscribeEvents(ServiceHost soapServiceHost)
+        {
+            soapServiceHost.UnknownMessageReceived += SoapServiceHostOnUnknownMessageReceived;
+
+            soapServiceHost.Faulted += SoapServiceHostOnFaulted;
+
+            soapServiceHost.Opened += SoapServiceHostOnOpened;
+
+            soapServiceHost.Closed += SoapServiceHostOnClosed;
         }
     }
 }

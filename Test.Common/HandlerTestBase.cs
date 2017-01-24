@@ -1,9 +1,9 @@
-﻿using System;
-using System.Data.Entity;
-using System.Linq.Expressions;
-using Autofac;
+﻿using Autofac;
 using Data.Core;
 using Service.Bank.Autofac;
+using System;
+using System.Data.Entity;
+using System.Linq.Expressions;
 
 namespace Test.Common
 {

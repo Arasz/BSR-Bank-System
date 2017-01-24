@@ -19,7 +19,7 @@ namespace Service.Contracts
         [OperationContract]
         [FaultContract(typeof(FaultException))]
         [FaultContract(typeof(FaultException<ValidationFailedException>))]
-        User Authentication(string userName, string password);
+        User Login(string userName, string password);
 
         /// <summary>
         /// Increases user account balance by given amount 

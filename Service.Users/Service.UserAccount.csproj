@@ -47,15 +47,10 @@
       <HintPath>..\packages\FluentValidation.6.2.1.0\lib\Net45\FluentValidation.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\CreateUserCommand.cs" />
@@ -72,15 +67,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.Common.csproj">
+    <ProjectReference Include="..\Core.Common\Core.Common.csproj">
       <Project>{61f89953-804f-4c8c-86a7-22f2dbe9ebe3}</Project>
       <Name>Core.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CQRS\Core.CQRS.csproj">
+    <ProjectReference Include="..\Core.CQRS\Core.CQRS.csproj">
       <Project>{db6f8014-94af-466b-9aaf-b7632751871b}</Project>
       <Name>Core.CQRS</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataLayer\Data.Core.csproj">
+    <ProjectReference Include="..\Data.Core\Data.Core.csproj">
       <Project>{9e811ac8-1601-47d8-af57-448931fe6ae7}</Project>
       <Name>Data.Core</Name>
     </ProjectReference>
