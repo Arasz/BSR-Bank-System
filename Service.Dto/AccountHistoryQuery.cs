@@ -7,13 +7,13 @@ namespace Service.Dto
     public class AccountHistoryQuery
     {
         [DataMember]
-        public string AccountNumber { get; }
+        public string AccountNumber { get; set; }
 
         [DataMember]
-        public DateTime From { get; }
+        public DateTime From { get; set; }
 
         [DataMember]
-        public DateTime To { get; }
+        public DateTime To { get; set; }
 
         public AccountHistoryQuery(DateTime from, DateTime to, string accountNumber)
         {
