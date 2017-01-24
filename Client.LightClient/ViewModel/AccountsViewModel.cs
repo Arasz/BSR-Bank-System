@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight.Views;
 using Service.Dto;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ServiceModel;
 using System.Windows.Input;
 
@@ -17,7 +18,7 @@ namespace Client.LightClient.ViewModel
         private readonly IDialogService _dialogService;
         private readonly INavigationService _navigationService;
         private IEnumerable<Operation> _accountOperations;
-        private ICollection<Account> _accounts;
+        private ObservableCollection<Account> _accounts;
         private Account _selectedAccount;
         private string _username;
         public ICommand AccountHistoryCommand { get; }
@@ -28,7 +29,7 @@ namespace Client.LightClient.ViewModel
             set { Set(ref _accountOperations, value); }
         }
 
-        public ICollection<Account> Accounts
+        public ObservableCollection<Account> Accounts
         {
             get { return _accounts; }
             set { Set(ref _accounts, value); }
@@ -68,11 +69,16 @@ namespace Client.LightClient.ViewModel
 
             MessengerInstance.Register<User>(this, UserLogged);
 
-            DepositCommand = new RelayCommand(Deposit);
-            WithdrawCommand = new RelayCommand(Withdraw);
-            ExternalTransferCommand = new RelayCommand(MakeExternalTransfer);
-            TransferCommand = new RelayCommand(MakeTransfer);
-            AccountHistoryCommand = new RelayCommand(GetAccountHistory);
+            DepositCommand = new RelayCommand(Deposit, CanExecuteCommand);
+            WithdrawCommand = new RelayCommand(Withdraw, CanExecuteCommand);
+            ExternalTransferCommand = new RelayCommand(MakeExternalTransfer, CanExecuteCommand);
+            TransferCommand = new RelayCommand(MakeTransfer, CanExecuteCommand);
+            AccountHistoryCommand = new RelayCommand(GetAccountHistory, CanExecuteCommand);
+        }
+
+        private bool CanExecuteCommand()
+        {
+            return SelectedAccount != null;
         }
 
         private async void Deposit()
@@ -83,7 +89,7 @@ namespace Client.LightClient.ViewModel
                 var parsedAmount = decimal.Parse(Amount);
                 await _bankServiceProxy.DepositAsync(SelectedAccount.Number, parsedAmount);
                 SelectedAccount.Balance += parsedAmount;
-                RaisePropertyChanged(nameof(SelectedAccount));
+                RaisePropertyChanged(nameof(Accounts));
             }
             catch (FaultException faultException)
             {
@@ -100,7 +106,7 @@ namespace Client.LightClient.ViewModel
             var errorTitle = "Operation history error";
             try
             {
-                AccountOperations = await _bankServiceProxy.OperationsHistoryAsync(new AccountHistoryQuery(TargetAccountNumber));
+                AccountOperations = await _bankServiceProxy.OperationsHistoryAsync(new AccountHistoryQuery(SelectedAccount.Number));
             }
             catch (FaultException faultException)
             {
@@ -120,7 +126,7 @@ namespace Client.LightClient.ViewModel
                 var parsedAmount = decimal.Parse(Amount);
                 await _bankServiceProxy.ExternalTransferAsync(new TransferDescription(SelectedAccount.Number, TargetAccountNumber, TransferTitle, parsedAmount));
                 SelectedAccount.Balance -= parsedAmount;
-                RaisePropertyChanged(nameof(SelectedAccount));
+                RaisePropertyChanged(nameof(Accounts));
             }
             catch (FaultException faultException)
             {
@@ -140,7 +146,7 @@ namespace Client.LightClient.ViewModel
                 var parsedAmount = decimal.Parse(Amount);
                 await _bankServiceProxy.InternalTransferAsync(new TransferDescription(SelectedAccount.Number, TargetAccountNumber, TransferTitle, parsedAmount));
                 SelectedAccount.Balance -= parsedAmount;
-                RaisePropertyChanged(nameof(SelectedAccount));
+                RaisePropertyChanged(nameof(Accounts));
             }
             catch (FaultException faultException)
             {
@@ -156,7 +162,7 @@ namespace Client.LightClient.ViewModel
         {
             Username = loggedUser.Name;
 
-            Accounts = loggedUser.Accounts;
+            Accounts = new ObservableCollection<Account>(loggedUser.Accounts);
         }
 
         private async void Withdraw()
@@ -167,7 +173,7 @@ namespace Client.LightClient.ViewModel
                 var parsedAmount = decimal.Parse(Amount);
                 await _bankServiceProxy.WithdrawAsync(SelectedAccount.Number, parsedAmount);
                 SelectedAccount.Balance -= parsedAmount;
-                RaisePropertyChanged(nameof(SelectedAccount));
+                RaisePropertyChanged(nameof(Accounts));
             }
             catch (FaultException faultException)
             {
