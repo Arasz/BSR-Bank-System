@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Core.Common.Exceptions;
+﻿using Core.Common.Exceptions;
 using Core.CQRS.Queries;
 using Data.Core;
 using Data.Core.Entities;
 using Service.Bank.Queries;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 
 namespace Service.Bank.QueryHandlers
 {
@@ -21,6 +22,7 @@ namespace Service.Bank.QueryHandlers
         public IEnumerable<Operation> HandleQuery(AccountOperationsHistoryQuery query)
         {
             var queriedAccount = _dataContext.Accounts
+                .Include(account => account.Operations)
                 .SingleOrDefault(account => account.Number == query.AccountNumber);
 
             if (queriedAccount == null)

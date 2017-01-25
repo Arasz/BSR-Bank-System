@@ -33,6 +33,8 @@ namespace Client.LightClient.ViewModel
         {
             try
             {
+                _bankServiceProxy.SetCredentials(Username, Password);
+
                 var loggedUser = await _bankServiceProxy.LoginAsync(Username, Password);
                 _navigationService.NavigateTo(nameof(AccountsPage));
                 MessengerInstance.Send(loggedUser);

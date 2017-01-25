@@ -1,18 +1,15 @@
-﻿using Data.Core;
+﻿using Data.Core.Entities;
 using Service.Contracts;
 using Service.Dto;
 using System.Collections.Generic;
 using System.ServiceModel;
 using System.Threading.Tasks;
-using Data.Core.Entities;
 
 namespace Client.Proxy.BankService
 {
     public interface IBankServiceProxy : IBankService
     {
         ClientBase<IBankService> ClientBase { get; }
-
-        Task<User> LoginAsync(string userName, string password);
 
         void Deposit(string accountNumber, decimal amount);
 
@@ -28,9 +25,13 @@ namespace Client.Proxy.BankService
 
         User Login(string userName, string password);
 
+        Task<User> LoginAsync(string userName, string password);
+
         IEnumerable<Operation> OperationsHistory(AccountHistoryQuery accountHistoryQuery);
 
         Task<IEnumerable<Operation>> OperationsHistoryAsync(AccountHistoryQuery accountHistoryQuery);
+
+        void SetCredentials(string username, string password);
 
         void Withdraw(string accountNumber, decimal amount);
 
