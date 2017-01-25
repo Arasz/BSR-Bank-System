@@ -10,6 +10,10 @@ namespace Test.Service.Bank.Validation
     public class TransferDescriptionValidatorTest
     {
         [Fact]
+        public void AmountValidation_MinimalAmount_ShouldPassValidation() => CreateValidator()
+            .ShouldNotHaveValidationErrorFor(description => description.Amount, 0.01M);
+
+        [Fact]
         public void AmountValidation_NegativeAmount_ShouldPassValidation() => CreateValidator()
             .ShouldNotHaveValidationErrorFor(description => description.Amount, 100);
 
@@ -18,10 +22,6 @@ namespace Test.Service.Bank.Validation
             .ShouldHaveValidationErrorFor(description => description.Amount, -1)
             .Should()
             .ContainSingle();
-
-        [Fact]
-        public void AmountValidation_ZeroAmount_ShouldPassValidation() => CreateValidator()
-            .ShouldNotHaveValidationErrorFor(description => description.Amount, 0);
 
         [Fact]
         public void ReceiverAccount_AccountNumberShorterThan26Numbers_ShouldReturnValidationErorr() => CreateValidator()
