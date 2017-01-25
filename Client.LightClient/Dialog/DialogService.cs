@@ -1,6 +1,4 @@
-﻿using GalaSoft.MvvmLight.Views;
-using System;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows;
 
 namespace Client.LightClient.Dialog
@@ -14,41 +12,18 @@ namespace Client.LightClient.Dialog
             _mainWindow = mainWindow;
         }
 
-        public Task ShowError(string message, string title, string buttonText, Action afterHideCallback)
+        public void ShowError(string message, string title)
         {
-            return Task.Run(() =>
-            {
-                MessageBox.Show(_mainWindow, message, title, MessageBoxButton.OK, MessageBoxImage.Error);
-                afterHideCallback?.Invoke();
-            });
+            MessageBox.Show(_mainWindow, message, title, MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
-        public Task ShowError(Exception error, string title, string buttonText, Action afterHideCallback)
+        public void ShowError(Exception exception, string title)
         {
-            MessageBox.Show(_mainWindow, error.Message, title, MessageBoxButton.OK, MessageBoxImage.Error);
-            afterHideCallback?.Invoke();
-            return Task.CompletedTask;
+            MessageBox.Show(_mainWindow, exception.Message, title, MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
-        public Task ShowMessage(string message, string title)
-        {
-            throw new NotImplementedException();
-        }
+        public void ShowError(string message) => ShowError(message, "Error");
 
-        public Task ShowMessage(string message, string title, string buttonText, Action afterHideCallback)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> ShowMessage(string message, string title, string buttonConfirmText, string buttonCancelText,
-            Action<bool> afterHideCallback)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task ShowMessageBox(string message, string title)
-        {
-            throw new NotImplementedException();
-        }
+        public void ShowError(Exception exception) => ShowError(exception, "Error");
     }
 }

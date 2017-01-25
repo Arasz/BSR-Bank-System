@@ -1,15 +1,17 @@
-﻿using Client.Proxy.BankService;
-using Data.Core;
+﻿using Client.LightClient.Dialog;
+using Client.LightClient.Model;
+using Client.Proxy.BankService;
+using Data.Core.Entities;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
-using GalaSoft.MvvmLight.Views;
 using Service.Dto;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.ServiceModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
-using Data.Core.Entities;
 
 namespace Client.LightClient.ViewModel
 {
@@ -17,14 +19,14 @@ namespace Client.LightClient.ViewModel
     {
         private readonly IBankServiceProxy _bankServiceProxy;
         private readonly IDialogService _dialogService;
-        private readonly INavigationService _navigationService;
-        private IEnumerable<Operation> _accountOperations;
+        private IEnumerable<BankOperation> _accountOperations;
         private ObservableCollection<Account> _accounts;
         private Account _selectedAccount;
         private string _username;
+
         public ICommand AccountHistoryCommand { get; }
 
-        public IEnumerable<Operation> AccountOperations
+        public IEnumerable<BankOperation> AccountOperations
         {
             get { return _accountOperations; }
             set { Set(ref _accountOperations, value); }
@@ -41,6 +43,8 @@ namespace Client.LightClient.ViewModel
         public ICommand DepositCommand { get; }
 
         public ICommand ExternalTransferCommand { get; }
+
+        public bool OperationInProgress { get; set; }
 
         public Account SelectedAccount
         {
@@ -62,9 +66,8 @@ namespace Client.LightClient.ViewModel
 
         public ICommand WithdrawCommand { get; }
 
-        public AccountsViewModel(INavigationService navigationService, IBankServiceProxy bankServiceProxy, IDialogService dialogService)
+        public AccountsViewModel(IBankServiceProxy bankServiceProxy, IDialogService dialogService)
         {
-            _navigationService = navigationService;
             _bankServiceProxy = bankServiceProxy;
             _dialogService = dialogService;
 
@@ -82,81 +85,83 @@ namespace Client.LightClient.ViewModel
             return SelectedAccount != null;
         }
 
+        private TransferDescription CreateTransferDescription(decimal parsedAmount)
+        {
+            return new TransferDescription(SelectedAccount.Number, TargetAccountNumber, TransferTitle, parsedAmount);
+        }
+
         private async void Deposit()
         {
             var errorTitle = "Deposit error";
-            try
+            await HandleServiceError(async () =>
             {
                 var parsedAmount = decimal.Parse(Amount);
+
                 await _bankServiceProxy.DepositAsync(SelectedAccount.Number, parsedAmount);
-                SelectedAccount.Balance += parsedAmount;
-                RaisePropertyChanged(nameof(Accounts));
-            }
-            catch (FaultException faultException)
-            {
-                await _dialogService.ShowError(faultException, errorTitle, "", null);
-            }
-            catch (Exception exception)
-            {
-                await _dialogService.ShowError(exception.Message, errorTitle, "", null);
-            }
+
+                UpdateSelectedAccountBalance(-parsedAmount);
+            }, errorTitle);
         }
 
         private async void GetAccountHistory()
         {
             var errorTitle = "Operation history error";
+            await HandleServiceError(async () =>
+            {
+                var operations = await _bankServiceProxy.OperationsHistoryAsync(new AccountHistoryQuery(SelectedAccount.Number));
+                AccountOperations = operations.Select(operation => new BankOperation(operation));
+            }, errorTitle);
+        }
+
+        private async Task HandleServiceError(Func<Task> serviceCall, string errorTitle)
+        {
             try
             {
-                AccountOperations = await _bankServiceProxy.OperationsHistoryAsync(new AccountHistoryQuery(SelectedAccount.Number));
+                OperationInProgress = true;
+                await serviceCall();
             }
             catch (FaultException faultException)
             {
-                await _dialogService.ShowError(faultException, errorTitle, "", null);
+                _dialogService.ShowError(faultException, errorTitle);
             }
             catch (Exception exception)
             {
-                await _dialogService.ShowError(exception.Message, errorTitle, "", null);
+                _dialogService.ShowError(exception.Message, errorTitle);
+            }
+            finally
+            {
+                OperationInProgress = false;
             }
         }
 
         private async void MakeExternalTransfer()
         {
             var errorTitle = "External transfer error";
-            try
+            await HandleServiceError(async () =>
             {
                 var parsedAmount = decimal.Parse(Amount);
-                await _bankServiceProxy.ExternalTransferAsync(new TransferDescription(SelectedAccount.Number, TargetAccountNumber, TransferTitle, parsedAmount));
-                SelectedAccount.Balance -= parsedAmount;
-                RaisePropertyChanged(nameof(Accounts));
-            }
-            catch (FaultException faultException)
-            {
-                await _dialogService.ShowError(faultException, errorTitle, "", null);
-            }
-            catch (Exception exception)
-            {
-                await _dialogService.ShowError(exception.Message, errorTitle, "", null);
-            }
+                await _bankServiceProxy.ExternalTransferAsync(CreateTransferDescription(parsedAmount));
+                UpdateSelectedAccountBalance(parsedAmount);
+            }, errorTitle);
         }
 
         private async void MakeTransfer()
         {
             var errorTitle = "Transfer error";
-            try
+
+            await HandleServiceError(async () =>
             {
                 var parsedAmount = decimal.Parse(Amount);
-                await _bankServiceProxy.InternalTransferAsync(new TransferDescription(SelectedAccount.Number, TargetAccountNumber, TransferTitle, parsedAmount));
-                SelectedAccount.Balance -= parsedAmount;
-                RaisePropertyChanged(nameof(Accounts));
-            }
-            catch (FaultException faultException)
-            {
-                await _dialogService.ShowError(faultException, errorTitle, "", null);
-            }
-            catch (Exception exception)
-            {
-                await _dialogService.ShowError(exception.Message, errorTitle, "", null);
-            }
+                await _bankServiceProxy.InternalTransferAsync(CreateTransferDescription(parsedAmount));
+                UpdateSelectedAccountBalance(parsedAmount);
+            }, errorTitle);
+        }
+
+        private void UpdateSelectedAccountBalance(decimal parsedAmount)
+        {
+            SelectedAccount.Balance -= parsedAmount;
+            Accounts.Remove(SelectedAccount);
+            Accounts.Add(SelectedAccount);
         }
 
         private void UserLogged(User loggedUser)
@@ -169,21 +174,12 @@ namespace Client.LightClient.ViewModel
         private async void Withdraw()
         {
             var errorTitle = "Withdraw error";
-            try
+            await HandleServiceError(async () =>
             {
                 var parsedAmount = decimal.Parse(Amount);
                 await _bankServiceProxy.WithdrawAsync(SelectedAccount.Number, parsedAmount);
-                SelectedAccount.Balance -= parsedAmount;
-                RaisePropertyChanged(nameof(Accounts));
-            }
-            catch (FaultException faultException)
-            {
-                await _dialogService.ShowError(faultException, errorTitle, "", null);
-            }
-            catch (Exception exception)
-            {
-                await _dialogService.ShowError(exception.Message, errorTitle, "", null);
-            }
+                UpdateSelectedAccountBalance(parsedAmount);
+            }, errorTitle);
         }
     }
 }

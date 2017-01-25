@@ -82,7 +82,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Dialog\DialogService.cs" />
+    <Compile Include="Dialog\IDialogService.cs" />
     <Compile Include="Message\AccountSelectedMessage.cs" />
+    <Compile Include="Model\BankOperation.cs" />
     <Compile Include="Pages\AccountsPage.xaml.cs">
       <DependentUpon>AccountsPage.xaml</DependentUpon>
     </Compile>

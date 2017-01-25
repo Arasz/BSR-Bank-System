@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight.Views;
 using System;
 using System.ServiceModel;
 using System.Windows.Input;
+using IDialogService = Client.LightClient.Dialog.IDialogService;
 
 namespace Client.LightClient.ViewModel
 {
@@ -38,11 +39,11 @@ namespace Client.LightClient.ViewModel
             }
             catch (FaultException invalidCredentialException)
             {
-                await _dialogService.ShowError(invalidCredentialException, "Login error", "Ok", null);
+                _dialogService.ShowError(invalidCredentialException, "Login error");
             }
             catch (Exception exception)
             {
-                await _dialogService.ShowError(exception.Message, "Login error", "Ok", null);
+                _dialogService.ShowError(exception.Message, "Login error");
             }
         }
     }

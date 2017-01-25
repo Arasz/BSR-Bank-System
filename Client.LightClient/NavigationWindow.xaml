@@ -6,6 +6,8 @@
         xmlns:ignore="http://www.galasoft.ch/ignore"
         mc:Ignorable="d ignore"
         Title="Bank client"
+        Width="800"
+        Height="500"
         Loaded="MainWindow_OnLoaded">
 
     <Window.Resources>

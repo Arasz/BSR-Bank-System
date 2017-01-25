@@ -4,10 +4,15 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:Client.LightClient.Pages"
+      xmlns:c="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
       mc:Ignorable="d"
-      d:DesignHeight="500" d:DesignWidth="600"
+      d:DesignHeight="500" d:DesignWidth="500"
       Title="AccountPage"
       DataContext="{Binding Source={StaticResource Locator}, Path=Accounts}">
+
+    <Page.Resources>
+        <c:BooleanToVisibilityConverter x:Key="VisibilityConverter" />
+    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -15,41 +20,39 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <StackPanel Grid.Column="0">
-            <Grid HorizontalAlignment="Center">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="3*" />
-                </Grid.ColumnDefinitions>
-                <Label Margin="0,5" Content="Username:"
-               Grid.Row="0" Grid.Column="0" />
-                <Label Margin="0,5" Content="{Binding Username}"
-               Grid.Row="0" Grid.Column="1" />
-            </Grid>
-            <Grid HorizontalAlignment="Center">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="3*" />
-                </Grid.ColumnDefinitions>
-                <Label Margin="0,5" Content="Selected account:"
-               Grid.Row="0" Grid.Column="0" />
-                <Label Margin="0,5" Content="{Binding SelectedAccount.Number}"
-               Grid.Row="0" Grid.Column="1" />
-            </Grid>
-        </StackPanel>
-        <ListView Margin="10" ItemsSource="{Binding Accounts}" Name="AccountsList"
+        <GroupBox Header="Accounts" Margin="10,0">
+            <StackPanel>
+                <Grid HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="4*" />
+                    </Grid.ColumnDefinitions>
+                    <DockPanel Grid.Row="0" Grid.Column="0" Margin="5,0">
+                        <Label Margin="0,5" Content="User name:" />
+                        <TextBox Text="{Binding Username}" IsReadOnly="True" VerticalAlignment="Center"
+                         HorizontalAlignment="Stretch" />
+                    </DockPanel>
+                    <DockPanel Grid.Row="0" Grid.Column="1" Margin="5,0">
+                        <Label Margin="0,5" Content="Selected account:" />
+                        <TextBox Text="{Binding SelectedAccount.Number}" IsReadOnly="True" VerticalAlignment="Center"
+                         HorizontalAlignment="Stretch" />
+                    </DockPanel>
+                </Grid>
+                <ListView Margin="10" ItemsSource="{Binding Accounts}" Name="AccountsList"
                   Grid.Row="1"  Grid.Column="0"
                   SelectionMode="Single"
                   SelectionChanged="AccountsList_OnSelectionChanged">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Account number" DisplayMemberBinding="{Binding Number}"
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Account number" DisplayMemberBinding="{Binding Number}"
                                     Width="Auto" />
-                    <GridViewColumn Header="Balance" DisplayMemberBinding="{Binding Balance}"
+                            <GridViewColumn Header="Balance" DisplayMemberBinding="{Binding Balance}"
                                     Width="Auto" />
-                </GridView>
-            </ListView.View>
-        </ListView>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+        </GroupBox>
 
         <Grid Grid.Row="2" Grid.Column="0" Margin="10">
             <Grid.RowDefinitions>
@@ -57,59 +60,65 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Grid.Column="0" Margin="5,30">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="2*" />
-                    <ColumnDefinition Width="2*" />
-                </Grid.ColumnDefinitions>
-                <StackPanel Orientation="Vertical" Margin="5,0">
-                    <Label Content="Amount: " VerticalAlignment="Center" />
-                    <TextBox Text="{Binding Amount}"
+            <GroupBox Header="Account operations" Grid.Row="0" Grid.Column="0">
+                <StackPanel>
+                    <Grid  Margin="5,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Vertical" Margin="5,0">
+                            <Label Content="Amount: " VerticalAlignment="Center" />
+                            <TextBox Text="{Binding Amount}"
                              VerticalAlignment="Center" />
-                </StackPanel>
-                <StackPanel Orientation="Vertical" Grid.Column="1" Margin="5,0">
-                    <Label Content="Target account: " VerticalAlignment="Center"
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Grid.Column="1" Margin="5,0">
+                            <Label Content="Target account: " VerticalAlignment="Center"
                            VerticalContentAlignment="Center" />
-                    <TextBox Text="{Binding TargetAccountNumber}"
+                            <TextBox Text="{Binding TargetAccountNumber}"
                              VerticalAlignment="Center" />
-                </StackPanel>
-                <StackPanel Orientation="Vertical" Grid.Column="2" Margin="5,0">
-                    <Label Content="Title: " VerticalAlignment="Center"
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Grid.Column="2" Margin="5,0">
+                            <Label Content="Title: " VerticalAlignment="Center"
                            VerticalContentAlignment="Center" />
-                    <TextBox Text="{Binding TransferTitle}"
+                            <TextBox Text="{Binding TransferTitle}"
                              VerticalAlignment="Center" />
-                </StackPanel>
-            </Grid>
-
-            <Grid Grid.Column="0"  Grid.Row="1" HorizontalAlignment="Stretch">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Button Content="Withdraw" Margin="10" Grid.Column="0"
+                        </StackPanel>
+                    </Grid>
+                    <Grid HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Button Content="Withdraw" Margin="10" Grid.Column="0"
                         VerticalAlignment="Center" Command="{Binding WithdrawCommand}" />
-                <Button Content="Deposit" Margin="10" Grid.Column="1"
+                        <Button Content="Deposit" Margin="10" Grid.Column="1"
                         VerticalAlignment="Center" Command="{Binding DepositCommand}" />
-                <Button Content="External transfer" Margin="10" Grid.Column="2"
+                        <Button Content="External transfer" Margin="10" Grid.Column="2"
                         VerticalAlignment="Center" Command="{Binding ExternalTransferCommand}" />
-                <Button Content="Internal transfer" Margin="10" Grid.Column="3"
+                        <Button Content="Internal transfer" Margin="10" Grid.Column="3"
                         VerticalAlignment="Center" Command="{Binding TransferCommand}" />
-            </Grid>
-            <Grid Grid.Row="2" Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Label Content="Account operations history: " Margin="5" />
-                <Button Content="Refresh operation history" HorizontalAlignment="Center"
-                        VerticalAlignment="Center" Margin="0,5"  Grid.Row="1" Command="{Binding AccountHistoryCommand}" />
-                <DataGrid Grid.Row="2" ItemsSource="{Binding AccountOperations}">
-                </DataGrid>
-            </Grid>
+                    </Grid>
+                    <ProgressBar IsIndeterminate="True" Visibility="{Binding OperationInProgress, Converter={StaticResource VisibilityConverter} }" />
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Grid.Row="2" Grid.Column="0" Header="Account operations history">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Button Content=" Refresh " HorizontalAlignment="Center"
+                        VerticalAlignment="Center" Margin="0,5"  Grid.Row="2"
+                            Command="{Binding AccountHistoryCommand}" />
+                    <DataGrid Grid.Row="1" ItemsSource="{Binding AccountOperations}">
+                    </DataGrid>
+                </Grid>
+            </GroupBox>
         </Grid>
     </Grid>
 </Page>
