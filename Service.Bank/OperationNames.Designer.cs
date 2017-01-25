@@ -61,7 +61,7 @@ namespace Service.Bank {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Odebrano przelew zewnętrzny.
+        ///   Looks up a localized string similar to External transfer.
         /// </summary>
         internal static string BookExternalTransferCommand {
             get {
@@ -70,7 +70,7 @@ namespace Service.Bank {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wpłata.
+        ///   Looks up a localized string similar to Deposit.
         /// </summary>
         internal static string DepositCommand {
             get {
@@ -79,7 +79,7 @@ namespace Service.Bank {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Opłata bankowa.
+        ///   Looks up a localized string similar to Operation charge.
         /// </summary>
         internal static string ExternalTransferChargeCommand {
             get {
@@ -88,7 +88,7 @@ namespace Service.Bank {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Przelew zewnętrzny.
+        ///   Looks up a localized string similar to External transfer.
         /// </summary>
         internal static string ExternalTransferCommand {
             get {
@@ -97,7 +97,7 @@ namespace Service.Bank {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Przelew wewnętrzny.
+        ///   Looks up a localized string similar to Transfer.
         /// </summary>
         internal static string InternalTransferCommand {
             get {
@@ -106,7 +106,7 @@ namespace Service.Bank {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wypłata.
+        ///   Looks up a localized string similar to Withdraw.
         /// </summary>
         internal static string WithdrawCommand {
             get {
