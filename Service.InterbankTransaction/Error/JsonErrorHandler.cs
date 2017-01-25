@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Service.Dto;
+using System;
 using System.Linq;
 using System.Net;
 using System.Reflection;
@@ -6,7 +7,6 @@ using System.Runtime.Serialization.Json;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Dispatcher;
 using System.ServiceModel.Web;
-using Service.Dto;
 
 namespace Service.InterbankTransfer.Error
 {
@@ -21,26 +21,21 @@ namespace Service.InterbankTransfer.Error
 
             var innerException = DetailProperty(error)?.GetValue(error);
             if (innerException != null && innerException is Exception)
-                error = (Exception) innerException;
+                error = (Exception)innerException;
 
             fault = GetJsonFaultMessage(version, error);
 
             ApplyJsonSettings(fault);
-            ApplyHttpResponseSettings(fault, statusCode, statusDescription);
+            ApplyHttpResponseSettings(statusCode, statusDescription);
         }
 
-        protected virtual void ApplyHttpResponseSettings(Message fault, HttpStatusCode statusCode,
+        protected virtual void ApplyHttpResponseSettings(HttpStatusCode statusCode,
             string statusDescription)
         {
-            var httpResponse = new HttpResponseMessageProperty
-            {
-                StatusCode = statusCode,
-                StatusDescription = statusDescription
-            };
-
-            // httpResponse.Headers[HttpRequestHeader.ContentType] = "application/json";
-
-            fault.Properties.Add(HttpResponseMessageProperty.Name, httpResponse);
+            var response = WebOperationContext.Current.OutgoingResponse;
+            response.ContentType = "application/json";
+            response.StatusCode = statusCode;
+            response.StatusDescription = statusDescription;
         }
 
         protected virtual void ApplyJsonSettings(Message fault)
@@ -58,9 +53,7 @@ namespace Service.InterbankTransfer.Error
         }
 
         private static Message CreateFaultMessage(MessageVersion version, InterbankTransferError interbankTransferError)
-            =>
-                Message.CreateMessage(version, "", interbankTransferError,
-                    new DataContractJsonSerializer(typeof(InterbankTransferError)));
+            => Message.CreateMessage(version, "", interbankTransferError, new DataContractJsonSerializer(typeof(InterbankTransferError)));
 
         private PropertyInfo DetailProperty(Exception error)
         {
