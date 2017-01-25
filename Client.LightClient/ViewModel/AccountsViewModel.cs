@@ -70,6 +70,10 @@ namespace Client.LightClient.ViewModel
 
         public ICommand WithdrawCommand { get; }
 
+        private TransferDescription CreateTransferDescription => new TransferDescription(SelectedAccount.Number, TargetAccountNumber, TransferTitle, ParsedAmount);
+
+        private decimal ParsedAmount => decimal.Floor(decimal.Parse(Amount) * 100) / 100;
+
         public AccountsViewModel(IBankServiceProxy bankServiceProxy, IDialogService dialogService)
         {
             _bankServiceProxy = bankServiceProxy;
@@ -86,16 +90,12 @@ namespace Client.LightClient.ViewModel
 
         private bool CanExecuteCommand() => SelectedAccount != null;
 
-        private TransferDescription CreateTransferDescription(decimal parsedAmount) => new TransferDescription(SelectedAccount.Number, TargetAccountNumber, TransferTitle, parsedAmount);
-
         private async void Deposit()
         {
             var errorTitle = "Deposit error";
             await HandleServiceError(async () =>
             {
-                var parsedAmount = decimal.Parse(Amount);
-
-                await _bankServiceProxy.DepositAsync(SelectedAccount.Number, parsedAmount);
+                await _bankServiceProxy.DepositAsync(SelectedAccount.Number, ParsedAmount);
             }, errorTitle);
         }
 
@@ -135,8 +135,8 @@ namespace Client.LightClient.ViewModel
             var errorTitle = "External transfer error";
             await HandleServiceError(async () =>
             {
-                var parsedAmount = decimal.Parse(Amount);
-                await _bankServiceProxy.ExternalTransferAsync(CreateTransferDescription(parsedAmount));
+                var transferDescription = CreateTransferDescription;
+                await _bankServiceProxy.ExternalTransferAsync(transferDescription);
             }, errorTitle);
         }
 
@@ -146,8 +146,8 @@ namespace Client.LightClient.ViewModel
 
             await HandleServiceError(async () =>
             {
-                var parsedAmount = decimal.Parse(Amount);
-                await _bankServiceProxy.InternalTransferAsync(CreateTransferDescription(parsedAmount));
+                var transferDescription = CreateTransferDescription;
+                await _bankServiceProxy.InternalTransferAsync(transferDescription);
             }, errorTitle);
         }
 
@@ -163,8 +163,7 @@ namespace Client.LightClient.ViewModel
             var errorTitle = "Withdraw error";
             await HandleServiceError(async () =>
             {
-                var parsedAmount = decimal.Parse(Amount);
-                await _bankServiceProxy.WithdrawAsync(SelectedAccount.Number, parsedAmount);
+                await _bankServiceProxy.WithdrawAsync(SelectedAccount.Number, ParsedAmount);
             }, errorTitle);
         }
     }

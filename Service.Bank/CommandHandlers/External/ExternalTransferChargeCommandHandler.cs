@@ -15,11 +15,14 @@ namespace Service.Bank.CommandHandlers.External
         {
         }
 
+        /// <summary>
+        /// Charge user account for external transfer 
+        /// </summary>
         public override void HandleCommand(ExternalTransferChargeCommand command)
         {
             _transferDescription = command.TransferDescription;
 
-            var chargedAmount = command.ChargePercent * _transferDescription.Amount;
+            var chargedAmount = decimal.Round(command.ChargePercent * _transferDescription.Amount, 2);
 
             UpdateAccountBalance(chargedAmount, _transferDescription.SourceAccountNumber);
 

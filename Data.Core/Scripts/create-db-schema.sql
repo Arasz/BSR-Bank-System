@@ -10,7 +10,7 @@ CREATE TABLE [Account]
 (
 	Id bigint PRIMARY KEY IDENTITY(1,1),
 	Number char(26) NOT NULL INDEX IX_Account_Number NONCLUSTERED,
-	Balance money NOT NULL,
+	Balance decimal(20,2) NOT NULL,
 	UserId bigint NOT NULL INDEX IX_Account_UserId NONCLUSTERED,
 	CONSTRAINT FK_AccountOwner_UserId FOREIGN KEY (UserId) REFERENCES [User] (Id),
 	CONSTRAINT Unique_Number UNIQUE(Number),
@@ -23,10 +23,10 @@ CREATE TABLE [Operation]
 	Title varchar(200) NOT NULL,
 	Source varchar(26) NOT NULL,
 	Target varchar(26) NOT NULL,
-	Credit money NOT NULL, -- ma
-	Debit money NOT NULL, -- winien
-	Amount money NOT NULL,
-	Balance money NOT NULL,
+	Credit decimal(20,2) NOT NULL, -- ma
+	Debit decimal(20,2) NOT NULL, -- winien
+	Amount decimal(20,2) NOT NULL,
+	Balance decimal(20,2) NOT NULL,
 	Type varchar(50) NOT NULL,
 	CreationDate DateTime NOT NULL INDEX IX_Operation_CreationDate NONCLUSTERED,
 );

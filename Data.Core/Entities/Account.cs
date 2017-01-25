@@ -8,7 +8,7 @@ namespace Data.Core.Entities
     [Table("Account"), DataContract(IsReference = true)]
     public class Account
     {
-        [Column(TypeName = "money"), DataMember]
+        [DataMember]
         public decimal Balance { get; set; }
 
         public long Id { get; set; }

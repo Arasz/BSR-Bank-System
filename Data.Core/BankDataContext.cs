@@ -24,7 +24,7 @@ namespace Data.Core
 
             modelBuilder.Entity<Account>()
                 .Property(e => e.Balance)
-                .HasPrecision(19, 4);
+                .HasPrecision(20, 2);
 
             modelBuilder.Entity<Operation>()
                 .Property(e => e.Title)
@@ -40,19 +40,19 @@ namespace Data.Core
 
             modelBuilder.Entity<Operation>()
                 .Property(e => e.Credit)
-                .HasPrecision(19, 4);
+                .HasPrecision(20, 2);
 
             modelBuilder.Entity<Operation>()
                 .Property(e => e.Debit)
-                .HasPrecision(19, 4);
+                .HasPrecision(20, 2);
 
             modelBuilder.Entity<Operation>()
                 .Property(e => e.Amount)
-                .HasPrecision(19, 4);
+                .HasPrecision(20, 2);
 
             modelBuilder.Entity<Operation>()
                 .Property(e => e.Balance)
-                .HasPrecision(19, 4);
+                .HasPrecision(20, 2);
 
             modelBuilder.Entity<Operation>()
                 .Property(e => e.Type)

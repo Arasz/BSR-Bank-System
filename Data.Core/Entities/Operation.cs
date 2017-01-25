@@ -12,19 +12,19 @@ namespace Data.Core.Entities
 
         public long? AccountId { get; set; }
 
-        [Column(TypeName = "money"), DataMember]
+        [DataMember]
         public decimal Amount { get; set; }
 
-        [Column(TypeName = "money"), DataMember]
+        [DataMember]
         public decimal Balance { get; set; }
 
         [DataMember]
         public DateTime CreationDate { get; set; }
 
-        [Column(TypeName = "money"), DataMember]
+        [DataMember]
         public decimal Credit { get; set; }
 
-        [Column(TypeName = "money"), DataMember]
+        [DataMember]
         public decimal Debit { get; set; }
 
         public long Id { get; set; }
