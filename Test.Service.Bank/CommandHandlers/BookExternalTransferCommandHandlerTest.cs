@@ -1,12 +1,12 @@
-﻿using System;
-using System.Data.Entity;
-using System.Linq.Expressions;
-using Data.Core;
+﻿using Data.Core;
 using Data.Core.Entities;
 using FluentAssertions;
 using Service.Bank.CommandHandlers.External;
 using Service.Bank.Commands;
 using Service.Dto;
+using System;
+using System.Data.Entity;
+using System.Linq.Expressions;
 using Test.Common;
 using Xunit;
 
@@ -75,8 +75,8 @@ namespace Test.Service.Bank.CommandHandlers
             new TransferDescription
             {
                 Amount = transferAmount,
-                SourceAccountNumber = _senderAccountNumber,
-                TargetAccountNumber = _receiverAccountNumber,
+                SenderAccountNumber = _senderAccountNumber,
+                ReceiverAccountNumber = _receiverAccountNumber,
                 Title = "FromExternalBank"
             }
         );

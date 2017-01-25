@@ -29,8 +29,8 @@ namespace Service.Bank.Operations
                 Amount = transferDescription.Amount,
                 Balance = account.Balance,
                 CreationDate = DateTime.Now,
-                Source = transferDescription.SourceAccountNumber,
-                Target = transferDescription.TargetAccountNumber,
+                Source = transferDescription.SenderAccountNumber,
+                Target = transferDescription.ReceiverAccountNumber,
                 Title = transferDescription.Title,
                 Type = CommandTypeString<TCommand>()
             };

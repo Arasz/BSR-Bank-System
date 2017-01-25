@@ -80,16 +80,16 @@ namespace Test.Service.Bank.CommandHandlers
             => new ExternalTransferChargeCommand(new TransferDescription
             {
                 Amount = amount,
-                SourceAccountNumber = _senderAccountNumber,
-                TargetAccountNumber = _receiverAccountNumber
+                SenderAccountNumber = _senderAccountNumber,
+                ReceiverAccountNumber = _receiverAccountNumber
             }, chargePercent);
 
         private ExternalTransferChargeCommand CreateChargeCommand(decimal amount)
             => new ExternalTransferChargeCommand(new TransferDescription
             {
                 Amount = amount,
-                SourceAccountNumber = _senderAccountNumber,
-                TargetAccountNumber = _receiverAccountNumber
+                SenderAccountNumber = _senderAccountNumber,
+                ReceiverAccountNumber = _receiverAccountNumber
             });
 
         private Account CreateSenderAccount(decimal balance)

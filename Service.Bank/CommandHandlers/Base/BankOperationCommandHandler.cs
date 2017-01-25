@@ -34,7 +34,7 @@ namespace Service.Bank.CommandHandlers.Base
         {
             _transferDescription = command.TransferDescription;
 
-            UpdateAccountBalance(_transferDescription.Amount, _transferDescription.SourceAccountNumber);
+            UpdateAccountBalance(_transferDescription.Amount, _transferDescription.SenderAccountNumber);
 
             RegisterOperation();
         }

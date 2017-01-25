@@ -99,8 +99,8 @@ namespace Test.Service.Bank.CommandHandlers
             new TransferDescription
             {
                 Amount = transferAmount,
-                SourceAccountNumber = _senderAccountNumber,
-                TargetAccountNumber = _receiverAccountNumber,
+                SenderAccountNumber = _senderAccountNumber,
+                ReceiverAccountNumber = _receiverAccountNumber,
                 Title = "TransferToExternalBank"
             }
         );

@@ -24,13 +24,13 @@ namespace Service.Bank.CommandHandlers.External
 
             var chargedAmount = decimal.Round(command.ChargePercent * _transferDescription.Amount, 2);
 
-            UpdateAccountBalance(chargedAmount, _transferDescription.SourceAccountNumber);
+            UpdateAccountBalance(chargedAmount, _transferDescription.SenderAccountNumber);
 
             CreateUpdatedDescription(chargedAmount);
 
             RegisterOperation();
         }
 
-        private void CreateUpdatedDescription(decimal chargedAmount) => _transferDescription = new TransferDescription(_transferDescription.SourceAccountNumber, "", "", chargedAmount);
+        private void CreateUpdatedDescription(decimal chargedAmount) => _transferDescription = new TransferDescription(_transferDescription.SenderAccountNumber, "", "", chargedAmount);
     }
 }

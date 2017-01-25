@@ -26,7 +26,7 @@ namespace Service.Bank.Validation
                 .Length(0, 200);
 
             //regex https://regex101.com/r/LEt65g/1
-            RuleFor(description => description.SourceAccountNumber)
+            RuleFor(description => description.SenderAccountNumber)
                 .NotEmpty()
                 .Length(26)
                 .Matches(@"^[0-9]{2}[0-9]{8}[0-9]{16}")
@@ -34,7 +34,7 @@ namespace Service.Bank.Validation
                 .Must(HaveCorrectChecksum)
                 .WithMessage("Wrong source account number checksum");
 
-            RuleFor(description => description.TargetAccountNumber)
+            RuleFor(description => description.ReceiverAccountNumber)
                 .NotEmpty()
                 .Length(26)
                 .Matches(@"^[0-9]{2}[0-9]{8}[0-9]{16}")

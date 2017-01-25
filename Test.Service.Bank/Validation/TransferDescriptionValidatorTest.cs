@@ -25,70 +25,70 @@ namespace Test.Service.Bank.Validation
 
         [Fact]
         public void ReceiverAccount_AccountNumberShorterThan26Numbers_ShouldReturnValidationErorr() => CreateValidator()
-            .ShouldHaveValidationErrorFor(description => description.TargetAccountNumber, "2323")
+            .ShouldHaveValidationErrorFor(description => description.ReceiverAccountNumber, "2323")
             .Should()
             .ContainSingle();
 
         [Fact]
         public void ReceiverAccount_CorrectAccountNumber_ShouldPassValidation() => CreateValidator()
-            .ShouldNotHaveValidationErrorFor(description => description.TargetAccountNumber, "78112241008528164913108077");
+            .ShouldNotHaveValidationErrorFor(description => description.ReceiverAccountNumber, "78112241008528164913108077");
 
         [Fact]
         public void ReceiverAccount_EmptySenderAccountNumber_ShouldReturnValidationErorr() => CreateValidator()
-            .ShouldHaveValidationErrorFor(description => description.TargetAccountNumber, "")
+            .ShouldHaveValidationErrorFor(description => description.ReceiverAccountNumber, "")
             .Should()
             .ContainSingle();
 
         [Fact]
         public void ReceiverAccount_IncorrectAccountNumber_ShouldReturnValidationErorr() => CreateValidator()
-            .ShouldHaveValidationErrorFor(description => description.TargetAccountNumber, "78e45541668528164913108077")
+            .ShouldHaveValidationErrorFor(description => description.ReceiverAccountNumber, "78e45541668528164913108077")
             .Should()
             .ContainSingle();
 
         [Fact]
         public void ReceiverAccount_IncorrectAccountNumberChecksum_ShouldReturnValidationErorr()
             => CreateValidator(false)
-                .ShouldHaveValidationErrorFor(description => description.TargetAccountNumber, "232323223232322323232232323223232323")
+                .ShouldHaveValidationErrorFor(description => description.ReceiverAccountNumber, "232323223232322323232232323223232323")
                 .Should()
                 .ContainSingle();
 
         [Fact]
         public void ReceiverAccount_NullSenderAccountNumber_ShouldReturnValidationErorr() => CreateValidator()
-            .ShouldHaveValidationErrorFor(description => description.TargetAccountNumber, null as string)
+            .ShouldHaveValidationErrorFor(description => description.ReceiverAccountNumber, null as string)
             .Should()
             .ContainSingle();
 
         [Fact]
         public void SenderAccount_AccountNumberShorterThan26Numbers_ShouldReturnValidationErorr() => CreateValidator()
-            .ShouldHaveValidationErrorFor(description => description.SourceAccountNumber, "2323")
+            .ShouldHaveValidationErrorFor(description => description.SenderAccountNumber, "2323")
             .Should()
             .ContainSingle();
 
         [Fact]
         public void SenderAccount_CorrectAccountNumber_ShouldPassValidation() => CreateValidator()
-            .ShouldNotHaveValidationErrorFor(description => description.SourceAccountNumber, "78345541008528164913108077");
+            .ShouldNotHaveValidationErrorFor(description => description.SenderAccountNumber, "78345541008528164913108077");
 
         [Fact]
         public void SenderAccount_EmptySenderAccountNumber_ShouldReturnValidationErorr() => CreateValidator()
-            .ShouldHaveValidationErrorFor(description => description.SourceAccountNumber, "")
+            .ShouldHaveValidationErrorFor(description => description.SenderAccountNumber, "")
             .Should()
             .ContainSingle();
 
         [Fact]
         public void SenderAccount_IncorrectAccountNumber_ShouldReturnValidationErorr() => CreateValidator()
-            .ShouldHaveValidationErrorFor(description => description.SourceAccountNumber, "232323223232322323232232323223232323")
+            .ShouldHaveValidationErrorFor(description => description.SenderAccountNumber, "232323223232322323232232323223232323")
             .Should()
             .ContainSingle();
 
         [Fact]
         public void SenderAccount_IncorrectAccountNumberChecksum_ShouldReturnValidationErorr() => CreateValidator(false)
-            .ShouldHaveValidationErrorFor(description => description.SourceAccountNumber, "232323223232322323232232323223232323")
+            .ShouldHaveValidationErrorFor(description => description.SenderAccountNumber, "232323223232322323232232323223232323")
             .Should()
             .ContainSingle();
 
         [Fact]
         public void SenderAccount_NullSenderAccountNumber_ShouldReturnValidationErorr() => CreateValidator()
-            .ShouldHaveValidationErrorFor(description => description.SourceAccountNumber, null as string)
+            .ShouldHaveValidationErrorFor(description => description.SenderAccountNumber, null as string)
             .Should()
             .ContainSingle();
 

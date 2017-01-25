@@ -13,18 +13,18 @@ namespace Service.Dto
         {
         }
 
-        public TransferDescription(string sourceAccountNumber, string targetAccountNumber, string title, decimal amount)
+        public TransferDescription(string senderAccountNumber, string receiverAccountNumber, string title, decimal amount)
         {
-            SourceAccountNumber = sourceAccountNumber;
-            TargetAccountNumber = targetAccountNumber;
+            SenderAccountNumber = senderAccountNumber;
+            ReceiverAccountNumber = receiverAccountNumber;
             Title = title;
             Amount = amount;
         }
 
         public TransferDescription(TransferDescription description)
         {
-            SourceAccountNumber = description.SourceAccountNumber;
-            TargetAccountNumber = description.TargetAccountNumber;
+            SenderAccountNumber = description.SenderAccountNumber;
+            ReceiverAccountNumber = description.ReceiverAccountNumber;
             Amount = description.Amount;
             Title = description.Title;
         }
@@ -39,7 +39,7 @@ namespace Service.Dto
         ///     Sender account number
         /// </summary>
         [DataMember]
-        public string SourceAccountNumber { get; set; }
+        public string SenderAccountNumber { get; set; }
 
         /// <summary>
         ///     Transfer title
@@ -51,15 +51,15 @@ namespace Service.Dto
         ///     Receiver account number
         /// </summary>
         [DataMember]
-        public string TargetAccountNumber { get; set; }
+        public string ReceiverAccountNumber { get; set; }
 
         public static explicit operator TransferDescription(InterbankTransferDescription interbankTransferDescription)
         {
             return new TransferDescription
             {
                 Amount = Convert.ToDecimal(interbankTransferDescription.Amount) / 100,
-                TargetAccountNumber = interbankTransferDescription.ReceiverAccount,
-                SourceAccountNumber = interbankTransferDescription.SenderAccount,
+                ReceiverAccountNumber = interbankTransferDescription.ReceiverAccount,
+                SenderAccountNumber = interbankTransferDescription.SenderAccount,
                 Title = interbankTransferDescription.Title
             };
         }

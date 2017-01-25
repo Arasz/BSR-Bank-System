@@ -143,8 +143,8 @@ namespace Test.Service.Bank.OperationRegister
             var transferDescription = new TransferDescription
             {
                 Amount = _amount,
-                SourceAccountNumber = source,
-                TargetAccountNumber = target,
+                SenderAccountNumber = source,
+                ReceiverAccountNumber = target,
                 Title = _title
             };
             return transferDescription;
