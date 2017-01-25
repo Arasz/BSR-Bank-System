@@ -35,7 +35,7 @@ namespace Test.Service.Bank.Router
             transferRouter.Route(fromExternalBankTransferDescription);
 
             var routerMock = Mock.Get(_commandBus);
-            routerMock.Verify(bus => bus.Send(It.IsAny<BookExternalTransferCommand>()));
+            routerMock.Verify(bus => bus.Send(It.IsAny<RegisterExternalTransferCommand>()));
         }
 
         [Fact]
@@ -78,7 +78,7 @@ namespace Test.Service.Bank.Router
             commandBusMock.Setup(bus => bus.Send(It.IsAny<ExternalTransferCommand>()))
                 .Verifiable();
 
-            commandBusMock.Setup(bus => bus.Send(It.IsAny<BookExternalTransferCommand>()))
+            commandBusMock.Setup(bus => bus.Send(It.IsAny<RegisterExternalTransferCommand>()))
                 .Verifiable();
 
             _commandBus = commandBusMock.Object;

@@ -27,6 +27,9 @@ namespace Service.Bank.CommandHandlers.Base
             _operationRegister = operationRegister;
         }
 
+        /// <summary>
+        /// Bank operation command handle template method. 
+        /// </summary>
         public virtual void HandleCommand(TCommand command)
         {
             _transferDescription = command.TransferDescription;

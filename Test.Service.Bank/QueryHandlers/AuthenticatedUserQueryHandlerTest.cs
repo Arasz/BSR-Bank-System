@@ -16,7 +16,7 @@ using Xunit;
 
 namespace Test.Service.Bank.QueryHandlers
 {
-    public class AuthenticatedUserQueryHandlerTest : HandlerTestBase<AuthenticatedUserQueryHandler, User>
+    public class AuthenticatedUserQueryHandlerTest : HandlerTestBase<UserQueryHandler, User>
     {
         private readonly string _hashedPassword = "3MmtbNTbJeSmWngoY7l6gsqB1pVCegxCtBdUTUIDXaj2R6ac";
         private readonly string _unhashedPassword = "DogesEqualityAndHonor";
@@ -69,8 +69,8 @@ namespace Test.Service.Bank.QueryHandlers
                 .AsImplementedInterfaces();
         }
 
-        private AuthenticatedUserQuery CreateAuthenticatedUserQuery(string userName, string password)
-            => new AuthenticatedUserQuery(userName, password);
+        private UserQuery CreateAuthenticatedUserQuery(string userName, string password)
+            => new UserQuery(userName, password);
 
         private User CreateUser()
         {

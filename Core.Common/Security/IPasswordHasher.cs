@@ -1,5 +1,8 @@
 ﻿namespace Core.Common.Security
 {
+    /// <summary>
+    /// Creates secure password hash 
+    /// </summary>
     public interface IPasswordHasher
     {
         int PasswordHashLength { get; }

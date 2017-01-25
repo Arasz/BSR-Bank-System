@@ -25,7 +25,7 @@ namespace Service.Bank.Router
             var receiverAccount = routedTransferDescription.TargetAccountNumber;
 
             if (IsFromExternalBank(senderAccount, receiverAccount))
-                _commandBus.Send(new BookExternalTransferCommand(routedTransferDescription));
+                _commandBus.Send(new RegisterExternalTransferCommand(routedTransferDescription));
             else if (!IsFromExternalBank(senderAccount, receiverAccount))
                 _commandBus.Send(new ExternalTransferCommand(routedTransferDescription));
             else

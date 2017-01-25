@@ -1,19 +1,30 @@
 ﻿using Core.Common.Security;
-using Data.Core;
+using Data.Core.Entities;
 using System;
 using System.Linq;
 using System.Security.Authentication;
-using Data.Core.Entities;
 
 namespace Service.Bank.Extensions
 {
     public static class UserExtension
     {
+        /// <summary>
+        /// Authenticates user. If user can't be authenticated throws exception. 
+        /// </summary>
+        /// <exception cref="InvalidCredentialException"> Wrong user name or password. </exception>
         public static void AuthenticateUser(this User user, string userName, string password)
         {
             AuthenticateUser(user, userName, password, new DefaultPasswordHasher());
         }
 
+        /// <summary>
+        /// Authenticates user. If user can't be authenticated throws exception. 
+        /// </summary>
+        /// <param name="user"> Authenticated user </param>
+        /// <param name="password"> Given password </param>
+        /// <param name="userName"> Given username </param>
+        /// <param name="passwordHasher"> Hasher used for hashing </param>
+        /// <exception cref="InvalidCredentialException"> Wrong user name or password. </exception>
         public static void AuthenticateUser(this User user, string userName, string password,
             IPasswordHasher passwordHasher)
         {

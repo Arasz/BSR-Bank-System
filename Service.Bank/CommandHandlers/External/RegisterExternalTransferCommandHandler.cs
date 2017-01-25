@@ -5,14 +5,18 @@ using Service.Bank.Operations;
 
 namespace Service.Bank.CommandHandlers.External
 {
-    public class BookExternalTransferCommandHandler : BankOperationCommandHandler<BookExternalTransferCommand>
+    public class RegisterExternalTransferCommandHandler : BankOperationCommandHandler<RegisterExternalTransferCommand>
     {
-        public BookExternalTransferCommandHandler(BankDataContext dataContext, IOperationRegister operationRegister)
+        public RegisterExternalTransferCommandHandler(BankDataContext dataContext, IOperationRegister operationRegister)
             : base(dataContext, operationRegister)
         {
         }
 
-        public override void HandleCommand(BookExternalTransferCommand command)
+        /// <summary>
+        /// Registers received external transfer 
+        /// </summary>
+        /// <param name="command"></param>
+        public override void HandleCommand(RegisterExternalTransferCommand command)
         {
             _transferDescription = command.TransferDescription;
 

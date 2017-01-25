@@ -61,15 +61,6 @@ namespace Service.Bank {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to External transfer.
-        /// </summary>
-        internal static string BookExternalTransferCommand {
-            get {
-                return ResourceManager.GetString("BookExternalTransferCommand", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Deposit.
         /// </summary>
         internal static string DepositCommand {
@@ -79,7 +70,7 @@ namespace Service.Bank {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Operation charge.
+        ///   Looks up a localized string similar to Externla transfer charge.
         /// </summary>
         internal static string ExternalTransferChargeCommand {
             get {
@@ -102,6 +93,15 @@ namespace Service.Bank {
         internal static string InternalTransferCommand {
             get {
                 return ResourceManager.GetString("InternalTransferCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to External transfer received.
+        /// </summary>
+        internal static string RegisterExternalTransferCommand {
+            get {
+                return ResourceManager.GetString("RegisterExternalTransferCommand", resourceCulture);
             }
         }
         

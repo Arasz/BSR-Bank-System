@@ -117,20 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BookExternalTransferCommand" xml:space="preserve">
-    <value>External transfer</value>
-  </data>
   <data name="DepositCommand" xml:space="preserve">
     <value>Deposit</value>
   </data>
   <data name="ExternalTransferChargeCommand" xml:space="preserve">
-    <value>Operation charge</value>
+    <value>Externla transfer charge</value>
   </data>
   <data name="ExternalTransferCommand" xml:space="preserve">
     <value>External transfer</value>
   </data>
   <data name="InternalTransferCommand" xml:space="preserve">
     <value>Transfer</value>
+  </data>
+  <data name="RegisterExternalTransferCommand" xml:space="preserve">
+    <value>External transfer received</value>
   </data>
   <data name="WithdrawCommand" xml:space="preserve">
     <value>Withdraw</value>

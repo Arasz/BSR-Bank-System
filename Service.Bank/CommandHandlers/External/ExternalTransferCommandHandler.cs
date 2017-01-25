@@ -22,6 +22,9 @@ namespace Service.Bank.CommandHandlers.External
             _commandBus = commandBus;
         }
 
+        /// <summary>
+        /// Sends transfer to external bank 
+        /// </summary>
         public override void HandleCommand(ExternalTransferCommand command)
         {
             _transferDescription = command.TransferDescription;
@@ -37,7 +40,7 @@ namespace Service.Bank.CommandHandlers.External
 
         private void MakeInterbankTransfer()
         {
-            var interbankTransferDescription = (InterbankTransferDescription) _transferDescription;
+            var interbankTransferDescription = (InterbankTransferDescription)_transferDescription;
             _interbankTransferService.Transfer(interbankTransferDescription);
         }
     }

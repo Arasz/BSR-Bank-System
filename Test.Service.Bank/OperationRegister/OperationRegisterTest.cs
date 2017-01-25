@@ -50,7 +50,7 @@ namespace Test.Service.Bank.OperationRegister
             var account = CreateAccount(_targetAccount);
             var transferDescription = CreateTransferDescription(_sourceAccount, _targetAccount);
 
-            operationsRegister.RegisterOperation<BookExternalTransferCommand>(account, transferDescription);
+            operationsRegister.RegisterOperation<RegisterExternalTransferCommand>(account, transferDescription);
 
             account.Operations.Count
                 .Should().Be(1);

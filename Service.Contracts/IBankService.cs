@@ -6,7 +6,7 @@ using System.ServiceModel;
 namespace Service.Contracts
 {
     /// <summary>
-    /// Responsible for user bank account management 
+    /// Responsible for user bank management 
     /// </summary>
     [ServiceContract]
     public interface IBankService

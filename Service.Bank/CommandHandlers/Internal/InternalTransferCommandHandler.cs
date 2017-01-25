@@ -13,6 +13,9 @@ namespace Service.Bank.CommandHandlers.Internal
         {
         }
 
+        /// <summary>
+        /// Makes transfer to account in the same bank 
+        /// </summary>
         public override void HandleCommand(InternalTransferCommand command)
         {
             _transferDescription = command.TransferDescription;

@@ -19,6 +19,10 @@ namespace Service.Bank.QueryHandlers
             _dataContext = dataContext;
         }
 
+        /// <summary>
+        /// Gets all operations for given query 
+        /// </summary>
+        /// <returns> Operations collection </returns>
         public IEnumerable<Operation> HandleQuery(AccountOperationsHistoryQuery query)
         {
             var queriedAccount = _dataContext.Accounts

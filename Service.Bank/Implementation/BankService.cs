@@ -37,7 +37,7 @@ namespace Service.Bank.Implementation
 
         public User Login(string userName, string password)
         {
-            return _commonBus.QueryBus.Send<User, AuthenticatedUserQuery>(new AuthenticatedUserQuery(userName, password));
+            return _commonBus.QueryBus.Send<User, UserQuery>(new UserQuery(userName, password));
         }
 
         public IEnumerable<Operation> OperationsHistory(AccountHistoryQuery accountHistoryQuery)

@@ -1,8 +1,5 @@
 ﻿namespace Core.Common.ChecksumCalculator
 {
-    /// <summary>
-    /// Can calculate 
-    /// </summary>
     public interface IAccountChecksumCalculator
     {
         /// <summary>

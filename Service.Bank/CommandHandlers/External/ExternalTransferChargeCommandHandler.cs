@@ -16,7 +16,7 @@ namespace Service.Bank.CommandHandlers.External
         }
 
         /// <summary>
-        /// Charge user account for external transfer 
+        /// Charges account for external transfer 
         /// </summary>
         public override void HandleCommand(ExternalTransferChargeCommand command)
         {

@@ -1,23 +1,28 @@
 ﻿using Core.CQRS.Queries;
 using Data.Core;
+using Data.Core.Entities;
 using Service.Bank.Extensions;
 using Service.Bank.Queries;
 using System.Data.Entity;
 using System.Linq;
-using Data.Core.Entities;
 
 namespace Service.Bank.QueryHandlers
 {
-    public class AuthenticatedUserQueryHandler : IQueryHandler<User, AuthenticatedUserQuery>
+    public class UserQueryHandler : IQueryHandler<User, UserQuery>
     {
         private readonly BankDataContext _dataContext;
 
-        public AuthenticatedUserQueryHandler(BankDataContext dataContext)
+        public UserQueryHandler(BankDataContext dataContext)
         {
             _dataContext = dataContext;
         }
 
-        public User HandleQuery(AuthenticatedUserQuery query)
+        /// <summary>
+        /// Finds user with given user name and password. 
+        /// </summary>
+        /// <returns> Authenticated user </returns>
+        /// <exception cref="InvalidCredentialException"> Wrong user name or password. </exception>
+        public User HandleQuery(UserQuery query)
         {
             var authenticatedUser = _dataContext.Users
                                         .Include(user => user.Accounts)

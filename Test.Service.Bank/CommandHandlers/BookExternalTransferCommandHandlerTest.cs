@@ -12,7 +12,7 @@ using Xunit;
 
 namespace Test.Service.Bank.CommandHandlers
 {
-    public class BookExternalTransferCommandHandlerTest : HandlerTestBase<BookExternalTransferCommandHandler, Account>
+    public class BookExternalTransferCommandHandlerTest : HandlerTestBase<RegisterExternalTransferCommandHandler, Account>
     {
         private readonly string _receiverAccountNumber = "2";
         private readonly string _senderAccountNumber = "1";
@@ -70,7 +70,7 @@ namespace Test.Service.Bank.CommandHandlers
             Number = _receiverAccountNumber
         };
 
-        private BookExternalTransferCommand CreateCommand(decimal transferAmount) => new BookExternalTransferCommand
+        private RegisterExternalTransferCommand CreateCommand(decimal transferAmount) => new RegisterExternalTransferCommand
         (
             new TransferDescription
             {

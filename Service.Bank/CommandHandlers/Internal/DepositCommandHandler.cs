@@ -13,6 +13,9 @@ namespace Service.Bank.CommandHandlers.Internal
         {
         }
 
+        /// <summary>
+        /// Makes deposit 
+        /// </summary>
         public override void HandleCommand(DepositCommand command)
         {
             _transferDescription = command.TransferDescription;

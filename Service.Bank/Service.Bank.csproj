@@ -79,13 +79,13 @@
   <ItemGroup>
     <Compile Include="Autofac\BankServiceModule.cs" />
     <Compile Include="CommandHandlers\Base\BankOperationCommandHandler.cs" />
-    <Compile Include="CommandHandlers\External\BookExternalTransferCommandHandler.cs" />
+    <Compile Include="CommandHandlers\External\RegisterExternalTransferCommandHandler.cs" />
     <Compile Include="CommandHandlers\Internal\DepositCommandHandler.cs" />
     <Compile Include="CommandHandlers\External\ExternalTransferChargeCommandHandler.cs" />
     <Compile Include="CommandHandlers\External\ExternalTransferCommandHandler.cs" />
     <Compile Include="CommandHandlers\Internal\InternalTransferCommandHandler.cs" />
     <Compile Include="CommandHandlers\Internal\WithdrawCommandHandler.cs" />
-    <Compile Include="Commands\BookExternalTransferCommand.cs" />
+    <Compile Include="Commands\RegisterExternalTransferCommand.cs" />
     <Compile Include="Exceptions\AccountBalanceToLowException.cs" />
     <Compile Include="Exceptions\AmbiguousTransferDescriptionException.cs" />
     <Compile Include="Extensions\OperationExtension.cs" />
@@ -106,9 +106,9 @@
     <Compile Include="Exceptions\ExternalTransferException.cs" />
     <Compile Include="Proxy\ServicesRegister\ITransferServicesRegister.cs" />
     <Compile Include="Proxy\ServicesRegister\TransferServicesRegister.cs" />
-    <Compile Include="Queries\AuthenticatedUserQuery.cs" />
+    <Compile Include="Queries\UserQuery.cs" />
     <Compile Include="QueryHandlers\AccountOperationsHistoryQueryHandler.cs" />
-    <Compile Include="QueryHandlers\AuthenticatedUserQueryHandler.cs" />
+    <Compile Include="QueryHandlers\UserQueryHandler.cs" />
     <Compile Include="Router\IExternalTransferRouter.cs" />
     <Compile Include="Implementation\BankService.cs" />
     <Compile Include="Commands\DepositCommand.cs" />
