@@ -71,7 +71,7 @@ namespace Service.Bank.Autofac
                 .SingleInstance();
 
             builder.RegisterType<TransferServicesRegister>()
-                .WithParameter(new TypedParameter(typeof(string), @"..\..\..\Core.Common\InterbankTransferConfiguration.json"))
+                .WithParameter(new TypedParameter(typeof(string), @"InterbankTransferConfiguration.json"))
                 .AsImplementedInterfaces()
                 .SingleInstance();
 
