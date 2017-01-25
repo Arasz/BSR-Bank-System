@@ -19,7 +19,8 @@ namespace Service.InterbankTransfer.Implementation
         {
             _bankService.ExternalTransfer((TransferDescription)transferDescription);
 
-            WebOperationContext.Current.OutgoingResponse.StatusCode = HttpStatusCode.Created;
+            if (WebOperationContext.Current != null)
+                WebOperationContext.Current.OutgoingResponse.StatusCode = HttpStatusCode.Created;
         }
     }
 }

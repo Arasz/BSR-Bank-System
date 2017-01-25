@@ -9,14 +9,9 @@ namespace InterbankTransactionServiceTest
 {
     public class InterbankTransferDescriptionValidatorTest
     {
-        private InterbankTransferDescriptionValidator CreateValidator(bool withChecksumAlwaysTrue = true)
-        {
-            var checksumCalculator =
-                Mock.Of<IAccountChecksumCalculator>(
-                    calculator => calculator.IsCorrect(It.IsAny<string>()) == withChecksumAlwaysTrue);
-
-            return new InterbankTransferDescriptionValidator(checksumCalculator);
-        }
+        [Fact]
+        public void AmountValidation_MinimalAmount_ShouldPassValidation() => CreateValidator()
+            .ShouldNotHaveValidationErrorFor(description => description.Amount, 1);
 
         [Fact]
         public void AmountValidation_NegativeAmount_ShouldPassValidation() => CreateValidator()
@@ -27,10 +22,6 @@ namespace InterbankTransactionServiceTest
             .ShouldHaveValidationErrorFor(description => description.Amount, -1)
             .Should()
             .ContainSingle();
-
-        [Fact]
-        public void AmountValidation_ZeroAmount_ShouldPassValidation() => CreateValidator()
-            .ShouldNotHaveValidationErrorFor(description => description.Amount, 0);
 
         [Fact]
         public void ReceiverAccount_AccountNumberShorterThan26Numbers_ShouldReturnValidationErorr() => CreateValidator()
@@ -103,5 +94,14 @@ namespace InterbankTransactionServiceTest
             .ShouldHaveValidationErrorFor(description => description.SenderAccount, null as string)
             .Should()
             .ContainSingle();
+
+        private InterbankTransferDescriptionValidator CreateValidator(bool withChecksumAlwaysTrue = true)
+        {
+            var checksumCalculator =
+                Mock.Of<IAccountChecksumCalculator>(
+                    calculator => calculator.IsCorrect(It.IsAny<string>()) == withChecksumAlwaysTrue);
+
+            return new InterbankTransferDescriptionValidator(checksumCalculator);
+        }
     }
 }
