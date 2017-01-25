@@ -3,6 +3,7 @@ using Service.Contracts;
 using Service.Dto;
 using System.Collections.Generic;
 using System.ServiceModel;
+using System.ServiceModel.Description;
 using System.Threading.Tasks;
 
 namespace Client.Proxy.BankService
@@ -39,6 +40,15 @@ namespace Client.Proxy.BankService
 
         public Task<IEnumerable<Operation>> OperationsHistoryAsync(AccountHistoryQuery accountHistoryQuery)
             => Task.Run(() => Channel.OperationsHistory(accountHistoryQuery));
+
+        public void SetCredentials(string username, string password)
+        {
+            ChannelFactory.Endpoint.Behaviors.Remove<ClientCredentials>();
+            ChannelFactory.Endpoint.Behaviors.Add(new ClientCredentials
+            {
+                UserName = { Password = password, UserName = username }
+            });
+        }
 
         public void Withdraw(string accountNumber, decimal amount) => Channel.Withdraw(accountNumber, amount);
 

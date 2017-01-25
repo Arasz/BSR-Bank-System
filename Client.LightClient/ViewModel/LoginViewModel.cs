@@ -33,7 +33,7 @@ namespace Client.LightClient.ViewModel
         {
             try
             {
-                SetClientCredentials();
+                _bankServiceProxy.SetCredentials(Username, Password);
 
                 var loggedUser = await _bankServiceProxy.LoginAsync(Username, Password);
                 _navigationService.NavigateTo(nameof(AccountsPage));
@@ -47,13 +47,6 @@ namespace Client.LightClient.ViewModel
             {
                 _dialogService.ShowError(exception.Message, "Login error");
             }
-        }
-
-        private void SetClientCredentials()
-        {
-            _bankServiceProxy.ClientBase.ClientCredentials.SupportInteractive = true;
-            _bankServiceProxy.ClientBase.ClientCredentials.UserName.UserName = Username;
-            _bankServiceProxy.ClientBase.ClientCredentials.UserName.Password = Password;
         }
     }
 }
