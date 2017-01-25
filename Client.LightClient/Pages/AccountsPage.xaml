@@ -39,9 +39,7 @@
                     </DockPanel>
                 </Grid>
                 <ListView Margin="10" ItemsSource="{Binding Accounts}" Name="AccountsList"
-                  Grid.Row="1"  Grid.Column="0"
-                  SelectionMode="Single"
-                  SelectionChanged="AccountsList_OnSelectionChanged">
+                  SelectionMode="Single" SelectionChanged="AccountsList_OnSelectionChanged">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Account number" DisplayMemberBinding="{Binding Number}"
@@ -97,12 +95,13 @@
                         VerticalAlignment="Center" Command="{Binding WithdrawCommand}" />
                         <Button Content="Deposit" Margin="10" Grid.Column="1"
                         VerticalAlignment="Center" Command="{Binding DepositCommand}" />
-                        <Button Content="External transfer" Margin="10" Grid.Column="2"
-                        VerticalAlignment="Center" Command="{Binding ExternalTransferCommand}" />
-                        <Button Content="Internal transfer" Margin="10" Grid.Column="3"
+                        <Button Content="Internal transfer" Margin="10" Grid.Column="2"
                         VerticalAlignment="Center" Command="{Binding TransferCommand}" />
+                        <Button Content="External transfer" Margin="10" Grid.Column="3"
+                        VerticalAlignment="Center" Command="{Binding ExternalTransferCommand}" />
                     </Grid>
-                    <ProgressBar IsIndeterminate="True" Visibility="{Binding OperationInProgress, Converter={StaticResource VisibilityConverter} }" />
+                    <ProgressBar IsIndeterminate="True" Height="10"
+                                 Visibility="{Binding OperationInProgress, Converter={StaticResource VisibilityConverter} }" />
                 </StackPanel>
             </GroupBox>
             <GroupBox Grid.Row="2" Grid.Column="0" Header="Account operations history">

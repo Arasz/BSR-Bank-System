@@ -21,9 +21,9 @@ namespace Client.LightClient.ViewModel
         private readonly IDialogService _dialogService;
         private IEnumerable<BankOperation> _accountOperations;
         private ObservableCollection<Account> _accounts;
+        private bool _operationInProgress;
         private Account _selectedAccount;
         private string _username;
-
         public ICommand AccountHistoryCommand { get; }
 
         public IEnumerable<BankOperation> AccountOperations
@@ -44,7 +44,11 @@ namespace Client.LightClient.ViewModel
 
         public ICommand ExternalTransferCommand { get; }
 
-        public bool OperationInProgress { get; set; }
+        public bool OperationInProgress
+        {
+            get { return _operationInProgress; }
+            set { Set(ref _operationInProgress, value); }
+        }
 
         public Account SelectedAccount
         {
@@ -80,15 +84,9 @@ namespace Client.LightClient.ViewModel
             AccountHistoryCommand = new RelayCommand(GetAccountHistory, CanExecuteCommand);
         }
 
-        private bool CanExecuteCommand()
-        {
-            return SelectedAccount != null;
-        }
+        private bool CanExecuteCommand() => SelectedAccount != null;
 
-        private TransferDescription CreateTransferDescription(decimal parsedAmount)
-        {
-            return new TransferDescription(SelectedAccount.Number, TargetAccountNumber, TransferTitle, parsedAmount);
-        }
+        private TransferDescription CreateTransferDescription(decimal parsedAmount) => new TransferDescription(SelectedAccount.Number, TargetAccountNumber, TransferTitle, parsedAmount);
 
         private async void Deposit()
         {
@@ -98,8 +96,6 @@ namespace Client.LightClient.ViewModel
                 var parsedAmount = decimal.Parse(Amount);
 
                 await _bankServiceProxy.DepositAsync(SelectedAccount.Number, parsedAmount);
-
-                UpdateSelectedAccountBalance(-parsedAmount);
             }, errorTitle);
         }
 
@@ -141,7 +137,6 @@ namespace Client.LightClient.ViewModel
             {
                 var parsedAmount = decimal.Parse(Amount);
                 await _bankServiceProxy.ExternalTransferAsync(CreateTransferDescription(parsedAmount));
-                UpdateSelectedAccountBalance(parsedAmount);
             }, errorTitle);
         }
 
@@ -153,15 +148,7 @@ namespace Client.LightClient.ViewModel
             {
                 var parsedAmount = decimal.Parse(Amount);
                 await _bankServiceProxy.InternalTransferAsync(CreateTransferDescription(parsedAmount));
-                UpdateSelectedAccountBalance(parsedAmount);
             }, errorTitle);
-        }
-
-        private void UpdateSelectedAccountBalance(decimal parsedAmount)
-        {
-            SelectedAccount.Balance -= parsedAmount;
-            Accounts.Remove(SelectedAccount);
-            Accounts.Add(SelectedAccount);
         }
 
         private void UserLogged(User loggedUser)
@@ -178,7 +165,6 @@ namespace Client.LightClient.ViewModel
             {
                 var parsedAmount = decimal.Parse(Amount);
                 await _bankServiceProxy.WithdrawAsync(SelectedAccount.Number, parsedAmount);
-                UpdateSelectedAccountBalance(parsedAmount);
             }, errorTitle);
         }
     }
