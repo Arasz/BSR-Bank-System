@@ -12,7 +12,7 @@ namespace Service.Bank.CommandHandlers.External
         {
         }
 
-        public void HandleCommand(BookExternalTransferCommand command)
+        public override void HandleCommand(BookExternalTransferCommand command)
         {
             _transferDescription = command.TransferDescription;
 

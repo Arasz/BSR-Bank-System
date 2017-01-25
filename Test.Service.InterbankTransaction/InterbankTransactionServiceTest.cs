@@ -14,8 +14,8 @@ namespace InterbankTransactionServiceTest
         [Fact]
         public void TestTransfer_CorrectInputData_ShouldPassToBankService()
         {
-            var managementServiceMock = new Mock<IBankService>();
-            managementServiceMock
+            var bankServiceMock = new Mock<IBankService>();
+            bankServiceMock
                 .Setup(service => service.ExternalTransfer(It.IsAny<TransferDescription>()));
 
             var validatorMock = new Mock<IValidator<InterbankTransferDescription>>();
@@ -25,12 +25,11 @@ namespace InterbankTransactionServiceTest
 
             var interbankTransferDescription = Mock.Of<InterbankTransferDescription>();
 
-            var interbankTransactionService = new InterbankTransferService(managementServiceMock.Object,
-                validatorMock.Object);
+            var interbankTransactionService = new InterbankTransferService(bankServiceMock.Object);
 
             interbankTransactionService.Transfer(interbankTransferDescription);
 
-            managementServiceMock.Verify(service => service.ExternalTransfer(It.IsAny<TransferDescription>()));
+            bankServiceMock.Verify(service => service.ExternalTransfer(It.IsAny<TransferDescription>()));
         }
     }
 }

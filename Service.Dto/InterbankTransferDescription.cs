@@ -18,13 +18,13 @@ namespace Service.Dto
         /// <summary>
         /// Receiver account number 
         /// </summary>
-        [DataMember(Name = "receiver-account")]
+        [DataMember(Name = "receiver_account")]
         public string ReceiverAccount { get; set; }
 
         /// <summary>
         /// Sender account number 
         /// </summary>
-        [DataMember(Name = "sender-account")]
+        [DataMember(Name = "sender_account")]
         public string SenderAccount { get; set; }
 
         /// <summary>

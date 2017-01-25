@@ -33,8 +33,7 @@ namespace Client.Proxy.BankService
 
         public User Login(string userName, string password) => Channel.Login(userName, password);
 
-        public Task<User> LoginAsync(string userName, string password)
-                                                                    => Task.Run(() => Channel.Login(userName, password));
+        public Task<User> LoginAsync(string userName, string password) => Task.Run(() => Channel.Login(userName, password));
 
         public IEnumerable<Operation> OperationsHistory(AccountHistoryQuery accountHistoryQuery) => Channel.OperationsHistory(accountHistoryQuery);
 

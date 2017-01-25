@@ -1,8 +1,8 @@
 ﻿{
-  "password": "pswd",
-  "login": "login",
+  "password": "admin",
+  "login": "admin",
   "registeredServices": {
-    "11216900": "http://150.254.131.68:8089/Bank/Service/Rest/BankingRestService.svc",
+    "00112169": "http://192.168.0.20/Bank/Service/Rest/BankingRestService.svc",
     "00109714": "http://150.254.131.80:8080",
     "00109711": "http://150.254.131.79:8088",
     "00109764": "http://150.254.131.66:8080",

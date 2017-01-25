@@ -1,6 +1,6 @@
-﻿using System.ServiceModel;
+﻿using Service.Dto;
+using System.ServiceModel;
 using System.ServiceModel.Web;
-using Service.Dto;
 
 namespace Service.Contracts
 {
@@ -15,7 +15,7 @@ namespace Service.Contracts
         /// </summary>
         /// <param name="transferDescription"></param>
         [OperationContract]
-        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "transfer")]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "transfer", ResponseFormat = WebMessageFormat.Json)]
         [FaultContract(typeof(WebFaultException))]
         void Transfer(InterbankTransferDescription transferDescription);
     }

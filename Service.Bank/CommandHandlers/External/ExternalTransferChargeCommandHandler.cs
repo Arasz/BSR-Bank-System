@@ -2,6 +2,7 @@
 using Service.Bank.CommandHandlers.Base;
 using Service.Bank.Commands;
 using Service.Bank.Operations;
+using Service.Dto;
 
 namespace Service.Bank.CommandHandlers.External
 {
@@ -22,7 +23,11 @@ namespace Service.Bank.CommandHandlers.External
 
             UpdateAccountBalance(chargedAmount, _transferDescription.SourceAccountNumber);
 
+            CreateUpdatedDescription(chargedAmount);
+
             RegisterOperation();
         }
+
+        private void CreateUpdatedDescription(decimal chargedAmount) => _transferDescription = new TransferDescription(_transferDescription.SourceAccountNumber, "", "", chargedAmount);
     }
 }

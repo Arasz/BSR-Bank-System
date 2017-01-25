@@ -90,8 +90,8 @@
     <Compile Include="Exceptions\AmbiguousTransferDescriptionException.cs" />
     <Compile Include="Extensions\OperationExtension.cs" />
     <Compile Include="Extensions\UserExtension.cs" />
-    <Compile Include="ServiceDecorators\BankServiceExceptionDecorator.cs" />
-    <Compile Include="ServiceDecorators\BankServiceValidationDecorator.cs" />
+    <Compile Include="Decorators\BankServiceExceptionDecorator.cs" />
+    <Compile Include="Decorators\BankServiceValidationDecorator.cs" />
     <Compile Include="OperationNames.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

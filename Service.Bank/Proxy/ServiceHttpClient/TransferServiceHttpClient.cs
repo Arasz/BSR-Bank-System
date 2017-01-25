@@ -55,8 +55,11 @@ namespace Service.Bank.Proxy.ServiceHttpClient
 
         private string ConvertToBase64(string data) => Convert.ToBase64String(Encoding.ASCII.GetBytes(data));
 
-        private HttpContent CreatePostMessageBody(InterbankTransferDescription transferDescription) =>
-            new StringContent(JsonConvert.SerializeObject(transferDescription), _jsonEncoding, _jsonMimeType);
+        private HttpContent CreatePostMessageBody(InterbankTransferDescription transferDescription)
+        {
+            var serializedDescription = JsonConvert.SerializeObject(transferDescription, Formatting.Indented);
+            return new StringContent(serializedDescription, _jsonEncoding, _jsonMimeType);
+        }
 
         private Uri CreateTransferActionUri(string serviceAddressBase)
             => new Uri(serviceAddressBase + _transferActionLocation);

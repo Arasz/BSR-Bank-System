@@ -50,6 +50,14 @@
       <HintPath>..\packages\Autofac.4.3.0\lib\net45\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Autofac.Extras.AttributeMetadata, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Extras.AttributeMetadata.4.0.1\lib\net45\Autofac.Extras.AttributeMetadata.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mef, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Mef.4.0.0\lib\net45\Autofac.Integration.Mef.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="FluentValidation, Version=6.2.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentValidation.6.2.1.0\lib\Net45\FluentValidation.dll</HintPath>
       <Private>True</Private>
@@ -65,11 +73,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authentication\CustomUserNamePasswordValidator.cs" />
+    <Compile Include="Decorators\InterbankTransferServiceValidationDecorator.cs" />
     <Compile Include="Error\JsonErrorHandler.cs" />
     <Compile Include="Error\JsonErrorWebHttpBehavior.cs" />
     <Compile Include="Error\JsonErrorWebHttpBehaviorElelement.cs" />
     <Compile Include="Autofac\InterbankTransactionModule.cs" />
-    <Compile Include="Implementation\InterbankTransferServiceDecorator.cs" />
+    <Compile Include="Decorators\InterbankTransferServiceExceptionDecorator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Implementation\InterbankTransferService.cs" />
     <Compile Include="Validation\InterbankTransferDescriptionValidator.cs" />

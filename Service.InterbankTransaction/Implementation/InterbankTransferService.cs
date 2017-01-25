@@ -1,33 +1,25 @@
-using System.Linq;
-using Core.Common.Exceptions;
-using FluentValidation;
+using Autofac.Features.AttributeFilters;
 using Service.Contracts;
 using Service.Dto;
+using System.Net;
+using System.ServiceModel.Web;
 
 namespace Service.InterbankTransfer.Implementation
 {
     public class InterbankTransferService : IInterbankTransferService
     {
         private readonly IBankService _bankService;
-        private readonly IValidator<InterbankTransferDescription> _validator;
 
-        public InterbankTransferService(IBankService bankService, IValidator<InterbankTransferDescription> validator)
+        public InterbankTransferService([KeyFilter("BankService")]IBankService bankService)
         {
             _bankService = bankService;
-            _validator = validator;
         }
 
         public void Transfer(InterbankTransferDescription transferDescription)
         {
-            var validationResult = _validator.Validate(transferDescription);
+            _bankService.ExternalTransfer((TransferDescription)transferDescription);
 
-            if (!validationResult.IsValid)
-            {
-                var validationError = validationResult.Errors.First();
-                throw new InvalidTransferException(validationError.PropertyName, validationError.ErrorMessage);
-            }
-
-            _bankService.ExternalTransfer((TransferDescription) transferDescription);
+            WebOperationContext.Current.OutgoingResponse.StatusCode = HttpStatusCode.Created;
         }
     }
 }

@@ -1,18 +1,17 @@
-﻿using System;
-using System.Net;
-using System.ServiceModel;
-using System.ServiceModel.Web;
-using Core.Common.Exceptions;
+﻿using Core.Common.Exceptions;
 using Service.Contracts;
 using Service.Dto;
+using System;
+using System.Net;
+using System.ServiceModel.Web;
 
-namespace Service.InterbankTransfer.Implementation
+namespace Service.InterbankTransfer.Decorators
 {
-    public class InterbankTransferServiceDecorator : IInterbankTransferService
+    public class InterbankTransferServiceExceptionDecorator : IInterbankTransferService
     {
         private readonly IInterbankTransferService _decoratedInterbankTransferService;
 
-        public InterbankTransferServiceDecorator(IInterbankTransferService decoratedInterbankTransferService)
+        public InterbankTransferServiceExceptionDecorator(IInterbankTransferService decoratedInterbankTransferService)
         {
             _decoratedInterbankTransferService = decoratedInterbankTransferService;
         }
@@ -23,18 +22,13 @@ namespace Service.InterbankTransfer.Implementation
             {
                 _decoratedInterbankTransferService.Transfer(transferDescription);
             }
-            catch (FaultException<ValidationFailedException> validationException)
+            catch (ValidationFailedException validationException)
             {
-                ThrowWebFaultException(validationException.Detail, HttpStatusCode.BadRequest);
+                ThrowWebFaultException(validationException, HttpStatusCode.BadRequest);
             }
-            catch (FaultException<AccountNotFoundException> accountNotFoundException)
+            catch (AccountNotFoundException accountNotFoundException)
             {
-                ThrowWebFaultException(accountNotFoundException.Detail, HttpStatusCode.NotFound);
-            }
-            catch (FaultException faultException)
-            {
-                ThrowWebFaultException(new Exception(faultException.Reason.ToString()),
-                    HttpStatusCode.InternalServerError);
+                ThrowWebFaultException(accountNotFoundException, HttpStatusCode.NotFound);
             }
             catch (Exception genericException)
             {

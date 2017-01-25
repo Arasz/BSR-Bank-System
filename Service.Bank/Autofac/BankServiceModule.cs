@@ -4,6 +4,7 @@ using Core.Common.ChecksumCalculator;
 using Core.CQRS.Autofac;
 using Data.Core;
 using FluentValidation;
+using Service.Bank.Decorators;
 using Service.Bank.Implementation;
 using Service.Bank.Operations;
 using Service.Bank.Proxy;
@@ -12,11 +13,10 @@ using Service.Bank.Proxy.ServicesRegister;
 using Service.Bank.Router;
 using Service.Bank.Validation;
 using Service.Contracts;
-using Service.Dto;
+using System;
 using System.Net.Http;
 using System.Reflection;
 using System.Resources;
-using Service.Bank.ServiceDecorators;
 using Module = Autofac.Module;
 
 namespace Service.Bank.Autofac
@@ -87,17 +87,25 @@ namespace Service.Bank.Autofac
                 .AsImplementedInterfaces()
                 .SingleInstance();
 
+            builder.Register<Func<Type, IValidator>>(context =>
+            {
+                var componentContext = context.Resolve<IComponentContext>();
+
+                return type => (IValidator)componentContext.Resolve(typeof(IValidator<>).MakeGenericType(type));
+            });
+
             builder.RegisterType<BankService>()
                 .Named<IBankService>(nameof(BankService));
 
-            builder.RegisterDecorator<IBankService>(
-                (context, service) =>
-                    new BankServiceValidationDecorator(service, context.Resolve<IValidator<TransferDescription>>(),
-                        context.Resolve<IValidator<AccountHistoryQuery>>()),
-                nameof(BankService), nameof(BankServiceValidationDecorator));
+            builder.RegisterDecorator<IBankService>(CreateBankServiceValidationDecorator, nameof(BankService), nameof(BankServiceValidationDecorator));
 
-            builder.RegisterDecorator<IBankService>((context, service) => new BankServiceExceptionDecorator(service),
-                nameof(BankServiceValidationDecorator));
+            builder.RegisterDecorator<IBankService>(CreateBankServiceExceptionDecorator, nameof(BankServiceValidationDecorator));
         }
+
+        private IBankService CreateBankServiceExceptionDecorator(IComponentContext context, IBankService service) =>
+            new BankServiceExceptionDecorator(service);
+
+        private IBankService CreateBankServiceValidationDecorator(IComponentContext context, IBankService service) =>
+            new BankServiceValidationDecorator(service, context.Resolve<Func<Type, IValidator>>());
     }
 }
